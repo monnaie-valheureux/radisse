@@ -1,2 +1,16 @@
+# Third-party PHP packages & libraries
+# ------------------------------------
+
+# The Composer dependency manager installs packages into this directory.
+# Files stored there must never be modified since any change would be
+# discarded as soon as an update of the dependencies is triggered.
 /vendor
+
+
+# Laravel & project-related files & directories
+# ---------------------------------------------
+
+# This file stores definitions of environment variables. As soon as
+# the framework boots, the contents of the file are converted into
+# actual environment variables that are made available globally.
 .env
