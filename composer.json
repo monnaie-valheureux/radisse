@@ -1,9 +1,18 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "name": "valheureux/radisse",
+    "description": "Application created to manage the local currency of the province of Liège, Belgium",
+    "license": "AGPL-3.0",
     "type": "project",
+    "support": {
+        "source": "https://github.com/monnaie-valheureux/radisse",
+        "issues": "https://github.com/monnaie-valheureux/radisse/issues"
+    },
+    "authors": [
+        {
+            "name": "Michaël Lecerf",
+            "email": "michael@estsurinter.net"
+        }
+    ],
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
