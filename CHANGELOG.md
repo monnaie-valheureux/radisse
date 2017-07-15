@@ -6,3 +6,7 @@ The format is based on
 [Keep a Changelog](http://keepachangelog.com/en/1.0.0/ "The Keep a Changelog website")
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
+
+## [Unreleased]
+### Added
+- One can view the list of partners.
