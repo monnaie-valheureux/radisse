@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ViewPartnersList extends TestCase
+class ViewPartnersListTest extends TestCase
 {
     use DatabaseMigrations;
 

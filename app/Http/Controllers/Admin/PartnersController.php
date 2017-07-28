@@ -22,4 +22,16 @@ class PartnersController extends Controller
 
         return view('admin.partners.index', compact('partners'));
     }
+
+    /**
+     * Display a single partner.
+     *
+     * @param  \App\Partner  $partner  The partner that will be displayed
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show(Partner $partner)
+    {
+        return view('admin.partners.show', compact('partner'));
+    }
 }
