@@ -22,7 +22,9 @@ class Partner extends Model
         // When a partner is created, we automatically
         // generate a slug based on its name.
         self::creating(function (self $partner) {
-            $partner->slug = Str::slug($partner->name);
+            if (is_null($partner->slug)) {
+                $partner->slug = Str::slug($partner->name);
+            }
         });
     }
 
