@@ -6,6 +6,9 @@
 # actual environment variables that are made available globally.
 .env
 
+# This directory stores files that are used to seed the database.
+/database/seeds/data
+
 
 # Third-party PHP packages & libraries
 # ------------------------------------
