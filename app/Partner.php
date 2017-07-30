@@ -43,4 +43,14 @@ class Partner extends Model
         // partner placeholder will be filled with the slug, not the ID.
         return 'slug';
     }
+
+    /**
+     * Get the locations of the partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
 }
