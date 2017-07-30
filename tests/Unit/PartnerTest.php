@@ -3,6 +3,7 @@
 namespace Tests\Unit\Admin;
 
 use App\Partner;
+use App\Location;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -40,5 +41,36 @@ class PartnerTest extends TestCase
         // that it had not been overwitten by a new one.
         $this->assertSame('my-special-slug', $partner->slug);
         $this->assertNotSame('boucherie-sanzot', $partner->slug);
+    }
+
+    /** @test */
+    function can_retrieve_its_locations()
+    {
+        // Create a partner.
+        $partner = factory(Partner::class)->create([
+            'name' => 'Boucherie Sanzot',
+        ]);
+
+        // Then, create two locations for this partner.
+        $location1 = factory(Location::class)->create([
+            'name' => 'Magasin rue du Nord',
+            'partner_id' => $partner->id,
+        ]);
+        $location2 = factory(Location::class)->create([
+            'name' => 'Magasin rue du Sud',
+            'partner_id' => $partner->id,
+        ]);
+
+        // Retrieve the locations.
+        $locations = $partner->locations;
+
+        // Check that we got the correct locations.
+        $this->assertCount(2, $locations);
+
+        $this->assertSame($location1->id, $locations[0]->id);
+        $this->assertSame('Magasin rue du Nord', $locations[0]->name);
+
+        $this->assertSame($location2->id, $locations[1]->id);
+        $this->assertSame('Magasin rue du Sud', $locations[1]->name);
     }
 }
