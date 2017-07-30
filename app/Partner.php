@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * A Partner is a person or organization that uses the local currency.
+ * A partner is a person or organization that uses the local currency.
  */
 class Partner extends Model
 {
@@ -42,5 +42,15 @@ class Partner extends Model
         // This means that if there is a route like 'foo/{partner}', the
         // partner placeholder will be filled with the slug, not the ID.
         return 'slug';
+    }
+
+    /**
+     * Get the locations of the partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
     }
 }
