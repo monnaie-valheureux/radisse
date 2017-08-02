@@ -53,4 +53,14 @@ class Partner extends Model
     {
         return $this->hasMany(Location::class);
     }
+
+    /**
+     * Get the person(s) who represent the partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function representatives()
+    {
+        return $this->hasMany(PartnerRepresentative::class);
+    }
 }
