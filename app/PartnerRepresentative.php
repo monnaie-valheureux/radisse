@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DomainException;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,6 +12,29 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PartnerRepresentative extends Model
 {
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // When a representative is created, if an e-mail address has
+        // been provided, we check that it has a valid syntax.
+        self::creating(function (self $representative) {
+            if (
+                $representative->hasEmail() &&
+                filter_var($representative->email, FILTER_VALIDATE_EMAIL) === false
+            ) {
+                throw new DomainException(
+                    "[{$representative->email}] is an invalid e-mail address"
+                );
+            }
+        });
+    }
+
     /**
      * Get the partner that this person represents.
      *

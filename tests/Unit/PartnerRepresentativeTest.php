@@ -40,4 +40,15 @@ class PartnerRepresentativeTest extends TestCase
         $this->assertTrue($representativeA->hasEmail());
         $this->assertFalse($representativeB->hasEmail());
     }
+
+    /**
+     * @test
+     * @expectedException DomainException
+     */
+    function the_email_address_must_be_valid()
+    {
+        $representative = factory(PartnerRepresentative::class)->create([
+            'email' => 'invalid-email-address',
+        ]);
+    }
 }
