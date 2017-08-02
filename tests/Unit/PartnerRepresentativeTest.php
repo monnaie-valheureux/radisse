@@ -26,4 +26,18 @@ class PartnerRepresentativeTest extends TestCase
 
         $this->assertSame($partner->id, $retrievedPartner->id);
     }
+
+    /** @test */
+    function can_have_an_optional_email_address()
+    {
+        $representativeA = factory(PartnerRepresentative::class)->create([
+            'email' => 'henri@boucheriesanzot.be',
+        ]);
+        $representativeB = factory(PartnerRepresentative::class)->create([
+            'email' => null,
+        ]);
+
+        $this->assertTrue($representativeA->hasEmail());
+        $this->assertFalse($representativeB->hasEmail());
+    }
 }

@@ -20,4 +20,14 @@ class PartnerRepresentative extends Model
     {
         return $this->belongsTo(Partner::class);
     }
+
+    /**
+     * Check if the representative has an e-mail address.
+     *
+     * @return bool
+     */
+    public function hasEmail()
+    {
+        return !is_null($this->email);
+    }
 }
