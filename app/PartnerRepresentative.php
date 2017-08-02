@@ -54,4 +54,14 @@ class PartnerRepresentative extends Model
     {
         return !is_null($this->email);
     }
+
+    /**
+     * Check if the representative has a phone number.
+     *
+     * @return bool
+     */
+    public function hasPhone()
+    {
+        return !is_null($this->phone);
+    }
 }

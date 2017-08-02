@@ -51,4 +51,18 @@ class PartnerRepresentativeTest extends TestCase
             'email' => 'invalid-email-address',
         ]);
     }
+
+    /** @test */
+    function can_have_an_optional_phone_number()
+    {
+        $representativeA = factory(PartnerRepresentative::class)->make([
+            'phone' => '+32489123456',
+        ]);
+        $representativeB = factory(PartnerRepresentative::class)->make([
+            'phone' => null,
+        ]);
+
+        $this->assertTrue($representativeA->hasPhone());
+        $this->assertFalse($representativeB->hasPhone());
+    }
 }
