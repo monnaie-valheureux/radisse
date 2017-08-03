@@ -30,10 +30,10 @@ class PartnerRepresentativeTest extends TestCase
     /** @test */
     function can_have_an_optional_email_address()
     {
-        $representativeA = factory(PartnerRepresentative::class)->create([
+        $representativeA = factory(PartnerRepresentative::class)->make([
             'email' => 'henri@boucheriesanzot.be',
         ]);
-        $representativeB = factory(PartnerRepresentative::class)->create([
+        $representativeB = factory(PartnerRepresentative::class)->make([
             'email' => null,
         ]);
 
@@ -47,7 +47,7 @@ class PartnerRepresentativeTest extends TestCase
      */
     function the_email_address_must_be_valid()
     {
-        $representative = factory(PartnerRepresentative::class)->create([
+        $representative = factory(PartnerRepresentative::class)->make([
             'email' => 'invalid-email-address',
         ]);
     }
