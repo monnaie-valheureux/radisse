@@ -5,6 +5,7 @@ namespace Tests\Unit\Admin;
 use App\Partner;
 use App\Location;
 use Tests\TestCase;
+use App\PartnerRepresentative;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -72,5 +73,36 @@ class PartnerTest extends TestCase
 
         $this->assertSame($location2->id, $locations[1]->id);
         $this->assertSame('Magasin rue du Sud', $locations[1]->name);
+    }
+
+    /** @test */
+    function can_retrieve_its_representatives()
+    {
+        $partner = factory(Partner::class)->create([
+            'name' => 'Poissonnerie Ordralfabétix',
+        ]);
+
+        $personA = factory(PartnerRepresentative::class)->create([
+            'partner_id' => $partner->id,
+            'given_name' => 'Ordralfabétix',
+            'role' => 'gérant',
+        ]);
+        $personB = factory(PartnerRepresentative::class)->create([
+            'partner_id' => $partner->id,
+            'given_name' => 'Iélosubmarine',
+            'role' => 'gérante',
+        ]);
+
+        $representatives = $partner->representatives;
+
+        $this->assertCount(2, $representatives);
+
+        $this->assertSame($personA->id, $representatives[0]->id);
+        $this->assertSame('Ordralfabétix', $representatives[0]->given_name);
+        $this->assertSame('gérant', $representatives[0]->role);
+
+        $this->assertSame($personB->id, $representatives[1]->id);
+        $this->assertSame('Iélosubmarine', $representatives[1]->given_name);
+        $this->assertSame('gérante', $representatives[1]->role);
     }
 }
