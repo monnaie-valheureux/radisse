@@ -36,6 +36,30 @@ class PartnerRepresentative extends Model
     }
 
     /**
+     * Set the partner representative’s phone number.
+     *
+     * @param  string  $phone
+     * @return void
+     */
+    public function setPhoneAttribute($phone)
+    {
+        // If a phone number has been provided, we check if it is valid.
+        // If it is, we then format it in the E.164 format.
+        // @see https://en.wikipedia.org/wiki/E.164
+        if (!is_null($phone)) {
+
+            if (validator([$phone], ['phone:BE'])->fails()) {
+                throw new DomainException("[{$phone}] is an invalid phone number.");
+            }
+
+            // The number seems valid. Format it in a standard way.
+            $phone = phone($phone, 'BE')->formatE164();
+        }
+
+        $this->attributes['phone'] = $phone;
+    }
+
+    /**
      * Get the partner that this person represents.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

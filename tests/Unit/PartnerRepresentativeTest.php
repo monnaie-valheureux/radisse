@@ -65,4 +65,37 @@ class PartnerRepresentativeTest extends TestCase
         $this->assertTrue($representativeA->hasPhone());
         $this->assertFalse($representativeB->hasPhone());
     }
+
+    /**
+     * @test
+     * @expectedException DomainException
+     */
+    function the_phone_number_must_be_valid()
+    {
+        factory(PartnerRepresentative::class)->make(['phone' => '12345']);
+    }
+
+    /** @test */
+    function the_phone_number_can_be_provided_in_multiple_formats()
+    {
+        // International format (E.164).
+        factory(PartnerRepresentative::class)->make(['phone' => '+32489123456']);
+
+        // National format, without spaces.
+        factory(PartnerRepresentative::class)->make(['phone' => '0489123456']);
+
+        // National format, with spaces.
+        factory(PartnerRepresentative::class)->make(['phone' => '0489 12 34 56']);
+        factory(PartnerRepresentative::class)->make(['phone' => '0489 123 456']);
+
+        // Without leading zero.
+        factory(PartnerRepresentative::class)->make(['phone' => '489 123 456']);
+        factory(PartnerRepresentative::class)->make(['phone' => '489 123 456']);
+
+        // With slash and dots.
+        factory(PartnerRepresentative::class)->make(['phone' => '0489/12.34.56']);
+
+        // Totally drunk…
+        factory(PartnerRepresentative::class)->make(['phone' => '+32 (0) 48 9 123 4 56']);
+    }
 }
