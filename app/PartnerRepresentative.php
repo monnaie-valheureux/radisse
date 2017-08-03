@@ -13,26 +13,18 @@ use Illuminate\Database\Eloquent\Model;
 class PartnerRepresentative extends Model
 {
     /**
-     * The "booting" method of the model.
+     * Set the partner representative’s email.
      *
+     * @param  string  $email
      * @return void
      */
-    protected static function boot()
+    public function setEmailAttribute($email)
     {
-        parent::boot();
+        if (!is_null($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            throw new DomainException("[{$email}] is an invalid e-mail address.");
+        }
 
-        // When a representative is created, if an e-mail address has
-        // been provided, we check that it has a valid syntax.
-        self::creating(function (self $representative) {
-            if (
-                $representative->hasEmail() &&
-                filter_var($representative->email, FILTER_VALIDATE_EMAIL) === false
-            ) {
-                throw new DomainException(
-                    "[{$representative->email}] is an invalid e-mail address"
-                );
-            }
-        });
+        $this->attributes['email'] = $email;
     }
 
     /**
