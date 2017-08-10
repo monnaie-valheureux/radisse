@@ -89,7 +89,7 @@ class PartnerRepresentativeTest extends TestCase
         factory(PartnerRepresentative::class)->make(['phone' => '0489 123 456']);
 
         // Without leading zero.
-        factory(PartnerRepresentative::class)->make(['phone' => '489 123 456']);
+        factory(PartnerRepresentative::class)->make(['phone' => '489 12 34 56']);
         factory(PartnerRepresentative::class)->make(['phone' => '489 123 456']);
 
         // With slash and dots.
