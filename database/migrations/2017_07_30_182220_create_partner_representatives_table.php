@@ -49,6 +49,6 @@ class CreatePartnerRepresentativesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partners');
+        Schema::dropIfExists('partner_representatives');
     }
 }
