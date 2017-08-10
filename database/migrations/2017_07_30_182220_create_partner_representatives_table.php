@@ -24,11 +24,11 @@ class CreatePartnerRepresentativesTable extends Migration
             $table->unsignedInteger('partner_id');
             $table->foreign('partner_id')->references('id')->on('partners');
 
-            $table->string('given_name');
-            $table->string('surname');
+            $table->string('given_name')->nullable();
+            $table->string('surname')->nullable();
 
             // The role or position that the person fills for the partner.
-            $table->string('role');
+            $table->string('role')->nullable();
 
             // An optional e-mail address the person may be contacted at.
             $table->string('email')->nullable();
