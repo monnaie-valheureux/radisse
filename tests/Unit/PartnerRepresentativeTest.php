@@ -72,7 +72,7 @@ class PartnerRepresentativeTest extends TestCase
      */
     function the_phone_number_must_be_valid()
     {
-        factory(PartnerRepresentative::class)->make(['phone' => '12345']);
+        factory(PartnerRepresentative::class)->make(['phone' => 'invalid']);
     }
 
     /** @test */
