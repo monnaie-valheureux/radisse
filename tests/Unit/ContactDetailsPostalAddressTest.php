@@ -155,6 +155,22 @@ class ContactDetailsPostalAddressTest extends TestCase
     }
 
     /** @test */
+    function it_handles_the_letter_box_number_when_formatting_the_address()
+    {
+        $address = $this->makeTestAddress(['letter_box' => '5']);
+
+        $this->assertSame(
+            "Boucherie Sanzot\n".
+            // The letter box number is added to this line.
+            // /!\ This is specific to Belgian postal services /!\
+            "rue du Château 1 bte 5\n".
+            "1234 Moulinsart\n".
+            "Belgique",
+            $address->__toString()
+        );
+    }
+
+    /** @test */
     function it_gathers_the_correct_data_when_saving_the_model_to_the_database()
     {
         // Manually trigger database migrations.
