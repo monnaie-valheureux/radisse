@@ -70,6 +70,16 @@ class ContactDetails extends Model
     }
 
     /**
+     * Get all of the owning contactable models.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function contactable()
+    {
+        return $this->morphTo('contactable');
+    }
+
+    /**
      * Get the key-value pairs of data that are specific to this type of contact info.
      *
      * This method has to be implemented by subclasses.
