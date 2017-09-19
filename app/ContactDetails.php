@@ -49,10 +49,14 @@ class ContactDetails extends Model
     {
         parent::boot();
 
+        static::registerModelEvent('retrieved', function (self $self) {
+            $self->convertAttributesToProperties();
+        });
+
         // When the contact info is saved to the database, we gather the
         // data that is related to the ContactDetails object in order
         // to store it as JSON in a dedicated database column.
-        self::saving(function (self $self) {
+        static::saving(function (self $self) {
 
             $commonData = [
                 'isPublic' => $self->isPublic,
@@ -189,23 +193,28 @@ class ContactDetails extends Model
         // First, retrieve the model using the original method.
         $model = parent::newFromBuilder($attributes, $connection);
 
-        $data = json_decode($model->attributes['data']);
+        $model->fireModelEvent('retrieved', false);
+
+        return $model;
+    }
+
+    protected function convertAttributesToProperties()
+    {
+        $data = json_decode($this->attributes['data']);
 
         // Handle properties that are shared by all types of contact details.
-        $model->isPublic = $data->isPublic;
-        $model->label = $data->label;
+        $this->isPublic = $data->isPublic;
+        $this->label = $data->label;
 
         // Then, handle specific properties.
-        if (method_exists($model, 'getOwnAttributeKeys')) {
-            $properties = $model->getOwnAttributeKeys();
+        if (method_exists($this, 'getOwnAttributeKeys')) {
+            $properties = $this->getOwnAttributeKeys();
         } else {
-            $properties = array_keys($model->getOwnAttributes());
+            $properties = array_keys($this->getOwnAttributes());
         }
 
         foreach ($properties as $property) {
-            $model->{$property} = $data->{$property};
+            $this->{$property} = $data->{$property};
         }
-
-        return $model;
     }
 }
