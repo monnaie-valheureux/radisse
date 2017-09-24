@@ -57,19 +57,7 @@ class ContactDetails extends Model
         // data that is related to the ContactDetails object in order
         // to store it as JSON in a dedicated database column.
         static::saving(function (self $self) {
-
-            $commonData = [
-                'isPublic' => $self->isPublic,
-                'label' => $self->label,
-            ];
-
-            $specificData = $self->getOwnAttributes();
-
-            // Overwrite the array of attributes of the Eloquent model.
-            $self->attributes = array_merge($self->attributes, [
-                'type' => $self->type,
-                'data' => json_encode($commonData + $specificData),
-            ]);
+            $self->prepareContactDetailPropertiesForSaving();
         });
     }
 
@@ -216,5 +204,20 @@ class ContactDetails extends Model
         foreach ($properties as $property) {
             $this->{$property} = $data->{$property};
         }
+    }
+    protected function prepareContactDetailPropertiesForSaving()
+    {
+        $commonData = [
+            'isPublic' => $this->isPublic,
+            'label' => $this->label,
+        ];
+
+        $specificData = $this->getOwnAttributes();
+
+        // Overwrite the array of attributes of the Eloquent model.
+        $this->attributes = array_merge($this->attributes, [
+            'type' => $this->type,
+            'data' => json_encode($commonData + $specificData),
+        ]);
     }
 }
