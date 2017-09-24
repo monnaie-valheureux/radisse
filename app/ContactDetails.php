@@ -50,7 +50,7 @@ class ContactDetails extends Model
         parent::boot();
 
         static::registerModelEvent('retrieved', function (self $self) {
-            $self->convertAttributesToProperties();
+            $self->populateContactDetailProperties();
         });
 
         // When the contact info is saved to the database, we gather the
@@ -198,7 +198,7 @@ class ContactDetails extends Model
         return $model;
     }
 
-    protected function convertAttributesToProperties()
+    protected function populateContactDetailProperties()
     {
         $data = json_decode($this->attributes['data']);
 
