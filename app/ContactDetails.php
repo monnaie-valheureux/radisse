@@ -186,6 +186,14 @@ class ContactDetails extends Model
         return $model;
     }
 
+    /**
+     * Initialize specific properties based on a JSON database column.
+     *
+     * This fills properties related to the contact detail from data that is
+     * stored in a dedicated JSON column.
+     *
+     * @return void
+     */
     protected function populateContactDetailProperties()
     {
         $data = json_decode($this->attributes['data']);
@@ -205,6 +213,15 @@ class ContactDetails extends Model
             $this->{$property} = $data->{$property};
         }
     }
+
+    /**
+     * Set or update Eloquent attributes using data from specific properties.
+     *
+     * This gathers data from properties that are specific to the contact
+     * detail in order to store it in a dedicated JSON column.
+     *
+     * @return void
+     */
     protected function prepareContactDetailPropertiesForSaving()
     {
         $commonData = [
