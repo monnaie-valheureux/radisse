@@ -21,6 +21,7 @@ class ContactDetails extends Model
 
     /**
      * The type of contact info stored by the object.
+     * This has to be set by subclasses.
      *
      * @var string
      */
@@ -49,6 +50,9 @@ class ContactDetails extends Model
     {
         parent::boot();
 
+        // When the contact info is retrieved from the database, we gather the
+        // contents of the JSON column in order to populate properties that
+        // are specific to the ContactDetails object we work with.
         static::registerModelEvent('retrieved', function (self $self) {
             $self->populateContactDetailProperties();
         });
@@ -72,7 +76,7 @@ class ContactDetails extends Model
     }
 
     /**
-     * Get the key-value pairs of data that are specific to this type of contact info.
+     * Get key-value pairs of data that are specific to this type of contact info.
      *
      * This method has to be implemented by subclasses.
      */
