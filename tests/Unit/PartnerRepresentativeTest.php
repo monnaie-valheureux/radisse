@@ -97,5 +97,11 @@ class PartnerRepresentativeTest extends TestCase
 
         // Totally drunk…
         factory(PartnerRepresentative::class)->make(['phone' => '+32 (0) 48 9 123 4 56']);
+
+        // If we got no exception until here, then everything is fine.
+        // This is a workaround for the lack of an annotation that
+        // would say we expect no exception to be thrown at all.
+        // @see https://github.com/sebastianbergmann/phpunit-documentation/issues/171
+        $this->assertTrue(true);
     }
 }
