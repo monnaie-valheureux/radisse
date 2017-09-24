@@ -2,9 +2,13 @@
 
 namespace Tests\Unit\Admin;
 
+use App\Email;
+use App\Phone;
 use App\Partner;
 use App\Location;
 use Tests\TestCase;
+use App\PostalAddress;
+use App\SocialNetwork;
 use App\PartnerRepresentative;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -104,5 +108,56 @@ class PartnerTest extends TestCase
         $this->assertSame($personB->id, $representatives[1]->id);
         $this->assertSame('Iélosubmarine', $representatives[1]->given_name);
         $this->assertSame('gérante', $representatives[1]->role);
+    }
+
+    /** @test */
+    function can_retrieve_its_contact_details()
+    {
+        $partner = factory(Partner::class)->create([
+            'name' => 'Boucherie Sanzot',
+        ]);
+
+        // Create different types of contact details.
+        $address = PostalAddress::fromArray([
+            'recipient' => 'Boucherie Sanzot',
+            'street' => 'rue du Château',
+            'street_number' => '1',
+            'letter_box' => null,
+            'postal_code' => '1234',
+            'city' => 'Moulinsart',
+            'latitude' => null,
+            'longitude' => null,
+        ]);
+        $phone = Phone::fromNumber('+32489123456');
+        $email = Email::fromAddress('henri@boucheriesanzot.be');
+        $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
+
+        // Save the contact details.
+        $partner->postalAddresses()->save($address);
+        $partner->phones()->save($phone);
+        $partner->emails()->save($email);
+        $partner->socialNetworks()->save($network);
+
+        // Finally, we test that we can properly get everything back.
+
+        // Postal addresses.
+        $this->assertCount(1, $partner->postalAddresses);
+        $this->assertInstanceOf(PostalAddress::class, $partner->postalAddresses[0]);
+        $this->assertSame($address->id, $partner->postalAddresses[0]->id);
+
+        // Phone numbers.
+        $this->assertCount(1, $partner->phones);
+        $this->assertInstanceOf(Phone::class, $partner->phones[0]);
+        $this->assertSame($phone->id, $partner->phones[0]->id);
+
+        // E-mail addresses.
+        $this->assertCount(1, $partner->emails);
+        $this->assertInstanceOf(Email::class, $partner->emails[0]);
+        $this->assertSame($email->id, $partner->emails[0]->id);
+
+        // Social networks.
+        $this->assertCount(1, $partner->socialNetworks);
+        $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
+        $this->assertSame($network->id, $partner->socialNetworks[0]->id);
     }
 }

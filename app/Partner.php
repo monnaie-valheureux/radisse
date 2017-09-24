@@ -63,4 +63,48 @@ class Partner extends Model
     {
         return $this->hasMany(PartnerRepresentative::class);
     }
+
+    /**
+     * Get all of the partner’s postal addresses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function postalAddresses()
+    {
+        return $this->morphMany(PostalAddress::class, 'contactable')
+            ->where('type', 'postal-address');
+    }
+
+    /**
+     * Get all of the partner’s phones.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function phones()
+    {
+        return $this->morphMany(Phone::class, 'contactable')
+            ->where('type', 'phone');
+    }
+
+    /**
+     * Get all of the partner’s emails.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function emails()
+    {
+        return $this->morphMany(Email::class, 'contactable')
+            ->where('type', 'email');
+    }
+
+    /**
+     * Get all of the partner’s social networks.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function socialNetworks()
+    {
+        return $this->morphMany(SocialNetwork::class, 'contactable')
+            ->where('type', 'social-network');
+    }
 }
