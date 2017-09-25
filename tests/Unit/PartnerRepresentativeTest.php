@@ -5,13 +5,14 @@ namespace Tests\Unit\Admin;
 use App\Partner;
 use Tests\TestCase;
 use App\PartnerRepresentative;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PartnerRepresentativeTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     function can_retrieve_its_partner()
