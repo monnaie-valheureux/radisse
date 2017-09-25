@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Location extends Model
 {
+    use HasPostalAddress;
+    use HasPhones;
+
     /**
      * Get the partner that owns the location.
      *
