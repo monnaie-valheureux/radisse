@@ -10,13 +10,12 @@ use Tests\TestCase;
 use App\PostalAddress;
 use App\SocialNetwork;
 use App\PartnerRepresentative;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PartnerTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function can_generate_a_slug_from_the_name_when_creating_a_partner()

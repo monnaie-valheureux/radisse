@@ -46,8 +46,13 @@ class ContactDetailsSocialNetworkTest extends TestCase
      */
     function it_supports_the_facebook_social_network($url)
     {
-        // If we get no exception, then everything’s fine.
         SocialNetwork::fromUrl($url);
+
+        // If we got no exception until here, then everything is fine.
+        // This is a workaround for the lack of an annotation that
+        // would say we expect no exception to be thrown at all.
+        // @see https://github.com/sebastianbergmann/phpunit-documentation/issues/171
+        $this->assertTrue(true);
     }
 
     /** @test */
@@ -72,8 +77,13 @@ class ContactDetailsSocialNetworkTest extends TestCase
      */
     function it_supports_the_twitter_social_network($url)
     {
-        // If we get no exception, then everything’s fine.
         SocialNetwork::fromUrl($url);
+
+        // If we got no exception until here, then everything is fine.
+        // This is a workaround for the lack of an annotation that
+        // would say we expect no exception to be thrown at all.
+        // @see https://github.com/sebastianbergmann/phpunit-documentation/issues/171
+        $this->assertTrue(true);
     }
 
     /** @test */
