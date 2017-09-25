@@ -53,7 +53,7 @@ class ContactDetails extends Model
         // When the contact info is retrieved from the database, we gather the
         // contents of the JSON column in order to populate properties that
         // are specific to the ContactDetails object we work with.
-        static::registerModelEvent('retrieved', function (self $self) {
+        static::retrieved(function (self $self) {
             $self->populateContactDetailProperties();
         });
 
@@ -171,23 +171,6 @@ class ContactDetails extends Model
                 parent::__set($name, $value);
                 break;
         }
-    }
-
-    /**
-     * Create a new model instance that is existing.
-     *
-     * @param  array  $attributes
-     * @param  string|null  $connection
-     * @return static
-     */
-    public function newFromBuilder($attributes = [], $connection = null)
-    {
-        // First, retrieve the model using the original method.
-        $model = parent::newFromBuilder($attributes, $connection);
-
-        $model->fireModelEvent('retrieved', false);
-
-        return $model;
     }
 
     /**
