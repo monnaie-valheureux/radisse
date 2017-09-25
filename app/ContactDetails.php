@@ -174,23 +174,6 @@ class ContactDetails extends Model
     }
 
     /**
-     * Create a new model instance that is existing.
-     *
-     * @param  array  $attributes
-     * @param  string|null  $connection
-     * @return static
-     */
-    public function newFromBuilder($attributes = [], $connection = null)
-    {
-        // First, retrieve the model using the original method.
-        $model = parent::newFromBuilder($attributes, $connection);
-
-        $model->fireModelEvent('retrieved', false);
-
-        return $model;
-    }
-
-    /**
      * Initialize specific properties based on a JSON database column.
      *
      * This fills properties related to the contact detail from data that is
