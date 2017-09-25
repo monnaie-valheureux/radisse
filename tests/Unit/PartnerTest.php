@@ -132,17 +132,16 @@ class PartnerTest extends TestCase
         $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
 
         // Save the contact details.
-        $partner->postalAddresses()->save($address);
+        $partner->postalAddress()->save($address);
         $partner->phones()->save($phone);
         $partner->emails()->save($email);
         $partner->socialNetworks()->save($network);
 
         // Finally, we test that we can properly get everything back.
 
-        // Postal addresses.
-        $this->assertCount(1, $partner->postalAddresses);
-        $this->assertInstanceOf(PostalAddress::class, $partner->postalAddresses[0]);
-        $this->assertSame($address->id, $partner->postalAddresses[0]->id);
+        // Postal address.
+        $this->assertInstanceOf(PostalAddress::class, $partner->postalAddress);
+        $this->assertSame($address->id, $partner->postalAddress->id);
 
         // Phone numbers.
         $this->assertCount(1, $partner->phones);

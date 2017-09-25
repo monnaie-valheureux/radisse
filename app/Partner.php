@@ -65,13 +65,13 @@ class Partner extends Model
     }
 
     /**
-     * Get all of the partner’s postal addresses.
+     * Get the partner’s postal addresses.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    public function postalAddresses()
+    public function postalAddress()
     {
-        return $this->morphMany(PostalAddress::class, 'contactable')
+        return $this->morphOne(PostalAddress::class, 'contactable')
             ->where('type', 'postal-address');
     }
 
