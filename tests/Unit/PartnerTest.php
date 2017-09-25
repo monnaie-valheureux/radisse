@@ -12,8 +12,6 @@ use App\SocialNetwork;
 use App\PartnerRepresentative;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PartnerTest extends TestCase
 {
