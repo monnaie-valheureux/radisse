@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'museo700';
+    src: url('../fonts/museo/woff2/museo700.woff2') format('woff2'),
+         url('../fonts/museo/woff/museo700.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo_sans500';
+    src: url('../fonts/museo_sans/woff2/museo_sans500.woff2') format('woff2'),
+         url('../fonts/museo_sans/woff/museo_sans500.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo_sans700';
+    src: url('../fonts/museo_sans/woff2/museo_sans700.woff2') format('woff2'),
+         url('../fonts/museo_sans/woff/museo_sans700.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}
+
+html {
+    font-size: .625em;
+}
+body {
+    font-family: 'museo_sans500', 'Museo Sans', 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.6rem;
+    background: #0094b3;
+    color: #fff;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (min-width: 601px) {
+    html {
+        font-size: 0.781em;
+    }
+}
+
+h1 {
+    font-family: 'museo700', 'Museo', 'Helvetica', 'Arial', sans-serif;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+.bills {
+    max-width: 50rem;
+    margin: 2rem auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.bills-container {
+    position: relative;
+    overflow: auto;
+}
+.old-bill {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: 60%;
+    z-index: 2;
+}
+.new-bill {
+    float: right;
+    max-width: 75%;
+    z-index: 1;
+}
+
+.text {
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a,
+em {
+    font-family: 'museo_sans700', 'Museo Sans', 'Helvetica', 'Arial', sans-serif;
+    font-style: normal;
+    color: #003F4C;
+}
+
+.event {
+    text-align: center;
+}
