@@ -40,27 +40,17 @@ class PartnerRepresentative extends Model
     }
 
     /**
-     * Set the partner representative’s phone number.
+     * Associate a phone number with the partner representative.
      *
-     * @param  string  $phone
-     * @return void
+     * @param string  $number
+     * @param bool    $isPublic
      */
-    public function setPhoneAttribute($phone)
+    public function addPhone($number, $isPublic = false)
     {
-        // If a phone number has been provided, we check if it is valid.
-        // If it is, we then format it in the E.164 format.
-        // @see https://en.wikipedia.org/wiki/E.164
-        if (!is_null($phone)) {
+        $phone = Phone::fromNumber($number);
+        $phone->isPublic = (bool) $isPublic;
 
-            if (validator([$phone], ['phone:BE'])->fails()) {
-                throw new DomainException("[{$phone}] is an invalid phone number.");
-            }
-
-            // The number seems valid. Format it in a standard way.
-            $phone = phone($phone, 'BE')->formatE164();
-        }
-
-        $this->attributes['phone'] = $phone;
+        $this->phones()->save($phone);
     }
 
     /**
@@ -90,6 +80,6 @@ class PartnerRepresentative extends Model
      */
     public function hasPhone()
     {
-        return !is_null($this->phone);
+        return $this->phones->isNotEmpty();
     }
 }

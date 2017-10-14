@@ -63,14 +63,12 @@ class PartnerRepresentativeTest extends TestCase
     }
 
     /** @test */
-    function can_have_an_optional_phone_number()
+    function can_be_associated_with_an_optional_phone_number()
     {
-        $representativeA = factory(PartnerRepresentative::class)->make([
-            'phone' => '+32489123456',
-        ]);
-        $representativeB = factory(PartnerRepresentative::class)->make([
-            'phone' => null,
-        ]);
+        $representativeA = factory(PartnerRepresentative::class)->create();
+        $representativeA->addPhone('+32489123456');
+
+        $representativeB = factory(PartnerRepresentative::class)->create();
 
         $this->assertTrue($representativeA->hasPhone());
         $this->assertFalse($representativeB->hasPhone());
@@ -82,31 +80,35 @@ class PartnerRepresentativeTest extends TestCase
      */
     function the_phone_number_must_be_valid()
     {
-        factory(PartnerRepresentative::class)->make(['phone' => 'invalid']);
+        $representative = factory(PartnerRepresentative::class)->make();
+
+        $representative->addPhone('invalid');
     }
 
     /** @test */
     function the_phone_number_can_be_provided_in_multiple_formats()
     {
+        $representative = factory(PartnerRepresentative::class)->create();
+
         // International format (E.164).
-        factory(PartnerRepresentative::class)->make(['phone' => '+32489123456']);
+        $representative->addPhone('+32489123456');
 
         // National format, without spaces.
-        factory(PartnerRepresentative::class)->make(['phone' => '0489123456']);
+        $representative->addPhone('0489123456');
 
         // National format, with spaces.
-        factory(PartnerRepresentative::class)->make(['phone' => '0489 12 34 56']);
-        factory(PartnerRepresentative::class)->make(['phone' => '0489 123 456']);
+        $representative->addPhone('0489 12 34 56');
+        $representative->addPhone('0489 123 456');
 
         // Without leading zero.
-        factory(PartnerRepresentative::class)->make(['phone' => '489 12 34 56']);
-        factory(PartnerRepresentative::class)->make(['phone' => '489 123 456']);
+        $representative->addPhone('489 12 34 56');
+        $representative->addPhone('489 123 456');
 
         // With slash and dots.
-        factory(PartnerRepresentative::class)->make(['phone' => '0489/12.34.56']);
+        $representative->addPhone('0489/12.34.56');
 
         // Totally drunk…
-        factory(PartnerRepresentative::class)->make(['phone' => '+32 (0) 48 9 123 4 56']);
+        $representative->addPhone('+32 (0) 48 9 123 4 56');
 
         // If we got no exception until here, then everything is fine.
         // This is a workaround for the lack of an annotation that
