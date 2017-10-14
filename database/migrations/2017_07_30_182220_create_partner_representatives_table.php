@@ -30,12 +30,6 @@ class CreatePartnerRepresentativesTable extends Migration
             // The role or position that the person fills for the partner.
             $table->string('role')->nullable();
 
-            // An optional e-mail address the person may be contacted at.
-            $table->string('email')->nullable();
-
-            // An optional phone number, in international format.
-            $table->string('phone')->nullable();
-
             // Timestamps telling when the table row was created
             // and when it was modified for the last time.
             $table->timestamps();
