@@ -134,6 +134,23 @@ class ContactDetailsPostalAddressTest extends TestCase
     }
 
     /** @test */
+    function it_can_format_the_postal_address_in_an_html_format()
+    {
+        $address = $this->makeTestAddress();
+
+        $this->assertSame(
+            '<p translate="no">'."\n".
+            '<span class="recipient">Boucherie Sanzot</span><br>'."\n".
+            '<span class="address-line1">rue du Château 1</span><br>'."\n".
+            '<span class="postal-code">1234</span> '.
+            '<span class="locality">Moulinsart</span><br>'."\n".
+            '<span class="country">Belgique</span>'."\n".
+            '</p>',
+            $address->toHtml()
+        );
+    }
+
+    /** @test */
     function it_is_transformed_to_the_postal_address_when_converted_to_a_string()
     {
         $address = $this->makeTestAddress();
