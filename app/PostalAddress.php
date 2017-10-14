@@ -168,7 +168,9 @@ class PostalAddress extends ContactDetails
 
         foreach ($requiredParts as $part) {
             if (!isset($address->{$part})) {
-                throw new DomainException("Missing components in postal address.");
+                throw new DomainException(
+                    "Missing [{$part}] component in postal address."
+                );
             }
         }
     }

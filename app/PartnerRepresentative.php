@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PartnerRepresentative extends Model
 {
+    use HasEmails;
+    use HasPhones;
+
     /**
      * Set the partner representative’s email.
      *
