@@ -16,18 +16,17 @@ class PartnerRepresentative extends Model
     use HasPhones;
 
     /**
-     * Set the partner representative’s email.
+     * Associate an email address with the partner representative.
      *
-     * @param  string  $email
-     * @return void
+     * @param string  $address
+     * @param bool    $isPublic
      */
-    public function setEmailAttribute($email)
+    public function addEmail($address, $isPublic = false)
     {
-        if (!is_null($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            throw new DomainException("[{$email}] is an invalid e-mail address.");
-        }
+        $email = Email::fromAddress($address);
+        $email->isPublic = (bool) $isPublic;
 
-        $this->attributes['email'] = $email;
+        $this->emails()->save($email);
     }
 
     /**
@@ -71,7 +70,7 @@ class PartnerRepresentative extends Model
      */
     public function hasEmail()
     {
-        return !is_null($this->email);
+        return $this->emails->isNotEmpty();
     }
 
     /**
