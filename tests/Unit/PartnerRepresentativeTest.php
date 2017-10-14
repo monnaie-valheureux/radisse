@@ -74,6 +74,19 @@ class PartnerRepresentativeTest extends TestCase
         $this->assertFalse($representativeB->hasPhone());
     }
 
+    /** @test */
+    function can_be_associated_with_an_optional_phone_number_that_is_public()
+    {
+        $representativeA = factory(PartnerRepresentative::class)->create();
+        $representativeA->addPublicPhone('+32489123456');
+
+        $representativeB = factory(PartnerRepresentative::class)->create();
+        $representativeB->addPhone('+32489654321');
+
+        $this->assertTrue($representativeA->phones->first()->isPublic);
+        $this->assertFalse($representativeB->phones->first()->isPublic);
+    }
+
     /**
      * @test
      * @expectedException DomainException

@@ -54,6 +54,16 @@ class PartnerRepresentative extends Model
     }
 
     /**
+     * Associate a public phone number with the partner representative.
+     *
+     * @param string  $number
+     */
+    public function addPublicPhone($number)
+    {
+        $this->addPhone($number, $isPublic = true);
+    }
+
+    /**
      * Get the partner that this person represents.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
