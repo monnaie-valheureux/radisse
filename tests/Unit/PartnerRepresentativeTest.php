@@ -38,6 +38,19 @@ class PartnerRepresentativeTest extends TestCase
         $this->assertFalse($representativeB->hasEmail());
     }
 
+    /** @test */
+    function can_be_associated_with_an_optional_email_address_that_is_public()
+    {
+        $representativeA = factory(PartnerRepresentative::class)->create();
+        $representativeA->addPublicEmail('contact@boucheriesanzot.be');
+
+        $representativeB = factory(PartnerRepresentative::class)->create();
+        $representativeB->addEmail('henri@boucheriesanzot.be');
+
+        $this->assertTrue($representativeA->emails->first()->isPublic);
+        $this->assertFalse($representativeB->emails->first()->isPublic);
+    }
+
     /**
      * @test
      * @expectedException DomainException

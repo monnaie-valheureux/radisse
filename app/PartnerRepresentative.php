@@ -30,6 +30,16 @@ class PartnerRepresentative extends Model
     }
 
     /**
+     * Associate a public email address with the partner representative.
+     *
+     * @param string  $address
+     */
+    public function addPublicEmail($address)
+    {
+        $this->addEmail($address, $isPublic = true);
+    }
+
+    /**
      * Set the partner representative’s phone number.
      *
      * @param  string  $phone
