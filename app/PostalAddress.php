@@ -242,6 +242,13 @@ class PostalAddress extends ContactDetails
         }
     }
 
+    public function toHtml()
+    {
+        $address = $this->toAddressObject();
+
+        return $this->getFormatter($asHtml = true)->format($address);
+    }
+
     /**
      * Convert the address to its string representation.
      *
@@ -259,14 +266,18 @@ class PostalAddress extends ContactDetails
      *
      * @return \CommerceGuys\Addressing\Formatter\DefaultFormatter
      */
-    protected function getFormatter()
+    protected function getFormatter($asHtml = false)
     {
         return new DefaultFormatter(
             new AddressFormatRepository,
             new CountryRepository,
             new SubdivisionRepository,
             $locale = config('app.locale'),
-            $options = ['html' => false]
+            $options = [
+                'html' => $asHtml,
+                'html_tag' => 'p',
+                'html_attributes' => ['translate' => 'no'],
+            ]
         );
     }
 }

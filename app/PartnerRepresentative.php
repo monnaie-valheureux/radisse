@@ -16,42 +16,51 @@ class PartnerRepresentative extends Model
     use HasPhones;
 
     /**
-     * Set the partner representative’s email.
+     * Associate an email address with the partner representative.
      *
-     * @param  string  $email
-     * @return void
+     * @param string  $address
+     * @param bool    $isPublic
      */
-    public function setEmailAttribute($email)
+    public function addEmail($address, $isPublic = false)
     {
-        if (!is_null($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            throw new DomainException("[{$email}] is an invalid e-mail address.");
-        }
+        $email = Email::fromAddress($address);
+        $email->isPublic = (bool) $isPublic;
 
-        $this->attributes['email'] = $email;
+        $this->emails()->save($email);
     }
 
     /**
-     * Set the partner representative’s phone number.
+     * Associate a public email address with the partner representative.
      *
-     * @param  string  $phone
-     * @return void
+     * @param string  $address
      */
-    public function setPhoneAttribute($phone)
+    public function addPublicEmail($address)
     {
-        // If a phone number has been provided, we check if it is valid.
-        // If it is, we then format it in the E.164 format.
-        // @see https://en.wikipedia.org/wiki/E.164
-        if (!is_null($phone)) {
+        $this->addEmail($address, $isPublic = true);
+    }
 
-            if (validator([$phone], ['phone:BE'])->fails()) {
-                throw new DomainException("[{$phone}] is an invalid phone number.");
-            }
+    /**
+     * Associate a phone number with the partner representative.
+     *
+     * @param string  $number
+     * @param bool    $isPublic
+     */
+    public function addPhone($number, $isPublic = false)
+    {
+        $phone = Phone::fromNumber($number);
+        $phone->isPublic = (bool) $isPublic;
 
-            // The number seems valid. Format it in a standard way.
-            $phone = phone($phone, 'BE')->formatE164();
-        }
+        $this->phones()->save($phone);
+    }
 
-        $this->attributes['phone'] = $phone;
+    /**
+     * Associate a public phone number with the partner representative.
+     *
+     * @param string  $number
+     */
+    public function addPublicPhone($number)
+    {
+        $this->addPhone($number, $isPublic = true);
     }
 
     /**
@@ -71,7 +80,7 @@ class PartnerRepresentative extends Model
      */
     public function hasEmail()
     {
-        return !is_null($this->email);
+        return $this->emails->isNotEmpty();
     }
 
     /**
@@ -81,6 +90,6 @@ class PartnerRepresentative extends Model
      */
     public function hasPhone()
     {
-        return !is_null($this->phone);
+        return $this->phones->isNotEmpty();
     }
 }
