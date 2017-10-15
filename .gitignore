@@ -1,12 +1,19 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
-/.idea
-/.vagrant
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
+# Laravel & project-related files & directories
+# ---------------------------------------------
+
+# This file stores definitions of environment variables. As soon as
+# the framework boots, the contents of the file are converted into
+# actual environment variables that are made available globally.
 .env
+
+# This directory stores files that are used to seed the database.
+/database/seeds/data
+
+
+# Third-party PHP packages & libraries
+# ------------------------------------
+
+# The Composer dependency manager installs packages into this directory.
+# Files stored there must never be modified since any change would be
+# discarded as soon as an update of the dependencies is triggered.
+/vendor
