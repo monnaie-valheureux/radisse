@@ -17,3 +17,8 @@
 # Files stored there must never be modified since any change would be
 # discarded as soon as an update of the dependencies is triggered.
 /vendor
+
+# NPM, a package manager for JavaScript, installs libraries and other
+# pieces of third-party code into this directory. Similarly to how
+# Composer works, files in there are not supposed to be touched.
+/node_modules
