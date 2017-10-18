@@ -3,7 +3,10 @@
     "folders":
     [
         {
-            "path": "."
+            "path": ".",
+            "folder_exclude_patterns": [
+                "node_modules",
+            ]
         }
     ],
     // Settings for the PHP Companion package.
