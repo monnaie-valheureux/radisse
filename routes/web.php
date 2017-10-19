@@ -1,6 +1,7 @@
 <?php
 
-Route::view('/', 'public.home');
+// The public-facing home page of the site.
+Route::view('/', 'public.home')->name('home');
 
 // If we haven’t launched yet (and are not in a local
 // environment), redirect home to a teaser page.
