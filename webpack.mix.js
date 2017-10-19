@@ -10,9 +10,6 @@ mix
         processCssUrls: false
     })
 
-    // Enable source maps for easier debugging.
-    .sourceMaps()
-
     // Mix, please do shut up and stop bothering people every three seconds.
     .disableNotifications();
 
@@ -20,4 +17,7 @@ mix
 if (mix.inProduction()) {
     // Enable pseudo-file versioning to avoid any caching issue.
     mix.version();
+} else {
+    // Enable source maps for easier debugging.
+    mix.sourceMaps();
 }
