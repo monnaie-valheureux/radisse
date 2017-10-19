@@ -10,6 +10,9 @@ if (
     config('app.env') !== 'local'
 ) {
     Route::view('/', 'public.launch-teaser');
+
+    // Allow to see the home page via a temporary secret route.
+    Route::view('/secret', 'public.home');
 }
 
 
