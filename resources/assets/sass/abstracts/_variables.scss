@@ -1,0 +1,84 @@
+// -----------------------------------------------------------------------------
+// This file contains all the application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+
+/// Regular font family.
+/// @type List
+$text-font-stack: 'museo_sans500', 'Museo Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+/// Headings font family.
+/// @type List
+$headings-font-stack: 'museo700', 'Museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+
+
+// Define colors.
+$white: rgb(255, 255, 255);
+$half-transparent-black: rgba(0, 0, 0, 0.5);
+$transparent-blue: rgba(0, 148, 179, 0.7);
+$mine-shaft: hsl(0, 0%, 20%);
+$bondi-blue: rgb(0, 148, 179);
+$blue-lagoon: rgb(1, 120, 145);
+$sherpa-blue: rgb(1, 79, 94);
+$monza: rgb(195, 0, 69);
+
+
+
+/// Main brand color.
+/// @type Color
+$brand-color: $bondi-blue;
+
+/// Darker variation of the main brand color.
+/// @type Color
+$darker-brand-color: $blue-lagoon;
+
+/// Even more darker variation of the main brand color.
+/// @type Color
+$almost-black-brand-color: $sherpa-blue;
+
+/// Secondary brand color.
+/// @type Color
+$secondary-brand-color: $monza;
+
+/// Copy text color.
+/// @type Color
+$text-color: rgb(51, 51, 51);
+
+$dark-grey: $mine-shaft;
+
+/// Copy text color.
+/// @type Color
+$foo: red;
+
+
+
+
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+
+
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'small': 320px,
+  'medium': 750px,
+  'large': 1000px,
+  'huge': 1400px,
+) !default;
+
+
+
+
+
+
+/// Relative or absolute URL where all assets are served from.
+/// @type String
+$base-url: '/' !default;

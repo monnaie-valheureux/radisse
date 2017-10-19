@@ -1,0 +1,101 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+
+
+.site-footer {
+  @include fix-light-text-on-dark-background;
+  padding: 1.6rem;
+  border-top: 2px solid $darker-brand-color;
+  background-color: $brand-color;
+  color: $white;
+
+  @include media('≥medium') {
+    display: grid;
+    grid-template-columns: 32rem 32rem;
+    grid-column-gap: 5rem;
+    justify-content: center;
+  }
+
+  @include media('≥large') {
+    grid-template-columns: 44.8rem 44.8rem;
+  }
+}
+
+.site-footer h2 {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+}
+
+.site-footer address {
+  font-style: normal;
+  line-height: 2rem;
+}
+
+.site-footer a {
+  color: $white;
+
+  @include on-event {
+    color: $almost-black-brand-color;
+  }
+}
+
+
+
+.site-footer__contact-details {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('≥medium') {
+    max-width: 69rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include media('≥large') {
+    max-width: 94.6rem;
+  }
+}
+
+
+
+.site-footer__under-construction {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('≥medium') {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.site-footer__under-construction {
+  margin-top: 3.2rem;
+
+  @include media('≥medium') {
+    margin-top: 0;
+  }
+}
+.site-footer__under-construction h2 {
+  display: flex;
+  align-items: center;
+}
+.site-footer__under-construction h2::before {
+  content: '';
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1rem; // 1
+  background: image('under_construction.svg') 50% 50% no-repeat transparent;
+  background-size: contain;
+
+  @include media('≥medium') {
+  }
+
+  @include media('≥large') {
+    // top: 1.5rem;
+  }
+}

@@ -1,0 +1,178 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+
+
+.site-header {
+  @include media('≥medium') {
+    background-color: $brand-color;
+    border-bottom: 2px solid $secondary-brand-color;
+  }
+}
+
+/**
+ * 1. Set the element as the closest positioned ancestor for the
+ *    logo (the .site-header h1::before pseudo-element).
+ */
+.site-header-elements {
+  position: relative; // 1
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('≥medium') {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.site-header__home-link {
+  display: block;
+  padding-right: 1.3rem;
+  color: $white;
+  text-decoration: none;
+
+  @include on-event {
+    color: $white;
+    background-color: $darker-brand-color;
+  }
+}
+
+
+/**
+ * The heading inside the site’s main menu.
+ *
+ * 1. Use flexbox to center-align the heading and its pseudo-element together.
+ * 2. Absolute positioning moves the heading out of the static flow, thus
+ *    allowing the menu to move all the way to the top of the page.
+ * 3. Zero the margins to make positioning easier to calculate.
+ * 4. Fix: prevent an unexplainable newline to appear inside
+ *    the element’s text in some browsers due to the
+ *    :first-letter of the included span being
+ *    set to ‘text-transform: lowercase’.
+ */
+.site-header__site-title {
+  display: flex; // 1
+  justify-content: center; // 1
+  position: absolute; // 2
+  left: 0;
+  right: 0;
+  top: 5.2rem;
+  margin: 0; // 3
+  font-size: 3.2rem;
+  line-height: 4.6rem;
+  color: $brand-color;
+  white-space: nowrap; // 4
+
+  @include media('≥medium') {
+    @include fix-light-text-on-dark-background;
+    // display: block;
+    position: static;
+    padding-left: 6.2rem;
+    min-height: 6.2rem;
+    line-height: 6.2rem;
+    color: $white;
+  }
+
+  @include media('≥large') {
+    // padding-left: 6.2rem;
+    min-height: 7.2rem;
+    font-size: 4rem;
+    line-height: 7.2rem;
+  }
+
+  /**
+   * The logo of the currency, inserted via a pseudo-element.
+   *
+   * 1. Make space between the logo and the text of the h1.
+   */
+  &::before {
+    content: '';
+    display: block;
+    width: 4.6rem;
+    height: 4.6rem;
+    margin-right: 1rem; // 1
+    background: image('logo_circle_white_on_blue.svg') 50% 50% no-repeat transparent;
+    background-size: contain;
+
+    @include media('≥medium') {
+      position: absolute;
+      left: 1.3rem;
+      top: 1.15rem;
+      background: image('logo_circle_blue_on_white.svg') 50% 50% no-repeat transparent;
+      background-size: contain;
+      width: 4rem;
+      height: 4rem;
+    }
+
+    @include media('≥large') {
+      top: 1.5rem;
+    }
+  }
+}
+
+.site-header__site-title span:first-letter {
+  text-transform: lowercase;
+}
+
+/**
+ * The main menu of the site.
+ */
+nav {
+  @include fix-light-text-on-dark-background;
+  min-height: 4.2rem;
+  font-size: 1.5rem;
+  background-color: $brand-color;
+  border-bottom: 2px solid $secondary-brand-color;
+
+  @include media('≥medium') {
+    background-color: inherit;
+    border-bottom: 0;
+  }
+}
+
+/**
+ * 1. Use flexbox to center-align the list items together.
+ */
+nav ul {
+  display: flex; // 1
+  justify-content: space-around;
+  width: 32rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+
+  @include media('≥medium') {
+    width: auto;
+    margin-right: 1.1rem;
+    font-size: 2rem;
+  }
+
+  @include media('≥large') {
+    margin-right: 1.3rem;
+    font-size: 2.4rem;
+  }
+}
+
+nav a {
+  display: block;
+  padding: 1.2rem 1rem 1.05rem;
+  color: $white;
+  text-decoration: none;
+  transition: background-color .1s;
+
+  @include on-event {
+    color: $white;
+    background-color: $darker-brand-color;
+  }
+
+  @include media('≥medium') {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @include media('≥large') {
+    padding: 2.2rem 1.4rem;
+  }
+}

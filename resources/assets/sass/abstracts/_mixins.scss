@@ -1,0 +1,43 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+
+
+/**
+ * Fix light text on dark background in macOS.
+ *
+ * In such scenarios, text becomes overly bold. To fix this, we disable
+ * subpixel rendering and move to antialiasing instead. This process
+ * usually harms readability and, as a result, should be used only
+ * for very specific scenarios.
+ *
+ * See: http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
+ */
+@mixin fix-light-text-on-dark-background() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

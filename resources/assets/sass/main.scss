@@ -1,0 +1,25 @@
+@charset 'UTF-8';
+
+// 1. Configuration and helpers.
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. Third-party code.
+@import 'vendor/normalize';
+@import 'vendor/include-media';
+
+// 3. Base stuff.
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/typography';
+
+// 4. Layout-related sections.
+@import 'layout/header';
+@import 'layout/footer';
+
+// 5. Smaller components.
+@import 'components/text';
+
+// 6. Page-specific styles.
+@import 'pages/home';
