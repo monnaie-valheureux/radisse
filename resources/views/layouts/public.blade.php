@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Le Val’heureux')</title>
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{ mix('css/main.css') }}">
 </head>
 <body>
     <div class="site-header">
