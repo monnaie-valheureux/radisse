@@ -15,3 +15,9 @@ mix
 
     // Mix, please do shut up and stop bothering people every three seconds.
     .disableNotifications();
+
+
+if (mix.inProduction()) {
+    // Enable pseudo-file versioning to avoid any caching issue.
+    mix.version();
+}
