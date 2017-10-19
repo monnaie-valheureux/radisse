@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations.
+// -----------------------------------------------------------------------------
+
+
+
+/// Museo font family.
+@font-face {
+    font-family: 'museo700';
+    src: font('museo/woff2/museo700.woff2') format('woff2'),
+         font('museo/woff/museo700.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/// Museo Sans font family.
+@font-face {
+    font-family: 'museo_sans500';
+    src: font('museo_sans/woff2/museo_sans500.woff2') format('woff2'),
+         font('museo_sans/woff/museo_sans500.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

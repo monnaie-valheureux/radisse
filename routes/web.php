@@ -1,11 +1,18 @@
 <?php
 
-Route::view('/', 'public.home');
+// The public-facing home page of the site.
+Route::view('/', 'public.home')->name('home');
 
-// If we haven’t launched yet, add a temporary redirect to a teaser page.
-if (\Carbon\Carbon::now() < \Carbon\Carbon::parse('next Saturday 18:00')) {
-    Route::view('/bientot', 'public.launch-teaser');
-    Route::redirect('/', '/bientot', 307);
+// If we haven’t launched yet (and are not in a local
+// environment), redirect home to a teaser page.
+if (
+    \Carbon\Carbon::now()->lessThan(\Carbon\Carbon::parse('next Saturday 18:00')) &&
+    config('app.env') !== 'local'
+) {
+    Route::view('/', 'public.launch-teaser');
+
+    // Allow to see the home page via a temporary secret route.
+    Route::view('/secret', 'public.home');
 }
 
 

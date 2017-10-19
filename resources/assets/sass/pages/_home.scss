@@ -1,0 +1,339 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the public home page.
+// -----------------------------------------------------------------------------
+
+.citizen-notes-hand {
+  position: relative;
+  min-height: 22.7rem;
+  overflow: hidden;
+
+  /**
+   * 1. Set z-index to make citizennotes appear in front of the blue
+   *    background of the `.homepage-intro__intro-text` element.
+   */
+  @include media('≥large') {
+    height: 48.2rem;
+    border-bottom: 2px solid $darker-brand-color;
+    z-index: 2; // 1
+  }
+}
+.citizen-notes-hand-container {
+  width: 22.7rem;
+  min-height: 22.7rem;
+  margin-left: auto;
+  margin-right: auto;
+  transform-origin: center;
+  transform: rotate(90deg);
+
+  @include media('≥medium') {
+    min-height: 30.8rem;
+  }
+
+  @include media('≥large') {
+    z-index: 100;
+  }
+
+  // Debug helper.
+  // border: 3px solid orange;
+}
+.citizen-note {
+  position: absolute;
+  bottom: 0;
+  bottom: calc(50% - 52px);
+  left: 40%;
+  width: 20rem;
+  height: 10.3rem;
+  background: #fff none 0 0 no-repeat;
+  background-size: contain;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  /*transform: rotate(-90deg);*/
+  transform-origin: right;
+  transition: transform ease-in-out .15s;
+  animation-duration: 0.5s;
+  // animation-delay: 0.25s;
+  animation-fill-mode: backwards;
+
+  @include media('≥medium') {
+    left: 10%;
+    bottom: calc(50% + 9rem);
+    width: 28rem;
+    height: 14.5rem;
+  }
+
+  @include media('≥large') {
+    left: 30%;
+    width: 42.1rem;
+    height: 21.7rem;
+  }
+}
+
+@keyframes reveal-citizennote-05 {
+  from {
+    transform: rotate(0deg);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  70% {
+    transform: rotate(-26deg);
+  }
+  to {
+    transform: rotate(-24deg);
+  }
+}
+@keyframes reveal-citizennote-1 {
+  from {
+    transform: rotate(0deg);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  70% {
+    transform: rotate(-13deg);
+  }
+  to {
+    transform: rotate(-12deg);
+  }
+}
+@keyframes reveal-citizennote-10 {
+  from {
+    transform: rotate(0deg);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  70% {
+    transform: rotate(13deg);
+  }
+  to {
+    transform: rotate(12deg);
+  }
+}
+@keyframes reveal-citizennote-20 {
+  from {
+    transform: rotate(0deg);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  70% {
+    transform: rotate(26deg);
+  }
+  to {
+    transform: rotate(24deg);
+  }
+}
+
+.citizen-note-05 {
+  background-image: image('citizennotes/jpg/400px_60pc-quality/0,5_face_locale.jpg');
+  transform: rotate(-24deg);
+  z-index: 5;
+  animation-name: reveal-citizennote-05;
+
+  @include media('≥large') {
+    background-image: image('citizennotes/jpg/840px_30pc-quality/0,5_face_locale.jpg');
+  }
+}
+.citizen-note-05:hover {
+  // transform: rotate(-24deg) translateX(-20px);
+}
+
+.citizen-note-1 {
+  background-image: image('citizennotes/jpg/400px_60pc-quality/1_face_locale.jpg');
+  transform: rotate(-12deg);
+  z-index: 4;
+  animation-name: reveal-citizennote-1;
+
+  @include media('≥large') {
+    background-image: image('citizennotes/jpg/840px_30pc-quality/1_face_locale.jpg');
+  }
+}
+.citizen-note-1:hover {
+  // transform: rotate(-12deg) translateX(-25px);
+}
+
+.citizen-note-5 {
+  background-image: image('citizennotes/jpg/400px_60pc-quality/5_face_locale.jpg');
+  z-index: 3;
+
+  @include media('≥large') {
+    background-image: image('citizennotes/jpg/840px_30pc-quality/5_face_locale.jpg');
+  }
+}
+.citizen-note-5:hover {
+  // transform: translateX(-30px);
+}
+
+.citizen-note-10 {
+  background-image: image('citizennotes/jpg/400px_60pc-quality/10_face_locale.jpg');
+  transform: rotate(12deg);
+  z-index: 2;
+  animation-name: reveal-citizennote-10;
+
+  @include media('≥large') {
+    background-image: image('citizennotes/jpg/840px_30pc-quality/10_face_locale.jpg');
+  }
+}
+.citizen-note-10:hover {
+  // transform: rotate(12deg) translateX(-25px);
+}
+
+.citizen-note-20 {
+  background-image: image('citizennotes/jpg/400px_60pc-quality/20_face_locale.jpg');
+  transform: rotate(24deg);
+  z-index: 1;
+  animation-name: reveal-citizennote-20;
+
+  @include media('≥large') {
+    background-image: image('citizennotes/jpg/840px_30pc-quality/20_face_locale.jpg');
+  }
+}
+.citizen-note-20:hover {
+  // transform: rotate(24deg) translateX(-20px);
+}
+
+
+
+.homepage-intro {
+  background: image('bg_village-600px.jpg') 50% 40% no-repeat #fff;
+  // background-size: 60rem;
+  background-position: left 50% top -76px;
+
+  /**
+   * This breakpoint is supposed to be set at `≥58rem` but Blink doesn’t
+   * seem to calculate the correct value of rem units in this case…
+   */
+  @include media('≥580px') {
+    background: image('bg_village-1100px-guetzli.jpg') 50% 40% no-repeat #fff;
+    background-position: left 50% top -30px;
+  }
+
+  /**
+   * 1. Set the element as the closest positioned ancestor for the
+   *    title of the intro (.homepage-intro__intro-text h2).
+   */
+  @include media('≥medium') {
+    position: relative; // 1
+  }
+
+  @include media('≥large') {
+    background-image: image('bg_village-1500px.jpg');
+  }
+
+  @include media('≥huge') {
+    background-image: image('bg_village-2024px-guetzli.jpg');
+    background-position: left 50% top -70px;
+  }
+}
+
+.homepage-intro__intro-text {
+  @include fix-light-text-on-dark-background;
+  padding: 1.6rem 1.2rem;
+  border-top: 2px solid $darker-brand-color;
+  border-bottom: 2px solid $darker-brand-color;
+  background-color: $brand-color;
+  font-size: 1.6rem;
+  color: #fff;
+
+  @include media('≥45rem') {
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+  }
+
+  @include media('≥medium') {
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    background-color: inherit;
+  }
+
+  /**
+   * 1. Set the element as the closest positioned ancestor for the
+   *    title of the intro (.homepage-intro__intro-text h2).
+   * 2. This is the equivalent position of `left: 0` with a viewport at
+   *    the width of the breakpoint. This calc()-based value allows to
+   *    always keep the exact same position from the center of the
+   *    viewport, whatever the viewport’s width.
+   * 3. Set z-index to make the element appear behind citizennotes.
+   */
+  @include media('≥large') {
+    position: absolute; // 1
+    top: -2px;
+    left: calc(50% - 50rem); // 2
+    width: 48.4rem;
+    height: 48.2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border-top: 2px solid $darker-brand-color;
+    border-bottom: 2px solid $darker-brand-color;
+    border-bottom: 0;
+    background-color: $transparent-blue;
+    z-index: 1; // 3
+  }
+}
+
+.homepage-intro__intro-text h2 {
+  max-width: 42rem;
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  /**
+   * 1. This is the equivalent position of `left: 3.2rem` with a viewport at
+   *    the width of the breakpoint. This calc()-based value allows to
+   *    always keep the exact same position from the center of the
+   *    viewport, whatever the viewport’s width.
+   */
+  @include media('≥medium') {
+    position: absolute;
+    top: 11rem;
+    left: calc(50% - 34.3rem); // 1
+    max-width: 34rem;
+    font-size: 4rem;
+    line-height: 4.8rem;
+    text-shadow: 0 1px 2px $half-transparent-black;
+  }
+
+  @include media('≥large') {
+    position: static;
+    margin: 4.7rem 0 3.2rem;
+  }
+}
+
+.homepage-intro__intro-paragraphs {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 2rem;
+
+  @include media('≥medium') {
+    max-width: none;
+    padding-top: 3.6rem;
+    padding-bottom: 3.6rem;
+    border-top: 2px solid $darker-brand-color;
+    border-bottom: 2px solid $darker-brand-color;
+    background-color: $brand-color;
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+
+    p {
+      max-width: 62rem;
+      margin-left: auto;
+      margin-right: auto;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include media('≥large') {
+    background-color: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top: 0;
+    border-bottom: 0;
+
+    p {
+      font-size: 2rem;
+      line-height: 2.4rem;
+      text-shadow: 0 1px 1px $half-transparent-black;
+    }
+  }
+}
+.homepage-intro__intro-text p:last-child {
+  margin-bottom: 0;
+}
