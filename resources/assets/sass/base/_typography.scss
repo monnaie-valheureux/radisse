@@ -1,0 +1,48 @@
+// -----------------------------------------------------------------------------
+// This file contains basic, general typographic rules.
+// -----------------------------------------------------------------------------
+
+
+
+/**
+ * Set the root font size to 10px, thus resulting in 1rem = 10px.
+ *
+ * The default font size of browsers is usually 16px. Using the
+ * ‘target ÷ context’ formula, we get 10px = 0.625em. This
+ * makes 1rem equals to 10px, thus greatly easing any
+ * rem-based calculations later on.
+ */
+html {
+    font-size: 0.625em;
+}
+
+/**
+ * Basic typographic styling for copy text.
+ */
+body {
+  font-family: $text-font-stack;
+  font-size: 1.6rem;
+  color: $text-color;
+}
+
+/**
+ * Basic typographic styling for headings.
+ */
+h1, h2, h3 {
+  font-family: $headings-font-stack;
+}
+
+/**
+ * Typographic rules for the .text component.
+ */
+.text h2 {
+  font-size: 2.4rem;
+}
+.text p {
+  line-height: 2rem;
+
+  @include media('≥large') {
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+  }
+}

@@ -1,0 +1,79 @@
+// -----------------------------------------------------------------------------
+// The .text component is basically used for ‘usual’ text.
+// -----------------------------------------------------------------------------
+
+/**
+ * 1. Define the space between the component and its surroundings (usually body).
+ */
+.text {
+  padding: 1.6rem; // 1.
+  color: $dark-grey;
+  background: $white;
+
+  @include media('≥large') {
+    padding: 3.2rem;
+  }
+}
+
+.text__section {
+  margin-top: 3.2rem;
+
+  /**
+   * If the component starts with a text section,
+   * reduce the top margin of the section.
+   */
+  &:first-child {
+    margin-top: 0.8rem;
+  }
+
+  @include media('≥medium') {
+    // max-width: 32rem;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.text__section h2,
+.text__section p {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('≥large') {
+    max-width: 44.8rem;
+  }
+}
+
+.text__section h2 {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+
+  @include media('≥medium') {
+    margin-top: 0.8rem;
+  }
+
+  @include media('≥large') {
+    margin-top: 0;
+    font-size: 3.2rem;
+  }
+}
+
+.text.text--2columns {
+  @include media('≥medium') {
+    display: grid;
+    grid-template-columns: 32rem 32rem;
+    grid-column-gap: 5rem;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include media('≥large') {
+    grid-template-columns: 44.8rem 44.8rem;
+  }
+}
