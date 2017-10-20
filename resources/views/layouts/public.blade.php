@@ -23,7 +23,7 @@
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
-        var u="//stats.valheureux.be/";
+        var u="https://stats.valheureux.be/";
         _paq.push(['setTrackerUrl', u+'piwik.php']);
         _paq.push(['setSiteId', '1']);
         var d=document,
