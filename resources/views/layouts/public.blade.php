@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{{ mix('css/main.css') }}">
 
+    @if (config('app.env') === 'production')
     <!--
         This sends stats to Piwik, an open source and privacy-friendly
         analytics tool. We configured it to make it respect privacy
@@ -35,6 +36,8 @@
         s.parentNode.insertBefore(g,s);
       })();
     </script>
+
+    @endif
 
 </head>
 <body>
