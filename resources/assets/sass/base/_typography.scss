@@ -31,18 +31,3 @@ body {
 h1, h2, h3 {
   font-family: $headings-font-stack;
 }
-
-/**
- * Typographic rules for the .text component.
- */
-.text h2 {
-  font-size: 2.4rem;
-}
-.text p {
-  line-height: 2rem;
-
-  @include media('≥large') {
-    font-size: 2.4rem;
-    line-height: 2.9rem;
-  }
-}

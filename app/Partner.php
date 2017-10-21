@@ -65,4 +65,26 @@ class Partner extends Model
     {
         return $this->hasMany(PartnerRepresentative::class);
     }
+
+    public function locationCities()
+    {
+        $cities = [];
+
+        // Loop on all of the locations of the partner
+        // and get the cities they’re in.
+        foreach ($this->locations as $location) {
+
+            if (!$location->postalAddress) {
+                continue;
+            }
+
+            $cities[] = $location->postalAddress->city;
+        }
+
+        // Remove duplicates in case there are multiple
+        // locations in the same city.
+        $cities = array_unique($cities);
+
+        return implode(', ', $cities);
+    }
 }
