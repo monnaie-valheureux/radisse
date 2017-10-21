@@ -85,7 +85,7 @@
         </div>
         <div class="site-footer__under-construction">
             <h2>Attention, peinture fraîche !</h2>
-            <p>Ce site est tout jeune, et il va encore bien évoluer durant les prochaines semaines et les prochains mois.</p>
+            <p>Ce site est tout jeune, et il va encore beaucoup évoluer durant les prochaines semaines et les prochains mois. N’hésitez pas à repasser prochainement !</p>
             <p>Si jamais vous rencontrez un problème, n’hésitez pas à nous le signaler, afin que nous puissions le régler dès que possible.</p>
         </div>
     </div>

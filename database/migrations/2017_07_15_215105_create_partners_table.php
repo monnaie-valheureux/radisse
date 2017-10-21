@@ -36,6 +36,9 @@ class CreatePartnersTable extends Migration
             // personne physique, etc.)
             $table->string('business_type')->nullable();
 
+            $table->date('joined_on')->nullable();
+            $table->date('left_on')->nullable();
+
             // Timestamps telling when the table row was created
             // and when it was modified for the last time.
             $table->timestamps();

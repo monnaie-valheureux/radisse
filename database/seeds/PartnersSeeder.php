@@ -31,6 +31,8 @@ class PartnersSeeder extends Seeder
                 'name' => $data['name'],
                 'name_sort' => $data['name_sort'],
                 'business_type' => $data['business_type'],
+                'joined_on' => $data['joined_on'],
+                'left_on' => $data['left_on'],
             ]);
 
 
