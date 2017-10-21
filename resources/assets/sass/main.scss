@@ -20,6 +20,24 @@
 
 // 5. Smaller components.
 @import 'components/text';
+@import 'components/partner-list';
+@import 'components/counter-list';
 
 // 6. Page-specific styles.
 @import 'pages/home';
+
+
+
+.le-projet {
+  max-width: 48rem;
+  margin-top: 7rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 7rem;
+  text-align: center;
+}
+.le-projet img {
+}
+#surface1 {
+}
+
