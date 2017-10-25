@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * A partner is a person or organization that uses the local currency.
@@ -27,6 +28,13 @@ class Partner extends Model
             if (is_null($partner->slug)) {
                 $partner->slug = Str::slug($partner->name);
             }
+        });
+
+        // Add a default global scope to all select queries on the model.
+        // This will exclude former partners, who left the network of
+        // the currency, because most of the time we won’t want them.
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->whereNull('left_on');
         });
     }
 
