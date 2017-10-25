@@ -7,20 +7,19 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * Handle the pages dedicated to partners of the currency.
+ */
 class PartnersController extends Controller
 {
     /**
-     * Display a list of partners.
+     * Display the current list of partners.
      *
      * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
-        // Exclude partners who left the network.
-        // TODO: handle this via a default query scope?
-        $partners = Partner::whereNull('left_on')
-            ->orderBy('name_sort')
-            ->get();
+        $partners = Partner::orderBy('name_sort')->get();
 
         // Group partners by the initial letter of their sort name.
         $initials = $partners->groupBy(function ($partner) {
@@ -34,6 +33,7 @@ class PartnersController extends Controller
             });
         });
 
+        // The list of partners is now ready for the view.
         return view('public.partners.index', compact('initials'));
     }
 }
