@@ -36,6 +36,8 @@ class CreatePartnersTable extends Migration
             // personne physique, etc.)
             $table->string('business_type')->nullable();
 
+            // The dates when the partner entered and, if applicable,
+            // when she left the network of the currency.
             $table->date('joined_on')->nullable();
             $table->date('left_on')->nullable();
 

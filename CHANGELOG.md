@@ -8,5 +8,9 @@ and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
 ## [Unreleased]
+
+## [1.0.0] - 2017-10-26
 ### Added
-- One can view the list of partners.
+- Home page of the site.
+- A page listing existing currency exchanges (hardcoded).
+- A page listing active partners of the currency (dynamic).

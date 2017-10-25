@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * A partner is a person or organization that uses the local currency.
@@ -23,10 +24,17 @@ class Partner extends Model
 
         // When a partner is created, we automatically
         // generate a slug based on its name.
-        self::creating(function (self $partner) {
+        static::creating(function (self $partner) {
             if (is_null($partner->slug)) {
                 $partner->slug = Str::slug($partner->name);
             }
+        });
+
+        // Add a default global scope to all select queries on the model.
+        // This will exclude former partners, who left the network of
+        // the currency, because most of the time we won’t want them.
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->whereNull('left_on');
         });
     }
 
@@ -66,6 +74,11 @@ class Partner extends Model
         return $this->hasMany(PartnerRepresentative::class);
     }
 
+    /**
+     * Return the list of cities from the address(es) of the partner’s locations.
+     *
+     * @return string|null
+     */
     public function locationCities()
     {
         $cities = [];
@@ -85,6 +98,6 @@ class Partner extends Model
         // locations in the same city.
         $cities = array_unique($cities);
 
-        return implode(', ', $cities);
+        return $cities ? implode(', ', $cities) : null;
     }
 }
