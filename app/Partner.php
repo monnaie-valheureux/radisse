@@ -74,6 +74,11 @@ class Partner extends Model
         return $this->hasMany(PartnerRepresentative::class);
     }
 
+    /**
+     * Return the list of cities from the address(es) of the partner’s locations.
+     *
+     * @return string|null
+     */
     public function locationCities()
     {
         $cities = [];
@@ -93,6 +98,6 @@ class Partner extends Model
         // locations in the same city.
         $cities = array_unique($cities);
 
-        return implode(', ', $cities);
+        return $cities ? implode(', ', $cities) : null;
     }
 }
