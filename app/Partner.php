@@ -2,7 +2,9 @@
 
 namespace App;
 
+use DateTime;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -90,6 +92,38 @@ class Partner extends Model
     public function representatives()
     {
         return $this->hasMany(PartnerRepresentative::class);
+    }
+
+    /**
+     * Check if the partner has been validated or not.
+     *
+     * @return bool
+     */
+    public function isValidated()
+    {
+        return $this->validated_at instanceof DateTime;
+    }
+
+    /**
+     * Mark the partner as valid from now.
+     *
+     * @return void
+     */
+    public function validate()
+    {
+        $this->validated_at = Carbon::now();
+        $this->save();
+    }
+
+    /**
+     * Invalidate the partner.
+     *
+     * @return void
+     */
+    public function invalidate()
+    {
+        $this->validated_at = null;
+        $this->save();
     }
 
     /**
