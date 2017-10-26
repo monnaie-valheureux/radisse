@@ -77,6 +77,8 @@ class Partner extends Model
     /**
      * Return the list of cities from the address(es) of the partner’s locations.
      *
+     * Cities are sorted in alphabetical order.
+     *
      * @return string|null
      */
     public function locationCities()
@@ -97,6 +99,9 @@ class Partner extends Model
         // Remove duplicates in case there are multiple
         // locations in the same city.
         $cities = array_unique($cities);
+
+        // Then, sort the cities in alphabetical order.
+        sort($cities, SORT_LOCALE_STRING);
 
         return $cities ? implode(', ', $cities) : null;
     }
