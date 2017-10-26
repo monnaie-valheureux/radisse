@@ -98,6 +98,29 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    function can_retrieve_the_list_of_cities_of_its_locations()
+    {
+        // Create a partner.
+        $partner = factory(Partner::class)->create();
+
+        // Then, create two locations for this partner.
+        factory(Location::class)->create(['partner_id' => $partner->id])
+            ->postalAddress()->save(
+                $this->makePostalAddress(['city' => 'Moulinsart'])
+            );
+
+        factory(Location::class)->create(['partner_id' => $partner->id])
+            ->postalAddress()->save(
+                $this->makePostalAddress(['city' => 'Las Dopicos'])
+            );
+
+        // Retrieve the list of cities where there are locations.
+        $cities = $partner->locationCities();
+
+        $this->assertSame('Las Dopicos, Moulinsart', $cities);
+    }
+
+    /** @test */
     function can_retrieve_its_representatives()
     {
         $partner = factory(Partner::class)->create([
@@ -176,5 +199,30 @@ class PartnerTest extends TestCase
         $this->assertCount(1, $partner->socialNetworks);
         $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
+    }
+
+    /**
+     * Helper method to make an instance of a postal address.
+     *
+     * @param  array  $attributes
+     *
+     * @return \App\PostalAddress
+     */
+    protected function makePostalAddress($attributes = [])
+    {
+        $defaultAttributes = [
+            'recipient' => 'Boucherie Sanzot',
+            'street' => 'rue du Château',
+            'street_number' => '1',
+            'letter_box' => null,
+            'postal_code' => '1234',
+            'city' => 'Moulinsart',
+            'latitude' => null,
+            'longitude' => null,
+        ];
+
+        return PostalAddress::fromArray(
+            array_merge($defaultAttributes, $attributes)
+        );
     }
 }
