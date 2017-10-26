@@ -6,6 +6,7 @@ use App\Email;
 use App\Phone;
 use App\Partner;
 use App\Location;
+use Carbon\Carbon;
 use Tests\TestCase;
 use App\PostalAddress;
 use App\SocialNetwork;
@@ -45,6 +46,24 @@ class PartnerTest extends TestCase
         // that it had not been overwitten by a new one.
         $this->assertSame('my-special-slug', $partner->slug);
         $this->assertNotSame('boucherie-sanzot', $partner->slug);
+    }
+
+    /** @test */
+    function does_not_select_former_partners_by_default()
+    {
+        // Create an active partner.
+        $activePartner = factory(Partner::class)->create(['name' => 'Boucherie Sanzot']);
+
+        // Create a partner who left the network.
+        $formerPartner = factory(Partner::class)->states('former')->create([
+            'name' => 'Poissonnerie Ordralfabétix',
+            'left_on' => Carbon::parse('3 months ago'),
+        ]);
+
+        $partners = Partner::all();
+
+        $this->assertCount(1, $partners);
+        $this->assertSame($activePartner->id, $partners->first()->id);
     }
 
     /** @test */
