@@ -21,6 +21,7 @@ class Partner extends Model
     protected $dates = [
         'joined_on',
         'left_on',
+        'validated_at',
     ];
 
     /**
