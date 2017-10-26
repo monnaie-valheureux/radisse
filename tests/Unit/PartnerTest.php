@@ -134,6 +134,26 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    function does_not_select_nonvalidated_partners_by_default()
+    {
+        $validatedPartnerA = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('-1 week')
+        ]);
+        $validatedPartnerB = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('-1 week')
+        ]);
+        $nonvalidatedPartner = factory(Partner::class)->create([
+            'validated_at' => null
+        ]);
+
+        $validatedPartners = Partner::all();
+
+        $this->assertTrue($validatedPartners->contains($validatedPartnerA));
+        $this->assertTrue($validatedPartners->contains($validatedPartnerB));
+        $this->assertFalse($validatedPartners->contains($nonvalidatedPartner));
+    }
+
+    /** @test */
     function does_not_select_former_partners_by_default()
     {
         // Create an active partner.
