@@ -11,7 +11,7 @@ and this project adheres to
 ### Added
 - Partners now have a validation state. They can be valid or not.
 
-## [1.0.0] - 2017-10-26
+## 1.0.0 - 2017-10-26
 ### Added
 - Home page of the site.
 - A page listing existing currency exchanges (hardcoded).
