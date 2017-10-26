@@ -14,6 +14,16 @@ class Partner extends Model
     use HasContactDetails;
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'joined_on',
+        'left_on',
+    ];
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
