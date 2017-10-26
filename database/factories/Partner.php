@@ -8,6 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Partner::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
+        'validated_at' => Carbon::parse('1 week ago'),
     ];
 });
 
