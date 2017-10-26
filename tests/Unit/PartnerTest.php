@@ -49,24 +49,6 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
-    function does_not_select_former_partners_by_default()
-    {
-        // Create an active partner.
-        $activePartner = factory(Partner::class)->create(['name' => 'Boucherie Sanzot']);
-
-        // Create a partner who left the network.
-        $formerPartner = factory(Partner::class)->states('former')->create([
-            'name' => 'Poissonnerie Ordralfabétix',
-            'left_on' => Carbon::parse('3 months ago'),
-        ]);
-
-        $partners = Partner::all();
-
-        $this->assertCount(1, $partners);
-        $this->assertSame($activePartner->id, $partners->first()->id);
-    }
-
-    /** @test */
     function can_retrieve_its_locations()
     {
         // Create a partner.
@@ -149,6 +131,24 @@ class PartnerTest extends TestCase
         $this->assertSame($personB->id, $representatives[1]->id);
         $this->assertSame('Iélosubmarine', $representatives[1]->given_name);
         $this->assertSame('gérante', $representatives[1]->role);
+    }
+
+    /** @test */
+    function does_not_select_former_partners_by_default()
+    {
+        // Create an active partner.
+        $activePartner = factory(Partner::class)->create(['name' => 'Boucherie Sanzot']);
+
+        // Create a partner who left the network.
+        $formerPartner = factory(Partner::class)->states('former')->create([
+            'name' => 'Poissonnerie Ordralfabétix',
+            'left_on' => Carbon::parse('3 months ago'),
+        ]);
+
+        $partners = Partner::all();
+
+        $this->assertCount(1, $partners);
+        $this->assertSame($activePartner->id, $partners->first()->id);
     }
 
     /** @test */
