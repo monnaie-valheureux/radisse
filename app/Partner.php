@@ -2,7 +2,9 @@
 
 namespace App;
 
+use DateTime;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -21,6 +23,7 @@ class Partner extends Model
     protected $dates = [
         'joined_on',
         'left_on',
+        'validated_at',
     ];
 
     /**
@@ -45,6 +48,13 @@ class Partner extends Model
         // the currency, because most of the time we won’t want them.
         static::addGlobalScope('active', function (Builder $builder) {
             $builder->whereNull('left_on');
+        });
+
+        // Add a default global scope to all select queries on the model.
+        // This will exclude nonvalidated partners, who have not been
+        // accepted (yet) into the network.
+        static::addGlobalScope('validated', function (Builder $builder) {
+            $builder->whereNotNull('validated_at');
         });
     }
 
@@ -82,6 +92,38 @@ class Partner extends Model
     public function representatives()
     {
         return $this->hasMany(PartnerRepresentative::class);
+    }
+
+    /**
+     * Check if the partner has been validated or not.
+     *
+     * @return bool
+     */
+    public function isValidated()
+    {
+        return $this->validated_at instanceof DateTime;
+    }
+
+    /**
+     * Mark the partner as valid from now.
+     *
+     * @return void
+     */
+    public function validate()
+    {
+        $this->validated_at = Carbon::now();
+        $this->save();
+    }
+
+    /**
+     * Invalidate the partner.
+     *
+     * @return void
+     */
+    public function invalidate()
+    {
+        $this->validated_at = null;
+        $this->save();
     }
 
     /**

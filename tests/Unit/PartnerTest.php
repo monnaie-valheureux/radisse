@@ -49,24 +49,6 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
-    function does_not_select_former_partners_by_default()
-    {
-        // Create an active partner.
-        $activePartner = factory(Partner::class)->create(['name' => 'Boucherie Sanzot']);
-
-        // Create a partner who left the network.
-        $formerPartner = factory(Partner::class)->states('former')->create([
-            'name' => 'Poissonnerie Ordralfabétix',
-            'left_on' => Carbon::parse('3 months ago'),
-        ]);
-
-        $partners = Partner::all();
-
-        $this->assertCount(1, $partners);
-        $this->assertSame($activePartner->id, $partners->first()->id);
-    }
-
-    /** @test */
     function can_retrieve_its_locations()
     {
         // Create a partner.
@@ -199,6 +181,82 @@ class PartnerTest extends TestCase
         $this->assertCount(1, $partner->socialNetworks);
         $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
+    }
+
+    /** @test */
+    function does_not_select_nonvalidated_partners_by_default()
+    {
+        $validatedPartnerA = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $validatedPartnerB = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $nonvalidatedPartner = factory(Partner::class)->create([
+            'validated_at' => null
+        ]);
+
+        $validatedPartners = Partner::all();
+
+        $this->assertTrue($validatedPartners->contains($validatedPartnerA));
+        $this->assertTrue($validatedPartners->contains($validatedPartnerB));
+        $this->assertFalse($validatedPartners->contains($nonvalidatedPartner));
+    }
+
+    /** @test */
+    function can_tell_if_it_is_validated_or_not()
+    {
+        $validatedPartner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $nonvalidatedPartner = factory(Partner::class)->make([
+            'validated_at' => null
+        ]);
+
+        $this->assertTrue($validatedPartner->isValidated());
+        $this->assertFalse($nonvalidatedPartner->isValidated());
+    }
+
+    /** @test */
+    function can_be_validated()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => null
+        ]);
+
+        $partner->validate();
+
+        $this->assertTrue($partner->isValidated());
+    }
+
+    /** @test */
+    function can_be_invalidated()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+
+        $partner->invalidate();
+
+        $this->assertFalse($partner->isValidated());
+    }
+
+    /** @test */
+    function does_not_select_former_partners_by_default()
+    {
+        // Create an active partner.
+        $activePartner = factory(Partner::class)->create(['name' => 'Boucherie Sanzot']);
+
+        // Create a partner who left the network.
+        $formerPartner = factory(Partner::class)->states('former')->create([
+            'name' => 'Poissonnerie Ordralfabétix',
+            'left_on' => Carbon::parse('3 months ago'),
+        ]);
+
+        $partners = Partner::all();
+
+        $this->assertCount(1, $partners);
+        $this->assertSame($activePartner->id, $partners->first()->id);
     }
 
     /**

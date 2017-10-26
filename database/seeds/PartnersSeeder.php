@@ -4,6 +4,7 @@ use App\Email;
 use App\Phone;
 use App\Partner;
 use App\Location;
+use Carbon\Carbon;
 use App\PostalAddress;
 use App\SocialNetwork;
 use App\JsonPartnerLoader;
@@ -27,12 +28,25 @@ class PartnersSeeder extends Seeder
             // Create the partner
             // ------------------
 
+            // Partners with a `joined_on` date before the launch
+            // date are considered to have been validated the
+            // same day the joined the network.
+            if (
+                !isset($data['validated_at']) &&
+                Carbon::parse($data['joined_on'])->lessThanOrEqualTo(
+                    Carbon::parse('2017-10-21')
+                )
+            ) {
+                $data['validated_at'] = $data['joined_on'];
+            }
+
             $partner = Partner::create([
                 'name' => $data['name'],
                 'name_sort' => $data['name_sort'],
                 'business_type' => $data['business_type'],
                 'joined_on' => $data['joined_on'],
                 'left_on' => $data['left_on'],
+                'validated_at' => $data['validated_at'] ?? null,
             ]);
 
 
