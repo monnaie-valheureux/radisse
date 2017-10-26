@@ -221,6 +221,44 @@ class PartnerTest extends TestCase
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
     }
 
+    /** @test */
+    function can_tell_if_it_is_validated_or_not()
+    {
+        $validatedPartner = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $nonvalidatedPartner = factory(Partner::class)->create([
+            'validated_at' => null
+        ]);
+
+        $this->assertTrue($validatedPartner->isValidated());
+        $this->assertFalse($nonvalidatedPartner->isValidated());
+    }
+
+    /** @test */
+    function can_be_validated()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => null
+        ]);
+
+        $partner->validate();
+
+        $this->assertTrue($partner->isValidated());
+    }
+
+    /** @test */
+    function can_be_invalidated()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+
+        $partner->invalidate();
+
+        $this->assertFalse($partner->isValidated());
+    }
+
     /**
      * Helper method to make an instance of a postal address.
      *
