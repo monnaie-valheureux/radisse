@@ -32,7 +32,7 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
-    public function do_not_automatically_generate_a_slug_if_one_is_already_defined()
+    public function does_not_automatically_generate_a_slug_if_one_is_already_defined()
     {
         // Create a partner.
         $partner = factory(Partner::class)->create([
