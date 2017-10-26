@@ -46,6 +46,13 @@ class Partner extends Model
         static::addGlobalScope('active', function (Builder $builder) {
             $builder->whereNull('left_on');
         });
+
+        // Add a default global scope to all select queries on the model.
+        // This will exclude nonvalidated partners, who have not been
+        // accepted (yet) into the network.
+        static::addGlobalScope('validated', function (Builder $builder) {
+            $builder->whereNotNull('validated_at');
+        });
     }
 
     /**
