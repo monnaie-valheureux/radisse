@@ -85,7 +85,15 @@ class PartnerTest extends TestCase
         // Create a partner.
         $partner = factory(Partner::class)->create();
 
-        // Then, create two locations for this partner.
+        // Then, create three locations for this partner,
+        // including two in the same city.
+        factory(Location::class)->create(['partner_id' => $partner->id])
+            ->postalAddress()->save(
+                $this->makePostalAddress(['city' => 'Moulinsart'])
+            );
+
+        // Duplicated on purpose, to verify that the method
+        // under test removes duplicate entries.
         factory(Location::class)->create(['partner_id' => $partner->id])
             ->postalAddress()->save(
                 $this->makePostalAddress(['city' => 'Moulinsart'])
@@ -99,7 +107,8 @@ class PartnerTest extends TestCase
         // Retrieve the list of cities where there are locations.
         $cities = $partner->locationCities();
 
-        // The list must be sorted in alphabetical order.
+        // The list must be sorted in alphabetical order
+        // and must have no duplicate entries.
         $this->assertSame('Las Dopicos, Moulinsart', $cities);
         $this->assertNotSame('Moulinsart, Las Dopicos', $cities);
     }
