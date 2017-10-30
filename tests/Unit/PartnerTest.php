@@ -80,7 +80,7 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
-    function can_retrieve_the_list_of_cities_of_its_locations()
+    function can_retrieve_the_list_of_cities_of_its_locations_in_alphabetical_order()
     {
         // Create a partner.
         $partner = factory(Partner::class)->create();
@@ -99,7 +99,9 @@ class PartnerTest extends TestCase
         // Retrieve the list of cities where there are locations.
         $cities = $partner->locationCities();
 
+        // The list must be sorted in alphabetical order.
         $this->assertSame('Las Dopicos, Moulinsart', $cities);
+        $this->assertNotSame('Moulinsart, Las Dopicos', $cities);
     }
 
     /** @test */
