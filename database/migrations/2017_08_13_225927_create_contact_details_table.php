@@ -32,6 +32,11 @@ class CreateContactDetailsTable extends Migration
             // Timestamps telling when the table row was created
             // and when it was modified for the last time.
             $table->timestamps();
+
+            // Since most queries on this table should be filtered to get a
+            // specific type of contact info (using the `type` column) we
+            // add a composite index to group it with the morph columns.
+            $table->index(['contactable_id', 'contactable_type', 'type']);
         });
     }
 
