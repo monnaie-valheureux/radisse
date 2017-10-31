@@ -1,0 +1,4 @@
+# Clockwork stores the data it gathers into generated JSON files.
+# This .gitignore file allows it to use the storage directory of
+# the application while not being tracked under version control.
+*.json

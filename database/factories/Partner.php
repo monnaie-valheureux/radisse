@@ -8,11 +8,22 @@ use Faker\Generator as Faker;
 $factory->define(Partner::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
+        'validated_at' => Carbon::parse('1 week ago'),
     ];
 });
 
-// Factory state to transform a partner to a former
-// partner, who left the network of the currency.
+// State to turn a partner into a validated one.
+$factory->state(Partner::class, 'validated', [
+    'validated_at' => Carbon::parse('1 week ago'),
+]);
+
+// State to turn a partner into a nonvalidated one.
+$factory->state(Partner::class, 'nonvalidated', [
+    'validated_at' => null,
+]);
+
+// State to turn a partner into a former partner,
+// who left the network of the currency.
 $factory->state(Partner::class, 'former', [
     'left_on' => Carbon::parse('3 months ago'),
 ]);

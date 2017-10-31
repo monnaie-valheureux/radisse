@@ -19,16 +19,21 @@ class PartnersController extends Controller
      */
     public function index()
     {
-        $partners = Partner::orderBy('name_sort')->get();
+        $partners = Partner::with('locations.postalAddress')
+            ->orderBy('name_sort')->get();
 
         // Group partners by the initial letter of their sort name.
         $initials = $partners->groupBy(function ($partner) {
             $firstLetter = Str::substr($partner->name_sort, 0, 1);
+            // Converting to ASCII allows to put letters
+            // like ‘A’ and ‘À’ in the same group.
             return Str::ascii($firstLetter);
         })
         // Then, for each letter, sort partners alphabetically.
         ->map(function ($partners) {
             return $partners->sortBy(function ($partner) {
+                // Converting the names to lowercase ASCII before sorting them
+                // prevents the dumb sorting algorithm to produce bad results.
                 return Str::ascii(Str::lower($partner->name_sort));
             });
         });

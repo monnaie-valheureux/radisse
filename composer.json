@@ -27,8 +27,11 @@
     "require-dev": {
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
+        "itsgoingd/clockwork": "^2.0",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~6.0"
+        "nunomaduro/collision": "^1.1",
+        "phpunit/phpunit": "~6.0",
+        "wnx/laravel-stats": "^1.1"
     },
     "autoload": {
         "classmap": [

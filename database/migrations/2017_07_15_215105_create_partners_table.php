@@ -41,6 +41,11 @@ class CreatePartnersTable extends Migration
             $table->date('joined_on')->nullable();
             $table->date('left_on')->nullable();
 
+            // The date and time at which a partner has been validated.
+            // A validated partner is a partner that has been accepted
+            // into the network by the relevant people.
+            $table->datetime('validated_at')->nullable();
+
             // Timestamps telling when the table row was created
             // and when it was modified for the last time.
             $table->timestamps();

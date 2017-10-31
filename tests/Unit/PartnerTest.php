@@ -6,6 +6,7 @@ use App\Email;
 use App\Phone;
 use App\Partner;
 use App\Location;
+use Carbon\Carbon;
 use Tests\TestCase;
 use App\PostalAddress;
 use App\SocialNetwork;
@@ -32,7 +33,7 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
-    public function do_not_automatically_generate_a_slug_if_one_is_already_defined()
+    public function does_not_automatically_generate_a_slug_if_one_is_already_defined()
     {
         // Create a partner.
         $partner = factory(Partner::class)->create([
@@ -76,6 +77,40 @@ class PartnerTest extends TestCase
 
         $this->assertSame($location2->id, $locations[1]->id);
         $this->assertSame('Magasin rue du Sud', $locations[1]->name);
+    }
+
+    /** @test */
+    function can_retrieve_the_list_of_cities_of_its_locations_in_alphabetical_order()
+    {
+        // Create a partner.
+        $partner = factory(Partner::class)->create();
+
+        // Then, create three locations for this partner,
+        // including two in the same city.
+        factory(Location::class)->create(['partner_id' => $partner->id])
+            ->postalAddress()->save(
+                $this->makePostalAddress(['city' => 'Moulinsart'])
+            );
+
+        // Duplicated on purpose, to verify that the method
+        // under test removes duplicate entries.
+        factory(Location::class)->create(['partner_id' => $partner->id])
+            ->postalAddress()->save(
+                $this->makePostalAddress(['city' => 'Moulinsart'])
+            );
+
+        factory(Location::class)->create(['partner_id' => $partner->id])
+            ->postalAddress()->save(
+                $this->makePostalAddress(['city' => 'Las Dopicos'])
+            );
+
+        // Retrieve the list of cities where there are locations.
+        $cities = $partner->locationCities();
+
+        // The list must be sorted in alphabetical order
+        // and must have no duplicate entries.
+        $this->assertSame('Las Dopicos, Moulinsart', $cities);
+        $this->assertNotSame('Moulinsart, Las Dopicos', $cities);
     }
 
     /** @test */
@@ -157,5 +192,106 @@ class PartnerTest extends TestCase
         $this->assertCount(1, $partner->socialNetworks);
         $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
+    }
+
+    /** @test */
+    function does_not_select_nonvalidated_partners_by_default()
+    {
+        $validatedPartnerA = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $validatedPartnerB = factory(Partner::class)->create([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $nonvalidatedPartner = factory(Partner::class)->create([
+            'validated_at' => null
+        ]);
+
+        $validatedPartners = Partner::all();
+
+        $this->assertTrue($validatedPartners->contains($validatedPartnerA));
+        $this->assertTrue($validatedPartners->contains($validatedPartnerB));
+        $this->assertFalse($validatedPartners->contains($nonvalidatedPartner));
+    }
+
+    /** @test */
+    function can_tell_if_it_is_validated_or_not()
+    {
+        $validatedPartner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+        $nonvalidatedPartner = factory(Partner::class)->make([
+            'validated_at' => null
+        ]);
+
+        $this->assertTrue($validatedPartner->isValidated());
+        $this->assertFalse($nonvalidatedPartner->isValidated());
+    }
+
+    /** @test */
+    function can_be_validated()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => null
+        ]);
+
+        $partner->validate();
+
+        $this->assertTrue($partner->isValidated());
+    }
+
+    /** @test */
+    function can_be_invalidated()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago')
+        ]);
+
+        $partner->invalidate();
+
+        $this->assertFalse($partner->isValidated());
+    }
+
+    /** @test */
+    function does_not_select_former_partners_by_default()
+    {
+        // Create an active partner.
+        $activePartner = factory(Partner::class)->create(['name' => 'Boucherie Sanzot']);
+
+        // Create a partner who left the network.
+        $formerPartner = factory(Partner::class)->states('former')->create([
+            'name' => 'Poissonnerie Ordralfabétix',
+            'left_on' => Carbon::parse('3 months ago'),
+        ]);
+
+        $partners = Partner::all();
+
+        $this->assertCount(1, $partners);
+        $this->assertSame($activePartner->id, $partners->first()->id);
+    }
+
+    /**
+     * Helper method to make an instance of a postal address.
+     *
+     * @param  array  $attributes
+     *
+     * @return \App\PostalAddress
+     */
+    protected function makePostalAddress($attributes = [])
+    {
+        $defaultAttributes = [
+            'recipient' => 'Boucherie Sanzot',
+            'street' => 'rue du Château',
+            'street_number' => '1',
+            'letter_box' => null,
+            'postal_code' => '1234',
+            'city' => 'Moulinsart',
+            'latitude' => null,
+            'longitude' => null,
+        ];
+
+        return PostalAddress::fromArray(
+            array_merge($defaultAttributes, $attributes)
+        );
     }
 }
