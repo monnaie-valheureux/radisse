@@ -19,7 +19,8 @@ class PartnersController extends Controller
      */
     public function index()
     {
-        $partners = Partner::orderBy('name_sort')->get();
+        $partners = Partner::with('locations.postalAddress')
+            ->orderBy('name_sort')->get();
 
         // Group partners by the initial letter of their sort name.
         $initials = $partners->groupBy(function ($partner) {
