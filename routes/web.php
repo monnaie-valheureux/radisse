@@ -10,7 +10,7 @@ Route::namespace('Site')->group(function () {
     // These are the main three entry points to the inside of the site.
     // They match the three links in the main menu of the site.
     Route::view('/le-projet', 'public.project');
-    Route::view('/comptoirs', 'public.counters.index');
+    Route::get('/comptoirs', 'CurrencyExchangesController@index');
     Route::get('/partenaires', 'PartnersController@index');
 
     // A static page telling about the ‘apéros du Val’heureux’.
