@@ -22,8 +22,8 @@ Route::namespace('Site')->group(function () {
 Route::prefix('gestion')->namespace('Admin')->group(function () {
 
     // Define routes to handle partners of the local currency.
-    // Route::resource('partners', 'PartnersController', [
-    //     'only' => ['index', 'show']
-    // ]);
+    Route::resource('partners', 'PartnersController', [
+        'only' => ['index', 'show']
+    ]);
 
 });
