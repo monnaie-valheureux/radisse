@@ -19,4 +19,16 @@ class CurrencyExchange extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    /**
+     * Get the postal address of the currency exchange’s location.
+     *
+     * This method is basically a shortcut.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function postalAddress()
+    {
+        return $this->location->postalAddress();
+    }
 }
