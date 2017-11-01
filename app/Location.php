@@ -23,4 +23,14 @@ class Location extends Model
     {
         return $this->belongsTo(Partner::class);
     }
+
+    /**
+     * Get the currency exchange that may be associated with the location.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function currencyExchange()
+    {
+        return $this->hasOne(CurrencyExchange::class);
+    }
 }

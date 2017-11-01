@@ -7,6 +7,7 @@ use App\Location;
 use Carbon\Carbon;
 use App\PostalAddress;
 use App\SocialNetwork;
+use App\CurrencyExchange;
 use App\JsonPartnerLoader;
 use App\PartnerRepresentative;
 use Illuminate\Database\Seeder;
@@ -139,6 +140,12 @@ class PartnersSeeder extends Seeder
                     $location->phones()->save(
                         Phone::fromNumber($address['phone'])->makePublic()
                     );
+                }
+
+                // Add (maybe) a currency exchange for the location
+                // ------------------------------------------------
+                if ($data['is_currency_exchange']) {
+                    $location->currencyExchange()->save(new CurrencyExchange);
                 }
             }
 
