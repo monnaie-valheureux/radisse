@@ -27,10 +27,10 @@ class CreatePartnersTable extends Migration
             // Example : 'Du côté de chez Poje' → 'Poje (du côté de chez)'
             $table->string('name_sort')->nullable();
 
-            // The slug is a simplified version of the name that is
-            // both people-friendly and computer-friendly, for use
-            // in places such as URLs or filenames.
-            $table->string('slug');
+            // The slug is a simplified version of the name that is both people-
+            // friendly and computer-friendly, for use in places such as URLs
+            // or filenames. Each partner must have a different one.
+            $table->string('slug')->unique();
 
             // The type of business (ASBL, SPRL, indépendant en
             // personne physique, etc.)
