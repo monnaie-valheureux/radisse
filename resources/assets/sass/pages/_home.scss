@@ -184,6 +184,27 @@
   // transform: rotate(24deg) translateX(-20px);
 }
 
+// By default, bills from Liège are displayed. If possible, we use JavaScript
+// to add a random class on the <body> element in order to pick a random
+// region instead. The following loop declares the necessary styles
+// to display the bills of all the missing additional regions.
+@each $region in herve, huy-hesbaye-condroz, ourthe-ambleve, verviers {
+
+  body.region-#{$region} {
+    @each $note in '05', '1', '5', '10', '20' {
+
+      .citizen-note-#{$note} {
+        background-image: image('citizennotes/#{$region}/400px_60pc-quality/#{$note}.jpg');
+
+        @include media('≥large') {
+          background-image: image('citizennotes/#{$region}/840px_30pc-quality/#{$note}.jpg');
+        }
+      }
+
+    }
+  }
+}
+
 
 
 .homepage-intro {
