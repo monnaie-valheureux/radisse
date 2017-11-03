@@ -117,13 +117,13 @@
 }
 
 .citizen-note-05 {
-  background-image: image('citizennotes/liege/400px_60pc-quality/0,5.jpg');
+  background-image: image('citizennotes/liege/400px_60pc-quality/05.jpg');
   transform: rotate(-24deg);
   z-index: 5;
   animation-name: reveal-citizennote-05;
 
   @include media('≥large') {
-    background-image: image('citizennotes/liege/840px_30pc-quality/0,5.jpg');
+    background-image: image('citizennotes/liege/840px_30pc-quality/05.jpg');
   }
 }
 .citizen-note-05:hover {
