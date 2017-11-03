@@ -117,13 +117,13 @@
 }
 
 .citizen-note-05 {
-  background-image: image('citizennotes/jpg/400px_60pc-quality/0,5_face_locale.jpg');
+  background-image: image('citizennotes/liege/400px_60pc-quality/0,5.jpg');
   transform: rotate(-24deg);
   z-index: 5;
   animation-name: reveal-citizennote-05;
 
   @include media('≥large') {
-    background-image: image('citizennotes/jpg/840px_30pc-quality/0,5_face_locale.jpg');
+    background-image: image('citizennotes/liege/840px_30pc-quality/0,5.jpg');
   }
 }
 .citizen-note-05:hover {
@@ -131,13 +131,13 @@
 }
 
 .citizen-note-1 {
-  background-image: image('citizennotes/jpg/400px_60pc-quality/1_face_locale.jpg');
+  background-image: image('citizennotes/liege/400px_60pc-quality/1.jpg');
   transform: rotate(-12deg);
   z-index: 4;
   animation-name: reveal-citizennote-1;
 
   @include media('≥large') {
-    background-image: image('citizennotes/jpg/840px_30pc-quality/1_face_locale.jpg');
+    background-image: image('citizennotes/liege/840px_30pc-quality/1.jpg');
   }
 }
 .citizen-note-1:hover {
@@ -145,11 +145,11 @@
 }
 
 .citizen-note-5 {
-  background-image: image('citizennotes/jpg/400px_60pc-quality/5_face_locale.jpg');
+  background-image: image('citizennotes/liege/400px_60pc-quality/5.jpg');
   z-index: 3;
 
   @include media('≥large') {
-    background-image: image('citizennotes/jpg/840px_30pc-quality/5_face_locale.jpg');
+    background-image: image('citizennotes/liege/840px_30pc-quality/5.jpg');
   }
 }
 .citizen-note-5:hover {
@@ -157,13 +157,13 @@
 }
 
 .citizen-note-10 {
-  background-image: image('citizennotes/jpg/400px_60pc-quality/10_face_locale.jpg');
+  background-image: image('citizennotes/liege/400px_60pc-quality/10.jpg');
   transform: rotate(12deg);
   z-index: 2;
   animation-name: reveal-citizennote-10;
 
   @include media('≥large') {
-    background-image: image('citizennotes/jpg/840px_30pc-quality/10_face_locale.jpg');
+    background-image: image('citizennotes/liege/840px_30pc-quality/10.jpg');
   }
 }
 .citizen-note-10:hover {
@@ -171,13 +171,13 @@
 }
 
 .citizen-note-20 {
-  background-image: image('citizennotes/jpg/400px_60pc-quality/20_face_locale.jpg');
+  background-image: image('citizennotes/liege/400px_60pc-quality/20.jpg');
   transform: rotate(24deg);
   z-index: 1;
   animation-name: reveal-citizennote-20;
 
   @include media('≥large') {
-    background-image: image('citizennotes/jpg/840px_30pc-quality/20_face_locale.jpg');
+    background-image: image('citizennotes/liege/840px_30pc-quality/20.jpg');
   }
 }
 .citizen-note-20:hover {
