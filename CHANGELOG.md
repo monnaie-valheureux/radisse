@@ -9,6 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 ### Added
+- The home page can now display the bills of any region. On each page load, a region is choosen at random.
 - The page listing currency exchanges is now dynamic, getting its data from the database.
 
 ## [1.1.0] - 2017-10-31

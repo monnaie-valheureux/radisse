@@ -89,5 +89,7 @@
             <p>Si jamais vous rencontrez un problème, n’hésitez pas à nous le signaler, afin que nous puissions le régler dès que possible.</p>
         </div>
     </div>
+
+    @stack('body-scripts')
 </body>
 </html>
