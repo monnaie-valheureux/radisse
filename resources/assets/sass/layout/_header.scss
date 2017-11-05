@@ -98,10 +98,9 @@
       position: absolute;
       left: 1.3rem;
       top: 1.15rem;
-      background: image('logo_circle_blue_on_white.svg') 50% 50% no-repeat transparent;
-      background-size: contain;
       width: 4rem;
       height: 4rem;
+      background-image: image('logo_circle_blue_on_white.svg');
     }
 
     @include media('≥large') {
