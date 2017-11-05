@@ -7,7 +7,7 @@
  */
 .text {
   padding: 1.6rem; // 1.
-  color: $dark-grey;
+  color: $text-color;
   background: $white;
 
   @include media('≥large') {
