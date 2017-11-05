@@ -13,7 +13,7 @@
 
 /**
  * 1. Set the element as the closest positioned ancestor for the
- *    logo (the .site-header h1::before pseudo-element).
+ *    logo (the `.site-header h1::before` pseudo-element).
  */
 .site-header-elements {
   position: relative; // 1
@@ -41,7 +41,7 @@
 
 
 /**
- * The heading inside the site’s main menu.
+ * The <h1> heading inside the site’s main menu.
  *
  * 1. Use flexbox to center-align the heading and its pseudo-element together.
  * 2. Absolute positioning moves the heading out of the static flow, thus
@@ -83,7 +83,7 @@
   /**
    * The logo of the currency, inserted via a pseudo-element.
    *
-   * 1. Make space between the logo and the text of the h1.
+   * 1. Make space between the logo and the text of the <h1>.
    */
   &::before {
     content: '';
