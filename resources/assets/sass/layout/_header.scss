@@ -26,11 +26,11 @@
 
   /**
    * 1. Starting with the `medium` breakpoint, the main heading and the main
-   *    get positioned side by side. The <h1> goes on the left, while the
-   *    menu has to go on the right. Since these two blocks are the only
-   *    children of this element, we need to use the overflow clearing
-   *    trick to prevent it to collapse on itself because all of its
-   *    children would have become floated elements.
+   *    menu get positioned side by side. The <h1> goes on the left, while
+   *    the menu has to go on the right. Since these two blocks are the
+   *    only children of this container, we need to use the overflow
+   *    clearing trick to prevent it to collapse on itself because
+   *    all of its children would have become floated elements.
    *    See: https://www.quirksmode.org/css/clearing.html
    */
   @include media('≥medium') {
@@ -64,6 +64,7 @@
  *    set to ‘text-transform: lowercase’.
  */
 .site-header__site-title {
+  // TODO: try to use floats instead of flexbox.
   display: flex; // 1
   justify-content: center; // 1
   position: absolute; // 2
@@ -148,6 +149,7 @@
   text-transform: lowercase;
 }
 
+
 /**
  * The main menu of the site.
  */
@@ -175,16 +177,20 @@ nav {
  * 1. Use flexbox to center-align the list items together.
  */
 nav ul {
+  // TODO: try to use floats instead of flexbox.
   display: flex; // 1
-  justify-content: space-around;
+  justify-content: space-around; // 1
   width: 32rem;
   margin: 0 auto;
   padding: 0;
   list-style: none;
 
+  /**
+   * 1. Add some space between the last menu item and the right edge of the page.
+   */
   @include media('≥medium') {
     width: auto;
-    margin-right: 1.1rem;
+    margin-right: 1.1rem; // 1
     font-size: 2rem;
   }
 
@@ -194,9 +200,18 @@ nav ul {
   }
 }
 
+/**
+ * The links int the main menu of the site.
+ *
+ * 1. Display the links as blocks in order to be able to vertically-center
+ *    them by using explicit values for their top and bottom paddings.
+ */
 nav a {
-  display: block;
-  padding: 1.2rem 1rem 1.05rem;
+  display: block; // 1
+  padding-top: 1.2rem; // 1
+  padding-bottom: 1.05rem; // 1
+  padding-left: 1rem;
+  padding-right: 1rem;
   color: $white;
   text-decoration: none;
   transition: background-color .1s;
@@ -206,12 +221,23 @@ nav a {
     background-color: $darker-brand-color;
   }
 
+  /**
+   * 1. Adjust top and bottom paddings to keep the links vertically-centered
+   *    according to the new height of their container.
+   */
   @include media('≥medium') {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 2rem; // 1
+    padding-bottom: 2rem; // 1
   }
 
+  /**
+   * 1. Adjust top and bottom paddings to keep the links vertically-centered
+   *    according to the new height of their container.
+   */
   @include media('≥large') {
-    padding: 2.2rem 1.4rem;
+    padding-top: 2.2rem; // 1
+    padding-bottom: 2.2rem; // 1
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
   }
 }
