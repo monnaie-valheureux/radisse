@@ -24,9 +24,17 @@
   margin-left: auto;
   margin-right: auto;
 
+  /**
+   * 1. Starting with the `medium` breakpoint, the main heading and the main
+   *    get positioned side by side. The <h1> goes on the left, while the
+   *    menu has to go on the right. Since these two blocks are the only
+   *    children of this element, we need to use the overflow clearing
+   *    trick to prevent it to collapse on itself because all of its
+   *    children would have become floated elements.
+   *    See: https://www.quirksmode.org/css/clearing.html
+   */
   @include media('≥medium') {
-    display: flex;
-    justify-content: space-between;
+    overflow: auto; // 1
   }
 }
 
@@ -72,10 +80,12 @@
    * 1. Starting with the `medium` breakpoint, we put the heading back into the
    *    static flow, thus allowing it to retrieve its natural location at the
    *    top of the page. This reverses the point 2 just above.
+   * 2. Float the <h1> to position it side by side with the main menu (<nav>).
    */
   @include media('≥medium') {
     @include fix-light-text-on-dark-background;
     position: static; // 1
+    float: left; // 2
     padding-left: 6.2rem;
     min-height: 6.2rem;
     line-height: 6.2rem;
@@ -153,9 +163,11 @@ nav {
    *    the available width. As a result, the bottom border of the header now
    *    has to come from the `.site-header` element. We thus need to remove
    *    it from the menu in order to prevent a double border effect.
+   * 2. Float the <nav> to position it side by side with the main heading.
    */
   @include media('≥medium') {
     border-bottom: 0; // 1
+    float: right; // 2
   }
 }
 
