@@ -5,6 +5,9 @@
 
 
 .site-header {
+
+  // No default styling in the absence of a media query.
+
   @include media('≥medium') {
     background-color: $brand-color;
     border-bottom: 2px solid $secondary-brand-color;
@@ -65,9 +68,14 @@
   color: $brand-color;
   white-space: nowrap; // 4
 
+  /**
+   * 1. Starting with the `medium` breakpoint, we put the heading back into the
+   *    static flow, thus allowing it to retrieve its natural location at the
+   *    top of the page. This reverses the point 2 just above.
+   */
   @include media('≥medium') {
     @include fix-light-text-on-dark-background;
-    position: static;
+    position: static; // 1
     padding-left: 6.2rem;
     min-height: 6.2rem;
     line-height: 6.2rem;
@@ -94,21 +102,38 @@
     background: image('logo_circle_white_on_blue.svg') 50% 50% no-repeat transparent;
     background-size: contain;
 
+    /**
+     * Starting with the `medium` breakpoint, the logo becomes a bit smaller and
+     * gets positioned in a top navigation bar. Its colors are also reversed.
+     *
+     * 1. Make the logo a bit smaller.
+     * 2. Change the colors of the logo, by using a new background image.
+     * 3. Position the logo according to `.site-header-elements`, which
+     *    is the closest positioned ancestor.
+     */
     @include media('≥medium') {
-      position: absolute;
+      position: absolute; // 3
       left: 1.3rem;
       top: 1.15rem;
-      width: 4rem;
-      height: 4rem;
-      background-image: image('logo_circle_blue_on_white.svg');
+      background-image: image('logo_circle_blue_on_white.svg'); // 2
+      width: 4rem; // 1
+      height: 4rem; // 1
     }
 
+    /**
+     * 1. Adjust vertical positioning to take the increased font
+     *    size of the <h1> into account.
+     */
     @include media('≥large') {
-      top: 1.5rem;
+      top: 1.5rem; // 1
     }
   }
 }
 
+/**
+ * Make the very first letter of the site’s title lowercase. Doing so
+ * with CSS allows to keep it as a capital letter in the HTML source.
+ */
 .site-header__site-title span:first-letter {
   text-transform: lowercase;
 }
@@ -123,8 +148,14 @@ nav {
   background-color: $brand-color;
   border-bottom: 2px solid $secondary-brand-color;
 
+  /**
+   * 1. Starting with the `medium` breakpoint, the main menu stops taking all of
+   *    the available width. As a result, the bottom border of the header now
+   *    has to come from the `.site-header` element. We thus need to remove
+   *    it from the menu in order to prevent a double border effect.
+   */
   @include media('≥medium') {
-    border-bottom: 0;
+    border-bottom: 0; // 1
   }
 }
 
