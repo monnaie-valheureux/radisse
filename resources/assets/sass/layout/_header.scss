@@ -67,7 +67,6 @@
 
   @include media('≥medium') {
     @include fix-light-text-on-dark-background;
-    // display: block;
     position: static;
     padding-left: 6.2rem;
     min-height: 6.2rem;
@@ -76,7 +75,6 @@
   }
 
   @include media('≥large') {
-    // padding-left: 6.2rem;
     min-height: 7.2rem;
     font-size: 4rem;
     line-height: 7.2rem;
@@ -127,7 +125,6 @@ nav {
   border-bottom: 2px solid $secondary-brand-color;
 
   @include media('≥medium') {
-    background-color: inherit;
     border-bottom: 0;
   }
 }
