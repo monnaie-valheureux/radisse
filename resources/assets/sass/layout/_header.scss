@@ -38,8 +38,17 @@
   }
 }
 
+/**
+ * A link to the website homepage placed around the site title.
+ *
+ * 1. The only child of the link is a floated <h1>, resulting in the link having
+ *    a height of zero. In order to apply a hover effect on it, we need the link
+ *    to have the height of its content. We thus float it in the same way as the
+ *    heading it surrounds in order to make it retrieve a height.
+ */
 .site-header__home-link {
   display: block;
+  float: left; // 1
   padding-right: 1.3rem;
   color: $white;
   text-decoration: none;
