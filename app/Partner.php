@@ -4,7 +4,6 @@ namespace App;
 
 use DateTime;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -133,7 +132,7 @@ class Partner extends Model
      */
     public function validate()
     {
-        $this->validated_at = Carbon::now();
+        $this->validated_at = now();
         $this->save();
     }
 
