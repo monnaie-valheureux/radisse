@@ -27,6 +27,15 @@ class Partner extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'endorser_team_member_id' => 'int',
+    ];
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
@@ -92,6 +101,19 @@ class Partner extends Model
     public function representatives()
     {
         return $this->hasMany(PartnerRepresentative::class);
+    }
+
+    /**
+     * Get the team member that made the partner sign the official documents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function teamMember()
+    {
+        return $this->belongsTo(
+            TeamMember::class,
+            $foreignKey = 'endorser_team_member_id'
+        );
     }
 
     /**
