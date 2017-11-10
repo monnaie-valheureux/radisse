@@ -19,6 +19,13 @@ class CreatePartnersTable extends Migration
             // An unsigned integer with autoincrement.
             $table->increments('id');
 
+            // Optional foreign key.
+            // This references the team member who made this partner sign the
+            // official documents. This is optional but highly recommended.
+            // Note: this just adds the column. The foreign constraint itself
+            //       is added via the migration for the `team_members` table.
+            $table->unsignedInteger('endorser_team_member_id')->nullable();
+
             // The name of the partner.
             $table->string('name');
 

@@ -12,6 +12,8 @@ and this project adheres to
 - The home page can now display the bills of any region. On each page load, a region is choosen at random.
 - The page listing currency exchanges is now dynamic, getting its data from the database.
 - Improve backwards compatibility of some parts of the layout.
+- Add support for teams. Each team can have members.
+- Partners can be linked to the team member who made them sign official documents.
 
 ## [1.1.0] - 2017-10-31
 ### Added

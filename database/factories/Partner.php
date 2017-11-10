@@ -2,6 +2,7 @@
 
 use App\Partner;
 use Carbon\Carbon;
+use App\TeamMember;
 use Faker\Generator as Faker;
 
 // Factory to create a basic Partner model.
@@ -9,6 +10,9 @@ $factory->define(Partner::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'validated_at' => Carbon::parse('1 week ago'),
+        'endorser_team_member_id' => function () {
+            return factory(TeamMember::class)->create()->id;
+        }
     ];
 });
 
