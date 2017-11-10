@@ -40,6 +40,17 @@ class CreateTeamMembersTable extends Migration
             // and when it was modified for the last time.
             $table->timestamps();
         });
+
+        // Modify the `partners` table to add a nullable
+        // foreign key referencing a team member.
+        Schema::table('partners', function (Blueprint $table) {
+
+            // Optional foreign key.
+            // This references the team member who made this partner sign the
+            // official documents. This is optional but highly recommended.
+            $table->foreign('endorser_team_member_id')
+                  ->references('id')->on('team_members');
+        });
     }
 
     /**
@@ -49,6 +60,15 @@ class CreateTeamMembersTable extends Migration
      */
     public function down()
     {
+        // Modify the `partners` table to remove the nullable
+        // foreign key referencing a team member.
+        Schema::table('partners', function (Blueprint $table) {
+            $table->dropForeign('partners_endorser_team_member_id_foreign');
+        });
+
+        // It’s necessary to drop the table only *after* all indexes pointing
+        // to it have been removed, otherwise the whole thing crashes because
+        // it’s not possible to remove these indexes.
         Schema::dropIfExists('team_members');
     }
 }
