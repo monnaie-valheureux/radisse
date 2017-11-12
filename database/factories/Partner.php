@@ -3,12 +3,20 @@
 use App\Partner;
 use Carbon\Carbon;
 use App\TeamMember;
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 // Factory to create a basic Partner model.
-$factory->define(Partner::class, function (Faker $faker) {
+$factory->define(Partner::class, function (Faker $faker, array $attributes) {
+
+    // Save the name to a variable so that we’ll
+    // be able to generate a proper slug for it.
+    $name = $attributes['name'] ?? $faker->company;
+
     return [
-        'name' => $faker->company,
+        'name' => $name,
+        'name_sort' => $name,
+        'slug' => Str::slug($name),
         'validated_at' => Carbon::parse('1 week ago'),
         'endorser_team_member_id' => function () {
             return factory(TeamMember::class)->create()->id;
