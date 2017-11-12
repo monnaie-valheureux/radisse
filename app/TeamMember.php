@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class TeamMember extends Authenticatable
 {
-    use Notifiable;
+    use HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.

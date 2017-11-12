@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         factory(\App\Team::class)->create(['name' => 'Verviers']);
 
         // Add a test team member.
-        factory(\App\TeamMember::class)->create([
+        $teamMember = factory(\App\TeamMember::class)->create([
             'given_name' => 'John',
             'surname' => 'Doe',
             'email' => 'john.doe@example.org',
@@ -30,5 +30,15 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$12$GF73JIWsj7sQK0q35oA1d.R/BSIozS1e7hNspJJolUj0/gYZb9jL2',
             'team_id' => $liegeTeam->id,
         ]);
+
+
+        // Reset cached roles and permissions.
+        app()['cache']->forget('spatie.permission.cache');
+
+        // Add a permission allowing to create new partners.
+        \Spatie\Permission\Models\Permission::create(['name' => 'add partners']);
+
+        // Give this permission to the test team member.
+        $teamMember->givePermissionTo('add partners');
     }
 }
