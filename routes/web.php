@@ -31,6 +31,9 @@ Route::prefix('gestion')
      ->middleware('auth')
      ->group(function () {
 
+    // The home page of the administration area of the site.
+    Route::view('/', 'admin.home')->name('admin-home');
+
     // Define routes to handle partners of the local currency.
     Route::resource('partners', 'PartnersController', [
         'only' => ['index', 'show']
