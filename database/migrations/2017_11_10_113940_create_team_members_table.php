@@ -36,6 +36,11 @@ class CreateTeamMembersTable extends Migration
             // This stores the hashed (with Bcrypt) password of the person.
             $table->string('password');
 
+            // This is required by the framework because it always tries
+            // to update this column when logging people out.
+            // See \Illuminate\Auth\SessionGuard::logout()
+            $table->rememberToken();
+
             // Timestamps telling when the table row was created
             // and when it was modified for the last time.
             $table->timestamps();
