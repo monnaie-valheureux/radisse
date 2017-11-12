@@ -19,7 +19,11 @@ Route::namespace('Site')->group(function () {
 
 
 // This group defines the routes used by the administration area of the site.
-Route::prefix('gestion')->namespace('Admin')->group(function () {
+// People need to be authenticated in order to access any of them.
+Route::prefix('gestion')
+     ->namespace('Admin')
+     ->middleware('auth')
+     ->group(function () {
 
     // Define routes to handle partners of the local currency.
     Route::resource('partners', 'PartnersController', [
