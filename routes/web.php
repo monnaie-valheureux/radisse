@@ -14,7 +14,7 @@ Route::namespace('Site')->group(function () {
     Route::get('/partenaires', 'PartnersController@index');
 
     // A static page telling about the ‘apéros du Val’heureux’.
-    Route::view('/aperos-du-valheureux', 'public.project');
+    Route::view('/aperos-du-valheureux', 'public.aperos');
 });
 
 
