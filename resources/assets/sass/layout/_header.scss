@@ -154,7 +154,7 @@
  * Make the very first letter of the site’s title lowercase. Doing so
  * with CSS allows to keep it as a capital letter in the HTML source.
  */
-.site-header__site-title span:first-letter {
+.site-header__first-letter {
   text-transform: lowercase;
 }
 

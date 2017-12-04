@@ -50,12 +50,16 @@
         --}}
         @if (Route::is('home'))
             <h1 class="site-header__site-title">
-                <span>Le Val’heureux</span>
+                <span>
+                    <span class="site-header__first-letter">L</span>e Val’heureux
+                </span>
             </h1>
         @else
             <a href="/" class="site-header__home-link">
                 <h1 class="site-header__site-title">
-                    <span>Le Val’heureux</span>
+                    <span>
+                        <span class="site-header__first-letter">L</span>e Val’heureux
+                    </span>
                 </h1>
             </a>
         @endif
