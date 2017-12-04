@@ -40,7 +40,13 @@
     @endif
 
 </head>
+
+{{-- Set a special class on the body if we are on the home page. --}}
+@if (Route::is('home'))
+<body class="is-homepage">
+@else
 <body>
+@endif
     <div class="site-header">
         <div class="site-header-elements">
 
