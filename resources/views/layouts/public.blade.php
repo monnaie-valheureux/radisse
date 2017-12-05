@@ -40,7 +40,13 @@
     @endif
 
 </head>
+
+{{-- Set a special class on the body if we are on the home page. --}}
+@if (Route::is('home'))
+<body class="is-homepage">
+@else
 <body>
+@endif
     <div class="site-header">
         <div class="site-header-elements">
 
@@ -50,12 +56,16 @@
         --}}
         @if (Route::is('home'))
             <h1 class="site-header__site-title">
-                <span>Le Val’heureux</span>
+                <span>
+                    <span class="site-header__first-letter">L</span>e Val’heureux
+                </span>
             </h1>
         @else
             <a href="/" class="site-header__home-link">
                 <h1 class="site-header__site-title">
-                    <span>Le Val’heureux</span>
+                    <span>
+                        <span class="site-header__first-letter">L</span>e Val’heureux
+                    </span>
                 </h1>
             </a>
         @endif

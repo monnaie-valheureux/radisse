@@ -40,16 +40,12 @@
 
 /**
  * A link to the website homepage placed around the site title.
- *
- * 1. The only child of the link is a floated <h1>, resulting in the link having
- *    a height of zero. In order to apply a hover effect on it, we need the link
- *    to have the height of its content. We thus float it in the same way as the
- *    heading it surrounds in order to make it retrieve a height.
  */
 .site-header__home-link {
+  @include fix-light-text-on-dark-background;
   display: block;
-  float: left; // 1
   padding-right: 1.3rem;
+  background-color: $brand-color;
   color: $white;
   text-decoration: none;
 
@@ -57,45 +53,89 @@
     color: $white;
     background-color: $darker-brand-color;
   }
+
+  /**
+   * 1. The only child of the link is a <h1>. Starting with the `medium`
+   *    breakpoint, this <h1> becomes a float, resulting in the link
+   *    getting a height of zero. In order to apply a hover effect
+   *    on it, we need the link to have the height of its content.
+   *    We thus float it too, in the same way as the heading it
+   *    surrounds, in order to make it retrieve a height.
+   */
+  @include media('≥medium') {
+    float: left; // 1
+  }
 }
 
 
 /**
  * The <h1> heading inside the site’s main menu.
- *
- * 1. Use flexbox to center-align the heading and its pseudo-element together.
- * 2. Absolute positioning moves the heading out of the static flow, thus
- *    allowing the menu to move all the way to the top of the page.
- * 3. Zero the margins to make positioning easier to calculate.
- * 4. Fix: prevent an unexplainable newline to appear inside
- *    the element’s text in some browsers due to the
- *    :first-letter of the included span being
- *    set to ‘text-transform: lowercase’.
  */
 .site-header__site-title {
-  // TODO: try to use floats instead of flexbox.
-  display: flex; // 1
-  justify-content: center; // 1
-  position: absolute; // 2
-  left: 0;
-  right: 0;
-  top: 5.2rem;
-  margin: 0; // 3
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 1rem;
+  padding-bottom: .4rem;
+  padding-left: 1rem;
   font-size: 3.2rem;
-  line-height: 4.6rem;
-  color: $brand-color;
-  white-space: nowrap; // 4
+  line-height: 4rem;
+  color: $white;
+
+  /**
+   * On the home page of the site, and only when we are below the `medium`
+   * breakpoint, the title and the logo are displayed *below* the main
+   * menu, in order to make them stand out more. In addition to this
+   * change of position, the logo is also made a bit bigger. As a
+   * result, we need to tweak a few things to accommodate this.
+   *
+   * 1. Absolute positioning moves the heading out of the static flow, thus
+   *    allowing the menu to move all the way to the top of the page.
+   * 2. Position both the title text and the pseudo-element of the
+   *    logo below the main menu.
+   * 3. Force the width of the block to take all the available
+   *    space, to make horizontal centering easier.
+   * 4. Use flexbox to center-align the heading and its pseudo-element together.
+   *    We use this because the absolute positioning prevents us to use auto
+   *    horizontal margins or similar tricks to center-align the elements.
+   * 5. Zero the paddings to make positioning easier to calculate.
+   * 6. Adjust the line-height to the new height of the logo.
+   * 7. Since the title now appears on top of a light background
+   *    instead of the brand color, we need to switch its text
+   *    color from white to the brand color.
+   */
+  @include media('<medium') {
+    body.is-homepage & {
+      position: absolute; // 1
+      top: 5.2rem; // 2
+      right: 0; // 3
+      left: 0; // 3
+      // TODO: try to use floats instead of flexbox.
+      display: flex; // 4
+      justify-content: center; // 4
+      padding-top: 0; // 5
+      padding-bottom: 0; // 5
+      padding-left: 0; // 5
+      line-height: 4.6rem; // 6
+      color: $brand-color; // 7
+    }
+  }
 
   /**
    * 1. Starting with the `medium` breakpoint, we put the heading back into the
    *    static flow, thus allowing it to retrieve its natural location at the
-   *    top of the page. This reverses the point 2 just above.
+   *    top of the page. This is only necessary when we are on the home page
+   *    of the site (see point 1 just above).
    * 2. Float the <h1> to position it side by side with the main menu (<nav>).
+   * 3. Remove the vertical padding that was necessary for smaller
+   *    viewport widths, when the title was stacked on top of the
+   *    menu rather than being positioned side by side with it.
    */
   @include media('≥medium') {
     @include fix-light-text-on-dark-background;
     position: static; // 1
     float: left; // 2
+    padding-top: 0; // 3
+    padding-bottom: 0; // 3
     padding-left: 6.2rem;
     min-height: 6.2rem;
     line-height: 6.2rem;
@@ -111,33 +151,49 @@
   /**
    * The logo of the currency, inserted via a pseudo-element.
    *
-   * 1. Make space between the logo and the text of the <h1>.
+   * 1. Float the logo to allow the text of the <h1> to go side by side with it.
+   * 2. Make space between the logo and the text of the <h1>.
    */
   &::before {
     content: '';
     display: block;
-    width: 4.6rem;
-    height: 4.6rem;
-    margin-right: 1rem; // 1
-    background: image('logo_circle_white_on_blue.svg') 50% 50% no-repeat transparent;
+    float: left; // 1
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem; // 2
+    background: image('logo_circle_blue_on_white.svg') 50% 50% no-repeat transparent;
     background-size: contain;
 
     /**
-     * Starting with the `medium` breakpoint, the logo becomes a bit smaller and
-     * gets positioned in a top navigation bar. Its colors are also reversed.
+     * On the home page of the site, and only when we are below the `medium`
+     * breakpoint, the title and the logo are displayed *below* the main
+     * menu, in order to make them stand out more. In addition to this
+     * change of position, the logo is also made a bit bigger. As a
+     * result, we need to tweak a few things to accommodate this.
      *
-     * 1. Make the logo a bit smaller.
-     * 2. Change the colors of the logo, by using a new background image.
-     * 3. Position the logo according to `.site-header-elements`, which
+     * 1. Since the logo now appears on top of a light background instead of the
+     *    brand color, we need to switch to a version that uses reversed colors.
+     * 2. Make the logo a bit bigger.
+     */
+    @include media('<medium') {
+      body.is-homepage & {
+        background-image: image('logo_circle_white_on_blue.svg'); // 1
+        width: 4.6rem; // 2
+        height: 4.6rem; // 2
+      }
+    }
+
+    /**
+     * Starting with the `medium` breakpoint, the logo always gets positioned
+     * in a top navigation bar.
+     *
+     * 1. Position the logo according to `.site-header-elements`, which
      *    is the closest positioned ancestor.
      */
     @include media('≥medium') {
-      position: absolute; // 3
+      position: absolute; // 1
       left: 1.3rem;
       top: 1.15rem;
-      background-image: image('logo_circle_blue_on_white.svg'); // 2
-      width: 4rem; // 1
-      height: 4rem; // 1
     }
 
     /**
@@ -154,7 +210,7 @@
  * Make the very first letter of the site’s title lowercase. Doing so
  * with CSS allows to keep it as a capital letter in the HTML source.
  */
-.site-header__site-title span:first-letter {
+.site-header__first-letter {
   text-transform: lowercase;
 }
 
