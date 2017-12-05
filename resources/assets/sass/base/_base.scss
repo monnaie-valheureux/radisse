@@ -12,6 +12,13 @@ html {
 }
 
 /**
+ * Provide a default background color for the body element.
+ */
+body {
+  background-color: $white;
+}
+
+/**
  * Make all elements from the DOM inherit from the parent box-sizing.
  * Since `*` has a specificity of 0, it doesn’t override the `html`
  * value making all elements inherit from the rule just above.
