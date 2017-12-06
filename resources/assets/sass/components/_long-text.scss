@@ -1,0 +1,203 @@
+// -----------------------------------------------------------------------------
+// The .long-text component is basically used for long texts.
+// -----------------------------------------------------------------------------
+
+/**
+ * 1. Define the space between the component and its surroundings (usually body).
+ */
+.long-text {
+  padding: 1.6rem; // 1
+  color: $text-color;
+  background: $white;
+
+  @include media('≥medium') {
+    padding: 2.4rem;
+  }
+
+  @include media('≥large') {
+    padding: 3.2rem;
+  }
+}
+
+
+/**
+ * Typographic rules and font settings for textual
+ * block elements inside the .long-text component.
+ */
+
+/**
+ * 1. The shapes of Museo’s letters make them appear too close to each
+ *    other. We add a bit of spacing to increase readability.
+ */
+.long-text h2 {
+  font-family: "museo700";
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: 0.25px; // 1
+  color: $brand-color;
+
+  @include media('≥medium') {
+    font-size: 2.8rem;
+  }
+
+  @include media('≥large') {
+    font-size: 3.6rem;
+  }
+}
+
+.long-text h3 {
+  font-family: "museo_sans500";
+  font-size: 2rem;
+  line-height: 1.2;
+  color: $brand-color;
+
+  @include media('≥medium') {
+    font-size: 2.4rem;
+  }
+
+  @include media('≥large') {
+    font-size: 3rem;
+  }
+}
+
+/**
+ * 1. Small caps are less readable than lowercase letter.
+ *    We add a bit of spacing to increase readability.
+ */
+.long-text h4 {
+  font-family: "museo_sans700";
+  font-size: 1.6rem;
+  line-height: 1.2;
+  font-variant: small-caps;
+  letter-spacing: 0.25px; // 1
+  color: $text-color;
+
+  @include media('≥medium') {
+    font-size: 2rem;
+  }
+
+  @include media('≥large') {
+    font-size: 2.8rem;
+  }
+}
+
+.long-text p,
+.long-text li {
+  font-size: 1.6rem;
+  line-height: 1.25;
+
+  @include media('≥medium') {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  @include media('≥large') {
+    font-size: 2.4rem;
+  }
+}
+
+
+
+/**
+ * 1. Use real italics, thanks to a dedicated font file.
+ * 2. Prevent browsers to try to create synthetic italics,
+ *    which would be applied on top of the real ones.
+ */
+.long-text em {
+  font-family: "museo_sans500--italic"; // 1
+  font-style: normal; // 2
+}
+
+
+
+/**
+ * Define maximum widths for differents elements.
+ */
+.long-text h2,
+.long-text h3,
+.long-text h4,
+.long-text p,
+.long-text ul,
+.long-text ol {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('≥medium') {
+    max-width: 55rem;
+  }
+
+  @include media('≥large') {
+    max-width: 70rem;
+  }
+}
+
+
+
+/**
+ * Define margins and paddings for differents elements.
+ */
+.long-text h2 {
+  margin-top: 1.333em;
+  margin-bottom: 1.6rem;
+
+  /**
+   * If the component starts with an <h2>, give that heading no top margin.
+   */
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.long-text h3,
+.long-text h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.long-text ul,
+.long-text ol {
+  padding-left: 1.25em;
+
+  li {
+    margin-bottom: 0.5rem;
+
+    /**
+     * If the list item starts with a <p>, give that paragraph no top margin.
+     */
+    & p:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+
+
+/**
+ * Define styles for table of contents.
+ */
+.long-text__table-of-contents h2 {
+  color: $text-color;
+}
+
+/**
+ *
+ * 1. Starting with the `medium` breakpoint, remove any left padding on
+ *    the list and ensure that marker boxes are positioned outside of
+ *    the boxes of list items. This makes the item numbers appear
+ *    as if they had a negative margin.
+ */
+.long-text__table-of-contents ol {
+  @include media('≥medium') {
+    padding-left: 0; // 1
+    list-style-position: outside; // 1
+  }
+}
+
+/**
+ * 1. In order to avoid visual noise, give no underline
+ *    to links inside table of contents.
+ */
+.long-text__table-of-contents a {
+  text-decoration: none; // 1
+}
