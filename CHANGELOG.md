@@ -10,6 +10,7 @@ and this project adheres to
 ## [Unreleased]
 ### Added
 - The home page can now display the bills of any region. On each page load, a region is choosen at random.
+- Add real content to ‘Le projet’ page.
 - The page listing currency exchanges is now dynamic, getting its data from the database.
 - Improve backwards compatibility of some parts of the layout.
 - Add support for teams. Each team can have members.
