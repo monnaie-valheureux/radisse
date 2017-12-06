@@ -4,7 +4,6 @@ namespace App;
 
 use DateTime;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -24,6 +23,15 @@ class Partner extends Model
         'joined_on',
         'left_on',
         'validated_at',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'endorser_team_member_id' => 'int',
     ];
 
     /**
@@ -95,6 +103,19 @@ class Partner extends Model
     }
 
     /**
+     * Get the team member that made the partner sign the official documents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function teamMember()
+    {
+        return $this->belongsTo(
+            TeamMember::class,
+            $foreignKey = 'endorser_team_member_id'
+        );
+    }
+
+    /**
      * Check if the partner has been validated or not.
      *
      * @return bool
@@ -111,7 +132,7 @@ class Partner extends Model
      */
     public function validate()
     {
-        $this->validated_at = Carbon::now();
+        $this->validated_at = now();
         $this->save();
     }
 

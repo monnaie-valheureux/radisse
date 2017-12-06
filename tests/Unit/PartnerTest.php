@@ -7,6 +7,7 @@ use App\Phone;
 use App\Partner;
 use App\Location;
 use Carbon\Carbon;
+use App\TeamMember;
 use Tests\TestCase;
 use App\PostalAddress;
 use App\SocialNetwork;
@@ -192,6 +193,23 @@ class PartnerTest extends TestCase
         $this->assertCount(1, $partner->socialNetworks);
         $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
+    }
+
+    /** @test */
+    function can_retrieve_its_team_member()
+    {
+        // Create a team member and then a partner associated to it.
+        $teamMember = factory(TeamMember::class)->create();
+
+        $partner = factory(Partner::class)->create([
+            'endorser_team_member_id' => $teamMember->id,
+        ]);
+
+        // Retrieve the partners.
+        $retrievedTeamMember = $partner->teamMember;
+
+        // Check that we got the correct data.
+        $this->assertEquals($teamMember->id, $retrievedTeamMember->id);
     }
 
     /** @test */

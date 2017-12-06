@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +40,13 @@
     @endif
 
 </head>
+
+{{-- Set a special class on the body if we are on the home page. --}}
+@if (Route::is('home'))
+<body class="is-homepage">
+@else
 <body>
+@endif
     <div class="site-header">
         <div class="site-header-elements">
 
@@ -50,12 +56,16 @@
         --}}
         @if (Route::is('home'))
             <h1 class="site-header__site-title">
-                <span>Le Val’heureux</span>
+                <span>
+                    <span class="site-header__first-letter">L</span>e Val’heureux
+                </span>
             </h1>
         @else
             <a href="/" class="site-header__home-link">
                 <h1 class="site-header__site-title">
-                    <span>Le Val’heureux</span>
+                    <span>
+                        <span class="site-header__first-letter">L</span>e Val’heureux
+                    </span>
                 </h1>
             </a>
         @endif
@@ -89,5 +99,7 @@
             <p>Si jamais vous rencontrez un problème, n’hésitez pas à nous le signaler, afin que nous puissions le régler dès que possible.</p>
         </div>
     </div>
+
+    @stack('body-scripts')
 </body>
 </html>

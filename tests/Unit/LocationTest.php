@@ -5,6 +5,7 @@ namespace Tests\Unit\Admin;
 use App\Partner;
 use App\Location;
 use Tests\TestCase;
+use App\CurrencyExchange;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
@@ -24,5 +25,23 @@ class LocationTest extends TestCase
         $retrievedPartner = $location->partner;
 
         $this->assertSame($partner->id, $retrievedPartner->id);
+    }
+
+    /** @test */
+    function can_retrieve_its_currency_exchange()
+    {
+        // Create a location.
+        $location = factory(Location::class)->create();
+
+        // Then, create a currency exchange for this location.
+        $currencyExchange = factory(CurrencyExchange::class)->create([
+            'location_id' => $location->id,
+        ]);
+
+        // Retrieve the currency exchange.
+        $retrievedCurrencyExchange = $location->currencyExchange;
+
+        // Check that we got the correct object.
+        $this->assertSame($currencyExchange->id, $retrievedCurrencyExchange->id);
     }
 }

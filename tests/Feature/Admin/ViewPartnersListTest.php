@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ViewPartnersListTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithoutMiddleware;
 
     /** @test */
     public function admins_can_see_the_list_of_partners()

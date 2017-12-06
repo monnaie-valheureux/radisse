@@ -58,4 +58,29 @@ class ViewPartnersListTest extends TestCase
         // Ensure that the former partner is NOT listed on the page.
         $response->assertDontSeeText($formerPartner->name_sort);
     }
+
+    /** @test */
+    public function the_list_of_partners_contains_only_validated_partners()
+    {
+        // Create two validated partners.
+        $validatedPartnerA = factory(Partner::class)->create([
+            'name_sort' => 'Sanzot (boucherie)',
+        ]);
+        $validatedPartnerB = factory(Partner::class)->create([
+            'name_sort' => 'Du côté de chez Poje',
+        ]);
+        // Then, create one partner that has not been validated.
+        $nonvalidatedPartner = factory(Partner::class)->states('nonvalidated')->create([
+            'name_sort' => 'Ordralfabétix (poissonnerie)',
+        ]);
+
+        $response = $this->get('/partenaires');
+
+        // Ensure that the validated partners are listed on the page.
+        $response->assertSeeText($validatedPartnerA->name_sort);
+        $response->assertSeeText($validatedPartnerB->name_sort);
+
+        // Ensure that the former partner is NOT listed on the page.
+        $response->assertDontSeeText($nonvalidatedPartner->name_sort);
+    }
 }

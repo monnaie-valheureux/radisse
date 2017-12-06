@@ -3,6 +3,7 @@
 namespace Tests\Feature\Admin;
 
 use App\Partner;
+use App\TeamMember;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -25,7 +26,10 @@ class ViewDetailsOfAPartnerTest extends TestCase
             'name' => 'Boucherie Sanzot',
         ]);
 
-        $response = $this->get('/gestion/partners/'.$partner->slug);
+        $teamMember = factory(TeamMember::class)->create();
+
+        $response = $this->actingAs($teamMember)
+                         ->get('/gestion/partners/'.$partner->slug);
 
         // Check that we can see the details of a specific partner.
         $response->assertSeeText($partner->name);

@@ -1,5 +1,5 @@
 .counter-list-main-heading {
-  margin: 7.6rem 1.2rem 0;
+  margin: 1.6rem 1.2rem 0;
 
   @include media('≥medium') {
     margin: 3.2rem 1.2rem 0;
@@ -16,7 +16,7 @@
  */
 .counter-list {
   padding: 1.6rem; // 1.
-  color: $dark-grey;
+  color: $text-color;
   background: $white;
   line-height: 2rem;
 

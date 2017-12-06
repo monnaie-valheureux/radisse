@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.2.0] - 2017-12-06
+### Added
+- The home page can now display the bills of any region. On each page load, a region is choosen at random.
+- Add real content to ‘Le projet’ page.
+- The page listing currency exchanges is now dynamic, getting its data from the database.
+- Improve backwards compatibility of some parts of the layout.
+- Add support for teams. Each team can have members.
+- Partners can be linked to the team member who made them sign official documents.
+
+### Changed
+- On small viewports, on all pages except the home page, where the previous layout is kept, the site title and logo are now located in the header, above the main menu.
+
 ## [1.1.0] - 2017-10-31
 ### Added
 - Partners now have a validation state. They can be valid or not.
@@ -18,5 +30,6 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.0.0...v1.1.0
