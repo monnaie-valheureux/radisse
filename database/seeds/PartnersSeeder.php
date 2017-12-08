@@ -40,6 +40,14 @@ class PartnersSeeder extends Seeder
             ) {
                 $data['validated_at'] = $data['joined_on'];
             }
+            // If `joined_on` is null, we set the validation date to
+            // on the launch date.
+            elseif (
+                !isset($data['validated_at']) &&
+                !isset($data['joined_on'])
+            ) {
+                $data['validated_at'] = '2017-10-21';
+            }
 
             $partner = Partner::create([
                 'name' => $data['name'],
