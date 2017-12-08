@@ -10,12 +10,12 @@
         <p>Actuellement, vous pouvez échanger vos euros contre des Val’heureux dans ces endroits :</p>
 
         <ul>
-        @foreach ($currencyExchanges as $currencyExchange)
+        @foreach ($addresses as $address)
             <li>
-                {{ $currencyExchange->postalAddress->recipient }}<br>
-                {{ $currencyExchange->postalAddress->street }}
-                {{ $currencyExchange->postalAddress->streetNumber }},
-                {{ $currencyExchange->postalAddress->city }}
+                {{ $address->recipient }}<br>
+                {{ $address->street }}
+                {{ $address->streetNumber }},
+                {{ $address->city }}
             </li>
         @endforeach
         </ul>
