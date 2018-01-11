@@ -18,9 +18,25 @@ class CurrencyExchangesController extends Controller
      */
     public function index()
     {
-        $currencyExchanges = CurrencyExchange::with('location.postalAddress')
-            ->get();
+        $currencyExchanges = CurrencyExchange::with(
+            'location.postalAddress',
+            'location.partner'
+        )
+        ->get()
+        // Sort currency exchanges by the ‘sort name’ of their partner.
+        ->sortBy(function ($currencyExchange) {
+            return $currencyExchange->location->partner->name_sort;
+        });
 
-        return view('public.currency-exchanges.index', compact('currencyExchanges'));
+        // Get the postal addresses of the currency exchanges.
+        $addresses = $currencyExchanges->map(function ($currencyExchange) {
+            $address = $currencyExchange->location->postalAddress;
+            // Use the partner’s ‘sort name’ in the address.
+            $address->recipient = $currencyExchange->location->partner->name_sort;
+
+            return $address;
+        });
+
+        return view('public.currency-exchanges.index', compact('addresses'));
     }
 }
