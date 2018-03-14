@@ -21,6 +21,15 @@ class AppServiceProvider extends ServiceProvider
         // Configure the Bcrypt hasher to use a cost factor
         // of 12 instead of the default value of 10.
         app('hash')->setRounds(12);
+
+        \Illuminate\Support\Facades\Blade::directive('errorhandling', function ($expression) {
+            // return "@include('errors.handling', ['item' => '{$expression}'])";
+
+            return "<?php echo \$__env->make(
+                'errors.handling',
+                ['item' => {$expression}]
+            )->render(); ?>";
+        });
     }
 
     /**

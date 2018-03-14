@@ -33,6 +33,16 @@ class ContactDetailsSocialNetworkTest extends TestCase
     }
 
     /** @test */
+    function object_exposes_the_official_network_name_as_a_property()
+    {
+        $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
+
+        $this->assertSame('Facebook', $network->officialName);
+        $this->assertNotSame('facebook', $network->officialName);
+        $this->assertNotSame('FaCeBoOk', $network->officialName);
+    }
+
+    /** @test */
     function object_exposes_the_network_handle_as_a_property()
     {
         $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
@@ -211,11 +221,17 @@ class ContactDetailsSocialNetworkTest extends TestCase
     {
         return [
             ['facebook.com/boucheriesanzot'],
+            // With `www`.
             ['www.facebook.com/boucheriesanzot'],
+            // With HTTP or HTTPS protocol.
             ['http://facebook.com/boucheriesanzot'],
             ['http://www.facebook.com/boucheriesanzot'],
             ['https://facebook.com/boucheriesanzot'],
             ['https://www.facebook.com/boucheriesanzot'],
+            // With trailing slash.
+            ['facebook.com/boucheriesanzot/'],
+            // With multiple trailing slashes.
+            ['facebook.com/boucheriesanzot//'],
         ];
     }
 

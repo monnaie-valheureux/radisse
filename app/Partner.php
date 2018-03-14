@@ -14,6 +14,20 @@ class Partner extends Model
 {
     use HasContactDetails;
 
+    const HEAD_OFFICE_LABEL = 'Siège social';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'name_sort',
+        'business_type',
+        'is_draft',
+    ];
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -51,19 +65,23 @@ class Partner extends Model
             }
         });
 
-        // Add a default global scope to all select queries on the model.
-        // This will exclude former partners, who left the network of
-        // the currency, because most of the time we won’t want them.
-        static::addGlobalScope('active', function (Builder $builder) {
-            $builder->whereNull('left_on');
-        });
 
-        // Add a default global scope to all select queries on the model.
-        // This will exclude nonvalidated partners, who have not been
-        // accepted (yet) into the network.
-        static::addGlobalScope('validated', function (Builder $builder) {
-            $builder->whereNotNull('validated_at');
-        });
+        if (!request()->is('gestion/*')) {
+
+            // Add a default global scope to all select queries on the model.
+            // This will exclude former partners, who left the network of
+            // the currency, because most of the time we won’t want them.
+            static::addGlobalScope('active', function (Builder $builder) {
+                $builder->whereNull('left_on');
+            });
+
+            // Add a default global scope to all select queries on the model.
+            // This will exclude nonvalidated partners, who have not been
+            // accepted (yet) into the network.
+            static::addGlobalScope('validated', function (Builder $builder) {
+                $builder->whereNotNull('validated_at');
+            });
+        }
     }
 
     /**
@@ -116,6 +134,19 @@ class Partner extends Model
     }
 
     /**
+     * Get the team member who validated this partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function validator()
+    {
+        return $this->belongsTo(
+            TeamMember::class,
+            $foreignKey = 'validator_team_member_id'
+        );
+    }
+
+    /**
      * Check if the partner has been validated or not.
      *
      * @return bool
@@ -137,6 +168,20 @@ class Partner extends Model
     }
 
     /**
+     * Mark the partner as valid and specify who did the validation.
+     *
+     * @param  \App\TeamMember  $teamMember
+     *
+     * @return void
+     */
+    public function validateBy(TeamMember $teamMember)
+    {
+        $this->validator_team_member_id = $teamMember->id;
+
+        $this->validate();
+    }
+
+    /**
      * Invalidate the partner.
      *
      * @return void
@@ -144,7 +189,109 @@ class Partner extends Model
     public function invalidate()
     {
         $this->validated_at = null;
+        $this->validator_team_member_id = null;
         $this->save();
+    }
+
+    /**
+     * Save a new model as a ‘draft’ and return the instance.
+     *
+     * @param  array  $attributes
+     * @return \Illuminate\Database\Eloquent\Model|$this
+     */
+    public function createAsDraft(array $attributes = [])
+    {
+        $attributes['is_draft'] = true;
+
+        return $this->create($attributes);
+    }
+
+    public function getHeadOfficeAddress()
+    {
+        if (
+            $this->postalAddress &&
+            $this->postalAddress->label === self::HEAD_OFFICE_LABEL
+        ) {
+            return $this->postalAddress;
+        }
+    }
+
+    /**
+     * Associate or replace a postal address for the head office of the partner.
+     *
+     * @param array  $parts
+     */
+    public function setHeadOfficeAddress(array $parts)
+    {
+        $parts = array_merge(['recipient' => $this->name], $parts);
+
+        if ($address = $this->getHeadOfficeAddress()) {
+            // An address already exists, so we’ll update it.
+            $address->modify($parts)->save();
+        } else {
+            // Otherwise we create a new address in the database.
+            $address = PostalAddress::fromArray($parts)
+                        ->withLabel(self::HEAD_OFFICE_LABEL)
+                        ->makePrivate();
+
+            $this->postalAddress()->save($address);
+        }
+    }
+
+    public function getHeadOfficePhone()
+    {
+        return $this->findPhoneByLabel(self::HEAD_OFFICE_LABEL);
+    }
+
+    public function setHeadOfficePhone($number, $isPublic = false)
+    {
+        $phone = $this->getHeadOfficePhone();
+
+        if ($phone) {
+            $phone->number = $number;
+            $phone->isPublic = (bool) $isPublic;
+            $phone->save();
+        } else {
+            $phone = Phone::fromNumber($number)
+                        ->withLabel(self::HEAD_OFFICE_LABEL)
+                        ->setVisibility($isPublic);
+
+            $this->phones()->save($phone);
+        }
+    }
+
+    public function removeHeadOfficePhone()
+    {
+        optional($this->getHeadOfficePhone())->delete();
+    }
+
+    public function getHeadOfficeEmail()
+    {
+        return $this->emails->first(function ($email) {
+            return $email->label === 'Siège social';
+        });
+    }
+
+    public function setHeadOfficeEmail($address, $isPublic = false)
+    {
+        $email = $this->getHeadOfficeEmail();
+
+        if ($email) {
+            $email->address = $address;
+            $email->isPublic = (bool) $isPublic;
+            $email->save();
+        } else {
+            $email = Email::fromAddress($address)
+                        ->withLabel(self::HEAD_OFFICE_LABEL)
+                        ->setVisibility($isPublic);
+
+            $this->emails()->save($email);
+        }
+    }
+
+    public function removeHeadOfficeEmail()
+    {
+        optional($this->getHeadOfficeEmail())->delete();
     }
 
     /**

@@ -6,12 +6,12 @@
 
     <h2>Se connecter</h2>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="tool-form">
 
         {{ csrf_field() }}
 
-        <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label for="email">Adresse e-mail</label>
+        <div class="tool-form__control{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label for="email" class="label">Adresse e-mail :</label>
 
             <div>
                 <input type="email" id="email"
@@ -25,8 +25,8 @@
             </div>
         </div>
 
-        <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label for="password">Mot de passe</label>
+        <div class="tool-form__control{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label for="password" class="label">Mot de passe :</label>
 
             <div>
                 <input id="password" type="password" name="password" required>
@@ -39,8 +39,8 @@
             </div>
         </div>
 
-        <div>
-            <button type="submit">Valider</button>
+        <div class="tool-form__footer">
+            <button type="submit" name="submit" class="btn">Me connecter</button>
         </div>
     </form>
 

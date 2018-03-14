@@ -37,8 +37,9 @@ class DatabaseSeeder extends Seeder
 
         // Add a permission allowing to create new partners.
         \Spatie\Permission\Models\Permission::create(['name' => 'add partners']);
+        \Spatie\Permission\Models\Permission::create(['name' => 'endorse partners']);
 
         // Give this permission to the test team member.
-        $teamMember->givePermissionTo('add partners');
+        $teamMember->givePermissionTo('add partners', 'endorse partners');
     }
 }

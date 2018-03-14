@@ -34,10 +34,12 @@ class SocialNetwork extends ContactDetails
      */
     protected $supportedNetworks = [
         'facebook' => [
-            'regex' => '#^facebook.com/([0-9A-Za-z.-]+)$#',
+            'official_name' => 'Facebook',
+            'regex' => '#^facebook.com/([0-9A-Za-z.-]+)/*$#',
             'url_format' => 'https://www.facebook.com/:handle:',
         ],
         'twitter' => [
+            'official_name' => 'Twitter',
             'regex' => '#^twitter.com/([0-9A-Za-z._-]+)$#',
             'url_format' => 'https://twitter.com/:handle:',
         ],
@@ -148,6 +150,8 @@ class SocialNetwork extends ContactDetails
         switch ($name) {
             case 'name':
                 return $this->name;
+            case 'officialName':
+                return $this->supportedNetworks[$this->name]['official_name'];
             case 'handle':
                 return $this->handle;
             case 'url':

@@ -15,6 +15,15 @@ class Location extends Model
     use HasPhones;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+    ];
+
+    /**
      * Get the partner that owns the location.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -32,5 +41,31 @@ class Location extends Model
     public function currencyExchange()
     {
         return $this->hasOne(CurrencyExchange::class);
+    }
+
+    /**
+     * Associate or replace a postal address for the location.
+     *
+     * @param string  $label
+     * @param array   $parts
+     */
+    public function setPostalAddress($label, array $parts)
+    {
+        $parts = array_merge(['recipient' => $this->name], $parts);
+
+        if (
+            $this->postalAddress &&
+            $this->postalAddress->label === $label
+        ) {
+            // An address already exists, so we’ll update it.
+            $this->postalAddress->modify($parts)->save();
+        } else {
+            // Otherwise we create a new address in the database.
+            $address = PostalAddress::fromArray($parts)
+                        ->withLabel($label)
+                        ->makePublic();
+
+            $this->postalAddress()->save($address);
+        }
     }
 }
