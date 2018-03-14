@@ -1,0 +1,193 @@
+.tool-form,
+[class^="tool-form"] {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('≥medium') {
+    max-width: 52rem;
+  }
+  @include media('≥large') {
+    max-width: 64rem;
+  }
+}
+
+.tool-form fieldset {
+  margin-top: 1.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 2px solid $almost-black-brand-color;
+  border: 2px solid $darker-brand-color;
+  border: 2px solid #999;
+  border: 2px solid $brand-color;
+
+  // margin: 0;
+  // padding: 0;
+  // border: none;
+}
+.tool-form fieldset + fieldset {
+  margin-top: 2.5em;
+}
+
+.tool-form legend {
+  // display: none;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+
+.tool-form legend + p {
+  margin-top: 0.5em;
+}
+
+.tool-form .btn-group {
+}
+.tool-form .btn-group p {
+  display: inline;
+}
+.tool-form .btn-group .or {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.tool-form .btn,
+.tool-form input[type="text"],
+.tool-form input[type="password"],
+.tool-form input[type="email"],
+.tool-form select {
+  font-family: $text-font-stack;
+}
+
+.tool-form .btn {
+  display: inline-block;
+  margin-bottom: 0.5em;
+  padding: 0.5em 1em;
+  border: 2px solid $brand-color;
+  border-radius: 6px;
+  background-color: $brand-color;
+  color: $white;
+  // box-shadow: 0.05em 0.05em 0.05em transparentize(mix($brand-color, #777, 20%), 0.5);
+
+  @include on-event {
+    border-color: $darker-brand-color;
+    background-color: $darker-brand-color;
+  }
+
+  &.btn--skip {
+    background-color: $white;
+    color: $brand-color;
+
+    @include on-event {
+      color: $darker-brand-color;
+    }
+  }
+
+  &.btn--link {
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+    background-color: $white;
+    color: $brand-color;
+    cursor: pointer;
+
+    @include on-event {
+      color: $darker-brand-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+.tool-form .contextual-help {
+  padding-left: 1em;
+  border-left: 3px solid #ccc;
+  color: #666;
+
+  @include media('≥large') {
+    p {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &::before {
+    content: 'Aide :';
+    display: block;
+    margin-top: 2rem;
+    text-transform: uppercase;
+    color: $brand-color;
+  }
+}
+
+
+
+.tool-form__control {
+  margin-top: 1em;
+
+  &:first-of-type {
+    margin-top: 0.5em;
+  }
+}
+
+.tool-form__control .label {
+  font-family: 'museo700', 'Museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+.tool-form__control .label .optional {
+  color: #7f7f7f;
+}
+.tool-form__control .label + p {
+  margin-top: 0.25em;
+}
+.tool-form__control + .tool-form__control .label {
+  // margin-top: 1em;
+}
+
+.tool-form__control input[type="text"],
+.tool-form__control input[type="password"],
+.tool-form__control input[type="email"],
+.tool-form__control select {
+  padding: 0.25em;
+  border: 1px solid #999;
+  // border-bottom-width: 2px;
+
+  &:focus {
+    border-color: $brand-color;
+    border-bottom-width: 1px;
+    outline: 2px solid $brand-color;
+  }
+}
+
+
+.tool-form__control select {
+  // Foutue situation de merde qui semble forcer la valeur de `max-width` en
+  // tant que `width`.
+  // L’objectif est de fixer une largeur maximale au <select> afin qu’il ne
+  // fasse pas déborder le layout dans les cas où la largeur de ses <option>
+  // serait plus grande que la largeur disponible. On lui dit donc de ne pas
+  // prendre une largeur plus grande que ce qui est dispo (`width: 100%`).
+  // Hélas, on ne peut apparemment pas, en même temps, lui donner un
+  // `max-width` pas trop grand, et on se retrouve donc avec des <select> qui
+  // prendront toujours 100 % de la largeur disponible, même si leurs <option>
+  // ne sont pas aussi longues que ça.
+  width: 100%;
+}
+
+
+.validation-warning {
+  padding-left: 0.75em;
+  border-left: 3px solid #de9103;
+  color: #de9103;
+}
+.validation-error {
+  padding-left: 0.75em;
+  border-left: 3px solid red;
+  color: red;
+}
+
+
+.tool-form__footer {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 3px double #999;
+}
+.tool-form__footer p:first-of-type {
+  margin-top: 0;
+}

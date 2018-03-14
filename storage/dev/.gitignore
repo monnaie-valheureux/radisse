@@ -1,0 +1,6 @@
+# Clockwork stores all the data it gathers into a SQLite database.
+# This file must not be tracked under version control, because
+# it may contain sensitive pieces of information. For more
+# info about Clockwork, see the `itsgoingd/clockwork`
+# development dependency in the composer.json file.
+clockwork.sqlite

@@ -134,6 +134,33 @@ class ContactDetailsPostalAddressTest extends TestCase
     }
 
     /** @test */
+    function it_can_format_the_postal_address_as_a_string()
+    {
+        $address = $this->makeTestAddress();
+
+        $this->assertSame(
+            "Boucherie Sanzot\n".
+            "rue du Château 1\n".
+            "1234 Moulinsart\n".
+            "Belgique",
+            $address->toString()
+        );
+    }
+
+    /** @test */
+    function it_can_format_a_simplified_address_as_a_string()
+    {
+        $address = $this->makeTestAddress();
+
+        $this->assertSame(
+            "Boucherie Sanzot\n".
+            "Rue du Château 1\n".
+            "Moulinsart",
+            $address->toSimplifiedString()
+        );
+    }
+
+    /** @test */
     function it_can_format_the_postal_address_in_an_html_format()
     {
         $address = $this->makeTestAddress();
@@ -147,6 +174,21 @@ class ContactDetailsPostalAddressTest extends TestCase
             '<span class="country">Belgique</span>'."\n".
             '</p>',
             $address->toHtml()
+        );
+    }
+
+    /** @test */
+    function it_can_format_a_simplified_address_in_an_html_format()
+    {
+        $address = $this->makeTestAddress();
+
+        $this->assertSame(
+            '<p translate="no">'."\n".
+            '<span class="recipient">Boucherie Sanzot</span><br>'."\n".
+            '<span class="address-line1">Rue du Château 1</span><br>'."\n".
+            '<span class="locality">Moulinsart</span>'."\n".
+            '</p>',
+            $address->toSimplifiedHtml()
         );
     }
 

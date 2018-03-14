@@ -1,8 +1,9 @@
 let mix = require('laravel-mix');
 
 mix
-    // Compile the main Sass file.
+    // Compile the main Sass files.
     .sass('resources/assets/sass/main.scss', 'public/css')
+    .sass('resources/assets/sass/admin.scss', 'public/css')
 
     .options({
         // Prevent Webpack to do incredibly stupid things by trying to

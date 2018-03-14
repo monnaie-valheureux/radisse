@@ -24,7 +24,7 @@ class LogInToAdminAreaTest extends TestCase
 
         // Create a team member.
         $this->teamMember = factory(TeamMember::class)->create([
-            'email' => 'john.doe@radisse.dev',
+            'email' => 'john.doe@radisse.test',
             // Bcrypt hash of the string ‘secret’, with a cost factor of 12.
             'password' => '$2y$12$GF73JIWsj7sQK0q35oA1d.R/BSIozS1e7hNspJJolUj0/gYZb9jL2',
         ]);
@@ -37,7 +37,7 @@ class LogInToAdminAreaTest extends TestCase
         $this->assertGuest();
 
         $response = $this->post('/gestion/login', [
-            'email' => 'john.doe@radisse.dev',
+            'email' => 'john.doe@radisse.test',
             'password' => 'secret',
         ]);
 
@@ -65,7 +65,7 @@ class LogInToAdminAreaTest extends TestCase
 
         // Try to log in with an invalid password.
         $response = $this->post('/gestion/login', [
-            'email' => 'john.doe@radisse.dev',
+            'email' => 'john.doe@radisse.test',
             'password' => 'invalid-password',
         ]);
 
@@ -79,7 +79,7 @@ class LogInToAdminAreaTest extends TestCase
     function members_are_redirected_to_the_admin_home_page_after_login()
     {
         $response = $this->post('/gestion/login', [
-            'email' => 'john.doe@radisse.dev',
+            'email' => 'john.doe@radisse.test',
             'password' => 'secret',
         ]);
 

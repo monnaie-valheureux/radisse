@@ -1,0 +1,112 @@
+@charset 'UTF-8';
+
+// 1. Configuration and helpers.
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. Third-party code.
+@import 'vendor/normalize';
+@import 'vendor/include-media';
+
+// 3. Base stuff.
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/typography';
+
+// 4. Layout-related sections.
+@import 'layout/header-admin';
+@import 'layout/footer-admin';
+
+// 5. Smaller components.
+@import 'components/text';
+@import 'components/tool-form';
+// @import 'components/partner-list';
+// @import 'components/counter-list';
+
+// 6. Page-specific styles.
+// @import 'pages/home';
+
+
+.main-content {
+  margin: 0 1.6rem 1.6rem;
+  line-height: 1.2;
+
+  ul, ol {
+    padding-left: 2rem;
+  }
+  li {
+    margin-bottom: 0.25rem;
+  }
+
+
+  h2 {
+    @include media('≥medium') {
+      font-size: 3rem;
+    }
+    @include media('≥large') {
+      font-size: 3.6rem;
+    }
+  }
+
+  h3 {
+    color: $secondary-brand-color;
+
+    @include media('≥medium') {
+      font-size: 2.33rem;
+    }
+    @include media('≥large') {
+      font-size: 2.8rem;
+    }
+  }
+
+  h2, h3, p, ul, ol, dl, fieldset {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include media('≥medium') {
+      max-width: 52rem;
+    }
+    @include media('≥large') {
+      max-width: 64rem;
+    }
+  }
+  p, li, dt, dd, fieldset, label {
+    line-height: 2rem;
+
+    @include media('≥medium') {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+    @include media('≥large') {
+      font-size: 2.4rem;
+      line-height: 3rem;
+    }
+  }
+}
+
+
+.available-tasks {
+  div {
+    margin-bottom: 1.6rem;
+  }
+  dt {
+    margin-bottom: .8rem;
+  }
+  dd {
+    margin-left: 0;
+  }
+}
+
+
+// Sticky footer
+// https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.main-content {
+  flex: 1;
+}

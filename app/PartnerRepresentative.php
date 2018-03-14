@@ -16,6 +16,37 @@ class PartnerRepresentative extends Model
     use HasPhones;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'given_name',
+        'surname',
+        'role',
+    ];
+
+    /**
+     * Create a new representative from a given name, a surname and a role.
+     *
+     * @param  string  $givenName
+     * @param  string  $surname
+     * @param  string  $role
+     *
+     * @return self
+     */
+    public static function fromFullNameAndRole($givenName, $surname, $role)
+    {
+        $representative = new self([
+            'given_name' => $givenName,
+            'surname' => $surname,
+            'role' => $role,
+        ]);
+
+        return $representative;
+    }
+
+    /**
      * Associate an email address with the partner representative.
      *
      * @param string  $address

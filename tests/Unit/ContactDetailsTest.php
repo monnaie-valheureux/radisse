@@ -77,7 +77,12 @@ class ContactDetailsTest extends TestCase
         $contactInfo->makePrivate();
 
         $this->assertTrue($contactInfo->isPrivate);
-        $this->assertFalse($contactInfo->isPublic);
+
+        // Test the `setVisibility()` method, which takes a boolean.
+        $contactInfo->setVisibility(true);
+
+        $this->assertTrue($contactInfo->isPublic);
+        $this->assertFalse($contactInfo->isPrivate);
     }
 
     /** @test */

@@ -46,14 +46,19 @@ class CreateTeamMembersTable extends Migration
             $table->timestamps();
         });
 
-        // Modify the `partners` table to add a nullable
-        // foreign key referencing a team member.
+        // Modify the `partners` table to add nullable
+        // foreign keys referencing a team member.
         Schema::table('partners', function (Blueprint $table) {
 
             // Optional foreign key.
             // This references the team member who made this partner sign the
             // official documents. This is optional but highly recommended.
             $table->foreign('endorser_team_member_id')
+                  ->references('id')->on('team_members');
+
+            // Optional foreign key.
+            // This references the team member who validated the partner.
+            $table->foreign('validator_team_member_id')
                   ->references('id')->on('team_members');
         });
     }

@@ -6,6 +6,11 @@
 # actual environment variables that are made available globally.
 .env
 
+# This file has the same purpose as the `env` file but it is used
+# to configure Laravel Dusk, a testing tool that allows to use a
+# real headless web browser in order to test the application.
+.env.dusk.local
+
 # This directory stores files that are used to seed the database.
 /database/seeds/data
 

@@ -112,6 +112,20 @@ class ContactDetails extends Model
     }
 
     /**
+     * Allow to fluently set the public state a contact info using a boolean.
+     *
+     * @param bool  $isPublic
+     *
+     * @return self
+     */
+    public function setVisibility($isPublic)
+    {
+        $this->isPublic = (bool) $isPublic;
+
+        return $this;
+    }
+
+    /**
      * Allow to fluently add a label to a contact info.
      *
      * @param  string  $label

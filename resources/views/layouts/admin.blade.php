@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title', 'Interface de gestion - Le Val’heureux')</title>
+
+    <link rel="stylesheet" href="{{ mix('css/admin.css') }}">
 </head>
 <body>
     <div class="site-header">
@@ -23,15 +25,18 @@
     @endif
     </div>
 
-    {{-- Here comes the main content of the page. --}}
-    @yield('content')
+    <div class="main-content">
+        {{-- Here comes the main content of the page. --}}
+        @yield('content')
+    </div>
 
     <div class="site-footer">
     @auth
+        <hr>
         {{-- If we are logged in, display a button to be able to log out. --}}
-        <form action="{{ route('logout') }}" method="POST">
+        <form action="{{ route('logout') }}" method="POST" class="logout-form">
             {{ csrf_field() }}
-            <button type="submit">Se déconnecter</button>
+            <button type="submit" name="submit">Se déconnecter</button>
         </form>
     @endauth
     </div>

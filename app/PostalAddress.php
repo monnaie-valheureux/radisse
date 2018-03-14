@@ -73,6 +73,17 @@ class PostalAddress extends ContactDetails
         return $address;
     }
 
+    public function modify($parts)
+    {
+        foreach ($parts as $part => $value) {
+            // Calling the magic method allows us to centralize validation
+            // and formatting there instead of duplicating code.
+            $this->__set($part, $value);
+        }
+
+        return $this;
+    }
+
     /**
      * Create a CommerceGuys Address instance from the data of the model.
      *
@@ -156,7 +167,7 @@ class PostalAddress extends ContactDetails
      *
      * @return void
      *
-     * @throws \DomainException if at least one component is missing.
+     * @throws \DomainException if at least one required component is missing.
      */
     protected function validatePresenceOfRequiredAddressParts(stdClass $address)
     {
@@ -205,7 +216,6 @@ class PostalAddress extends ContactDetails
             case 'city':
             case 'latitude':
             case 'longitude':
-                // dd($this->parts);
                 return $this->parts->{snake_case($name)};
         }
 
@@ -224,8 +234,11 @@ class PostalAddress extends ContactDetails
             case 'recipient':
             case 'street':
             case 'streetNumber':
+            case 'street_number':
             case 'letterBox':
+            case 'letter_box':
             case 'postalCode':
+            case 'postal_code':
             case 'city':
             case 'latitude':
             case 'longitude':
@@ -242,11 +255,36 @@ class PostalAddress extends ContactDetails
         }
     }
 
+    public function toString()
+    {
+        return $this->__toString();
+    }
+
+    public function toSimplifiedString()
+    {
+        return
+            $this->recipient."\n".
+            ucfirst($this->street).' '.$this->streetNumber."\n".
+            $this->city;
+    }
+
     public function toHtml()
     {
         $address = $this->toAddressObject();
 
         return $this->getFormatter($asHtml = true)->format($address);
+    }
+
+    function toSimplifiedHtml()
+    {
+        return
+            '<p translate="no">'."\n".
+            '<span class="recipient">'.$this->recipient.'</span><br>'."\n".
+            '<span class="address-line1">'.ucfirst($this->street).
+            ' '.
+            $this->streetNumber.'</span><br>'."\n".
+            '<span class="locality">'.$this->city.'</span>'."\n".
+            '</p>';
     }
 
     /**
