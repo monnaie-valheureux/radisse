@@ -205,7 +205,6 @@ class PartnerTest extends TestCase
             'endorser_team_member_id' => $teamMember->id,
         ]);
 
-        // Retrieve the partners.
         $retrievedTeamMember = $partner->teamMember;
 
         // Check that we got the correct data.
@@ -259,15 +258,46 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    function can_be_validated_by_a_team_member()
+    {
+        $partner = factory(Partner::class)->make([
+            'validated_at' => null
+        ]);
+
+        $teamMember = factory(TeamMember::class)->create();
+
+        $partner->validateBy($teamMember);
+
+        $this->assertTrue($partner->isValidated());
+        $this->assertSame($partner->validator_team_member_id, $teamMember->id);
+    }
+
+    /** @test */
+    function can_retrieve_the_team_member_who_validated_it()
+    {
+        // Create a team member and then a partner associated to it.
+        $teamMember = factory(TeamMember::class)->create();
+
+        $partner = factory(Partner::class)->create([
+            'validator_team_member_id' => $teamMember->id,
+        ]);
+
+        // Check that we got the correct data.
+        $this->assertEquals($teamMember->id, $partner->validator->id);
+    }
+
+    /** @test */
     function can_be_invalidated()
     {
         $partner = factory(Partner::class)->make([
-            'validated_at' => Carbon::parse('1 week ago')
+            'validated_at' => Carbon::parse('1 week ago'),
+            'validator_team_member_id' => 1,
         ]);
 
         $partner->invalidate();
 
         $this->assertFalse($partner->isValidated());
+        $this->assertNull($partner->validator_team_member_id);
     }
 
     /** @test */

@@ -1,0 +1,45 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+
+
+/**
+ * The footer of the site.
+ *
+ * The base styles provide a basic, one-column layout, where each
+ * main block has a maximum width and is horizontally centered.
+ */
+.site-footer {
+  // @include fix-light-text-on-dark-background;
+  padding: 1.6rem;
+  border-top: 2px solid $darker-brand-color;
+  background-color: $brand-color;
+  color: $white;
+
+  /**
+   * Make this semantic separator invisible without virtually removing
+   * from the flow, because simply using `display: none` could create
+   * issues with some user agents.
+   */
+  hr {
+    margin: 0;
+    border: 0;
+  }
+}
+
+.logout-form button[type='submit'] {
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: 2px solid $brand-color;
+  border-radius: 6px;
+  background-color: $white;
+  color: $brand-color;
+  font-family: $text-font-stack;
+
+  @include on-event {
+    border-color: $white;
+    background-color: $brand-color;
+    color: $white;
+  }
+}

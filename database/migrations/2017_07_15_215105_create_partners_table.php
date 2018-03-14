@@ -26,6 +26,14 @@ class CreatePartnersTable extends Migration
             //       is added via the migration for the `team_members` table.
             $table->unsignedInteger('endorser_team_member_id')->nullable();
 
+            // Optional foreign key.
+            // This references the team member who validated the partner.
+            // It is supposed to be defined if the `validated_at` column
+            // is not null.
+            // Note: this just adds the column. The foreign constraint itself
+            //       is added via the migration for the `team_members` table.
+            $table->unsignedInteger('validator_team_member_id')->nullable();
+
             // The name of the partner.
             $table->string('name');
 
@@ -47,6 +55,9 @@ class CreatePartnersTable extends Migration
             // when she left the network of the currency.
             $table->date('joined_on')->nullable();
             $table->date('left_on')->nullable();
+
+            // Tells whether or not the partner may be considered ‘complete’.
+            $table->boolean('is_draft')->default(false);
 
             // The date and time at which a partner has been validated.
             // A validated partner is a partner that has been accepted

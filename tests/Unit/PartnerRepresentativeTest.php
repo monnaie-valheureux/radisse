@@ -13,6 +13,21 @@ class PartnerRepresentativeTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    function can_be_constructed_from_a_full_name_and_a_role()
+    {
+        $representative = PartnerRepresentative::fromFullNameAndRole(
+            $givenName = 'Henri',
+            $surname = 'Sanzot',
+            $role = 'gérant'
+        );
+
+        $this->assertInstanceOf(PartnerRepresentative::class, $representative);
+        $this->assertSame('Henri', $representative->given_name);
+        $this->assertSame('Sanzot', $representative->surname);
+        $this->assertSame('gérant', $representative->role);
+    }
+
+    /** @test */
     function can_retrieve_its_partner()
     {
         $partner = factory(Partner::class)->create();
