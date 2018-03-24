@@ -32,19 +32,19 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => [env('APP_LOG', 'daily')],
         ],
 
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
+            'level' => env('APP_LOG_LEVEL', 'debug'),
         ],
 
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
+            'level' => env('APP_LOG_LEVEL', 'debug'),
             'days' => 7,
         ],
 
