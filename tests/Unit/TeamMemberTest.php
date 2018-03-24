@@ -14,6 +14,36 @@ class TeamMemberTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function can_generate_a_slug_from_the_full_name_when_creating_a_team_member()
+    {
+        $teamMember = factory(TeamMember::class)->create([
+            'given_name' => 'John',
+            'surname' => 'Doe',
+            // Ensure there is no defined slug before creating the model.
+            'slug' => null,
+        ]);
+
+        // Check that a slug has been properly generated.
+        $this->assertSame('john-doe', $teamMember->slug);
+    }
+
+    /** @test */
+    public function does_not_automatically_generate_a_slug_if_one_is_already_defined()
+    {
+        $teamMember = factory(TeamMember::class)->create([
+            'given_name' => 'John',
+            'surname' => 'Doe',
+            // Ensure there IS a defined slug before creating the model.
+            'slug' => 'my-special-slug',
+        ]);
+
+        // Check that the slug we provided has been kept as is,
+        // that it had not been overwitten by a new one.
+        $this->assertSame('my-special-slug', $teamMember->slug);
+        $this->assertNotSame('john-doe', $teamMember->slug);
+    }
+
+    /** @test */
     function can_retrieve_its_team()
     {
         // Create a team and a team member.

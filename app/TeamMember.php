@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,6 +36,28 @@ class TeamMember extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // When a team member is created, we automatically generate
+        // a slug based on her given name and surname.
+        static::creating(function (self $teamMember) {
+            if (is_null($teamMember->slug)) {
+                $teamMember->slug = Str::slug(
+                    $teamMember->given_name.
+                    ' '.
+                    $teamMember->surname
+                );
+            }
+        });
+    }
 
     /**
      * Get the team that the person is a member of.
