@@ -15,9 +15,9 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>18 janvier</strong> aux <strong>Bouchers Verts</strong> (rue de la Madeleine, 33, 4000 Liège) - <a href="https://www.facebook.com/events/1906323129379947/">Voir l’évènement Facebook</a> ;</li>
-            <li>le <strong>15 février</strong> chez <strong>City Game</strong> (Rue Lonhienne, 16, 4000 Liège) ;</li>
-            <li>le <strong>15 mars</strong> au <strong>Clos du Gourmet</strong> (187A boulevard Émile de Laveleye, 4020 Liège).</li>
+            <li>le <strong>19 avril</strong> au centre de jeunes et de quartier « <strong>la Bicoque</strong> » (place Saint-Christophe 8, 4000 Liège) ;</li>
+            <li>le <strong>17 mai</strong> au restaurant biologique <strong>Como en Casa</strong> (rue Hors-Château 76, 4000 Liège) ;</li>
+            <li>le <strong>21 juin</strong> au <strong>Vert G</strong>, en partenariat avec les <strong>Sœurs Saveur</strong> (rue de l'église 50, 4100 Boncelles, Liège).</li>
         </ul>
     </div>
 @endsection
