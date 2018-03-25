@@ -18,9 +18,8 @@ class AppServiceProvider extends ServiceProvider
         // @see https://laravel.com/docs/5.4/migrations#indexes
         Schema::defaultStringLength(191);
 
-        // Configure the Bcrypt hasher to use a cost factor
-        // of 12 instead of the default value of 10.
-        app('hash')->setRounds(12);
+        // Configure the Bcrypt hasher to use a custom cost factor.
+        app('hash')->setRounds(config('hashing.bcrypt_cost'));
 
         \Illuminate\Support\Facades\Blade::directive('errorhandling', function ($expression) {
             // return "@include('errors.handling', ['item' => '{$expression}'])";

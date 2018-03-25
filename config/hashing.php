@@ -17,4 +17,16 @@ return [
 
     'driver' => 'bcrypt',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Default Bcrypt Cost Factor
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default cost factor that has to be used when
+    | hashing a password with the Bcrypt algorithm. The greater the cost,
+    | the more time will be needed to hash, thus increasing security.
+    */
+
+    'bcrypt_cost' => 12,
+
 ];
