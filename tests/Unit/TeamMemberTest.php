@@ -14,6 +14,19 @@ class TeamMemberTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    function automatically_hash_the_password()
+    {
+        $teamMember = factory(TeamMember::class)->create([
+            'password' => 'secret'
+        ]);
+
+        $hash = app('hash')->make('secret');
+
+        $this->assertNotSame('secret', $teamMember->password);
+        $this->assertTrue(app('hash')->check('secret', $hash));
+    }
+
+    /** @test */
     public function can_generate_a_slug_from_the_full_name_when_creating_a_team_member()
     {
         $teamMember = factory(TeamMember::class)->create([

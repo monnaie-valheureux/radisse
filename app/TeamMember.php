@@ -60,6 +60,16 @@ class TeamMember extends Authenticatable
     }
 
     /**
+     * Automatically hash the password when it is set.
+     *
+     * @param string  $value  The non-hashed password
+     */
+    function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = app('hash')->make($value);
+    }
+
+    /**
      * Get the team that the person is a member of.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
