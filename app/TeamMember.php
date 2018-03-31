@@ -62,11 +62,19 @@ class TeamMember extends Authenticatable
     /**
      * Automatically hash the password when it is set.
      *
+     * If the provided string is already a Bcrypt
+     * hash, the method will not hash it again.
+     *
      * @param string  $value  The non-hashed password
      */
     function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = app('hash')->make($value);
+        // Ensure we won’t try to double-hash a password.
+        if (!Str::isBcryptHash($value)) {
+            $value = app('hash')->make($value);
+        }
+
+        $this->attributes['password'] = $value;
     }
 
     /**
