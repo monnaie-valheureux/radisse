@@ -103,6 +103,11 @@ Route::prefix('gestion')
     Route::view('partenaires/demarcher', 'admin.partners.canvass')
         ->name('canvass-partner');
 
+    Route::get('benevoles', 'TeamMembersController@index')
+        ->name('manage-team-members');
+    Route::get('benevoles/{teamMember}', 'TeamMembersController@edit')
+        ->name('team-members.edit');
+
     // Define routes to handle partners of the local currency.
     Route::resource('partners', 'PartnersController', [
         'only' => ['index', 'show']
