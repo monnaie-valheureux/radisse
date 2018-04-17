@@ -35,3 +35,12 @@
 # pieces of third-party code into this directory. Similarly to how
 # Composer works, files in there are not supposed to be touched.
 /node_modules
+
+
+# Generated files
+# ---------------
+
+# This directory may be used to store database snapshots. This data
+# must obvioulsy not be tracked under version control because it
+# will contain sensitive information that mustn’t be published.
+/database/snapshots
