@@ -29,6 +29,11 @@ class CreateTeamMembersTable extends Migration
             $table->string('given_name');
             $table->string('surname');
 
+            // The slug is a simplified version of the full name that is both
+            // people-friendly and computer-friendly. It is used in places
+            // such as URLs. Each team member must have a different one.
+            $table->string('slug')->unique();
+
             // The e-mail address of the person is used as
             // a login in order to access the application.
             $table->string('email')->unique();

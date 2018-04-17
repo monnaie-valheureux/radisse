@@ -31,15 +31,33 @@ class DatabaseSeeder extends Seeder
             'team_id' => $liegeTeam->id,
         ]);
 
+        // Add a few other test team members.
+        for ($i = 0; $i < 5; $i++) {
+
+            $teamId = ($i < 3) ? $liegeTeam->id : 2;
+
+            factory(\App\TeamMember::class)->create([
+                'team_id' => $teamId,
+                'password' => $teamMember->password,
+            ]);
+        }
+
 
         // Reset cached roles and permissions.
         app()['cache']->forget('spatie.permission.cache');
 
-        // Add a permission allowing to create new partners.
-        \Spatie\Permission\Models\Permission::create(['name' => 'add partners']);
-        \Spatie\Permission\Models\Permission::create(['name' => 'endorse partners']);
+        // Create permissions and assign all of them to the test team member.
+        $permissions = [
+            'add partners',
+            'endorse partners',
+            'add team members',
+        ];
+
+        foreach ($permissions as $permission) {
+            \Spatie\Permission\Models\Permission::create(['name' => $permission]);
+        }
 
         // Give this permission to the test team member.
-        $teamMember->givePermissionTo('add partners', 'endorse partners');
+        $teamMember->givePermissionTo($permissions);
     }
 }
