@@ -22,6 +22,7 @@
         "laravelcollective/html": "^5.6",
         "mmucklo/email-parse": "^2.0",
         "propaganistas/laravel-phone": "^3.0",
+        "spatie/laravel-db-snapshots": "^1.1",
         "spatie/laravel-permission": "^2.7",
         "symfony/validator": "^3.3"
     },
