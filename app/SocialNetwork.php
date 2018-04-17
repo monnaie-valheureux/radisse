@@ -35,12 +35,24 @@ class SocialNetwork extends ContactDetails
     protected $supportedNetworks = [
         'facebook' => [
             'official_name' => 'Facebook',
-            'regex' => '#^facebook.com/([0-9A-Za-z.-]+)/*$#',
+            'regex' =>
+                '%^
+
+                (?:[a-z-]*\.)?      # An optional subdomain (e.g. `fr-fr.`).
+
+                facebook.com/       # The Facebook domain name itself.
+
+                ([0-9\p{L}.-]+)/*   # The handle we’re looking for.
+                                    # It can contain Unicode letters,
+                                    # numbers, dots and dashes.
+
+                $%ux',
+
             'url_format' => 'https://www.facebook.com/:handle:',
         ],
         'twitter' => [
             'official_name' => 'Twitter',
-            'regex' => '#^twitter.com/([0-9A-Za-z._-]+)$#',
+            'regex' => '%^twitter.com/([0-9A-Za-z._-]+)$%',
             'url_format' => 'https://twitter.com/:handle:',
         ],
     ];
@@ -75,10 +87,13 @@ class SocialNetwork extends ContactDetails
      */
     protected function detectTypeAndHandle($url)
     {
-        // First, clean the URL from protocol stuff.
+        // First, decode the URL just in case it came in a URL-encoded form.
+        $url = urldecode($url);
+
+        // Then, clean the URL from protocol stuff.
         $url = preg_replace('#https?://|www\.#', '', $url);
 
-        // Then, look for a supported social network.
+        // Finally, look for a supported social network.
         foreach ($this->supportedNetworks as $network => $patterns) {
             if ($handle = $this->findHandle($url, $network)) {
                 return [$network, $handle];

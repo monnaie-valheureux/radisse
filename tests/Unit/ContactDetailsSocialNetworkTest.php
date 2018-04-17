@@ -221,17 +221,33 @@ class ContactDetailsSocialNetworkTest extends TestCase
     {
         return [
             ['facebook.com/boucheriesanzot'],
+
             // With `www`.
             ['www.facebook.com/boucheriesanzot'],
+
             // With HTTP or HTTPS protocol.
             ['http://facebook.com/boucheriesanzot'],
             ['http://www.facebook.com/boucheriesanzot'],
             ['https://facebook.com/boucheriesanzot'],
             ['https://www.facebook.com/boucheriesanzot'],
+
+            // With a subdomain.
+            ['fr-fr.facebook.com/boucheriesanzot/'],
+
+            // With a URL-encoded address
+            ['facebook.com%2Fboucheriesanzot'],
+
             // With trailing slash.
             ['facebook.com/boucheriesanzot/'],
             // With multiple trailing slashes.
             ['facebook.com/boucheriesanzot//'],
+
+            // With a handle containing a dash.
+            ['facebook.com/boucherie-sanzot'],
+            // With a handle containing numbers.
+            ['facebook.com/boucheriesanzot12345'],
+            // With a handle containing non-ASCII letters.
+            ['facebook.com/caract%C3%A8res-accentu%C3%A9s'],
         ];
     }
 
