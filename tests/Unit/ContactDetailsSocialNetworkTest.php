@@ -99,16 +99,16 @@ class ContactDetailsSocialNetworkTest extends TestCase
     /** @test */
     function it_detects_twitter_handles()
     {
-        $network = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
+        $network = SocialNetwork::fromUrl('twitter.com/boucheriesanzot');
         $this->assertSame('boucheriesanzot', $network->handle);
 
-        $network = SocialNetwork::fromUrl('facebook.com/boucherie-sanzot');
+        $network = SocialNetwork::fromUrl('twitter.com/boucherie-sanzot');
         $this->assertSame('boucherie-sanzot', $network->handle);
 
-        $network = SocialNetwork::fromUrl('facebook.com/boucherie.sanzot');
+        $network = SocialNetwork::fromUrl('twitter.com/boucherie.sanzot');
         $this->assertSame('boucherie.sanzot', $network->handle);
 
-        $network = SocialNetwork::fromUrl('facebook.com/boucherie.sanzot-12345');
+        $network = SocialNetwork::fromUrl('twitter.com/boucherie.sanzot-12345');
         $this->assertSame('boucherie.sanzot-12345', $network->handle);
     }
 
