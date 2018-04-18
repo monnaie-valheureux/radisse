@@ -178,7 +178,7 @@ class CreatePartnerController extends Controller
      */
     public function createHeadOffice(Partner $partner)
     {
-        $address = optional($partner->postalAddress);
+        $address = $partner->postalAddress ?? optional();
 
         $phone = optional($partner->getHeadOfficePhone());
         $phone_is_public = $phone->isPublic;

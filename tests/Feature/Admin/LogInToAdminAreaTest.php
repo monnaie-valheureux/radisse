@@ -25,8 +25,7 @@ class LogInToAdminAreaTest extends TestCase
         // Create a team member.
         $this->teamMember = factory(TeamMember::class)->create([
             'email' => 'john.doe@radisse.test',
-            // Bcrypt hash of the string ‘secret’, with a cost factor of 12.
-            'password' => '$2y$12$GF73JIWsj7sQK0q35oA1d.R/BSIozS1e7hNspJJolUj0/gYZb9jL2',
+            'password' => 'secret',
         ]);
     }
 

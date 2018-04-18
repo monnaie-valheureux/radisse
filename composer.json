@@ -17,11 +17,12 @@
         "php": ">=5.6.4",
         "commerceguys/addressing": "^0.8.4",
         "commerceguys/intl": "^0.7.4",
-        "laravel/framework": "5.5.*",
+        "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.5",
+        "laravelcollective/html": "^5.6",
         "mmucklo/email-parse": "^2.0",
         "propaganistas/laravel-phone": "^3.0",
+        "spatie/laravel-db-snapshots": "^1.1",
         "spatie/laravel-permission": "^2.7",
         "symfony/validator": "^3.3"
     },
@@ -29,10 +30,10 @@
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "itsgoingd/clockwork": "^2.0",
-        "laravel/dusk": "^2.0",
+        "laravel/dusk": "~3.0",
         "mockery/mockery": "0.9.*",
-        "nunomaduro/collision": "^1.1",
-        "phpunit/phpunit": "~6.0",
+        "nunomaduro/collision": "^2.0",
+        "phpunit/phpunit": "~7.0",
         "wnx/laravel-stats": "^1.1"
     },
     "autoload": {

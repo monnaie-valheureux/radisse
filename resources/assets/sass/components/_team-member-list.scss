@@ -1,0 +1,35 @@
+.main-content .team-member-list {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  list-style: none;
+
+  @include media('≥medium') {
+    max-width: 52rem;
+  }
+  @include media('≥large') {
+    max-width: 64rem;
+  }
+}
+
+.main-content .team-member-list > li {
+  margin-bottom: 1em;
+  padding: 1em;
+  // background-color: rgba(0,0,0,.1);
+  border: 2px solid $brand-color;
+  border-radius: 4px;
+
+  &.is-me {
+    border-color: $secondary-brand-color;
+
+    .team-member__fullname,
+    .team-member__email {
+      font-family: 'museo_sans700';
+    }
+  }
+}
+
+.permission-list {
+  margin-bottom: 1em;
+}
