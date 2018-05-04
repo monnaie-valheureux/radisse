@@ -147,13 +147,23 @@ class Partner extends Model
     }
 
     /**
-     * Check if the partner has been validated or not.
+     * Check if the partner has been validated.
      *
      * @return bool
      */
     public function isValidated()
     {
         return $this->validated_at instanceof DateTime;
+    }
+
+    /**
+     * Check if the partner has not been validated.
+     *
+     * @return bool
+     */
+    public function isNotValidated()
+    {
+        return ! $this->isValidated();
     }
 
     /**

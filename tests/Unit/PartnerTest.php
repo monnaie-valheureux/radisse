@@ -242,6 +242,7 @@ class PartnerTest extends TestCase
         ]);
 
         $this->assertTrue($validatedPartner->isValidated());
+        $this->assertFalse($validatedPartner->isNotValidated());
         $this->assertFalse($nonvalidatedPartner->isValidated());
     }
 
