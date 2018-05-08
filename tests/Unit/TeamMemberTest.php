@@ -74,6 +74,33 @@ class TeamMemberTest extends TestCase
     }
 
     /** @test */
+    function can_retrieve_its_teammates()
+    {
+        // Create a team and a few team members.
+        $team = factory(Team::class)->create();
+
+        $teamMembers = factory(TeamMember::class, 3)->create([
+            'team_id' => $team->id,
+        ]);
+
+        // Retrieve the teammates of the first team member.
+        $retrievedTeamMembers = $teamMembers[0]->teammates;
+
+        // Check that we got the correct data.
+        $this->assertCount(2, $retrievedTeamMembers);
+        $this->assertEquals($teamMembers[1]->id, $retrievedTeamMembers[0]->id);
+        $this->assertEquals($teamMembers[2]->id, $retrievedTeamMembers[1]->id);
+
+        // Ensure that the list of retrieved team members
+        // does *not* include the initial team member.
+        $this->assertNotContains(
+            $teamMembers[0]->id,
+            $retrievedTeamMembers->modelKeys(),
+            'The list of retrieved teammates must not contain the initial team member.'
+        );
+    }
+
+    /** @test */
     function can_retrieve_its_endorsed_partners()
     {
         // Create a team member and two partners associated with it.
