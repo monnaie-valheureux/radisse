@@ -27,6 +27,7 @@ class TeamTest extends TestCase
         $retrievedMembers = $team->members;
 
         // Check that we got the correct data.
+        $this->assertCount(2, $retrievedMembers);
         $this->assertEquals($team->id, $retrievedMembers->get(0)->team_id);
         $this->assertEquals($team->id, $retrievedMembers->get(1)->team_id);
     }
