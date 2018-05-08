@@ -1,5 +1,6 @@
 <?php
 
+use App\Team;
 use App\Email;
 use App\Phone;
 use App\Partner;
@@ -21,6 +22,11 @@ class PartnersSeeder extends Seeder
      */
     public function run()
     {
+        // Get the list of teams. It will be used to map the IDs from
+        // the team names that are stored in the source JSON file.
+        $teams = Team::all()->pluck('id', 'name');
+
+        // The source file containing the data to seed.
         $sourceFile = database_path('/seeds/data/partners.json');
 
         // Loop on all the partners.
@@ -56,6 +62,7 @@ class PartnersSeeder extends Seeder
                 'joined_on' => $data['joined_on'],
                 'left_on' => $data['left_on'],
                 'validated_at' => $data['validated_at'] ?? null,
+                'team_id' => $teams[$data['region']] ?? null,
             ]);
 
 
