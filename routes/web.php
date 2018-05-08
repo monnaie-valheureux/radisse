@@ -109,9 +109,9 @@ Route::prefix('gestion')
         ->name('team-members.edit');
 
     // Define routes to handle partners of the local currency.
-    Route::resource('partners', 'PartnersController', [
-        'only' => ['index', 'show']
-    ]);
+    // Route::resource('partners', 'PartnersController', [
+    //     'only' => ['index', 'show']
+    // ]);
 
     // Route to log out of the application.
     $this->post('logout', 'Auth\LoginController@logout')->name('logout');
