@@ -192,17 +192,48 @@
         </ul>
 
         <div class="tool-form__footer">
-            {{ csrf_field() }}
-            {!! Form::hidden('id', $partner->id) !!}
 
-            <div class="help-block validation-warning">
-                <p><strong>De manière temporaire</strong>, les partenaires ajoutés peuvent être automatiquement validés.</p>
-                <p>Dans le futur, pour éviter toute erreur, la validation finale sera réservée aux personnes du comité « membres ». Vous pourrez toujours ajouter de nouveaux partenaires, c’est juste qu’ils devront être validés avant d’apparaître sur le site.</p>
-            </div>
+            {{--
+                If the partner has not been validated yet,
+                we provide a button to to just that.
+            --}}
+            @if ($partner->isNotValidated())
 
-            <p>
-                <button type="submit" name="submit" class="btn">Valider ce partenaire</button>
-            </p>
+                {{ csrf_field() }}
+                {!! Form::hidden('id', $partner->id) !!}
+
+                <div class="help-block validation-warning">
+                    <p><strong>De manière temporaire</strong>, les partenaires ajoutés peuvent être automatiquement validés.</p>
+                    <p>Dans le futur, pour éviter toute erreur, la validation finale sera réservée aux personnes du comité « membres ». Vous pourrez toujours ajouter de nouveaux partenaires, c’est juste qu’ils devront être validés avant d’apparaître sur le site.</p>
+                </div>
+
+                <p>
+                    <button type="submit" name="submit" class="btn">Valider ce partenaire</button>
+                </p>
+
+            @else
+                {{--
+                    If the partner has already been validated once, we will
+                    display the date of validation. And, if this info is
+                    available, we will also indicate which team member
+                    did the validation of that partner.
+                --}}
+                @if ($partner->validator)
+                    <p>
+                        Ce partenaire a été validé le
+                        {{ $partner->validated_at->format('d/m/Y') }}
+                        par
+                        {{ $partner->validator->given_name }}
+                        {{ $partner->validator->surname }}.
+                    </p>
+                @else
+                    <p>
+                        Ce partenaire a été validé le
+                        {{ $partner->validated_at->format('d/m/Y') }}.
+                    </p>
+                @endif
+
+            @endif
         </div>
     </form>
 @endsection
