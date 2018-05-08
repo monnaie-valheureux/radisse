@@ -46,6 +46,9 @@ Route::prefix('gestion')
 
     Route::prefix('partenaires')->group(function () {
 
+        Route::get('/', 'PartnersController@index')
+            ->name('partners.index');
+
         Route::get('/ajouter', 'CreatePartnerController@start')
              ->name('create-partner');
 
