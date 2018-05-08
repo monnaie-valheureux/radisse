@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Admin;
 
+use App\Team;
 use App\Email;
 use App\Phone;
 use App\Partner;
@@ -47,6 +48,20 @@ class PartnerTest extends TestCase
         // that it had not been overwitten by a new one.
         $this->assertSame('my-special-slug', $partner->slug);
         $this->assertNotSame('boucherie-sanzot', $partner->slug);
+    }
+
+    /** @test */
+    function can_retrieve_its_team()
+    {
+        // Create a team and then a partner associated to it.
+        $team = factory(Team::class)->create();
+
+        $partner = factory(Partner::class)->create([
+            'team_id' => $team->id,
+        ]);
+
+        // Check that we got the correct data.
+        $this->assertEquals($team->id, $partner->team->id);
     }
 
     /** @test */

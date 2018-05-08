@@ -111,6 +111,16 @@ class Partner extends Model
     }
 
     /**
+     * Get the team that ‘owns’ the partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
+    /**
      * Get the person(s) who represent the partner.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
