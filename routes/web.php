@@ -90,7 +90,7 @@ Route::prefix('gestion')
         Route::post('/{partner}/validation', 'CreatePartnerController@validatePartner');
 
         Route::get('/{partner}/ajoute', 'CreatePartnerController@end')
-             ->name('partner.add.end');
+            ->name('partner.add.end');
 
         // Route::view('/lieu', 'admin.partners.create.location');
         // Route::view('/site-et-reseaux-sociaux', 'admin.partners.create/site-and-social-networks');
