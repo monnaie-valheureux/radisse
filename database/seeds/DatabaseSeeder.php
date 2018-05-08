@@ -11,8 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PartnersSeeder::class);
-
         // Add some teams.
         $liegeTeam = factory(\App\Team::class)->create(['name' => 'Liège']);
 
@@ -20,6 +18,9 @@ class DatabaseSeeder extends Seeder
         factory(\App\Team::class)->create(['name' => 'Huy-Hesbaye-Condroz']);
         factory(\App\Team::class)->create(['name' => 'Ourthe-Amblève']);
         factory(\App\Team::class)->create(['name' => 'Verviers']);
+
+        // Seed the partners and their data.
+        $this->call(PartnersSeeder::class);
 
         // Add a test team member.
         $teamMember = factory(\App\TeamMember::class)->create([
