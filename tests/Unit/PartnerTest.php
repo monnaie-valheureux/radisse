@@ -6,6 +6,7 @@ use App\Team;
 use App\Email;
 use App\Phone;
 use App\Partner;
+use App\Website;
 use App\Location;
 use Carbon\Carbon;
 use App\TeamMember;
@@ -181,12 +182,14 @@ class PartnerTest extends TestCase
         $phone = Phone::fromNumber('+32489123456');
         $email = Email::fromAddress('henri@boucheriesanzot.be');
         $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
+        $site = Website::fromUrl('boucheriesanzot.be');
 
         // Save the contact details.
         $partner->postalAddress()->save($address);
         $partner->phones()->save($phone);
         $partner->emails()->save($email);
         $partner->socialNetworks()->save($network);
+        $partner->websites()->save($site);
 
         // Finally, we test that we can properly get everything back.
 
@@ -208,6 +211,11 @@ class PartnerTest extends TestCase
         $this->assertCount(1, $partner->socialNetworks);
         $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
+
+        // Websites.
+        $this->assertCount(1, $partner->websites);
+        $this->assertInstanceOf(Website::class, $partner->websites[0]);
+        $this->assertSame($site->id, $partner->websites[0]->id);
     }
 
     /** @test */
