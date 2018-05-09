@@ -34,7 +34,7 @@
                 <strong>Nom de liste :</strong><br>
                 <span>
 @if ($summary['name_sort'])
-                    ({{ $summary['name_sort'] }})
+                    {{ $summary['name_sort'] }}
 @else
                     <div class="help-block validation-error">
                         <p>Cette info manque.</p>
