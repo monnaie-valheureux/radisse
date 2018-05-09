@@ -4,6 +4,7 @@ use App\Team;
 use App\Email;
 use App\Phone;
 use App\Partner;
+use App\Website;
 use App\Location;
 use Carbon\Carbon;
 use App\PostalAddress;
@@ -190,6 +191,17 @@ class PartnersSeeder extends Seeder
                             ->withLabel($phoneData['label'])
                             ->makePublic()
                     );
+                }
+            }
+
+            // Website(s).
+            if ($sites = array_get($data, 'public_contact_details.websites')) {
+
+                foreach ($sites as $siteData) {
+                    $site = Website::fromUrl($siteData['url']);
+                    $site->makePublic();
+
+                    $partner->websites()->save($site);
                 }
             }
 
