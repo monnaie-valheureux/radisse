@@ -95,6 +95,13 @@ Route::prefix('gestion')
         Route::get('/{partner}/ajoute', 'CreatePartnerController@end')
             ->name('partner.add.end');
 
+        // Make URLs directly pointing to a partner
+        // redirect to this partner’s summary.
+        Route::get('/{partner}', function ($partner) {
+            return redirect()->route('partners.add.summary', $partner);
+        })
+        ->name('partner');
+
         // Route::view('/lieu', 'admin.partners.create.location');
         // Route::view('/site-et-reseaux-sociaux', 'admin.partners.create/site-and-social-networks');
         // Route::view('/personne-representante', 'admin.partners.create/representative');

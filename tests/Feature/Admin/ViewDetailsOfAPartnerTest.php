@@ -29,7 +29,8 @@ class ViewDetailsOfAPartnerTest extends TestCase
         $teamMember = factory(TeamMember::class)->create();
 
         $response = $this->actingAs($teamMember)
-                         ->get('/gestion/partners/'.$partner->slug);
+                         ->followingRedirects()
+                         ->get('/gestion/partenaires/'.$partner->slug);
 
         // Check that we can see the details of a specific partner.
         $response->assertSeeText($partner->name);
