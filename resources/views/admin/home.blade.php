@@ -23,10 +23,12 @@
             @can('add partners')
             <div>
                 <dt>
-                    {{ Html::linkRoute('create-partner', 'Ajouter un nouveau partenaire') }}
+                    {{ Html::linkRoute('partners.index', 'Gérer les partenaires') }}
                 </dt>
                 <dd>
                     Une fois qu’un partenaire a signé, vous pouvez ajouter ses infos ici pour qu’il puisse être validé, ajouté au site, etc.
+                    <br>
+                    C’est aussi ici que l’on peut modifier les partenaires existants.
                 </dd>
             </div>
             @endcan
