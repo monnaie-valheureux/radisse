@@ -6,7 +6,7 @@
     <h2>Récapitulatif</h2>
 
     <p>Voici un récapitulatif des différentes informations du partenaire.</p>
-    <p>Merci, s’il y en a, de corriger les éventuelles erreurs qui signalées en <span style="color: red;">rouge</span> (obligatoires) ou en <span style="color: #de9103;">orange</span> (pas complètement obligatoires, mais très recommandées).</p>
+    <p>Merci, s’il y en a, de corriger les éventuelles erreurs qui signalées en <span class="error-color">rouge</span> (obligatoires) ou en <span class="warning-color">orange</span> (pas complètement obligatoires, mais très recommandées).</p>
 
     <form action="/gestion/partenaires/{{ $partner->slug }}/validation"
     method="post" class="tool-form">
