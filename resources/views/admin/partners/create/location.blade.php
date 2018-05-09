@@ -3,7 +3,10 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
-    <h2>Lieu où le partenaire exerce son activité</h2>
+    <div class="tool-page-header">
+        <p class="tool-page-header__tool-name">Ajouter un nouveau prestataire partenaire</p>
+        <h2>Lieu où le partenaire exerce son activité</h2>
+    </div>
 
     <p>Ces infos se trouvent à la page 2 de la fiche de contact. <strong>Toutes ces infos seront affichées publiquement (sur le site, etc.).</strong></p>
 

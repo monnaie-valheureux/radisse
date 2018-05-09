@@ -3,7 +3,10 @@
 @section('title', 'Personne(s) représentante(s) de « '.$partner->name.' » — Gestion du Val’heureux')
 
 @section('content')
-    <h2>Personne(s) représentante(s)</h2>
+    <div class="tool-page-header">
+        <p class="tool-page-header__tool-name">Ajouter un nouveau prestataire partenaire</p>
+        <h2>Personne(s) représentante(s)</h2>
+    </div>
 
     <p>Ces infos sont destinées à l’<em>usage interne de l’ASBL</em>. On les trouve à la page 3 de la fiche de contact.</p>
 

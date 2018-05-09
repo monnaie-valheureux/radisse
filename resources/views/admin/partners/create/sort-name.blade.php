@@ -3,7 +3,10 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
-    <h2>Nom de liste</h2>
+    <div class="tool-page-header">
+        <p class="tool-page-header__tool-name">Ajouter un nouveau prestataire partenaire</p>
+        <h2>Nom de liste</h2>
+    </div>
 
     <form method="post" class="tool-form">
         <div class="tool-form__control">
