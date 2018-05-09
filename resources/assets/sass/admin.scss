@@ -61,7 +61,7 @@
     }
   }
 
-  h2, h3, p, ul, ol, dl, fieldset {
+  h2, h3, h4, p, ul, ol, dl, fieldset {
     max-width: 42rem;
     margin-left: auto;
     margin-right: auto;
@@ -73,7 +73,7 @@
       max-width: 64rem;
     }
   }
-  p, li, dt, dd, fieldset, label {
+  h4, p, li, dt, dd, fieldset, label {
     line-height: 2rem;
 
     @include media('≥medium') {
@@ -97,6 +97,57 @@
   }
   dd {
     margin-left: 0;
+  }
+}
+
+
+
+.partner-initials-list {
+  overflow: auto;
+}
+.partner-initials-list a {
+  float: left;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.17em;
+  line-height: 1.25;
+}
+h4.listing-letter {
+  margin-bottom: 0;
+  // line-height: 0.5;
+  color: $secondary-brand-color;
+}
+ul.partner-list {
+  margin-top: 1rem;
+  padding-left: 0;
+}
+ul.partner-list li {
+  margin-bottom: 0.5em;
+  list-style: none;
+}
+.former-partner .partner-name {
+  color: #999;
+  text-decoration: line-through;
+}
+.former-partner .partner-left-on {
+  display: block;
+  font-size: 0.8em;
+  color: #999;
+}
+
+
+.return-list {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 2px solid #666;
+  border-top: 2px solid $darker-brand-color;
+  border-bottom: 2px solid #666;
+  border-bottom: 2px solid $darker-brand-color;
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 }
 
