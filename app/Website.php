@@ -19,6 +19,13 @@ class Website extends ContactDetails
     protected $url;
 
     /**
+     * Whether or not the URL uses HTTPS.
+     *
+     * @var bool
+     */
+    protected $useHttps = false;
+
+    /**
      * Create a new instance from a URL.
      *
      * @param  string  $url
@@ -29,9 +36,34 @@ class Website extends ContactDetails
     {
         $site = new self;
 
-        $site->url = $url;
+        $site->url = $site->clean($url);
+
+        if (starts_with($url, 'https://')) {
+            $site->useHttps = true;
+        }
 
         return $site;
+    }
+
+    protected function clean($url)
+    {
+        $url = trim($url);
+
+        $url = str_replace(['http://', 'https://'], $replace = '', $url);
+
+        return $url;
+    }
+
+    /**
+     * Build the URL from the network and the handle.
+     *
+     * @return string
+     */
+    protected function getUrl()
+    {
+        $protocol = $this->useHttps ? 'https' : 'http';
+
+        return $protocol.'://'.$this->url;
     }
 
     /**
@@ -57,7 +89,11 @@ class Website extends ContactDetails
     {
         switch ($name) {
             case 'url':
+                return $this->getUrl();
+            case 'urlWithoutProtocol':
                 return $this->url;
+            case 'useHttps':
+                return (bool) $this->useHttps;
         }
 
         return parent::__get($name);
@@ -73,7 +109,16 @@ class Website extends ContactDetails
     {
         switch ($name) {
             case 'url':
-                $this->url = $value;
+                $this->url = $this->clean($value);
+
+                $this->useHttps = (bool) starts_with($this->url, 'https://');
+
+                break;
+            case 'urlWithoutProtocol':
+                $this->urlWithoutProtocol = $value;
+                break;
+            case 'useHttps':
+                $this->useHttps = (bool) $value;
                 break;
             default:
                 // Fall back on the magic method of the parent.
@@ -89,6 +134,6 @@ class Website extends ContactDetails
      */
     public function __toString()
     {
-        return $this->url;
+        return $this->getUrl();
     }
 }
