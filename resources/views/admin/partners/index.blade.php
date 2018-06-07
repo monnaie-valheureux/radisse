@@ -3,6 +3,9 @@
 @section('title', 'Liste des partenaires prestataires')
 
 @section('content')
+
+    @breadcrumbs(['Gérer les partenaires'])
+
     <h2 id="début">Gérer les prestataires partenaires</h2>
 
     <ul>
