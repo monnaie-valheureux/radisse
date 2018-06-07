@@ -11,7 +11,6 @@
     ])
 
     <div class="tool-page-header">
-        <p class="tool-page-header__tool-name">Ajouter un nouveau prestataire partenaire</p>
         <h2>Personne(s) représentante(s)</h2>
     </div>
 
