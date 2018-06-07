@@ -1,0 +1,372 @@
+// -----------------------------------------------------------------------------
+// The .breadcrumbs component is used to display links to ancestor pages in
+// a page hierarchy.
+// -----------------------------------------------------------------------------
+//
+// Breadcrumbs are created with a <div> of class `breadcrumbs` containing an
+// ordered list (<ol>) with at least one item. Each list item contains a
+// <span> and, in all items except the last one, this <span> contains an
+// <a>, which points to an upper position in the breadcrumbs chain.
+//
+// By default, breadcrumbs appear as a vertical stack of rectangular boxes:
+//  ________
+// |________|
+// |________|
+// |________|
+// |________|
+//
+// Then, starting with the `medium` breakpoint, they appear as an
+// horizontal chain of arrow-like shapes, each one pointing to
+// the right, thus visually showing the hierarchy between the
+// elements inside the breadcrumbs.
+//
+// Here is a rough representation of what it looks like:
+//
+// |‾‾‾‾‾‾‾‾\‾‾‾‾‾‾‾‾\‾‾‾‾‾‾‾‾\‾‾‾‾‾‾‾‾|
+// |________/________/________/________|
+//
+// The component can contain an optional paragraph (<p>) with a class
+// of `breadcrumbs__label` that can serve as an ‘introduction’ to it.
+// Typically, this is used to say something like ‘You are here’. When
+// present, this element appears as the first item in the breadcrumbs
+// stack or chain, in a different color than the other items.
+//
+
+
+/**
+ * 1. Slightly move the container up in order to cover the red-ish bottom border
+ *    of the page header. The contrast between the blue (from the brand color)
+ *    and this red is painful, so we want to get rid of it here.
+ * 2. Create a new border to replace the red-ish one that has been covered by
+ *    the breadcrumbs container. Since this border appears at the exact same
+ *    place as the previous one, it seems that we just updated the color of
+ *    the old one.
+ * 3. Cancel the effect of the left and right margins of the `.main-content`
+ *    <div> we are in, so that the block expands till the edges of the
+ *    viewport.
+ */
+.breadcrumbs {
+  position: relative; // 1
+  top: -2px; // 1
+  margin-left: -1.6rem; // 3
+  margin-right: -1.6rem; // 3
+  border-top: 2px solid $almost-black-brand-color; // 2
+  background-color: $brand-color;
+  color: #fff;
+
+  /**
+   * 1. Adjust font size and line-height for wide viewports.
+   */
+  @include media('≥large') {
+    font-size: 2rem; // 1
+    line-height: 2.5rem; // 1
+  }
+
+  /**
+   * An optional <p> that can serve as an ‘introduction’ to the breadcrumbs.
+   * Typically, this is used to say something like ‘You are here’.
+   *
+   * 1. Cancel existing styles.
+   * 2. Set a background color that is darker than the one
+   *    used for regular breadcrumb items, in order to
+   *    make the label appear in a distinctive way.
+   */
+  .breadcrumbs__label {
+    max-width: inherit; // 1
+    margin: 0; // 1
+    font-size: inherit; // 1
+    line-height: inherit; // 1
+    padding: 0.8rem 0.6rem 0.8rem 1.6rem;
+    background-color: $almost-black-brand-color; // 2
+
+    /**
+     * Starting with this breakpoint, when the vertical stack becomes an
+     * horizontal chain, we need to float the label to make it appear as
+     * the first element of the breadcrumbs chain.
+     */
+    @include media('≥medium') {
+      float: left;
+    }
+  }
+
+  /**
+   * The ordered list (<ol>) containing the breadcrumbs.
+   *
+   * 1. Cancel existing styles.
+   * 2. The list will contain floating items, so we need the overflow
+   *    trick to ensure it gets a non-zero height.
+   *    See: https://www.quirksmode.org/css/clearing.html
+   */
+  .breadcrumbs__list {
+    max-width: inherit; // 1
+    margin-top: 0; // 1
+    margin-bottom: 0; // 1
+    padding-left: 0; // 1
+    list-style: none; // 1
+    overflow: auto; // 2
+  }
+
+  /**
+   * A breadcrumbs item, represented by an <li> element.
+   *
+   * 1. Cancel existing styles.
+   * 2. Starting with the `medium` breakpoint, this background color, which is
+   *    different than the one used for the breadcrumbs container, will make
+   *    arrow-shaped areas appear between breadcrumbs, thus visually
+   *    separating them.
+   *    Below that breakpoint, this background color will simply be invisible
+   *    because it will be fully covered by the <span>s inside the items.
+   */
+  .breadcrumbs__item {
+    margin-bottom: inherit; // 1
+    font-size: inherit; // 1
+    line-height: inherit; // 1
+    background-color: $almost-black-brand-color; // 2
+
+    /**
+     * Starting with this breakpoint, as described above, we will turn the
+     * vertical stack of boxes to an horizontal chain of boxes.
+     * If the user agent supports that, those boxes will have arrow-like
+     * shapes, each pointing to the right to give a visual sense of
+     * information hierarchy.
+     *
+     * 1. We first need to float list items. We could have used flexbox to
+     *    do so but we try to keep compatibility requirements as low as
+     *    possible.
+     */
+    @include media('≥medium') {
+      float: left; // 1
+    }
+  }
+
+  /**
+   * 1. Turn <span> elements into blocks to make them occupy the whole space
+   *    of their parent list item. This is an essential step to allow <a>
+   *    contained in spans to cover that same space.
+   * 2. ‘Cover’ the background color that has just been defined on list
+   *    items, in order to only keep a small arrow-shaped portion of
+   *    each <li> appear next to each <span>.
+   */
+  .breadcrumbs__span {
+    display: block; // 1
+    background-color: $brand-color; // 2
+  }
+
+  /**
+   * 1. Turn links into blocks to make them occupy the whole space
+   *    of their list item.
+   * 2. Use a bottom border to visually separate breadcrumb items
+   *    in the vertical stack.
+   */
+  .breadcrumbs__link {
+    display: block; // 1
+    border-bottom: 2px solid $darker-brand-color; // 2
+    color: $white;
+    text-decoration: none;
+
+    @include on-event {
+      background-color: $darker-brand-color;
+    }
+
+    @include media('≥medium') {
+      /**
+       * Starting with this breakpoint, the vertical stack of items becomes
+       * an horizontal chain. We then remove the bottom border that was
+       * used to visually separate the items in the vertical stack.
+       */
+      display: inline-block;
+      border-bottom: 0;
+    }
+  }
+
+  /**
+   * 1. Links in breadcrumbs, as well as the <span> of the last item
+   *    (which never contains a link, because it represents the
+   *    page we are currently in) must have some horizontal
+   *    padding for good readability.
+   */
+  .breadcrumbs__link,
+  .breadcrumbs__item--last .breadcrumbs__span {
+    padding: 0.8rem 1.6rem;
+  }
+
+  /**
+   * Set some styles for the horizontal breadcrumbs.
+   * By default, they will be visually separated by right-pointing arrows.
+   */
+  @include media('≥medium') {
+    .breadcrumbs__link {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+    .breadcrumbs__item--first .breadcrumbs__link  {
+        padding-left: 0.8rem;
+    }
+    .breadcrumbs__item--last .breadcrumbs__span {
+        padding-left: 0.4rem;
+    }
+    .breadcrumbs__item:not(.breadcrumbs__item--last) .breadcrumbs__span::after {
+      float: right;
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+      content: '➡';
+      color: $almost-black-brand-color;
+    }
+  }
+
+  /**
+   * If the user agent supports polygon definitions for clip-path, we will
+   * use that to create the arrow-like shapes.
+   * This must apply only for the medium breakpoint and above.
+   */
+  @supports (clip-path: polygon(0 0)) {
+    @include media('≥medium') {
+
+      /**
+       * We remove the right-pointing arrow character from the pseudo-elements.
+       * This will be replaced by the arrow-like shape from the clip path.
+       */
+      .breadcrumbs__item:not(.breadcrumbs__item--last) .breadcrumbs__span::after {
+        content: none;
+      }
+
+      /**
+       * Increase the right padding to give a visually-balanced
+       * look to the arrow-like shapes.
+       */
+      .breadcrumbs__link,
+      .breadcrumbs__item--last .breadcrumbs__span {
+        padding-right: 1.6rem;
+      }
+
+      /**
+       * 1. In order for the arrows to render well, we need to make their
+       *    boxes slightly overlap each other, so we use a negative
+       *    margin to achieve that.
+       * 2. Define the arrow-like shape, using a polygon with 6 points.
+       */
+      .breadcrumbs__span {
+        margin-left: -0.7rem; // 1
+
+        // 2
+        clip-path: polygon(
+          // Top left corner.
+          0 0,
+          // Top right corner.
+          calc(100% - 1rem) 0,
+          // Front point of the arrow.
+          100% 50%,
+          // Bottom right corner.
+          calc(100% - 1rem) 100%,
+          // Bottom left corner.
+          0 100%,
+          // Back of the arrow.
+          calc(0% + 1rem) 50%,
+        );
+      }
+
+      /**
+       * The very first item in the breadcrumbs chain must have a straight
+       * left border, not an arrow-like one. To do so, we redefine a new
+       * polygon, which uses only 5 points.
+       * We also overwrite the negative left margin and reset it to zero,
+       * because this item does not need to overlap anything on its left.
+       */
+      .breadcrumbs__item--first .breadcrumbs__span {
+        margin-left: 0;
+        clip-path: polygon(
+          // Top left corner.
+          0 0,
+          // Top right corner.
+          calc(100% - 1rem) 0,
+          // Front point of the arrow.
+          100% 50%,
+          // Bottom right corner.
+          calc(100% - 1rem) 100%,
+          // Bottom left corner.
+          0 100%,
+        );
+      }
+
+      /**
+       * Similarly to the first item, the very last one in the breadcrumbs
+       * chain must have one straight border (the right one this time). We
+       * then redefine a new polygon, using only 5 points.
+       * We also slightly reduce the right padding.
+       *
+       * 1. Use 101% instead of 100% to avoid a
+       *    rendering bug in some browsers.
+       */
+      .breadcrumbs__item--last .breadcrumbs__span {
+        padding-right: 1rem;
+        clip-path: polygon(
+          // Top left corner.
+          0 0,
+          // Top right corner.
+          101% 0, // 1
+          // Bottom right corner.
+          101% 100%, // 1
+          // Bottom left corner.
+          0 100%,
+          // Back of the arrow.
+          calc(0% + 1rem) 50%,
+        );
+      }
+
+      /**
+       * Special case:
+       *
+       * When a breadcrumbs label is present (just before the list), this label
+       * appears as the first ‘arrow’ in the chain. As a result, the first
+       * ‘real’ breadcrumbs item, which appears as the second arrow, has
+       * to look like an intermediate arrow (with pointy edges on both
+       * sides, with no straight border). We thus need to overwrite
+       * its polygon definition to remove its straight left border.
+       *
+       * Note that we should *not* apply this fix if there is only one item
+       * in the breadcrumbs chain (or, in other words, if the first item
+       * is also the last one). In that case, this item will get the
+       * regular style for the last item (with a pointy left edge
+       * and a straight right edge).
+       */
+      .breadcrumbs__label + .breadcrumbs__list .breadcrumbs__item--first:not(.breadcrumbs__item--last) .breadcrumbs__span {
+        margin-left: 0rem;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 1rem) 0,
+          100% 50%,
+          calc(100% - 1rem) 100%,
+          0 100%,
+          calc(0% + 1rem) 50%,
+        );
+      }
+
+      /**
+       * We also want to slightly increase the left padding in all list
+       * items except the first one, for readability. Since these items
+       * start with a right-pointing shape, we increase the padding to
+       * slightly move the text away from that shape.
+       *
+       * Visually, it looks a bit like going from this:
+       *
+       *     >Some text
+       *
+       * to this:
+       *
+       *     > Some text
+       *
+       * OK, this example sucks, but you get the point :)
+       *
+       * As a reminder, since the last list item never contains an <a>,
+       * we need to apply the padding on the <span> in that situation.
+       */
+      .breadcrumbs__item:nth-child(n+1) .breadcrumbs__link,
+      .breadcrumbs__item--last .breadcrumbs__span {
+        padding-left: 2rem;
+      }
+    }
+  }
+  // End of the `@supports (clip-path: polygon(0 0))` block.
+}
