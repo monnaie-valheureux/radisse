@@ -335,7 +335,7 @@ class CreatePartnerController extends Controller
 
         $location_name = $location->name;
 
-        $address = optional($location->postalAddress);
+        $address = $location->postalAddress ?? optional();
 
         $phone = optional(optional($location->phones)->last());
 
