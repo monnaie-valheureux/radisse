@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Ajouter un nouveau prestataire partenaire')
+@if ($draftPartner->name)
+    @section('title', $draftPartner->name.' - Gérer les partenaires - le Val’heureux')
+@else
+    @section('title', 'Ajouter un nouveau prestataire partenaire')
+@endif
 
 @section('content')
 
