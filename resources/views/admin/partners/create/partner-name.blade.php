@@ -3,6 +3,24 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
+
+@php
+    if ($draftPartner->name) {
+        $breadcrumbs = [
+            route('partners.index') => 'Gérer les partenaires',
+            route('partner', $draftPartner->slug) => $draftPartner->name,
+            'Nom et forme juridique',
+        ];
+    } else {
+        $breadcrumbs = [
+            route('partners.index') => 'Gérer les partenaires',
+            'Nouveau partenaire',
+        ];
+    }
+@endphp
+
+    @breadcrumbs($breadcrumbs)
+
     <div class="tool-page-header">
         <p class="tool-page-header__tool-name">Ajouter un nouveau prestataire partenaire</p>
         <h2>Nom et forme juridique</h2>

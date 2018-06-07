@@ -3,6 +3,13 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Récapitulatif',
+    ])
+
     <h2>Récapitulatif</h2>
 
     <p>Voici un récapitulatif des différentes informations du partenaire.</p>

@@ -3,6 +3,13 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Site(s) et réseaux sociaux',
+    ])
+
     <div class="tool-page-header">
         <p class="tool-page-header__tool-name">Ajouter un nouveau prestataire partenaire</p>
         <h2>Réseaux sociaux</h2>
