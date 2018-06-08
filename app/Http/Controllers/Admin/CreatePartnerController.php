@@ -431,7 +431,7 @@ class CreatePartnerController extends Controller
      */
     public function createSiteAndSocialNetworks(Partner $partner)
     {
-        $socialNetworks = optional($partner->socialNetworks);
+        $socialNetworks = $partner->socialNetworks ?? collect();
         $websites = $partner->websites ?? collect();
 
         return view(
