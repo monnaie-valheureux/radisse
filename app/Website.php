@@ -63,7 +63,7 @@ class Website extends ContactDetails
     {
         $protocol = $this->useHttps ? 'https' : 'http';
 
-        return $protocol.'://'.$this->url;
+        return $protocol.'://'.$this->clean($this->url);
     }
 
     /**
