@@ -41,7 +41,7 @@
 
                 <p>{!! Form::text(
                     'social_networks[0][url]',
-                    optional($socialNetworks->get(0))->url,
+                    optional($socialNetworks->get(0))->__toString('url'),
                     ['size' => 27]
                 ) !!}</p>
             </div>
@@ -52,7 +52,7 @@
 
                 <p>{!! Form::text(
                     'social_networks[1][url]',
-                    optional($socialNetworks->get(1))->url,
+                    optional($socialNetworks->get(1))->__toString('url'),
                     ['size' => 27]
                 ) !!}</p>
             </div>
@@ -63,7 +63,7 @@
 
                 <p>{!! Form::text(
                     'social_networks[2][url]',
-                    optional($socialNetworks->get(2))->url,
+                    optional($socialNetworks->get(2))->__toString('url'),
                     ['size' => 27]
                 ) !!}</p>
             </div>
