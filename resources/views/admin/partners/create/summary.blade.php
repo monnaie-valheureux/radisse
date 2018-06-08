@@ -127,6 +127,23 @@
             <li class="">
                 <strong>Site(s) et réseaux sociaux :</strong><br>
                 <ul>
+@forelse ($summary['websites'] as $site)
+                    <li>
+                        <span>
+                            {{ Html::link($site->url) }}
+                        </span>
+                    </li>
+@empty
+                    <li>
+                        <div class="help-block validation-neutral">
+                            <p>Aucun site n’a été indiqué.</p>
+                        </div>
+                    </li>
+@endforelse
+                </ul>
+                <br>
+
+                <ul>
 @forelse ($summary['social_networks'] as $network)
                     <li>
                         <span>
