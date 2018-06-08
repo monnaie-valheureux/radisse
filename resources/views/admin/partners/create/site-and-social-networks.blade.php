@@ -48,7 +48,7 @@
             <div class="tool-form__control">
                 {!! Form::label('social_networks[1][url]', 'Adresse 2 :', ['class' => 'label']) !!}
 
-                @errorhandling('social_networks[1].url')
+                @errorhandling('social_networks.1.url')
 
                 <p>{!! Form::text(
                     'social_networks[1][url]',
@@ -59,7 +59,7 @@
             <div class="tool-form__control">
                 {!! Form::label('social_networks[2][url]', 'Adresse 3 :', ['class' => 'label']) !!}
 
-                @errorhandling('social_networks[2].url')
+                @errorhandling('social_networks.2.url')
 
                 <p>{!! Form::text(
                     'social_networks[2][url]',
