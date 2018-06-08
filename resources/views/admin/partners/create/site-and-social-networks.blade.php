@@ -67,17 +67,6 @@
                     ['size' => 27]
                 ) !!}</p>
             </div>
-            <div class="tool-form__control">
-                {!! Form::label('social_networks[3][url]', 'Adresse 4 :', ['class' => 'label']) !!}
-
-                @errorhandling('social_networks[3].url')
-
-                <p>{!! Form::text(
-                    'social_networks[3][url]',
-                    optional($socialNetworks->get(3))->url,
-                    ['size' => 27]
-                ) !!}</p>
-            </div>
         </fieldset>
 
         <div class="tool-form__footer">
