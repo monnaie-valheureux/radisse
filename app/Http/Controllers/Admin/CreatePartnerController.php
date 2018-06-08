@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Email;
 use App\Phone;
 use App\Partner;
+use App\Website;
 use App\Location;
 use App\SocialNetwork;
 use Illuminate\Support\Arr;
@@ -431,12 +432,14 @@ class CreatePartnerController extends Controller
     public function createSiteAndSocialNetworks(Partner $partner)
     {
         $socialNetworks = optional($partner->socialNetworks);
+        $websites = $partner->websites ?? collect();
 
         return view(
             'admin.partners.create.site-and-social-networks',
             compact(
                 'partner',
-                'socialNetworks'
+                'socialNetworks',
+                'websites'
             )
         );
     }
@@ -458,8 +461,10 @@ class CreatePartnerController extends Controller
 
             // Validate form data.
             $data = $this->validate($request, [
+                'websites.*.url' => 'nullable|string',
                 'social_networks.*.url' => 'nullable|string',
             ], [
+                'websites.*.url' => 'Cette adresse semble incorrecte.',
                 'social_networks.*.url' => 'Cette adresse semble incorrecte.',
             ]);
 
@@ -476,6 +481,21 @@ class CreatePartnerController extends Controller
 
                 $network = SocialNetwork::fromUrl($network['url'])->makePublic();
                 $partner->socialNetworks()->save($network);
+            }
+
+            // Do it the lazy way: delete everything and then rewrite
+            // everything. Note that this ‘wastes’ IDs in the database.
+            foreach ($partner->websites as $website) {
+                $website->delete();
+            }
+
+            foreach ($request->get('websites') as $website) {
+                if (!$website['url']) {
+                    continue;
+                }
+
+                $website = Website::fromUrl($website['url'])->makePublic();
+                $partner->websites()->save($website);
             }
         }
 
@@ -597,6 +617,9 @@ class CreatePartnerController extends Controller
                 'phone' => optional($location->phones)->last(),
             ];
         }
+
+        // Get websites.
+        $summary['websites'] = $partner->websites;
 
         // Get social networks.
         $summary['social_networks'] = $partner->socialNetworks;
