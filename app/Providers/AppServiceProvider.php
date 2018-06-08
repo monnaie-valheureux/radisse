@@ -29,6 +29,15 @@ class AppServiceProvider extends ServiceProvider
                 ['item' => {$expression}]
             )->render(); ?>";
         });
+
+        // Register a directive for the custom `breadcrumbs` Blade component.
+        \Illuminate\Support\Facades\Blade::directive('breadcrumbs', function ($expression) {
+            return "<?php echo \$__env->make(
+                'components.breadcrumbs',
+                ['breadcrumbs' => {$expression}]
+            )->render(); ?>";
+        });
+        // Blade::component('components.breadcrumbs', 'breadcrumbs');
     }
 
     /**

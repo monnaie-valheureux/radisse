@@ -18,4 +18,14 @@ class Team extends Model
     {
         return $this->hasMany(TeamMember::class);
     }
+
+    /**
+     * Get the partners that are managed by the team.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function partners()
+    {
+        return $this->hasMany(Partner::class);
+    }
 }

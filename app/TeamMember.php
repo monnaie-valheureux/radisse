@@ -88,6 +88,16 @@ class TeamMember extends Authenticatable
     }
 
     /**
+     * Get the other members of the team of the person.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teammates()
+    {
+        return $this->team->members()->where('id', '!=', $this->id);
+    }
+
+    /**
      * Get the partners that the team member caused to sign the official documents.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -2,9 +2,11 @@
 
 namespace Tests\Unit\Admin;
 
+use App\Team;
 use App\Email;
 use App\Phone;
 use App\Partner;
+use App\Website;
 use App\Location;
 use Carbon\Carbon;
 use App\TeamMember;
@@ -47,6 +49,20 @@ class PartnerTest extends TestCase
         // that it had not been overwitten by a new one.
         $this->assertSame('my-special-slug', $partner->slug);
         $this->assertNotSame('boucherie-sanzot', $partner->slug);
+    }
+
+    /** @test */
+    function can_retrieve_its_team()
+    {
+        // Create a team and then a partner associated to it.
+        $team = factory(Team::class)->create();
+
+        $partner = factory(Partner::class)->create([
+            'team_id' => $team->id,
+        ]);
+
+        // Check that we got the correct data.
+        $this->assertEquals($team->id, $partner->team->id);
     }
 
     /** @test */
@@ -166,12 +182,14 @@ class PartnerTest extends TestCase
         $phone = Phone::fromNumber('+32489123456');
         $email = Email::fromAddress('henri@boucheriesanzot.be');
         $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
+        $site = Website::fromUrl('boucheriesanzot.be');
 
         // Save the contact details.
         $partner->postalAddress()->save($address);
         $partner->phones()->save($phone);
         $partner->emails()->save($email);
         $partner->socialNetworks()->save($network);
+        $partner->websites()->save($site);
 
         // Finally, we test that we can properly get everything back.
 
@@ -193,6 +211,11 @@ class PartnerTest extends TestCase
         $this->assertCount(1, $partner->socialNetworks);
         $this->assertInstanceOf(SocialNetwork::class, $partner->socialNetworks[0]);
         $this->assertSame($network->id, $partner->socialNetworks[0]->id);
+
+        // Websites.
+        $this->assertCount(1, $partner->websites);
+        $this->assertInstanceOf(Website::class, $partner->websites[0]);
+        $this->assertSame($site->id, $partner->websites[0]->id);
     }
 
     /** @test */
@@ -242,6 +265,7 @@ class PartnerTest extends TestCase
         ]);
 
         $this->assertTrue($validatedPartner->isValidated());
+        $this->assertFalse($validatedPartner->isNotValidated());
         $this->assertFalse($nonvalidatedPartner->isValidated());
     }
 

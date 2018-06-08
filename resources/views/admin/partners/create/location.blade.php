@@ -3,7 +3,16 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
-    <h2>Lieu où le partenaire exerce son activité</h2>
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Lieu d’activité',
+    ])
+
+    <div class="tool-page-header">
+        <h2>Lieu où le partenaire exerce son activité</h2>
+    </div>
 
     <p>Ces infos se trouvent à la page 2 de la fiche de contact. <strong>Toutes ces infos seront affichées publiquement (sur le site, etc.).</strong></p>
 

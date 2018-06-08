@@ -76,9 +76,10 @@ class CreateTeamMembersTable extends Migration
     public function down()
     {
         // Modify the `partners` table to remove the nullable
-        // foreign key referencing a team member.
+        // foreign keys referencing team members.
         Schema::table('partners', function (Blueprint $table) {
             $table->dropForeign('partners_endorser_team_member_id_foreign');
+            $table->dropForeign('partners_validator_team_member_id_foreign');
         });
 
         // It’s necessary to drop the table only *after* all indexes pointing

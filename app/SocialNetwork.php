@@ -130,12 +130,7 @@ class SocialNetwork extends ContactDetails
      */
     protected function getUrl()
     {
-        try {
-            $subject = $this->supportedNetworks[$this->name]['url_format'];
-
-        } catch (\Exception $e) {
-            dd($this);
-        }
+        $subject = $this->supportedNetworks[$this->name]['url_format'];
 
         return preg_replace('#:handle:#', $this->handle, $subject);
     }

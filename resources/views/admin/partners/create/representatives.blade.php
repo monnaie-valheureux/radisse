@@ -3,7 +3,16 @@
 @section('title', 'Personne(s) représentante(s) de « '.$partner->name.' » — Gestion du Val’heureux')
 
 @section('content')
-    <h2>Personne(s) représentante(s)</h2>
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Personnes représentantes',
+    ])
+
+    <div class="tool-page-header">
+        <h2>Personne(s) représentante(s)</h2>
+    </div>
 
     <p>Ces infos sont destinées à l’<em>usage interne de l’ASBL</em>. On les trouve à la page 3 de la fiche de contact.</p>
 

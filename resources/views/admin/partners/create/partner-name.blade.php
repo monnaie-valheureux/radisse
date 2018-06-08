@@ -1,9 +1,33 @@
 @extends('layouts.admin')
 
-@section('title', 'Ajouter un nouveau prestataire partenaire')
+@if ($draftPartner->name)
+    @section('title', $draftPartner->name.' - Gérer les partenaires - le Val’heureux')
+@else
+    @section('title', 'Ajouter un nouveau prestataire partenaire')
+@endif
 
 @section('content')
-    <h2>Nom et forme juridique</h2>
+
+@php
+    if ($draftPartner->name) {
+        $breadcrumbs = [
+            route('partners.index') => 'Gérer les partenaires',
+            route('partner', $draftPartner->slug) => $draftPartner->name,
+            'Nom et forme juridique',
+        ];
+    } else {
+        $breadcrumbs = [
+            route('partners.index') => 'Gérer les partenaires',
+            'Nouveau partenaire',
+        ];
+    }
+@endphp
+
+    @breadcrumbs($breadcrumbs)
+
+    <div class="tool-page-header">
+        <h2>Nom et forme juridique</h2>
+    </div>
 
     <p>Ces infos se trouvent à la page 1 de la fiche de contact.</p>
 

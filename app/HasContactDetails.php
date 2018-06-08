@@ -11,4 +11,5 @@ trait HasContactDetails
     use HasPhones;
     use HasEmails;
     use HasSocialNetworks;
+    use HasWebsites;
 }

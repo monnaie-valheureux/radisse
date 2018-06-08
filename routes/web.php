@@ -46,6 +46,9 @@ Route::prefix('gestion')
 
     Route::prefix('partenaires')->group(function () {
 
+        Route::get('/', 'PartnersController@index')
+            ->name('partners.index');
+
         Route::get('/ajouter', 'CreatePartnerController@start')
              ->name('create-partner');
 
@@ -90,7 +93,14 @@ Route::prefix('gestion')
         Route::post('/{partner}/validation', 'CreatePartnerController@validatePartner');
 
         Route::get('/{partner}/ajoute', 'CreatePartnerController@end')
-             ->name('partner.add.end');
+            ->name('partner.add.end');
+
+        // Make URLs directly pointing to a partner
+        // redirect to this partner’s summary.
+        Route::get('/{partner}', function ($partner) {
+            return redirect()->route('partners.add.summary', $partner);
+        })
+        ->name('partner');
 
         // Route::view('/lieu', 'admin.partners.create.location');
         // Route::view('/site-et-reseaux-sociaux', 'admin.partners.create/site-and-social-networks');
@@ -109,9 +119,9 @@ Route::prefix('gestion')
         ->name('team-members.edit');
 
     // Define routes to handle partners of the local currency.
-    Route::resource('partners', 'PartnersController', [
-        'only' => ['index', 'show']
-    ]);
+    // Route::resource('partners', 'PartnersController', [
+    //     'only' => ['index', 'show']
+    // ]);
 
     // Route to log out of the application.
     $this->post('logout', 'Auth\LoginController@logout')->name('logout');
