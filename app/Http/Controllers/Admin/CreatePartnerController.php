@@ -9,6 +9,7 @@ use App\Phone;
 use App\Partner;
 use App\Website;
 use App\Location;
+use DomainException;
 use App\SocialNetwork;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
@@ -462,7 +463,17 @@ class CreatePartnerController extends Controller
             // Validate form data.
             $data = $this->validate($request, [
                 'websites.*.url' => 'nullable|string',
-                'social_networks.*.url' => 'nullable|string',
+                'social_networks.*.url' => [
+                    'nullable',
+                    'string',
+                    function($attribute, $value, $fail) {
+                        try {
+                            SocialNetwork::fromUrl($value);
+                        } catch (DomainException $e) {
+                            return $fail('Impossible de reconnaître ce réseau social…');
+                        }
+                    }
+                ],
             ], [
                 'websites.*.url' => 'Cette adresse semble incorrecte.',
                 'social_networks.*.url' => 'Cette adresse semble incorrecte.',
