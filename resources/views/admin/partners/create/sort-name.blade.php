@@ -3,7 +3,16 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
-    <h2>Nom de liste</h2>
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Nom de liste',
+    ])
+
+    <div class="tool-page-header">
+        <h2>Nom de liste</h2>
+    </div>
 
     <form method="post" class="tool-form">
         <div class="tool-form__control">

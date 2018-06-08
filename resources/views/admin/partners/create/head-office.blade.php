@@ -3,7 +3,16 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
-    <h2>Siège social de « {{ $partner->name }} »</h2>
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Siège social',
+    ])
+
+    <div class="tool-page-header">
+        <h2>Siège social de « {{ $partner->name }} »</h2>
+    </div>
 
     <p>Ces infos se trouvent à la page 1 de la fiche de contact.</p>
 

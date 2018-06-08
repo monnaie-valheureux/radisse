@@ -1,5 +1,6 @@
 <?php
 
+use App\Team;
 use App\Partner;
 use Carbon\Carbon;
 use App\TeamMember;
@@ -18,7 +19,13 @@ $factory->define(Partner::class, function (Faker $faker, array $attributes) {
         'name_sort' => $name,
         'slug' => Str::slug($name),
         'validated_at' => Carbon::parse('1 week ago'),
+        'team_id' => function () {
+            return factory(Team::class)->create()->id;
+        },
         'endorser_team_member_id' => function () {
+            return factory(TeamMember::class)->create()->id;
+        },
+        'validator_team_member_id' => function () {
             return factory(TeamMember::class)->create()->id;
         }
     ];

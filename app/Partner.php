@@ -111,6 +111,16 @@ class Partner extends Model
     }
 
     /**
+     * Get the team that ‘owns’ the partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
+    /**
      * Get the person(s) who represent the partner.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -147,13 +157,23 @@ class Partner extends Model
     }
 
     /**
-     * Check if the partner has been validated or not.
+     * Check if the partner has been validated.
      *
      * @return bool
      */
     public function isValidated()
     {
         return $this->validated_at instanceof DateTime;
+    }
+
+    /**
+     * Check if the partner has not been validated.
+     *
+     * @return bool
+     */
+    public function isNotValidated()
+    {
+        return ! $this->isValidated();
     }
 
     /**

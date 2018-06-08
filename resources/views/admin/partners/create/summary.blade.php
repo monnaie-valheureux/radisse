@@ -3,10 +3,17 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Récapitulatif',
+    ])
+
     <h2>Récapitulatif</h2>
 
     <p>Voici un récapitulatif des différentes informations du partenaire.</p>
-    <p>Merci, s’il y en a, de corriger les éventuelles erreurs qui signalées en <span style="color: red;">rouge</span> (obligatoires) ou en <span style="color: #de9103;">orange</span> (pas complètement obligatoires, mais très recommandées).</p>
+    <p>Merci, s’il y en a, de corriger les éventuelles erreurs qui signalées en <span class="error-color">rouge</span> (obligatoires) ou en <span class="warning-color">orange</span> (pas complètement obligatoires, mais très recommandées).</p>
 
     <form action="/gestion/partenaires/{{ $partner->slug }}/validation"
     method="post" class="tool-form">
@@ -34,7 +41,7 @@
                 <strong>Nom de liste :</strong><br>
                 <span>
 @if ($summary['name_sort'])
-                    ({{ $summary['name_sort'] }})
+                    {{ $summary['name_sort'] }}
 @else
                     <div class="help-block validation-error">
                         <p>Cette info manque.</p>
@@ -120,6 +127,23 @@
             <li class="">
                 <strong>Site(s) et réseaux sociaux :</strong><br>
                 <ul>
+@forelse ($summary['websites'] as $site)
+                    <li>
+                        <span>
+                            {{ Html::link($site->url) }}
+                        </span>
+                    </li>
+@empty
+                    <li>
+                        <div class="help-block validation-neutral">
+                            <p>Aucun site n’a été indiqué.</p>
+                        </div>
+                    </li>
+@endforelse
+                </ul>
+                <br>
+
+                <ul>
 @forelse ($summary['social_networks'] as $network)
                     <li>
                         <span>
@@ -192,17 +216,48 @@
         </ul>
 
         <div class="tool-form__footer">
-            {{ csrf_field() }}
-            {!! Form::hidden('id', $partner->id) !!}
 
-            <div class="help-block validation-warning">
-                <p><strong>De manière temporaire</strong>, les partenaires ajoutés peuvent être automatiquement validés.</p>
-                <p>Dans le futur, pour éviter toute erreur, la validation finale sera réservée aux personnes du comité « membres ». Vous pourrez toujours ajouter de nouveaux partenaires, c’est juste qu’ils devront être validés avant d’apparaître sur le site.</p>
-            </div>
+            {{--
+                If the partner has not been validated yet,
+                we provide a button to to just that.
+            --}}
+            @if ($partner->isNotValidated())
 
-            <p>
-                <button type="submit" name="submit" class="btn">Valider ce partenaire</button>
-            </p>
+                {{ csrf_field() }}
+                {!! Form::hidden('id', $partner->id) !!}
+
+                <div class="help-block validation-warning">
+                    <p><strong>De manière temporaire</strong>, les partenaires ajoutés peuvent être automatiquement validés.</p>
+                    <p>Dans le futur, pour éviter toute erreur, la validation finale sera réservée aux personnes du comité « membres ». Vous pourrez toujours ajouter de nouveaux partenaires, c’est juste qu’ils devront être validés avant d’apparaître sur le site.</p>
+                </div>
+
+                <p>
+                    <button type="submit" name="submit" class="btn">Valider ce partenaire</button>
+                </p>
+
+            @else
+                {{--
+                    If the partner has already been validated once, we will
+                    display the date of validation. And, if this info is
+                    available, we will also indicate which team member
+                    did the validation of that partner.
+                --}}
+                @if ($partner->validator)
+                    <p>
+                        Ce partenaire a été validé le
+                        {{ $partner->validated_at->format('d/m/Y') }}
+                        par
+                        {{ $partner->validator->given_name }}
+                        {{ $partner->validator->surname }}.
+                    </p>
+                @else
+                    <p>
+                        Ce partenaire a été validé le
+                        {{ $partner->validated_at->format('d/m/Y') }}.
+                    </p>
+                @endif
+
+            @endif
         </div>
     </form>
 @endsection

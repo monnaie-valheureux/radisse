@@ -15,8 +15,6 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>19 avril</strong> au centre de jeunes et de quartier « <strong>la Bicoque</strong> » (place Saint-Christophe 8, 4000 Liège) ;</li>
-            <li>le <strong>17 mai</strong> au restaurant biologique <strong>Como en Casa</strong> (rue Hors-Château 76, 4000 Liège) ;</li>
             <li>le <strong>21 juin</strong> au <strong>Vert G</strong>, en partenariat avec les <strong>Sœurs Saveur</strong> (rue de l'église 50, 4100 Boncelles, Liège).</li>
         </ul>
     </div>

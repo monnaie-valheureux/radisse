@@ -18,7 +18,13 @@ mix
 if (mix.inProduction()) {
     // Enable pseudo-file versioning to avoid any caching issue.
     mix.version();
+
 } else {
+    // Partly fix the generation of source maps, which has apparently
+    // been broken by Jeffrey…
+    // See https://github.com/JeffreyWay/laravel-mix/issues/879
+    mix.webpackConfig({ devtool: "inline-source-map" });
+
     // Enable source maps for easier debugging.
     mix.sourceMaps();
 }

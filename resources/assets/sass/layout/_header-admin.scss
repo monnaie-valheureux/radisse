@@ -20,8 +20,8 @@
   text-decoration: none;
 
   @include on-event {
-    color: $text-color;
-    text-decoration: underline;
+    color: $white;
+    background-color: $darker-brand-color;
   }
 }
 
