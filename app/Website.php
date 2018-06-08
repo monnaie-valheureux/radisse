@@ -74,7 +74,7 @@ class Website extends ContactDetails
     protected function getOwnAttributes()
     {
         return [
-            'url' => $this->url,
+            'url' => $this->getUrl(),
         ];
     }
 
