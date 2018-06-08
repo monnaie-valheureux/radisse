@@ -179,7 +179,7 @@ class ContactDetailsWebsiteTest extends TestCase
             'data' => json_encode([
                 'isPublic' => true,
                 'label' => 'Site de la boucherie',
-                'url' => 'boucheriesanzot.be',
+                'url' => 'http://boucheriesanzot.be',
             ]),
         ]);
     }

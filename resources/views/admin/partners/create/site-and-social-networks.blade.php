@@ -30,6 +30,35 @@
         --}}
 
         <fieldset>
+            <legend>Site(s) Web (optionnels)</legend>
+            <p>Se trouve(nt) à la page 2 de la fiche de contact.</p>
+            <p>Ces données seront affichées sur le site du Val’heureux.</p>
+
+            <div class="tool-form__control">
+                {!! Form::label('websites[0][url]', 'Site 1 :', ['class' => 'label']) !!}
+
+                @errorhandling('websites.0.url')
+
+                <p>{!! Form::text(
+                    'websites[0][url]',
+                    optional($websites->get(0))->__toString('url'),
+                    ['size' => 27]
+                ) !!}</p>
+            </div>
+            <div class="tool-form__control">
+                {!! Form::label('websites[1][url]', 'Site 2 :', ['class' => 'label']) !!}
+
+                @errorhandling('websites.1.url')
+
+                <p>{!! Form::text(
+                    'websites[1][url]',
+                    optional($websites->get(1))->__toString('url'),
+                    ['size' => 27]
+                ) !!}</p>
+            </div>
+        </fieldset>
+
+        <fieldset>
             <legend>Réseaux sociaux (optionnels)</legend>
             <p>Vous pouvez indiquer ici les réseaux sociaux (page Facebook, compte Twitter, etc.) utilisés par le partenaire. Ils trouvent à la page 2 de la fiche de contact.</p>
             <p>Ces données seront affichées sur le site du Val’heureux.</p>
@@ -41,40 +70,29 @@
 
                 <p>{!! Form::text(
                     'social_networks[0][url]',
-                    optional($socialNetworks->get(0))->url,
+                    optional($socialNetworks->get(0))->__toString('url'),
                     ['size' => 27]
                 ) !!}</p>
             </div>
             <div class="tool-form__control">
                 {!! Form::label('social_networks[1][url]', 'Adresse 2 :', ['class' => 'label']) !!}
 
-                @errorhandling('social_networks[1].url')
+                @errorhandling('social_networks.1.url')
 
                 <p>{!! Form::text(
                     'social_networks[1][url]',
-                    optional($socialNetworks->get(1))->url,
+                    optional($socialNetworks->get(1))->__toString('url'),
                     ['size' => 27]
                 ) !!}</p>
             </div>
             <div class="tool-form__control">
                 {!! Form::label('social_networks[2][url]', 'Adresse 3 :', ['class' => 'label']) !!}
 
-                @errorhandling('social_networks[2].url')
+                @errorhandling('social_networks.2.url')
 
                 <p>{!! Form::text(
                     'social_networks[2][url]',
-                    optional($socialNetworks->get(2))->url,
-                    ['size' => 27]
-                ) !!}</p>
-            </div>
-            <div class="tool-form__control">
-                {!! Form::label('social_networks[3][url]', 'Adresse 4 :', ['class' => 'label']) !!}
-
-                @errorhandling('social_networks[3].url')
-
-                <p>{!! Form::text(
-                    'social_networks[3][url]',
-                    optional($socialNetworks->get(3))->url,
+                    optional($socialNetworks->get(2))->__toString('url'),
                     ['size' => 27]
                 ) !!}</p>
             </div>
