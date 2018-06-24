@@ -23,7 +23,9 @@
             --}}
             @foreach ($partners as $partner)
                 <li class="partner-list__entry">
-                    {{ $partner->name_sort }}
+                    <a href="/partenaires/{{ $partner->slug }}">
+                        {{ $partner->name_sort }}
+                    </a>
                     @if ($cities = $partner->locationCities())
                         <span class="partner-list__entry__cities">({{ $cities }})</span>
                     @endif
