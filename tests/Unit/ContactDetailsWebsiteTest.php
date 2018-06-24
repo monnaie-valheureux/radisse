@@ -150,6 +150,17 @@ class ContactDetailsWebsiteTest extends TestCase
     }
 
     /** @test */
+    function it_can_be_converted_to_an_html_link()
+    {
+        $site = Website::fromUrl('http://boucheriesanzot.be');
+
+        $this->assertSame(
+            '<a href="http://boucheriesanzot.be">boucheriesanzot.be</a>',
+            $site->asLink()
+        );
+    }
+
+    /** @test */
     function it_is_transformed_to_the_url_when_converted_to_a_string()
     {
         $site = Website::fromUrl('http://boucheriesanzot.be');

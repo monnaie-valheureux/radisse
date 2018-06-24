@@ -110,6 +110,20 @@ class ContactDetailsEmailTest extends TestCase
     }
 
     /** @test */
+    function it_can_be_converted_to_an_html_link()
+    {
+        $email = Email::fromAddress('henri@boucheriesanzot.be');
+
+        // Since the e-mail address will be obfuscated in a different way
+        // every time the method is called, we use a regular expression
+        // instead of testing against an hardcoded string.
+        $this->assertRegExp(
+            '%<a href\="[0-9a-z&#;:._-]+">[0-9a-z&#;:._-]+<\/a>%',
+            $email->asLink()
+        );
+    }
+
+    /** @test */
     function it_is_transformed_to_the_email_address_when_converted_to_a_string()
     {
         $email = Email::fromAddress('henri@boucheriesanzot.be');

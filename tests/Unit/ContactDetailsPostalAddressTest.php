@@ -184,7 +184,6 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             '<p translate="no">'."\n".
-            '<span class="recipient">Boucherie Sanzot</span><br>'."\n".
             '<span class="address-line1">Rue du Château 1</span><br>'."\n".
             '<span class="locality">Moulinsart</span>'."\n".
             '</p>',
