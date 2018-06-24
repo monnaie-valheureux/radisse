@@ -128,4 +128,8 @@ Route::prefix('gestion')
 
     // Route to log out of the application.
     $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    // Here starts the path to a land of raw, unstyled and invalid
+    // HTML, full of data and a bit of insider jokes.
+    Route::get('debug/{partner}', 'DebugController@debug');
 });
