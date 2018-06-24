@@ -181,13 +181,15 @@ class PartnerTest extends TestCase
         ]);
         $phone = Phone::fromNumber('+32489123456');
         $email = Email::fromAddress('henri@boucheriesanzot.be');
+        $privateEmail = Email::fromAddress('private@boucheriesanzot.be')
+                            ->makePrivate();
         $network = SocialNetwork::fromUrl('https://www.facebook.com/boucheriesanzot');
         $site = Website::fromUrl('boucheriesanzot.be');
 
         // Save the contact details.
         $partner->postalAddress()->save($address);
         $partner->phones()->save($phone);
-        $partner->emails()->save($email);
+        $partner->emails()->saveMany([$email, $privateEmail]);
         $partner->socialNetworks()->save($network);
         $partner->websites()->save($site);
 
@@ -203,9 +205,19 @@ class PartnerTest extends TestCase
         $this->assertSame($phone->id, $partner->phones[0]->id);
 
         // E-mail addresses.
-        $this->assertCount(1, $partner->emails);
+        $this->assertCount(2, $partner->emails);
         $this->assertInstanceOf(Email::class, $partner->emails[0]);
         $this->assertSame($email->id, $partner->emails[0]->id);
+
+        // NOTE: the assertions below are commented because they depend on
+        //       MySQL’s ability to handle JSON columns. Since the tests
+        //       run on SQLite, which has no support for JSON columns,
+        //       these assertions would always fail and crash.
+
+        // Test we can also choose to retrieve only the e-mails that are public.
+        // $this->assertCount(1, $partner->publicEmails);
+        // $this->assertInstanceOf(Email::class, $partner->publicEmails[0]);
+        // $this->assertSame($email->id, $partner->publicEmails[0]->id);
 
         // Social networks.
         $this->assertCount(1, $partner->socialNetworks);
