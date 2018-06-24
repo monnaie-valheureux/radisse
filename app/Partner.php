@@ -66,6 +66,8 @@ class Partner extends Model
         });
 
 
+        // Add some global query scopes if we are *not* in
+        // the administration area of the application.
         if (!request()->is('gestion/*')) {
 
             // Add a default global scope to all select queries on the model.
