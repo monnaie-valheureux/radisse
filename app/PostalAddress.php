@@ -73,6 +73,13 @@ class PostalAddress extends ContactDetails
         return $address;
     }
 
+    /**
+     * Update one or more components of the address.
+     *
+     * @param  array  $parts
+     *
+     * @return self
+     */
     public function modify($parts)
     {
         foreach ($parts as $part => $value) {
@@ -255,11 +262,24 @@ class PostalAddress extends ContactDetails
         }
     }
 
+    /**
+     * Return the address as a formatted string of text.
+     *
+     * @return string
+     */
     public function toString()
     {
         return $this->__toString();
     }
 
+    /**
+     * Return a simplified address as a formatted string of text.
+     *
+     * This is similar to what `toString()` does except that addresses
+     * returned by this method do not include postal code nor country.
+     *
+     * @return string
+     */
     public function toSimplifiedString()
     {
         return
@@ -268,6 +288,11 @@ class PostalAddress extends ContactDetails
             $this->city;
     }
 
+    /**
+     * Return the address as an HTML string.
+     *
+     * @return string
+     */
     public function toHtml()
     {
         $address = $this->toAddressObject();
@@ -275,6 +300,15 @@ class PostalAddress extends ContactDetails
         return $this->getFormatter($asHtml = true)->format($address);
     }
 
+    /**
+     * Return a simplified address as an HTML string.
+     *
+     * This is similar to what `toHtml()` does except that
+     * addresses returned by this method do not include
+     * postal code nor the country.
+     *
+     * @return string
+     */
     function toSimplifiedHtml()
     {
         return
