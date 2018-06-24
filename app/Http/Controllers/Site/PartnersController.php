@@ -41,4 +41,16 @@ class PartnersController extends Controller
         // The list of partners is now ready for the view.
         return view('public.partners.index', compact('initials'));
     }
+
+    /**
+     * Display the details of a given partner.
+     *
+     * @param  \App\Partner  $partner
+     *
+     * @return V\Illuminate\Contracts\View\View
+     */
+    public function show(Partner $partner)
+    {
+        return view('public.partners.show', compact('partner'));
+    }
 }
