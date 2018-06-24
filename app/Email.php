@@ -41,6 +41,16 @@ class Email extends ContactDetails
     }
 
     /**
+     * Convert the e-mail to an obfuscated <a> HTML element.
+     *
+     * @return string
+     */
+    public function asLink()
+    {
+        return app('html')->mailto($this->address);
+    }
+
+    /**
      * Helper to parse an e-mail address and get its components.
      *
      * @param  string  $address

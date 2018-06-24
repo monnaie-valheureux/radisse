@@ -67,6 +67,18 @@ class Website extends ContactDetails
     }
 
     /**
+     * Convert the website to an <a> HTML element pointing to its URL.
+     *
+     * The text of the link is the URL of the website, without its protocol.
+     *
+     * @return string
+     */
+    public function asLink()
+    {
+        return (string) app('html')->link($this->getUrl(), $this->urlWithoutProtocol);
+    }
+
+    /**
      * Get the key-value pairs of data that are specific to this type of contact info.
      *
      * @return array

@@ -136,6 +136,19 @@ class SocialNetwork extends ContactDetails
     }
 
     /**
+     * Return an <a> HTML element pointing to the URL of the network.
+     *
+     * The text of the link is the label associated with the social
+     * network, or the URL itself if no label has been defined.
+     *
+     * @return string
+     */
+    public function asLink()
+    {
+        return (string) app('html')->link($this->getUrl(), $this->label);
+    }
+
+    /**
      * Get the key-value pairs of data that are specific to this type of contact info.
      *
      * @return array
