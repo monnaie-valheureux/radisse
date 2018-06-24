@@ -79,6 +79,22 @@ class Website extends ContactDetails
     }
 
     /**
+     * Little hack to ensure that some properties are correctly set when
+     * initializing a website from data that is already stored in the
+     * database.
+     */
+    protected function populateContactDetailProperties()
+    {
+        parent::populateContactDetailProperties();
+
+        if (starts_with($this->url, 'https://')) {
+            $this->useHttps = true;
+        }
+
+        $this->url = $this->clean($this->url);
+    }
+
+    /**
      * Allow to read specific properties as if they were public.
      *
      * @param  string  $name
