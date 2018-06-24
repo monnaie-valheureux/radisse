@@ -13,6 +13,9 @@ Route::namespace('Site')->group(function () {
     Route::get('/comptoirs', 'CurrencyExchangesController@index');
     Route::get('/partenaires', 'PartnersController@index');
 
+    // Display the information of a specific partner.
+    Route::get('/partenaires/{partner}', 'PartnersController@show');
+
     // A static page telling about the ‘apéros du Val’heureux’.
     Route::view('/aperos-du-valheureux', 'public.aperos');
 });
