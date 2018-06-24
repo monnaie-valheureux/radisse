@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Website extends ContactDetails
+use Illuminate\Contracts\Support\Htmlable;
+
+class Website extends ContactDetails implements Htmlable
 {
     /**
      * The type of contact info stored by the object.
@@ -76,6 +78,17 @@ class Website extends ContactDetails
     public function asLink()
     {
         return (string) app('html')->link($this->getUrl(), $this->urlWithoutProtocol);
+    }
+
+    /**
+     * Allows the object to be automatically converted to an HTML link
+     * when echoed in a Blade template.
+     *
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->asLink();
     }
 
     /**

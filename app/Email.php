@@ -4,8 +4,9 @@ namespace App;
 
 use DomainException;
 use Email\Parse as EmailParser;
+use Illuminate\Contracts\Support\Htmlable;
 
-class Email extends ContactDetails
+class Email extends ContactDetails implements Htmlable
 {
     /**
      * The type of contact info stored by the object.
@@ -48,6 +49,17 @@ class Email extends ContactDetails
     public function asLink()
     {
         return app('html')->mailto($this->address);
+    }
+
+    /**
+     * Allows the object to be automatically converted to an HTML link
+     * when echoed in a Blade template.
+     *
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->asLink();
     }
 
     /**
