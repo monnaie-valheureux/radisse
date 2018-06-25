@@ -1,0 +1,120 @@
+// -----------------------------------------------------------------------------
+// The .partner-page component is used to display the page of a partner.
+// -----------------------------------------------------------------------------
+
+.partner-page {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+.partner-page__wrapper {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3.2rem;
+  color: $text-color;
+  background: $white;
+  line-height: 2rem;
+
+  @include media('≥medium') {
+    max-width: 70rem;
+  }
+  @include media('≥large') {
+    max-width: 94.6rem;
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+  }
+}
+
+.partner-page__heading {
+  line-height: 1.2;
+  margin-top: 1.6rem;
+  margin-bottom: 0;
+
+  @include media('≥large') {
+    margin-top: 2.4rem;
+    font-size: 3.2rem;
+  }
+}
+
+/**
+ * A list of the locations of the partners.
+ */
+.partner-page__location-list {
+
+  /**
+   * 1. Turn the block to a flex container so that its children get
+   *    horizontally-positionned side by side, thus making better
+   *    use of the available space.
+   */
+  @include media('≥550px') {
+    display: flex; // 1
+  }
+}
+
+/**
+ * 1. Use a border to visually separate the locations from each other.
+ */
+.partner-page__location {
+  border-bottom: 1px solid $darker-brand-color; // 1
+
+  /**
+   * 1. Remove the border because, starting at this breakpoint, locations get
+   *    horizontally aligned, thus removing the need of the bottom border.
+   * 2. Set some margin to prevent blocks to stick to each other.
+   */
+  @include media('≥550px') {
+    border-bottom: none; // 1
+
+    &:not(:first-child) {
+      margin-left: 3.2rem; // 2
+    }
+  }
+
+  /**
+   * If there is only one location, no border must be displayed.
+   */
+  &:only-child {
+    border-bottom: none;
+  }
+}
+
+.partner-page__address dt {
+  display: none;
+}
+// Remove default user-agent styling.
+.partner-page__location dd {
+  margin-left: 0;
+}
+
+.partner-page__partner-info div {
+  margin-bottom: 1.6rem;
+}
+// Remove default user-agent styling.
+.partner-page__partner-info dd {
+  margin-left: 0;
+}
+
+/**
+ * An indicator telling that a location is a currency exchange.
+ *
+ * This is a piece of text surrounded by a border with slightly
+ * rounded corners. Starting with the `large` breakpoint, the
+ * border is replaced by a subtle dashed underline (created
+ * with a bottom border).
+ */
+.is-currency-exchange {
+  display: inline-block;
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid $brand-color;
+  color: $almost-black-brand-color;
+  font-family: museo_sans700;
+  border-radius: 5px;
+
+  @include media('≥large') {
+    border-style: dashed;
+    border-width: 0 0 1px;
+    padding: 0 0 0.4rem;
+    border-radius: 0;
+  }
+}

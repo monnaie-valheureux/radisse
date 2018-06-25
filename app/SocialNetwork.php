@@ -3,8 +3,9 @@
 namespace App;
 
 use DomainException;
+use Illuminate\Contracts\Support\Htmlable;
 
-class SocialNetwork extends ContactDetails
+class SocialNetwork extends ContactDetails implements Htmlable
 {
     /**
      * The type of contact info stored by the object.
@@ -133,6 +134,30 @@ class SocialNetwork extends ContactDetails
         $subject = $this->supportedNetworks[$this->name]['url_format'];
 
         return preg_replace('#:handle:#', $this->handle, $subject);
+    }
+
+    /**
+     * Return an <a> HTML element pointing to the URL of the network.
+     *
+     * The text of the link is the label associated with the social
+     * network, or the URL itself if no label has been defined.
+     *
+     * @return string
+     */
+    public function asLink()
+    {
+        return (string) app('html')->link($this->getUrl(), $this->label);
+    }
+
+    /**
+     * Allows the object to be automatically converted to an HTML link
+     * when echoed in a Blade template.
+     *
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->asLink();
     }
 
     /**

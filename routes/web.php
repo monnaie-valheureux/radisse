@@ -13,6 +13,9 @@ Route::namespace('Site')->group(function () {
     Route::get('/comptoirs', 'CurrencyExchangesController@index');
     Route::get('/partenaires', 'PartnersController@index');
 
+    // Display the information of a specific partner.
+    Route::get('/partenaires/{partner}', 'PartnersController@show');
+
     // A static page telling about the ‘apéros du Val’heureux’.
     Route::view('/aperos-du-valheureux', 'public.aperos');
 });
@@ -125,4 +128,8 @@ Route::prefix('gestion')
 
     // Route to log out of the application.
     $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    // Here starts the path to a land of raw, unstyled and invalid
+    // HTML, full of data and a bit of insider jokes.
+    Route::get('debug/{partner}', 'DebugController@debug');
 });

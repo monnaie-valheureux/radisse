@@ -13,9 +13,6 @@
             <li>tisser et renforcer les liens entre les différents acteurs de l’économie locale.</li>
         </ul>
 
-        <p>Dates des prochains apéros (de 18h à 21h) :</p>
-        <ul>
-            <li>le <strong>21 juin</strong> au <strong>Vert G</strong>, en partenariat avec les <strong>Sœurs Saveur</strong> (rue de l'église 50, 4100 Boncelles, Liège).</li>
-        </ul>
+        <p>Après une année riche en excellentes soirées, innombrables Val’heureuses et interminables discussions, les apéros font une petite <strong>pause estivale</strong>, mais ils reviendront vite !</p>
     </div>
 @endsection

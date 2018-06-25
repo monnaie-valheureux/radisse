@@ -131,6 +131,26 @@ class ContactDetailsSocialNetworkTest extends TestCase
     }
 
     /** @test */
+    function it_can_be_converted_to_an_html_link()
+    {
+        $network = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
+
+        $this->assertSame(
+            '<a href="https://www.facebook.com/boucheriesanzot">https://www.facebook.com/boucheriesanzot</a>',
+            $network->asLink()
+        );
+
+        // When a label has been associated with the network, this
+        // label is used for the visible text of the link.
+        $network->withLabel('notre page Facebook');
+
+        $this->assertSame(
+            '<a href="https://www.facebook.com/boucheriesanzot">notre page Facebook</a>',
+            $network->asLink()
+        );
+    }
+
+    /** @test */
     function it_is_transformed_to_the_url_when_converted_to_a_string()
     {
         $network = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');

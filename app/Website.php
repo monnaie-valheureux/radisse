@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Website extends ContactDetails
+use Illuminate\Contracts\Support\Htmlable;
+
+class Website extends ContactDetails implements Htmlable
 {
     /**
      * The type of contact info stored by the object.
@@ -67,6 +69,29 @@ class Website extends ContactDetails
     }
 
     /**
+     * Convert the website to an <a> HTML element pointing to its URL.
+     *
+     * The text of the link is the URL of the website, without its protocol.
+     *
+     * @return string
+     */
+    public function asLink()
+    {
+        return (string) app('html')->link($this->getUrl(), $this->urlWithoutProtocol);
+    }
+
+    /**
+     * Allows the object to be automatically converted to an HTML link
+     * when echoed in a Blade template.
+     *
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->asLink();
+    }
+
+    /**
      * Get the key-value pairs of data that are specific to this type of contact info.
      *
      * @return array
@@ -76,6 +101,22 @@ class Website extends ContactDetails
         return [
             'url' => $this->getUrl(),
         ];
+    }
+
+    /**
+     * Little hack to ensure that some properties are correctly set when
+     * initializing a website from data that is already stored in the
+     * database.
+     */
+    protected function populateContactDetailProperties()
+    {
+        parent::populateContactDetailProperties();
+
+        if (starts_with($this->url, 'https://')) {
+            $this->useHttps = true;
+        }
+
+        $this->url = $this->clean($this->url);
     }
 
     /**
