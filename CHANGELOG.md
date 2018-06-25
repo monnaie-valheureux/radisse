@@ -7,6 +7,16 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.6.0] - 2018-06-08
+### Added
+- Breadcrumbs navigation system inside administration area.
+- New index page for the management of partners.
+- Partners are now linked to teams.
+- Websites can now be assigned to partners.
+
+### Changed
+- Updated content in the page for ‘apéros’.
+
 ## [1.5.0] - 2018-04-18
 ### Added
 - Added some foundations for the management of volunteers. Still a work in progress.
@@ -51,7 +61,8 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.2.0...v1.3.0
