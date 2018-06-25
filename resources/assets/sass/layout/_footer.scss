@@ -98,9 +98,9 @@
 
 
 /**
- * Styles for a temporary ‘Under construction’ block.
+ * Styles for a list of links in the footer.
  */
-.site-footer__under-construction {
+.site-footer__links-container {
   margin-top: 3.2rem;
 
   @include media('≥medium') {
@@ -108,17 +108,15 @@
   }
 }
 
-.site-footer__under-construction h2 {
-  display: flex;
-  align-items: center;
-}
+.site-footer__links {
+  padding-left: 0;
+  list-style: none;
 
-.site-footer__under-construction h2::before {
-  content: '';
-  display: block;
-  width: 5rem;
-  height: 5rem;
-  margin-right: 1rem;
-  background: image('under_construction.svg') 50% 50% no-repeat transparent;
-  background-size: contain;
+  li {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    line-height: 2rem;
+  }
 }
