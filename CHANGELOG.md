@@ -7,8 +7,9 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
-## [Unreleased]
+## [1.9.0] - 2018-07-05
 ### Added
+- Added a backup system.
 - Added a custom view for when the website is in maintenance mode.
 
 ### Changed
@@ -79,7 +80,8 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.9.0...HEAD
+[1.9.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.5.0...v1.6.0
