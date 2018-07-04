@@ -8,6 +8,9 @@ and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
 ## [Unreleased]
+### Added
+- Added a custom view for when the website is in maintenance mode.
+
 ### Changed
 - New partners are now automatically assigned to the team of the member who created them.
 
