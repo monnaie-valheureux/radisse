@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [Unreleased]
+### Changed
+- New partners are now automatically assigned to the team of the member who created them.
+
 ## [1.8.0] - 2018-06-25
 ### Changed
 - The ‘Under construction’ message in the site footer has been replaced by a menu of links duplicating the one in the site header.

@@ -124,6 +124,11 @@ class CreatePartnerController extends Controller
             $partner->update($data);
         } else {
             $partner = (new Partner)->createAsDraft($data);
+
+            // Once the partner is created, we assign it to
+            // the team of the member who created it.
+            $team = auth()->user()->team;
+            $team->partners()->save($partner);
         }
 
         return redirect()->route('partners.add.sort-name', $partner);
