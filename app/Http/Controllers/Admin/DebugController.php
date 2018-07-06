@@ -106,6 +106,9 @@ class DebugController extends Controller
     .partner-name {
         font-size: 2em;
     }
+    .edit-partner {
+        font-size: 0.5em;
+    }
     .validated, .not-validated {
         display: inline-block;
         margin-bottom: 1em;
@@ -136,7 +139,12 @@ class DebugController extends Controller
 <title><?php echo $partner->name;?> DEBUG</title>
 <div class="haxxor">5UP3R 53CR57 H4XX0R M0D3</div>
 <?php
-        echo '<div class="partner-name">'.$partner->name.'</div>';
+        echo
+            '<div class="partner-name">'.
+            $partner->name.
+            ' <span class="edit-partner">('.
+            '<a href="/gestion/partenaires/'.$partner->slug.'">modifier</a>)'.
+            '</span></div>';
 
 
         // Display if the partner has been validated and, if yes and
