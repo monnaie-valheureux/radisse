@@ -44,6 +44,21 @@ class Location extends Model
     }
 
     /**
+     * Get all of the Location’s phones that are public, or those
+     * from the Location’s Partner is there is none.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getSuitablePublicPhonesAttribute()
+    {
+        if ($this->publicPhones->isNotEmpty()) {
+            return $this->publicPhones;
+        }
+
+        return $this->partner->publicPhones;
+    }
+
+    /**
      * Associate or replace a postal address for the location.
      *
      * @param string  $label
