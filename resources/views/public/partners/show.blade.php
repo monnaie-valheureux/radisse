@@ -54,6 +54,19 @@
         --}}
         <dl class="partner-page__partner-info">
 
+            {{--
+                If there is no location, try to display
+                phone numbers for the partner itself.
+            --}}
+            @if ($partner->locations->isEmpty())
+                @foreach ($partner->publicPhones as $phone)
+                <div class="partner-page__phone">
+                    <dt>Téléphone</dt>
+                    <dd>{{ $phone }}</dd>
+                </div>
+                @endforeach
+            @endif
+
             @foreach ($partner->publicEmails as $email)
             <div class="partner-page__email">
                 <dt>E-mail</dt>
