@@ -32,7 +32,7 @@
                             </dd>
                         </div>
 
-                        @foreach ($location->phones as $phone)
+                        @foreach ($location->suitablePublicPhones as $phone)
                         <div class="partner-page__phone">
                             <dt>Téléphone</dt>
                             <dd>
