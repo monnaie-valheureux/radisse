@@ -535,8 +535,9 @@ class CreatePartnerController extends Controller
         $representatives->load('emails', 'phones');
 
         // Create ‘shortcuts’ for easy access in the Blade view.
+        // TODO: all e-mails should be retrieved!
         foreach ($representatives as $rep) {
-            $rep->email = $rep->emails->last();
+            $rep->email = $rep->emails->last()->__toString();
             $rep->phone = $rep->phones->last();
         }
 
