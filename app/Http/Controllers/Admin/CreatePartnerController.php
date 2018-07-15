@@ -187,10 +187,10 @@ class CreatePartnerController extends Controller
     {
         $address = $partner->postalAddress ?? optional();
 
-        $phone = optional($partner->getHeadOfficePhone());
+        $phone = $partner->getHeadOfficePhone() ?? optional();
         $phone_is_public = $phone->isPublic;
 
-        $email = optional($partner->getHeadOfficeEmail());
+        $email = $partner->getHeadOfficeEmail() ?? optional();
         $email_is_public = $email->isPublic;
 
         return view(
