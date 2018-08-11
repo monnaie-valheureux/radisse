@@ -539,7 +539,7 @@ class CreatePartnerController extends Controller
         // Create ‘shortcuts’ for easy access in the Blade view.
         // TODO: all e-mails should be retrieved!
         foreach ($representatives as $rep) {
-            $rep->email = $rep->emails->last()->__toString();
+            $rep->email = $rep->emails->last() ? $rep->emails->last()->__toString() : null;
             $rep->phone = $rep->phones->last();
         }
 
