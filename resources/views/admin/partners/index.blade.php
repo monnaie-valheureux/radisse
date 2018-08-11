@@ -68,6 +68,9 @@
                         </span>
                     </a>
 
+                    @if ($partner->isNotValidated())
+                        <span style="color: #ce7a10;"> (non-validé)</span>
+                    @endif
 @php
     $currencyExchanges = [];
     foreach ($partner->locations as $location) {
@@ -118,6 +121,10 @@
                                 {{ $partner->name_sort }}
                             </span>
                         </a>
+
+                        @if ($partner->isNotValidated())
+                            <span style="color: #ce7a10;"> (non-validé)</span>
+                        @endif
                     </li>
                     @endif
                 @endforeach
