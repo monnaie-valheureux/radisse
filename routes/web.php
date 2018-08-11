@@ -105,6 +105,9 @@ Route::prefix('gestion')
         })
         ->name('partner');
 
+        Route::get('/{partner}/suppression', 'CreatePartnerController@requestDeletion')
+            ->name('partner.request-deletion');
+
         // Route::view('/lieu', 'admin.partners.create.location');
         // Route::view('/site-et-reseaux-sociaux', 'admin.partners.create/site-and-social-networks');
         // Route::view('/personne-representante', 'admin.partners.create/representative');

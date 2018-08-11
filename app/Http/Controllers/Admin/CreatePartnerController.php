@@ -674,4 +674,19 @@ class CreatePartnerController extends Controller
             compact('partner')
         );
     }
+
+    /**
+     * Display the page allowing to request the deletion of a partner.
+     *
+     * @param  \App\Partner  $partner
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function requestDeletion(Partner $partner)
+    {
+        return view(
+            'admin.partners.create.request-deletion',
+            compact('partner')
+        );
+    }
 }

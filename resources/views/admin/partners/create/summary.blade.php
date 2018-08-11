@@ -259,5 +259,11 @@
 
             @endif
         </div>
+        <div>
+            <p>
+                <a href="{{ route('partner.request-deletion', $partner) }}"
+                style="color: red;">Demander la suppression de ce partenaire</a>
+            </p>
+        </div>
     </form>
 @endsection
