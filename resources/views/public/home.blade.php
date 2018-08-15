@@ -20,6 +20,114 @@
             </div>
         </div>
     </div>
+
+@push('body-styles')
+<style>
+    .old-bills-announcement {
+        position: relative;
+        z-index: 2;
+        margin-top: -2px;
+        border-top: 2px solid #40661c;
+        border-bottom: 2px solid #40661c;
+        background: #518c1a;
+        color: #fff;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .old-bills-announcement > div {
+        padding: 1.6rem 1.2rem;
+        font-size: 1.6rem;
+    }
+    @media (min-width: 45rem) {
+      .old-bills-announcement > div {
+        padding-top: 2.4rem;
+        padding-bottom: 2.4rem;
+      }
+    }
+    @media (min-width: 1000px) {
+      .old-bills-announcement > div {
+        padding-top: 3.6rem;
+        padding-bottom: 3.6rem;
+      }
+    }
+
+    .old-bills-announcement h2 {
+        margin-top: 0;
+    }
+    .old-bills-announcement p {
+        margin-bottom: 0;
+        line-height: 2rem;
+    }
+    .old-bills-announcement a {
+        color: #fff;
+        text-align: center;
+    }
+
+    .old-bills-announcement h2,
+    .old-bills-announcement p {
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @media (min-width: 750px) {
+        .old-bills-announcement h2,
+        .old-bills-announcement p {
+            max-width: 62rem;
+            font-size: 2.4rem;
+            line-height: 2.9rem;
+        }
+        .old-bills-announcement h2 {
+            font-size: 3.2rem;
+        }
+    }
+    @media (min-width: 1000px) {
+        .old-bills-announcement h2,
+        .old-bills-announcement p {
+            max-width: 90rem;
+        }
+    }
+
+    .old-bill {
+        display: block;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    @media (min-width: 750px) {
+        .old-bill {
+            float: left;
+            max-width: 30rem;
+            margin-right: 2rem;
+        }
+    }
+    @media (min-width: 1000px) {
+        .old-bill {
+            max-width: 100%;
+        }
+    }
+
+    .more-info {
+        text-align: center;
+    }
+    .more-info a {
+        font-size: 1.2em;
+    }
+</style>
+@endpush
+
+    <div class="old-bills-announcement">
+        <div>
+            <h2>Remplacement des anciens billets</h2>
+            <p>
+                <img src="{{ asset('img/billet-valeureux-1.jpg') }}"
+                class="old-bill" alt="">
+            </p>
+            <p>Vous possédez encore des anciens billets de valeureux ? Vous avez jusque <em>début septembre</em> pour les dépenser chez les commerçants.</p>
+            <p>Après cette date, pour les échanger contre des nouveaux billets, il faudra directement contacter l’ASBL le Val’heureux.</p>
+            <p class="more-info">
+                <a href="/remplacement-anciens-billets">Cliquez ici pour plus d’infos</a>
+            </p>
+        </div>
+    </div>
+
     <div class="text text--2columns">
         <div class="text__section">
             <h2>Comment en obtenir ?</h2>

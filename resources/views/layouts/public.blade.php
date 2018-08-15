@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="{{ mix('css/main.css') }}">
 
+    @stack('body-styles')
+
     @if (config('app.env') === 'production')
     <!--
         This sends stats to Piwik, an open source and privacy-friendly
