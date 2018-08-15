@@ -43,6 +43,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Editor for error handling
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define the editor to use to open files referenced by the
+    | application’s error handler. Using this feature, there is no need to
+    | open these files manually to look for the proper line inside them.
+    |
+    | Supported: "sublime", "textmate", "emacs", "macvim",
+    |            "phpstorm", "idea", "vscode", "atom"
+    |
+    */
+
+    'editor' => env('APP_EDITOR', 'sublime'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
     |

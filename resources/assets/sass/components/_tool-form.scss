@@ -53,7 +53,8 @@
 .tool-form input[type="text"],
 .tool-form input[type="password"],
 .tool-form input[type="email"],
-.tool-form select {
+.tool-form select,
+.tool-form textarea {
   font-family: $text-font-stack;
 }
 

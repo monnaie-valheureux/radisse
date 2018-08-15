@@ -7,6 +7,11 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.10.0] - 2018-08-15
+### Added
+- Added the possibility to request the deletion of a partner in the administration area.
+- Added an announcement on the home page regarding the withdrawal of the first series of bills, as well as a dedicated page providing additional information.
+
 ## [1.9.0] - 2018-07-05
 ### Added
 - Added a backup system.
@@ -80,7 +85,8 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.6.0...v1.7.0

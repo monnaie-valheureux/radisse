@@ -19,6 +19,17 @@ trait HasPhones
     }
 
     /**
+     * Get all of the model’s phones that are public.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function publicPhones()
+    {
+        return $this->phones()
+            ->where('data->isPublic', true);
+    }
+
+    /**
      * Retrieve the first phone associated with a given label.
      *
      * @param  string  $label

@@ -18,6 +18,10 @@ Route::namespace('Site')->group(function () {
 
     // A static page telling about the ‘apéros du Val’heureux’.
     Route::view('/aperos-du-valheureux', 'public.aperos');
+
+    // A static page providing information about the withdrawal
+    // of the first series of bills (‘Valeureux’).
+    Route::view('/remplacement-anciens-billets', 'public.old-bills-withdrawal');
 });
 
 
@@ -104,6 +108,10 @@ Route::prefix('gestion')
             return redirect()->route('partners.add.summary', $partner);
         })
         ->name('partner');
+
+        Route::get('/{partner}/suppression', 'CreatePartnerController@requestDeletion')
+            ->name('partner.request-deletion');
+        Route::post('/{partner}/suppression', 'CreatePartnerController@sendRequestDeletion');
 
         // Route::view('/lieu', 'admin.partners.create.location');
         // Route::view('/site-et-reseaux-sociaux', 'admin.partners.create/site-and-social-networks');

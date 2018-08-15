@@ -9,6 +9,7 @@ use App\Phone;
 use App\Partner;
 use App\Website;
 use App\Location;
+use App\TeamMember;
 use DomainException;
 use App\SocialNetwork;
 use Illuminate\Support\Arr;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use App\PartnerRepresentative;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Partner\StoreLocation;
 use App\Http\Requests\Partner\StoreHeadOffice;
@@ -187,10 +189,10 @@ class CreatePartnerController extends Controller
     {
         $address = $partner->postalAddress ?? optional();
 
-        $phone = optional($partner->getHeadOfficePhone());
+        $phone = $partner->getHeadOfficePhone() ?? optional();
         $phone_is_public = $phone->isPublic;
 
-        $email = optional($partner->getHeadOfficeEmail());
+        $email = $partner->getHeadOfficeEmail() ?? optional();
         $email_is_public = $email->isPublic;
 
         return view(
@@ -535,8 +537,9 @@ class CreatePartnerController extends Controller
         $representatives->load('emails', 'phones');
 
         // Create ‘shortcuts’ for easy access in the Blade view.
+        // TODO: all e-mails should be retrieved!
         foreach ($representatives as $rep) {
-            $rep->email = $rep->emails->last();
+            $rep->email = $rep->emails->last() ? $rep->emails->last()->__toString() : null;
             $rep->phone = $rep->phones->last();
         }
 
@@ -670,6 +673,54 @@ class CreatePartnerController extends Controller
     {
         return view(
             'admin.partners.create.end',
+            compact('partner')
+        );
+    }
+
+    /**
+     * Display the page allowing to request the deletion of a partner.
+     *
+     * @param  \App\Partner  $partner
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function requestDeletion(Partner $partner)
+    {
+        return view(
+            'admin.partners.create.request-deletion',
+            compact('partner')
+        );
+    }
+
+    /**
+     * Process a partner deletion request.
+     *
+     * @param  \App\Partner  $partner
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function sendRequestDeletion(Partner $partner)
+    {
+        $this->validate(request(), [
+            'reason' => 'required|string',
+        ], [
+            'reason.required' => 'On ne peut rien supprimer si on ne sait pas quel est le problème !',
+        ]);
+
+        // Go find the admin. Oh, it’s me!
+        $recipient = TeamMember::find(1);
+        $recipient->name = $recipient->given_name.' '.$recipient->surname;
+
+        // Sending a mail to myself, then.
+        Mail::to($recipient)->send(new \App\Mail\RequestPartnerDeletion(
+            $partner,
+            TeamMember::find(request('team_member_id')),
+            request('reason')
+        ));
+
+        // Now that we’re done, let’s send a useful page back to the requester.
+        return view(
+            'admin.partners.create.request-deletion-done',
             compact('partner')
         );
     }

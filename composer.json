@@ -36,6 +36,7 @@
         "mockery/mockery": "0.9.*",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "~7.0",
+        "spatie/laravel-tail": "^3.1",
         "wnx/laravel-stats": "^1.1"
     },
     "autoload": {
