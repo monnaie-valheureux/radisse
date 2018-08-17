@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efddcf796e6304927c490fef4e3afc3b",
+    "content-hash": "95f1166a017dc4c53314fc735e01e233",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -4101,20 +4101,20 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v2.3",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "33215e18d30819feeae2bfa39896327ffbd9da83"
+                "reference": "6632a54a273e74fa6c7f1ffa5a87925716a83b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/33215e18d30819feeae2bfa39896327ffbd9da83",
-                "reference": "33215e18d30819feeae2bfa39896327ffbd9da83",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/6632a54a273e74fa6c7f1ffa5a87925716a83b0e",
+                "reference": "6632a54a273e74fa6c7f1ffa5a87925716a83b0e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4",
+                "php": ">=5.5",
                 "psr/log": "1.*"
             },
             "type": "library",
@@ -4155,7 +4155,7 @@
                 "profiling",
                 "slim"
             ],
-            "time": "2018-07-30T22:46:04+00:00"
+            "time": "2018-08-01T14:38:23+00:00"
         },
         {
             "name": "laravel/dusk",
