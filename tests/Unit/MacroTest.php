@@ -8,7 +8,11 @@ use Illuminate\Routing\Router;
 
 class MacroTest extends TestCase
 {
-    /** @test */
+    /**
+     * @test
+     *
+     * Test the Str::isBcryptHash() macro.
+     */
     function can_check_if_a_string_looks_like_a_bcrypt_hash()
     {
         $hash = '$2y$04$pfbuiURJw2RWGDngwVx4GOvNvrRbal1P5pkjbF.LgPpg2LrIVSMi6';
