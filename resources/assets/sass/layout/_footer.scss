@@ -120,3 +120,15 @@
     line-height: 2rem;
   }
 }
+
+/**
+ * A small block at the bottom of the footer saying
+ * that the site does not use any cookie.
+ */
+.no-cookie-mention {
+  @include fix-light-text-on-dark-background;
+  padding: 0 1.6rem 1.6rem;
+  background-color: $brand-color;
+  color: $white;
+  text-align: center;
+}
