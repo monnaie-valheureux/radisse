@@ -14,7 +14,7 @@ class MacroServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function register()
     {
         require_once app_path('macros.php');
     }

@@ -37,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        if (request()->is('gestion', 'gestion/*')) {
+        if (Route::isAdmin()) {
             $this->mapAdminRoutes();
         } else {
             $this->mapWebRoutes();

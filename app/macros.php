@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Illuminate\Routing\Router;
 
 /**
  * Check if a string looks like a Bcrypt hash.
@@ -18,4 +19,13 @@ Str::macro('isBcryptHash', function ($str) {
         $%x',
         $str
     );
+});
+
+/**
+ * Check if the current route points to an admin page.
+ *
+ * @return bool
+ */
+Router::macro('isAdmin', function () {
+   return request()->is('gestion', 'gestion/*');
 });
