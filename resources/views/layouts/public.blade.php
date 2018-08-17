@@ -104,6 +104,9 @@
             </ul>
         </div>
     </div>
+    <div class="no-cookie-mention">
+        Ce site respecte votre vie privée et n’utilise aucun cookie.
+    </div>
 
     @stack('body-scripts')
 </body>
