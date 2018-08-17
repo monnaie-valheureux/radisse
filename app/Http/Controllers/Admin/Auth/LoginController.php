@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -45,5 +46,26 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('admin.login');
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * This is an override of the same method that is located the
+     * \Illuminate\Foundation\Auth\AuthenticatesUsers trait. This
+     * override explicitly removes the call to the session.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        // This is explicitly removed.
+        // $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
     }
 }
