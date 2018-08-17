@@ -135,7 +135,7 @@ Route::prefix('gestion')
     // ]);
 
     // Route to log out of the application.
-    $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
     // Redirect the fools who might try to make a GET request on the logout URL.
     // We redirect them to the login form to prevent an exception to be thrown.
