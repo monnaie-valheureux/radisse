@@ -4,6 +4,7 @@ namespace App;
 
 use DateTime;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -68,7 +69,7 @@ class Partner extends Model
 
         // Add some global query scopes if we are *not* in
         // the administration area of the application.
-        if (!request()->is('gestion/*')) {
+        if (!Route::isAdmin()) {
 
             // Add a default global scope to all select queries on the model.
             // This will exclude former partners, who left the network of
