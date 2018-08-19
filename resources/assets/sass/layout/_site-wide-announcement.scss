@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------------
+// The .site-wide-announcement component is used to display a block at the
+// top of most public pages of the website. This block can contain a small
+// sentence and a link. Its goal is to get peoples’s attention and direct
+// them to a specific page containing more information.
+// -----------------------------------------------------------------------------
+
+
+.site-wide-announcement {
+  @include fix-light-text-on-dark-background;
+  padding: 1rem;
+  background-color: #518c1a;
+  border-bottom: 2px solid #40661c;
+  color: $white;
+  text-align: center;
+
+  /**
+   * 1. Adjust padding and font size for wide viewports.
+   */
+  @include media('≥medium') {
+    padding: 1.6rem; // 1
+    font-size: 2rem; // 1
+  }
+}
+
+/**
+ * 1. Ensure that the link will be easily readable, by providing
+ *    enough contrast by overwriting its default color.
+ */
+.site-wide-announcement a {
+  color: $white; // 1
+}
