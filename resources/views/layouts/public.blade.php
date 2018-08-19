@@ -49,6 +49,9 @@
 @else
 <body>
 @endif
+    {{-- Include a site-wide announcement if there is one. --}}
+    @include('components.site-wide-component')
+
     <div class="site-header">
         <div class="site-header-elements">
 
