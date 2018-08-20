@@ -7,6 +7,17 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.11.0] - 2018-08-20
+### Added
+- Added a site-wide announcement system, which can be used to get peoples’s attention and direct them to a specific page containing more information about a given topic.
+- (on the server) Added a strict Content Security Policy.
+- (on the server) Added a same-origin Referrer Policy.
+
+### Changed
+- Public pages do not use any cookie any more 🍪🔥🎉
+- Improved security of session cookies in the administration area.
+- (on the server) Changed X-Frame-Options response header from SAMEORIGIN to DENY.
+
 ## [1.10.0] - 2018-08-15
 ### Added
 - Added the possibility to request the deletion of a partner in the administration area.
@@ -85,7 +96,8 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.7.0...v1.8.0
