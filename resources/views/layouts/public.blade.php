@@ -49,6 +49,9 @@
 @else
 <body>
 @endif
+    {{-- Include a site-wide announcement if there is one. --}}
+    @include('components.site-wide-component')
+
     <div class="site-header">
         <div class="site-header-elements">
 
@@ -103,6 +106,9 @@
                 <li><a href="/partenaires">Où peut-on les utiliser ?</a></li>
             </ul>
         </div>
+    </div>
+    <div class="no-cookie-mention">
+        Ce site respecte votre vie privée et n’utilise aucun cookie.
     </div>
 
     @stack('body-scripts')
