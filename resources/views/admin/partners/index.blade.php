@@ -52,7 +52,7 @@
                 @if ($partner->left_on)
                 <li class="former-partner">
                     <span class="partner-name">
-                        {{ $partner->name_sort }}
+                        {{ $partner->name_sort ?? $partner->name }}
                     </span>
                     <br>
                     <span class="partner-left-on">
@@ -64,7 +64,7 @@
                 <li>
                     <a href="{{ route('partner', $partner) }}">
                         <span class="partner-name">
-                            {{ $partner->name_sort }}
+                            {{ $partner->name_sort ?? $partner->name }}
                         </span>
                     </a>
 
@@ -106,7 +106,7 @@
                     @if ($partner->left_on)
                     <li class="former-partner">
                         <span class="partner-name">
-                            {{ $partner->name_sort }}
+                            {{ $partner->name_sort ?? $partner->name }}
                         </span>
                         <br>
                         <span class="partner-left-on">
@@ -118,7 +118,7 @@
                     <li>
                         <a href="{{ route('partner', $partner) }}">
                             <span class="partner-name">
-                                {{ $partner->name_sort }}
+                                {{ $partner->name_sort ?? $partner->name }}
                             </span>
                         </a>
 
@@ -182,7 +182,7 @@
             @else
             <li>
             @endif
-                <span class="partner-name">{{ $partner->name_sort }}</span>
+                <span class="partner-name">{{ $partner->name_sort ?? $partner->name }}</span>
 
                 @if ($partner->team)
                     <span style="padding-left: 0.5em; color: #017891; font-size: 0.8em">
