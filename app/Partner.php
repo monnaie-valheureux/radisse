@@ -58,9 +58,15 @@ class Partner extends Model
     {
         parent::boot();
 
-        // When a partner is created, we automatically
-        // generate a slug based on its name.
         static::creating(function (self $partner) {
+
+            // When a partner is created, we automatically save
+            // the ID of the team member who created it.
+            if (is_null($partner->creator_team_member_id)) {
+                $partner->creator_team_member_id = auth()->id();
+            }
+
+            // We also generate a slug based on the partner name.
             if (is_null($partner->slug)) {
                 $partner->slug = Str::slug($partner->name);
             }
