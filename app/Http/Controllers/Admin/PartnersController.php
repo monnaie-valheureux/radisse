@@ -22,8 +22,12 @@ class PartnersController extends Controller
         // Retrieve the team of the authenticated person.
         $team = auth()->user()->team;
 
-        $partners = Partner::with('team', 'locations.postalAddress')
-            ->orderBy('name_sort')->get();
+        $partners = Partner::with(
+            'team',
+            'locations.postalAddress',
+            'locations.currencyExchange'
+        )
+        ->orderBy('name_sort')->get();
 
         // We separate the list of partners in two categories: those that belong
         // to the team of the authenticated person, and those that don’t.
