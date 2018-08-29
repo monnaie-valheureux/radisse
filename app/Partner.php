@@ -147,6 +147,19 @@ class Partner extends Model
     }
 
     /**
+     * Get the team member who created this partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function creator()
+    {
+        return $this->belongsTo(
+            TeamMember::class,
+            $foreignKey = 'creator_team_member_id'
+        );
+    }
+
+    /**
      * Get the team member who validated this partner.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

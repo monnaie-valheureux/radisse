@@ -247,6 +247,20 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    function can_retrieve_the_team_member_who_created_it()
+    {
+        // Create a team member and then a partner associated to it.
+        $teamMember = factory(TeamMember::class)->create();
+
+        $partner = factory(Partner::class)->create([
+            'creator_team_member_id' => $teamMember->id,
+        ]);
+
+        // Check that we got the correct data.
+        $this->assertEquals($teamMember->id, $partner->creator->id);
+    }
+
+    /** @test */
     function does_not_select_nonvalidated_partners_by_default()
     {
         $validatedPartnerA = factory(Partner::class)->create([
