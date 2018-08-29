@@ -37,9 +37,12 @@ class PartnersController extends Controller
             }
         );
 
-        // Group partners by the initial letter of their sort name.
+        // Group partners by the initial letter of their name.
         $teamPartners = $teamPartners->groupBy(function ($partner) {
-            $firstLetter = Str::substr($partner->name_sort, 0, 1);
+            // Use the sort name if possible, or the ‘normal’ name otherwise.
+            $name = $partner->name_sort ?? $partner->name;
+            $firstLetter = Str::substr($name, 0, 1);
+
             // Converting to ASCII allows to put letters
             // like ‘A’ and ‘À’ in the same group.
             return Str::ascii($firstLetter);
@@ -47,9 +50,12 @@ class PartnersController extends Controller
         // Then, for each letter, sort partners alphabetically.
         ->map(function ($partners) {
            return $partners->sortBy(function ($partner) {
+                // Use the sort name if possible, or the ‘normal’ name otherwise.
+                $name = $partner->name_sort ?? $partner->name;
+
                 // Converting the names to lowercase ASCII before sorting them
                 // prevents the dumb sorting algorithm to produce bad results.
-                return Str::ascii(Str::lower($partner->name_sort));
+                return Str::ascii(Str::lower($name));
            });
         });
 
