@@ -102,7 +102,7 @@ class TeamMember extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function partners()
+    public function endorsedPartners()
     {
         return $this->hasMany(Partner::class, $foreignKey = 'endorser_team_member_id');
     }

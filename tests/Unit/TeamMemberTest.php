@@ -111,7 +111,7 @@ class TeamMemberTest extends TestCase
         ]);
 
         // Retrieve the partners.
-        $retrievedPartners = $teamMember->partners;
+        $retrievedPartners = $teamMember->endorsedPartners;
 
         // Check that we got the correct data.
         $this->assertEquals(
