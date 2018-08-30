@@ -25,6 +25,29 @@
     </p>
 
 
+    {{--
+        If there is one, display the list of partners that the authenticated
+        team member created and that are not validated yet.
+    --}}
+    @if (count($wipPartners))
+        <h3 id="mes-partenaires">
+            Mes partenaires en cours d’encodage ({{ count($wipPartners) }})
+        </h3>
+
+        <ul class="partner-list">
+            @foreach ($wipPartners as $partner)
+                <li>
+                    <a href="{{ route('partner', $partner) }}">
+                        <span class="partner-name">
+                            {{ $partner->name_sort ?? $partner->name }}
+                        </span>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+
+
     <h3 id="mon-val">
         Partenaires du val {{ auth()->user()->team->name }}
         ({{ $teamPartnersCount }})
