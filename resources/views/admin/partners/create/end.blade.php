@@ -3,6 +3,13 @@
 @section('title', 'Ajouter un nouveau prestataire partenaire')
 
 @section('content')
+
+    @breadcrumbs([
+        route('partners.index') => 'Gérer les partenaires',
+        route('partner', $partner->slug) => $partner->name,
+        'Validation',
+    ])
+
     <h2>Voilà, c’est fini !</h2>
 
     <p>Le partenaire « {{ $partner->name }} » a été ajouté au site !</p>
