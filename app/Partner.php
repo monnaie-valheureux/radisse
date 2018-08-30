@@ -58,9 +58,15 @@ class Partner extends Model
     {
         parent::boot();
 
-        // When a partner is created, we automatically
-        // generate a slug based on its name.
         static::creating(function (self $partner) {
+
+            // When a partner is created, we automatically save
+            // the ID of the team member who created it.
+            if (is_null($partner->creator_team_member_id)) {
+                $partner->creator_team_member_id = auth()->id();
+            }
+
+            // We also generate a slug based on the partner name.
             if (is_null($partner->slug)) {
                 $partner->slug = Str::slug($partner->name);
             }
@@ -143,6 +149,19 @@ class Partner extends Model
         return $this->belongsTo(
             TeamMember::class,
             $foreignKey = 'endorser_team_member_id'
+        );
+    }
+
+    /**
+     * Get the team member who created this partner.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function creator()
+    {
+        return $this->belongsTo(
+            TeamMember::class,
+            $foreignKey = 'creator_team_member_id'
         );
     }
 

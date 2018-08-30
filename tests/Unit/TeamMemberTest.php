@@ -101,6 +101,30 @@ class TeamMemberTest extends TestCase
     }
 
     /** @test */
+    function can_retrieve_the_partners_it_created()
+    {
+        // Create a team member and two partners created by it.
+        $teamMember = factory(TeamMember::class)->create();
+
+        $partners = factory(Partner::class, 2)->create([
+            'creator_team_member_id' => $teamMember->id,
+        ]);
+
+        // Retrieve the partners.
+        $retrievedPartners = $teamMember->partners;
+
+        // Check that we got the correct data.
+        $this->assertEquals(
+            $teamMember->id,
+            $retrievedPartners->get(0)->creator_team_member_id
+        );
+        $this->assertEquals(
+            $teamMember->id,
+            $retrievedPartners->get(1)->creator_team_member_id
+        );
+    }
+
+    /** @test */
     function can_retrieve_its_endorsed_partners()
     {
         // Create a team member and two partners associated with it.
@@ -111,7 +135,7 @@ class TeamMemberTest extends TestCase
         ]);
 
         // Retrieve the partners.
-        $retrievedPartners = $teamMember->partners;
+        $retrievedPartners = $teamMember->endorsedPartners;
 
         // Check that we got the correct data.
         $this->assertEquals(

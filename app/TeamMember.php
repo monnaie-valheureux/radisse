@@ -98,11 +98,21 @@ class TeamMember extends Authenticatable
     }
 
     /**
-     * Get the partners that the team member caused to sign the official documents.
+     * Get the partners that the team member created in the application.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function partners()
+    {
+        return $this->hasMany(Partner::class, $foreignKey = 'creator_team_member_id');
+    }
+
+    /**
+     * Get the partners that the team member caused to sign the official documents.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function endorsedPartners()
     {
         return $this->hasMany(Partner::class, $foreignKey = 'endorser_team_member_id');
     }

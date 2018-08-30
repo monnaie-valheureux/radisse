@@ -247,6 +247,38 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    public function can_save_the_team_member_who_create_the_partner()
+    {
+        // Create a team member and then authenticate it.
+        $teamMember = factory(TeamMember::class)->create();
+        $this->actingAs($teamMember);
+
+        // Then, create a partner.
+        $partner = factory(Partner::class)->create([
+            'name' => 'Boucherie Sanzot',
+            // Ensure there is no defined ID before creating the model.
+            'creator_team_member_id' => null,
+        ]);
+
+        // Check that a slug has been properly generated.
+        $this->assertSame($teamMember->id, $partner->creator_team_member_id);
+    }
+
+    /** @test */
+    function can_retrieve_the_team_member_who_created_it()
+    {
+        // Create a team member and then a partner associated to it.
+        $teamMember = factory(TeamMember::class)->create();
+
+        $partner = factory(Partner::class)->create([
+            'creator_team_member_id' => $teamMember->id,
+        ]);
+
+        // Check that we got the correct data.
+        $this->assertEquals($teamMember->id, $partner->creator->id);
+    }
+
+    /** @test */
     function does_not_select_nonvalidated_partners_by_default()
     {
         $validatedPartnerA = factory(Partner::class)->create([
