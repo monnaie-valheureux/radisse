@@ -85,9 +85,26 @@ class PartnersController extends Controller
         $otherPartnersCount = count($otherPartners->collapse());
         $otherPartnersInitials = $otherPartners->keys();
 
+
+        // Get the list of partners that the authenticated team
+        // member created and that are not validated yet.
+        $wipPartners = Partner::where('creator_team_member_id', auth()->id())
+            ->whereNull('validated_at')
+            ->get()
+            ->sortBy(function ($partner) {
+                // Use the sort name if possible, or the ‘normal’ name otherwise.
+                $name = $partner->name_sort ?? $partner->name;
+
+                // Converting the names to lowercase ASCII before sorting them
+                // prevents the dumb sorting algorithm to produce bad results.
+                return Str::ascii(Str::lower($name));
+           });
+
+
         // The list of partners is now ready for the view.
         return view('admin.partners.index', compact(
             'partners',
+            'wipPartners',
             'teamPartners', 'teamPartnersCount', 'teamPartnersInitials',
             'otherPartners', 'otherPartnersCount', 'otherPartnersInitials'
         ));
