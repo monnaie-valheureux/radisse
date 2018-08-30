@@ -20,6 +20,12 @@
         </p>
     </form>
 
+    <p>
+        <a href="{{ route('partners.index') }}">
+            Revenir à la liste de tous les partenaires
+        </a>
+    </p>
+
     <h3>Un problème ? Une question ?</h3>
 
     <p>L’essentiel de cet outil fonctionne, mais il doit encore évoluer un peu. Ça viendra. En attendant, il est déjà utilisable pour ajouter les nouveaux partenaires.</p>
