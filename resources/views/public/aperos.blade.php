@@ -13,6 +13,9 @@
             <li>tisser et renforcer les liens entre les différents acteurs de l’économie locale.</li>
         </ul>
 
-        <p>Après une année riche en excellentes soirées, innombrables Val’heureuses et interminables discussions, les apéros font une petite <strong>pause estivale</strong>, mais ils reviendront vite !</p>
+        <p>Dates des prochains apéros (de 18h à 21h) :</p>
+        <ul>
+            <li>le <strong>20 septembre</strong>, sur le site d’« Agimont » (ancienne menuiserie de la ville de Liège), en partenariat avec <strong>Novacitis</strong>, <a href="/partenaires/le-temps-des-cerises">le Temps des Cerises</a> et <strong>Créasol</strong> (rue de l’académie 53, 4000 Liège).</li>
+        </ul>
     </div>
 @endsection
