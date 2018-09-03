@@ -25,6 +25,29 @@
     </p>
 
 
+    {{--
+        If there is one, display the list of partners that the authenticated
+        team member created and that are not validated yet.
+    --}}
+    @if (count($wipPartners))
+        <h3 id="mes-partenaires">
+            Mes partenaires en cours d’encodage ({{ count($wipPartners) }})
+        </h3>
+
+        <ul class="partner-list">
+            @foreach ($wipPartners as $partner)
+                <li>
+                    <a href="{{ route('partner', $partner) }}">
+                        <span class="partner-name">
+                            {{ $partner->name_sort ?? $partner->name }}
+                        </span>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+
+
     <h3 id="mon-val">
         Partenaires du val {{ auth()->user()->team->name }}
         ({{ $teamPartnersCount }})
@@ -52,7 +75,7 @@
                 @if ($partner->left_on)
                 <li class="former-partner">
                     <span class="partner-name">
-                        {{ $partner->name_sort }}
+                        {{ $partner->name_sort ?? $partner->name }}
                     </span>
                     <br>
                     <span class="partner-left-on">
@@ -64,7 +87,7 @@
                 <li>
                     <a href="{{ route('partner', $partner) }}">
                         <span class="partner-name">
-                            {{ $partner->name_sort }}
+                            {{ $partner->name_sort ?? $partner->name }}
                         </span>
                     </a>
 
@@ -106,7 +129,7 @@
                     @if ($partner->left_on)
                     <li class="former-partner">
                         <span class="partner-name">
-                            {{ $partner->name_sort }}
+                            {{ $partner->name_sort ?? $partner->name }}
                         </span>
                         <br>
                         <span class="partner-left-on">
@@ -118,7 +141,7 @@
                     <li>
                         <a href="{{ route('partner', $partner) }}">
                             <span class="partner-name">
-                                {{ $partner->name_sort }}
+                                {{ $partner->name_sort ?? $partner->name }}
                             </span>
                         </a>
 
@@ -182,7 +205,7 @@
             @else
             <li>
             @endif
-                <span class="partner-name">{{ $partner->name_sort }}</span>
+                <span class="partner-name">{{ $partner->name_sort ?? $partner->name }}</span>
 
                 @if ($partner->team)
                     <span style="padding-left: 0.5em; color: #017891; font-size: 0.8em">
