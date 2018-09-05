@@ -236,6 +236,20 @@ class Partner extends Model
     }
 
     /**
+     * Scope a query to only include active partners.
+     *
+     * This will exclude former partners, who
+     * left the network of the currency.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereNull('left_on');
+    }
+
+    /**
      * Scope a query to only include former partners.
      *
      * @param  \Illuminate\Database\Eloquent\Builder
