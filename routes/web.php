@@ -121,6 +121,9 @@ Route::prefix('gestion')
         // Route::view('-fini', 'admin.partners.create-end');
     });
 
+    Route::get('anciens-partenaires', 'FormerPartnersController@index')
+        ->name('former-partners');
+
     Route::view('partenaires/demarcher', 'admin.partners.canvass')
         ->name('canvass-partner');
 
