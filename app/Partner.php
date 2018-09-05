@@ -236,6 +236,17 @@ class Partner extends Model
     }
 
     /**
+     * Scope a query to only include former partners.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFormer($query)
+    {
+        return $query->whereNotNull('left_on');
+    }
+
+    /**
      * Save a new model as a ‘draft’ and return the instance.
      *
      * @param  array  $attributes
