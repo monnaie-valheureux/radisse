@@ -14,9 +14,6 @@ class FormerPartnersController extends Controller
      */
     public function index()
     {
-        // Retrieve the team of the authenticated person.
-        $team = auth()->user()->team;
-
         $formerPartners = Partner::former()
             ->with('team')
             ->orderByDesc('left_on')
