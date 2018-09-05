@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [Unreleased]
+### Added
+- Former partners are now listed on a dedicated admin page. As a result, they have been removed from the main list of partners, which now only lists the active ones.
+
 ## [1.12.0] - 2018-09-03
 ### Added
 - Partners now keep track of the team members who created them.
