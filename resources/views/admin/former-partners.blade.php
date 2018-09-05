@@ -23,7 +23,7 @@
                 <span class="partner-name">{{ $partner->name }}</span>
 
                 @if ($partner->team)
-                    <span>({{ $partner->team->name }})</span>
+                    <span>(val {{ $partner->team->name }})</span>
                 @else
                     <span>(val inconnu)</span>
                 @endif

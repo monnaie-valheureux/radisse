@@ -18,8 +18,8 @@
     </ul>
 
     <p>Pour modifier un partenaire, cliquez sur son nom dans la liste. Pour en ajouter un nouveau, utilisez le bouton juste ci-dessous.</p>
-    <p>En tout, <strong>{{ $teamPartnersCount + $otherPartnersCount }}</strong> prestataires partenaires sont enregistrés sur le site.</p>
-    <p>Voir la liste des <a href="{{ route('former-partners') }}">anciens partenaires</a>.</p>
+    <p>En tout, <strong>{{ $teamPartnersCount + $otherPartnersCount }}</strong> prestataires partenaires actifs sont enregistrés sur le site.</p>
+    <p>Vous pouvez aussi voir la liste des <a href="{{ route('former-partners') }}">anciens partenaires</a>.</p>
 
     <p>
         <a href="{{ route('create-partner') }}" class="btn">Ajouter un nouveau partenaire</a>
