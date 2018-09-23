@@ -19,8 +19,10 @@ class FormerPartnersController extends Controller
             ->orderByDesc('left_on')
             ->get();
 
+        // Count how many former partners there are.
         $formerPartnersCount = count($formerPartners);
 
+        // Categorize the partners by the year and month of their leaving date.
         $formerPartners = $formerPartners->groupBy(function ($partner) {
             $month = $partner->left_on->format('F');
             $year = $partner->left_on->format('Y');
