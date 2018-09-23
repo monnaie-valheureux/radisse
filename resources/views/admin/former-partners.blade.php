@@ -22,6 +22,12 @@
             <li>
                 <span class="partner-name">{{ $partner->name }}</span>
 
+                @if ($partner->reason_for_leaving)
+                    <span class="reason-for-leaving">
+                        ({{ $partner->reason_for_leaving }})
+                    </span>
+                @endif
+
                 @if ($partner->team)
                     <span>(val {{ $partner->team->name }})</span>
                 @else
