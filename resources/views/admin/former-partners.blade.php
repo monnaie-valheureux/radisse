@@ -31,7 +31,7 @@
 
     <h2>Anciens partenaires</h2>
 
-    <p>Voici la liste des <strong>{{ $formerPartnersCount }}</strong> prestataires partenaires ayant quitté le réseau, triés par date de sortie.</p>
+    <p>Voici la liste des <strong>{{ $formerPartnersCount }}</strong> prestataires partenaires ayant quitté le réseau, triés par dates de sortie, des plus récentes aux plus anciennes.</p>
 
     @foreach ($formerPartners as $month => $partners)
 
