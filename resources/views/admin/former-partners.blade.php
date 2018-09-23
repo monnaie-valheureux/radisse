@@ -4,6 +4,26 @@
 
 @section('content')
 
+    <style>
+        .team-name {
+            display: block;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: rgb(0, 148, 179);
+        }
+        @media (min-width: 750px) {
+            .team-name {
+                font-size: 1.6rem;
+                font-family: 'museo_sans700';
+            }
+        }
+
+        .reason-for-leaving {
+            display: block;
+            color: #777;
+        }
+    </style>
+
     @breadcrumbs([
         route('partners.index') => 'Gérer les partenaires',
         'Anciens partenaires',
@@ -29,9 +49,9 @@
                 @endif
 
                 @if ($partner->team)
-                    <span>(val {{ $partner->team->name }})</span>
+                    <span class="team-name">Val {{ $partner->team->name }}</span>
                 @else
-                    <span>(val inconnu)</span>
+                    <span class="team-name team-name--unknown">Val inconnu</span>
                 @endif
             </li>
         @endforeach
