@@ -322,7 +322,7 @@ class PostalAddress extends ContactDetails
     {
         return
             '<p class="h-adr" translate="no">'."\n".
-            '<span class="p-street-addres">'.ucfirst($this->street).
+            '<span class="p-street-address">'.ucfirst($this->street).
             ' '.
             $this->streetNumber.'</span><br>'."\n".
             '<span class="p-locality">'.$this->city.'</span>'."\n".

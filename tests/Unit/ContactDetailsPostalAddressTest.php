@@ -180,7 +180,7 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             '<p class="h-adr" translate="no">'."\n".
-            '<span class="p-street-addres">Rue du Château 1</span><br>'."\n".
+            '<span class="p-street-address">Rue du Château 1</span><br>'."\n".
             '<span class="p-locality">Moulinsart</span>'."\n".
             '</p>',
             $address->toSimplifiedHtml()
