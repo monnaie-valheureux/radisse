@@ -328,7 +328,7 @@ class PostalAddress extends ContactDetails
     public function __toString()
     {
         return
-            $this->formatAddressLine1($this->parts)."\n".
+            ucfirst($this->formatAddressLine1($this->parts))."\n".
             $this->parts->postal_code.' '.$this->parts->city;
     }
 
