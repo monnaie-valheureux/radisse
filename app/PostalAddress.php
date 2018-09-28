@@ -4,10 +4,6 @@ namespace App;
 
 use stdClass;
 use DomainException;
-use CommerceGuys\Addressing\Model\Address;
-use Symfony\Component\Validator\Validation as SymfonyValidator;
-use CommerceGuys\Addressing\Validator\Constraints\Country as CountryRule;
-use CommerceGuys\Addressing\Validator\Constraints\AddressFormat as AddressFormatRule;
 
 class PostalAddress extends ContactDetails
 {
@@ -88,29 +84,6 @@ class PostalAddress extends ContactDetails
     }
 
     /**
-     * Create a CommerceGuys Address instance from the data of the model.
-     *
-     * @param  \stdClass|null  $parts
-     *
-     * @return \CommerceGuys\Addressing\Model\Address
-     */
-    protected function toAddressObject(stdClass $parts = null)
-    {
-        // Use the internal data if no argument has been passed.
-        $parts = $parts ?? $this->parts;
-
-        $this->validatePresenceOfRequiredAddressParts($parts);
-
-        return (new Address)
-            ->withRecipient($parts->recipient)
-            ->withAddressLine1($this->formatAddressLine($parts))
-            ->withPostalCode($parts->postal_code)
-            ->withLocality($parts->city)
-            ->withCountryCode($this->countryCode)
-            ->withLocale(config('app.locale'));
-    }
-
-    /**
      * Helper method to format an address line from address parts.
      *
      * @param  \stdClass  $parts
@@ -131,35 +104,26 @@ class PostalAddress extends ContactDetails
     /**
      * Check if a given postal address is valid.
      *
-     * @param  stdClass|\CommerceGuys\Addressing\Model\Address  $address
+     * @param  array|stdClass  $parts
      *
      * @return void
      *
      * @throws \DomainException if the postal address is invalid.
      */
-    protected function validateAddress($address)
+    protected function validateAddress($parts)
     {
-        if ($address instanceof stdClass) {
-            $address = $this->toAddressObject($address);
-        }
-
-        $validator = SymfonyValidator::createValidator();
-
-        // First, we validate the country code.
-        $violations = $validator->validate(
-            $address->getCountryCode(),
-            new CountryRule
-        );
-
-        if ($violations->count()) {
-            throw new DomainException($violations->__toString());
-        }
-
-        // Second, we validate the rest of the address.
-        $violations = $validator->validate($address, new AddressFormatRule);
-
-        if ($violations->count()) {
-            throw new DomainException($violations->__toString());
+        if (
+            // The street name is mandatory.
+            empty($parts->street) ||
+            // The postal code is mandatory.
+            empty($parts->postal_code) ||
+            // The city name is mandatory.
+            empty($parts->city) ||
+            // The postal code must be composed of exactly four digits.
+            // See http://www.upu.int/fileadmin/documentsFiles/activities/addressingUnit/belEn.pdf
+            !preg_match('#^[0-9]{4}$#', $parts->postal_code)
+        ) {
+            throw new DomainException;
         }
     }
 
