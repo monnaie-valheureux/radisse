@@ -312,11 +312,11 @@ class PostalAddress extends ContactDetails
     function toSimplifiedHtml()
     {
         return
-            '<p translate="no">'."\n".
-            '<span class="address-line1">'.ucfirst($this->street).
+            '<p class="h-adr" translate="no">'."\n".
+            '<span class="p-street-addres">'.ucfirst($this->street).
             ' '.
             $this->streetNumber.'</span><br>'."\n".
-            '<span class="locality">'.$this->city.'</span>'."\n".
+            '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
     }
 

@@ -181,9 +181,9 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress();
 
         $this->assertSame(
-            '<p translate="no">'."\n".
-            '<span class="address-line1">Rue du Château 1</span><br>'."\n".
-            '<span class="locality">Moulinsart</span>'."\n".
+            '<p class="h-adr" translate="no">'."\n".
+            '<span class="p-street-addres">Rue du Château 1</span><br>'."\n".
+            '<span class="p-locality">Moulinsart</span>'."\n".
             '</p>',
             $address->toSimplifiedHtml()
         );
