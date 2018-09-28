@@ -200,7 +200,6 @@ class PostalAddress extends ContactDetails
     public function toSimplifiedString()
     {
         return
-            $this->recipient."\n".
             ucfirst($this->street).' '.$this->streetNumber."\n".
             $this->city;
     }

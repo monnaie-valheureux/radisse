@@ -151,7 +151,6 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress();
 
         $this->assertSame(
-            "Boucherie Sanzot\n".
             "Rue du Château 1\n".
             "Moulinsart",
             $address->toSimplifiedString()
