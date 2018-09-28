@@ -295,6 +295,15 @@ class PostalAddress extends ContactDetails
      */
     public function toHtml()
     {
+        return
+            '<p translate="no">'."\n".
+            '<span class="address-line1">'.$this->street.
+            ' '.
+            $this->streetNumber.'</span><br>'."\n".
+            '<span class="postal-code">'.$this->postalCode.'</span> '.
+            '<span class="locality">'.$this->city.'</span>'."\n".
+            '</p>';
+
         $address = $this->toAddressObject();
 
         return $this->getFormatter($asHtml = true)->format($address);

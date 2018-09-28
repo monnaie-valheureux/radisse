@@ -165,11 +165,9 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             '<p translate="no">'."\n".
-            '<span class="recipient">Boucherie Sanzot</span><br>'."\n".
             '<span class="address-line1">rue du Château 1</span><br>'."\n".
             '<span class="postal-code">1234</span> '.
-            '<span class="locality">Moulinsart</span><br>'."\n".
-            '<span class="country">Belgique</span>'."\n".
+            '<span class="locality">Moulinsart</span>'."\n".
             '</p>',
             $address->toHtml()
         );
