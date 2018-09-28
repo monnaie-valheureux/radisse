@@ -165,7 +165,7 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             '<p translate="no">'."\n".
-            '<span class="address-line1">rue du Château 1</span><br>'."\n".
+            '<span class="address-line1">Rue du Château 1</span><br>'."\n".
             '<span class="postal-code">1234</span> '.
             '<span class="locality">Moulinsart</span>'."\n".
             '</p>',

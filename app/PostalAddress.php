@@ -297,7 +297,7 @@ class PostalAddress extends ContactDetails
     {
         return
             '<p translate="no">'."\n".
-            '<span class="address-line1">'.$this->street.
+            '<span class="address-line1">'.ucfirst($this->street).
             ' '.
             $this->streetNumber.'</span><br>'."\n".
             '<span class="postal-code">'.$this->postalCode.'</span> '.
