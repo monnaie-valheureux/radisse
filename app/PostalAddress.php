@@ -72,7 +72,7 @@ class PostalAddress extends ContactDetails
      */
     protected function formatAddressLine(stdClass $parts, $usePostalFormat = true)
     {
-        $addressLine = $parts->street.' '.$parts->street_number;
+        $addressLine = ucfirst($parts->street).' '.$parts->street_number;
 
         if ($usePostalFormat && isset($parts->letter_box)) {
             $addressLine .= ' bte '.$parts->letter_box;
@@ -201,7 +201,7 @@ class PostalAddress extends ContactDetails
     public function toSimplifiedString()
     {
         return
-            ucfirst($this->formatAddressLine($this->parts, $usePostalFormat = false))."\n".
+            $this->formatAddressLine($this->parts, $usePostalFormat = false)."\n".
             $this->city;
     }
 
@@ -215,7 +215,7 @@ class PostalAddress extends ContactDetails
         return
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">'.
-            ucfirst($this->formatAddressLine($this->parts)).
+            $this->formatAddressLine($this->parts).
             '</span><br>'."\n".
             '<span class="p-postal-code">'.$this->postalCode.'</span> '.
             '<span class="p-locality">'.$this->city.'</span>'."\n".
@@ -236,7 +236,7 @@ class PostalAddress extends ContactDetails
         return
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">'.
-            ucfirst($this->formatAddressLine($this->parts, $usePostalFormat = false)).
+            $this->formatAddressLine($this->parts, $usePostalFormat = false).
             '</span><br>'."\n".
             '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
@@ -250,7 +250,7 @@ class PostalAddress extends ContactDetails
     public function __toString()
     {
         return
-            ucfirst($this->formatAddressLine($this->parts))."\n".
+            $this->formatAddressLine($this->parts)."\n".
             $this->parts->postal_code.' '.$this->parts->city;
     }
 }
