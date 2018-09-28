@@ -139,10 +139,8 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress();
 
         $this->assertSame(
-            "Boucherie Sanzot\n".
             "rue du Château 1\n".
-            "1234 Moulinsart\n".
-            "Belgique",
+            "1234 Moulinsart",
             $address->toString()
         );
     }
@@ -197,17 +195,13 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress();
 
         $this->assertSame(
-            "Boucherie Sanzot\n".
             "rue du Château 1\n".
-            "1234 Moulinsart\n".
-            "Belgique",
+            "1234 Moulinsart",
             $address->__toString()
         );
         $this->assertSame(
-            "Boucherie Sanzot\n".
             "rue du Château 1\n".
-            "1234 Moulinsart\n".
-            "Belgique",
+            "1234 Moulinsart",
             (string) $address
         );
     }
@@ -218,12 +212,10 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress(['letter_box' => '5']);
 
         $this->assertSame(
-            "Boucherie Sanzot\n".
             // The letter box number is added to this line.
             // /!\ This is specific to Belgian postal services /!\
             "rue du Château 1 bte 5\n".
-            "1234 Moulinsart\n".
-            "Belgique",
+            "1234 Moulinsart",
             $address->__toString()
         );
     }
