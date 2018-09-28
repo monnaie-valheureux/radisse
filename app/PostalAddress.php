@@ -66,14 +66,15 @@ class PostalAddress extends ContactDetails
      * Helper method to format an address line from address parts.
      *
      * @param  \stdClass  $parts
+     * @param  bool  $usePostalFormat
      *
      * @return string
      */
-    protected function formatAddressLine(stdClass $parts)
+    protected function formatAddressLine(stdClass $parts, $usePostalFormat = true)
     {
         $addressLine = $parts->street.' '.$parts->street_number;
 
-        if (isset($parts->letter_box)) {
+        if ($usePostalFormat && isset($parts->letter_box)) {
             $addressLine .= ' bte '.$parts->letter_box;
         }
 
@@ -200,7 +201,7 @@ class PostalAddress extends ContactDetails
     public function toSimplifiedString()
     {
         return
-            ucfirst($this->street).' '.$this->streetNumber."\n".
+            ucfirst($this->formatAddressLine($this->parts, $usePostalFormat = false))."\n".
             $this->city;
     }
 
@@ -234,9 +235,9 @@ class PostalAddress extends ContactDetails
     {
         return
             '<p class="h-adr" translate="no">'."\n".
-            '<span class="p-street-address">'.ucfirst($this->street).
-            ' '.
-            $this->streetNumber.'</span><br>'."\n".
+            '<span class="p-street-address">'.
+            ucfirst($this->formatAddressLine($this->parts, $usePostalFormat = false)).
+            '</span><br>'."\n".
             '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
     }
