@@ -22,6 +22,13 @@ class PostalAddress extends ContactDetails
     protected $parts;
 
     /**
+     * Whether or not the address should be formatted for postal mail delivery.
+     *
+     * @var bool
+     */
+    public $usePostalFormat = false;
+
+    /**
      * Create a new instance from an array of address components.
      *
      * @param  array  $parts
@@ -182,6 +189,21 @@ class PostalAddress extends ContactDetails
                 parent::__set($name, $value);
                 break;
         }
+    }
+
+    /**
+     * Return a copy of the address which will be
+     * formatted for postal mail delivery.
+     *
+     * @return static
+     */
+    public function asPostalMail()
+    {
+        $clone = clone $this;
+
+        $clone->usePostalFormat = true;
+
+        return $clone;
     }
 
     /**
