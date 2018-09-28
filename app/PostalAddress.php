@@ -15,32 +15,11 @@ class PostalAddress extends ContactDetails
     protected $type = 'postal-address';
 
     /**
-     * The ISO 3166-1 alpha-2 code of the country where the currency is used.
-     * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-     *
-     * @var string
-     */
-    protected $countryCode;
-
-    /**
      * The components of the postal address.
      *
      * @var \stdClass
      */
     protected $parts;
-
-    /**
-     * Create a new ContactDetails model instance of type ‘postal-address’.
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->countryCode = config('radisse.country_code');
-    }
 
     /**
      * Create a new instance from an array of address components.
