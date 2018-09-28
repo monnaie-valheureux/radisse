@@ -91,44 +91,22 @@ class PostalAddress extends ContactDetails
      */
     protected function validateAddress($parts)
     {
-        if (
-            // The street name is mandatory.
-            empty($parts->street) ||
-            // The postal code is mandatory.
-            empty($parts->postal_code) ||
-            // The city name is mandatory.
-            empty($parts->city) ||
-            // The postal code must be composed of exactly four digits.
-            // See http://www.upu.int/fileadmin/documentsFiles/activities/addressingUnit/belEn.pdf
-            !preg_match('#^[0-9]{4}$#', $parts->postal_code)
-        ) {
-            throw new DomainException;
-        }
-    }
-
-    /**
-     * Check if all of the required components of an address are present.
-     *
-     * @param  \stdClass  $address
-     *
-     * @return void
-     *
-     * @throws \DomainException if at least one required component is missing.
-     */
-    protected function validatePresenceOfRequiredAddressParts(stdClass $address)
-    {
-        $requiredParts = [
-            'recipient',
-            'street', 'street_number',
-            'postal_code', 'city'
-        ];
+        $requiredParts = ['street', 'postal_code', 'city'];
 
         foreach ($requiredParts as $part) {
-            if (!isset($address->{$part})) {
+            if (empty($parts->{$part})) {
                 throw new DomainException(
                     "Missing [{$part}] component in postal address."
                 );
             }
+        }
+
+        // The postal code must be composed of exactly four digits.
+        // See http://www.upu.int/fileadmin/documentsFiles/activities/addressingUnit/belEn.pdf
+        if (!preg_match('#^[0-9]{4}$#', $parts->postal_code)) {
+            throw new DomainException(
+                "Postal code [{$parts->postal_code}] is invalid."
+            );
         }
     }
 
