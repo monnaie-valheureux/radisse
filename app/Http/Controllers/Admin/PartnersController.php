@@ -22,7 +22,8 @@ class PartnersController extends Controller
         // Retrieve the team of the authenticated person.
         $team = auth()->user()->team;
 
-        $partners = Partner::with(
+        // Take only the partners that are active.
+        $partners = Partner::active()->with(
             'team',
             'locations.postalAddress',
             'locations.currencyExchange'
