@@ -37,6 +37,14 @@ class ContactDetailsPostalAddressTest extends TestCase
         $this->assertInstanceOf(PostalAddress::class, $address);
     }
 
+    /** @test */
+    function the_street_number_is_optional()
+    {
+        $address = $this->makeTestAddress(['street_number' => null]);
+
+        $this->assertInstanceOf(PostalAddress::class, $address);
+    }
+
     /**
      * @test
      * @expectedException DomainException
@@ -79,6 +87,11 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress(['street_number' => '1']);
 
         $this->assertSame('1', $address->streetNumber);
+
+
+        $address = $this->makeTestAddress(['street_number' => null]);
+
+        $this->assertSame(null, $address->streetNumber);
     }
 
     /** @test */
@@ -143,6 +156,15 @@ class ContactDetailsPostalAddressTest extends TestCase
             "1234 Moulinsart",
             $address->toString()
         );
+
+        // Ensure it also works well without any street number.
+        $address = $this->makeTestAddress(['street_number' => null]);
+
+        $this->assertSame(
+            "Rue du Château\n".
+            "1234 Moulinsart",
+            $address->toString()
+        );
     }
 
     /** @test */
@@ -152,6 +174,15 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             "Rue du Château 1\n".
+            "Moulinsart",
+            $address->toSimplifiedString()
+        );
+
+        // Ensure it also works well without any street number.
+        $address = $this->makeTestAddress(['street_number' => null]);
+
+        $this->assertSame(
+            "Rue du Château\n".
             "Moulinsart",
             $address->toSimplifiedString()
         );
@@ -170,6 +201,18 @@ class ContactDetailsPostalAddressTest extends TestCase
             '</p>',
             $address->toHtml()
         );
+
+        // Ensure it also works well without any street number.
+        $address = $this->makeTestAddress(['street_number' => null]);
+
+        $this->assertSame(
+            '<p class="h-adr" translate="no">'."\n".
+            '<span class="p-street-address">Rue du Château</span><br>'."\n".
+            '<span class="p-postal-code">1234</span> '.
+            '<span class="p-locality">Moulinsart</span>'."\n".
+            '</p>',
+            $address->toHtml()
+        );
     }
 
     /** @test */
@@ -180,6 +223,17 @@ class ContactDetailsPostalAddressTest extends TestCase
         $this->assertSame(
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">Rue du Château 1</span><br>'."\n".
+            '<span class="p-locality">Moulinsart</span>'."\n".
+            '</p>',
+            $address->toSimplifiedHtml()
+        );
+
+        // Ensure it also works well without any street number.
+        $address = $this->makeTestAddress(['street_number' => null]);
+
+        $this->assertSame(
+            '<p class="h-adr" translate="no">'."\n".
+            '<span class="p-street-address">Rue du Château</span><br>'."\n".
             '<span class="p-locality">Moulinsart</span>'."\n".
             '</p>',
             $address->toSimplifiedHtml()

@@ -72,7 +72,11 @@ class PostalAddress extends ContactDetails
      */
     protected function formatAddressLine(stdClass $parts, $usePostalFormat = true)
     {
-        $addressLine = ucfirst($parts->street).' '.$parts->street_number;
+        $addressLine = ucfirst($parts->street);
+
+        if ($parts->street_number) {
+            $addressLine .= ' '.$parts->street_number;
+        }
 
         if ($usePostalFormat && isset($parts->letter_box)) {
             $addressLine .= ' bte '.$parts->letter_box;
