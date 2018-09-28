@@ -5,10 +5,6 @@ namespace App;
 use stdClass;
 use DomainException;
 use CommerceGuys\Addressing\Model\Address;
-use CommerceGuys\Addressing\Formatter\DefaultFormatter;
-use CommerceGuys\Addressing\Repository\CountryRepository;
-use CommerceGuys\Addressing\Repository\SubdivisionRepository;
-use CommerceGuys\Addressing\Repository\AddressFormatRepository;
 use Symfony\Component\Validator\Validation as SymfonyValidator;
 use CommerceGuys\Addressing\Validator\Constraints\Country as CountryRule;
 use CommerceGuys\Addressing\Validator\Constraints\AddressFormat as AddressFormatRule;
@@ -303,10 +299,6 @@ class PostalAddress extends ContactDetails
             '<span class="p-postal-code">'.$this->postalCode.'</span> '.
             '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
-
-        $address = $this->toAddressObject();
-
-        return $this->getFormatter($asHtml = true)->format($address);
     }
 
     /**
@@ -339,25 +331,5 @@ class PostalAddress extends ContactDetails
         return
             ucfirst($this->formatAddressLine($this->parts))."\n".
             $this->parts->postal_code.' '.$this->parts->city;
-    }
-
-    /**
-     * Get a postal address formatter
-     *
-     * @return \CommerceGuys\Addressing\Formatter\DefaultFormatter
-     */
-    protected function getFormatter($asHtml = false)
-    {
-        return new DefaultFormatter(
-            new AddressFormatRepository,
-            new CountryRepository,
-            new SubdivisionRepository,
-            $locale = config('app.locale'),
-            $options = [
-                'html' => $asHtml,
-                'html_tag' => 'p',
-                'html_attributes' => ['translate' => 'no'],
-            ]
-        );
     }
 }
