@@ -107,7 +107,7 @@ class PostalAddress extends ContactDetails
 
         return (new Address)
             ->withRecipient($parts->recipient)
-            ->withAddressLine1($this->formatAddressLine1($parts))
+            ->withAddressLine1($this->formatAddressLine($parts))
             ->withPostalCode($parts->postal_code)
             ->withLocality($parts->city)
             ->withCountryCode($this->countryCode)
@@ -121,7 +121,7 @@ class PostalAddress extends ContactDetails
      *
      * @return string
      */
-    protected function formatAddressLine1(stdClass $parts)
+    protected function formatAddressLine(stdClass $parts)
     {
         $addressLine = $parts->street.' '.$parts->street_number;
 
@@ -328,7 +328,7 @@ class PostalAddress extends ContactDetails
     public function __toString()
     {
         return
-            ucfirst($this->formatAddressLine1($this->parts))."\n".
+            ucfirst($this->formatAddressLine($this->parts))."\n".
             $this->parts->postal_code.' '.$this->parts->city;
     }
 
