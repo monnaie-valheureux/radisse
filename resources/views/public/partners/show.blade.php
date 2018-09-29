@@ -18,7 +18,7 @@
                         <div class="partner-page__address">
                             <dt>Adresse</dt>
                             <dd>
-                                {!! $location->postalAddress->toSimplifiedHtml() !!}
+                                {!! $location->postalAddress->toHtml() !!}
 
                                 {{--
                                     Add an indicator if the location

@@ -4,14 +4,6 @@ namespace App;
 
 use stdClass;
 use DomainException;
-use CommerceGuys\Addressing\Model\Address;
-use CommerceGuys\Addressing\Formatter\DefaultFormatter;
-use CommerceGuys\Addressing\Repository\CountryRepository;
-use CommerceGuys\Addressing\Repository\SubdivisionRepository;
-use CommerceGuys\Addressing\Repository\AddressFormatRepository;
-use Symfony\Component\Validator\Validation as SymfonyValidator;
-use CommerceGuys\Addressing\Validator\Constraints\Country as CountryRule;
-use CommerceGuys\Addressing\Validator\Constraints\AddressFormat as AddressFormatRule;
 
 class PostalAddress extends ContactDetails
 {
@@ -23,14 +15,6 @@ class PostalAddress extends ContactDetails
     protected $type = 'postal-address';
 
     /**
-     * The ISO 3166-1 alpha-2 code of the country where the currency is used.
-     * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-     *
-     * @var string
-     */
-    protected $countryCode;
-
-    /**
      * The components of the postal address.
      *
      * @var \stdClass
@@ -38,17 +22,11 @@ class PostalAddress extends ContactDetails
     protected $parts;
 
     /**
-     * Create a new ContactDetails model instance of type ‘postal-address’.
+     * Whether or not the address should be formatted for postal mail delivery.
      *
-     * @param  array  $attributes
-     * @return void
+     * @var bool
      */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->countryCode = config('radisse.country_code');
-    }
+    public $usePostalFormat = false;
 
     /**
      * Create a new instance from an array of address components.
@@ -92,104 +70,54 @@ class PostalAddress extends ContactDetails
     }
 
     /**
-     * Create a CommerceGuys Address instance from the data of the model.
-     *
-     * @param  \stdClass|null  $parts
-     *
-     * @return \CommerceGuys\Addressing\Model\Address
-     */
-    protected function toAddressObject(stdClass $parts = null)
-    {
-        // Use the internal data if no argument has been passed.
-        $parts = $parts ?? $this->parts;
-
-        $this->validatePresenceOfRequiredAddressParts($parts);
-
-        return (new Address)
-            ->withRecipient($parts->recipient)
-            ->withAddressLine1($this->formatAddressLine1($parts))
-            ->withPostalCode($parts->postal_code)
-            ->withLocality($parts->city)
-            ->withCountryCode($this->countryCode)
-            ->withLocale(config('app.locale'));
-    }
-
-    /**
-     * Helper method to format an address line from address parts.
+     * Helper method to format a street address line from address parts.
      *
      * @param  \stdClass  $parts
      *
      * @return string
      */
-    protected function formatAddressLine1(stdClass $parts)
+    protected function formatStreetAddress(stdClass $parts)
     {
-        $addressLine = $parts->street.' '.$parts->street_number;
+        $streetAddress = ucfirst($parts->street);
 
-        if (isset($parts->letter_box)) {
-            $addressLine .= ' bte '.$parts->letter_box;
+        if ($parts->street_number) {
+            $streetAddress .= ' '.$parts->street_number;
         }
 
-        return $addressLine;
+        if ($this->usePostalFormat && !empty($parts->letter_box)) {
+            $streetAddress .= ' bte '.$parts->letter_box;
+        }
+
+        return $streetAddress;
     }
 
     /**
      * Check if a given postal address is valid.
      *
-     * @param  stdClass|\CommerceGuys\Addressing\Model\Address  $address
+     * @param  array|stdClass  $parts
      *
      * @return void
      *
      * @throws \DomainException if the postal address is invalid.
      */
-    protected function validateAddress($address)
+    protected function validateAddress($parts)
     {
-        if ($address instanceof stdClass) {
-            $address = $this->toAddressObject($address);
-        }
-
-        $validator = SymfonyValidator::createValidator();
-
-        // First, we validate the country code.
-        $violations = $validator->validate(
-            $address->getCountryCode(),
-            new CountryRule
-        );
-
-        if ($violations->count()) {
-            throw new DomainException($violations->__toString());
-        }
-
-        // Second, we validate the rest of the address.
-        $violations = $validator->validate($address, new AddressFormatRule);
-
-        if ($violations->count()) {
-            throw new DomainException($violations->__toString());
-        }
-    }
-
-    /**
-     * Check if all of the required components of an address are present.
-     *
-     * @param  \stdClass  $address
-     *
-     * @return void
-     *
-     * @throws \DomainException if at least one required component is missing.
-     */
-    protected function validatePresenceOfRequiredAddressParts(stdClass $address)
-    {
-        $requiredParts = [
-            'recipient',
-            'street', 'street_number',
-            'postal_code', 'city'
-        ];
+        $requiredParts = ['street', 'postal_code', 'city'];
 
         foreach ($requiredParts as $part) {
-            if (!isset($address->{$part})) {
+            if (empty($parts->{$part})) {
                 throw new DomainException(
                     "Missing [{$part}] component in postal address."
                 );
             }
+        }
+
+        // The postal code must be composed of exactly four digits.
+        // See http://www.upu.int/fileadmin/documentsFiles/activities/addressingUnit/belEn.pdf
+        if (!preg_match('#^[0-9]{4}$#', $parts->postal_code)) {
+            throw new DomainException(
+                "Postal code [{$parts->postal_code}] is invalid."
+            );
         }
     }
 
@@ -263,6 +191,21 @@ class PostalAddress extends ContactDetails
     }
 
     /**
+     * Return a copy of the address which will be
+     * formatted for postal mail delivery.
+     *
+     * @return static
+     */
+    public function asPostalMail()
+    {
+        $clone = clone $this;
+
+        $clone->usePostalFormat = true;
+
+        return $clone;
+    }
+
+    /**
      * Return the address as a formatted string of text.
      *
      * @return string
@@ -273,19 +216,20 @@ class PostalAddress extends ContactDetails
     }
 
     /**
-     * Return a simplified address as a formatted string of text.
-     *
-     * This is similar to what `toString()` does except that addresses
-     * returned by this method do not include postal code nor country.
+     * Convert the address to its string representation.
      *
      * @return string
      */
-    public function toSimplifiedString()
+    public function __toString()
     {
-        return
-            $this->recipient."\n".
-            ucfirst($this->street).' '.$this->streetNumber."\n".
-            $this->city;
+        if ($this->usePostalFormat) {
+            return
+                $this->recipient."\n".
+                $this->formatStreetAddress($this->parts)."\n".
+                $this->parts->postal_code.' '.$this->parts->city;
+        }
+
+        return $this->formatStreetAddress($this->parts)."\n".$this->city;
     }
 
     /**
@@ -295,60 +239,30 @@ class PostalAddress extends ContactDetails
      */
     public function toHtml()
     {
-        $address = $this->toAddressObject();
+        if ($this->usePostalFormat) {
+            // Named addresses use the `h-card` microformat.
+            // See http://microformats.org/wiki/h-card
+            return
+                '<div class="h-card" translate="no">'.
+                    '<p class="p-name">'.$this->recipient.'</p>'.
+                    '<p class="p-adr h-adr">'.
+                        '<span class="p-street-address">'.
+                            $this->formatStreetAddress($this->parts).
+                        '</span><br>'.
+                        '<span class="p-postal-code">'.$this->postalCode.'</span> '.
+                        '<span class="p-locality">'.$this->city.'</span>'.
+                    '</p>'.
+                '</div>';
+        }
 
-        return $this->getFormatter($asHtml = true)->format($address);
-    }
-
-    /**
-     * Return a simplified address as an HTML string.
-     *
-     * This is similar to what `toHtml()` does except that
-     * addresses returned by this method do not include
-     * postal code nor the country.
-     *
-     * @return string
-     */
-    function toSimplifiedHtml()
-    {
+        // ‘Regular’ addresses use the `h-adr` microformat.
+        // See http://microformats.org/wiki/h-adr
         return
-            '<p translate="no">'."\n".
-            '<span class="address-line1">'.ucfirst($this->street).
-            ' '.
-            $this->streetNumber.'</span><br>'."\n".
-            '<span class="locality">'.$this->city.'</span>'."\n".
+            '<p class="h-adr" translate="no">'."\n".
+            '<span class="p-street-address">'.
+                $this->formatStreetAddress($this->parts).
+            '</span><br>'."\n".
+            '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
-    }
-
-    /**
-     * Convert the address to its string representation.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        $address = $this->toAddressObject();
-
-        return $this->getFormatter()->format($address);
-    }
-
-    /**
-     * Get a postal address formatter
-     *
-     * @return \CommerceGuys\Addressing\Formatter\DefaultFormatter
-     */
-    protected function getFormatter($asHtml = false)
-    {
-        return new DefaultFormatter(
-            new AddressFormatRepository,
-            new CountryRepository,
-            new SubdivisionRepository,
-            $locale = config('app.locale'),
-            $options = [
-                'html' => $asHtml,
-                'html_tag' => 'p',
-                'html_attributes' => ['translate' => 'no'],
-            ]
-        );
     }
 }
