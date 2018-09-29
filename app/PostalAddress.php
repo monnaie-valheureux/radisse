@@ -70,25 +70,25 @@ class PostalAddress extends ContactDetails
     }
 
     /**
-     * Helper method to format an address line from address parts.
+     * Helper method to format a street address line from address parts.
      *
      * @param  \stdClass  $parts
      *
      * @return string
      */
-    protected function formatAddressLine(stdClass $parts)
+    protected function formatStreetAddress(stdClass $parts)
     {
-        $addressLine = ucfirst($parts->street);
+        $streetAddress = ucfirst($parts->street);
 
         if ($parts->street_number) {
-            $addressLine .= ' '.$parts->street_number;
+            $streetAddress .= ' '.$parts->street_number;
         }
 
-        if ($this->usePostalFormat && isset($parts->letter_box)) {
-            $addressLine .= ' bte '.$parts->letter_box;
+        if ($this->usePostalFormat && !empty($parts->letter_box)) {
+            $streetAddress .= ' bte '.$parts->letter_box;
         }
 
-        return $addressLine;
+        return $streetAddress;
     }
 
     /**
@@ -225,11 +225,11 @@ class PostalAddress extends ContactDetails
         if ($this->usePostalFormat) {
             return
                 $this->recipient."\n".
-                $this->formatAddressLine($this->parts)."\n".
+                $this->formatStreetAddress($this->parts)."\n".
                 $this->parts->postal_code.' '.$this->parts->city;
         }
 
-        return $this->formatAddressLine($this->parts)."\n".$this->city;
+        return $this->formatStreetAddress($this->parts)."\n".$this->city;
     }
 
     /**
@@ -247,7 +247,7 @@ class PostalAddress extends ContactDetails
                     '<p class="p-name">'.$this->recipient.'</p>'.
                     '<p class="p-adr h-adr">'.
                         '<span class="p-street-address">'.
-                            $this->formatAddressLine($this->parts).
+                            $this->formatStreetAddress($this->parts).
                         '</span><br>'.
                         '<span class="p-postal-code">'.$this->postalCode.'</span> '.
                         '<span class="p-locality">'.$this->city.'</span>'.
@@ -260,7 +260,7 @@ class PostalAddress extends ContactDetails
         return
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">'.
-                $this->formatAddressLine($this->parts).
+                $this->formatStreetAddress($this->parts).
             '</span><br>'."\n".
             '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
