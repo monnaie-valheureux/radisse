@@ -73,11 +73,10 @@ class PostalAddress extends ContactDetails
      * Helper method to format an address line from address parts.
      *
      * @param  \stdClass  $parts
-     * @param  bool  $usePostalFormat
      *
      * @return string
      */
-    protected function formatAddressLine(stdClass $parts, $usePostalFormat = true)
+    protected function formatAddressLine(stdClass $parts)
     {
         $addressLine = ucfirst($parts->street);
 
@@ -85,7 +84,7 @@ class PostalAddress extends ContactDetails
             $addressLine .= ' '.$parts->street_number;
         }
 
-        if ($usePostalFormat && isset($parts->letter_box)) {
+        if ($this->usePostalFormat && isset($parts->letter_box)) {
             $addressLine .= ' bte '.$parts->letter_box;
         }
 
@@ -217,18 +216,20 @@ class PostalAddress extends ContactDetails
     }
 
     /**
-     * Return a simplified address as a formatted string of text.
-     *
-     * This is similar to what `toString()` does except that addresses
-     * returned by this method do not include postal code nor country.
+     * Convert the address to its string representation.
      *
      * @return string
      */
-    public function toSimplifiedString()
+    public function __toString()
     {
-        return
-            $this->formatAddressLine($this->parts, $usePostalFormat = false)."\n".
-            $this->city;
+        if ($this->usePostalFormat) {
+            return
+                $this->recipient."\n".
+                $this->formatAddressLine($this->parts)."\n".
+                $this->parts->postal_code.' '.$this->parts->city;
+        }
+
+        return $this->formatAddressLine($this->parts)."\n".$this->city;
     }
 
     /**
@@ -238,45 +239,30 @@ class PostalAddress extends ContactDetails
      */
     public function toHtml()
     {
+        if ($this->usePostalFormat) {
+            // Named addresses use the `h-card` microformat.
+            // See http://microformats.org/wiki/h-card
+            return
+                '<div class="h-card" translate="no">'.
+                    '<p class="p-name">'.$this->recipient.'</p>'.
+                    '<p class="p-adr h-adr">'.
+                        '<span class="p-street-address">'.
+                            $this->formatAddressLine($this->parts).
+                        '</span><br>'.
+                        '<span class="p-postal-code">'.$this->postalCode.'</span> '.
+                        '<span class="p-locality">'.$this->city.'</span>'.
+                    '</p>'.
+                '</div>';
+        }
+
+        // ‘Regular’ addresses use the `h-adr` microformat.
+        // See http://microformats.org/wiki/h-adr
         return
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">'.
-            $this->formatAddressLine($this->parts).
-            '</span><br>'."\n".
-            '<span class="p-postal-code">'.$this->postalCode.'</span> '.
-            '<span class="p-locality">'.$this->city.'</span>'."\n".
-            '</p>';
-    }
-
-    /**
-     * Return a simplified address as an HTML string.
-     *
-     * This is similar to what `toHtml()` does except that
-     * addresses returned by this method do not include
-     * postal code nor the country.
-     *
-     * @return string
-     */
-    function toSimplifiedHtml()
-    {
-        return
-            '<p class="h-adr" translate="no">'."\n".
-            '<span class="p-street-address">'.
-            $this->formatAddressLine($this->parts, $usePostalFormat = false).
+                $this->formatAddressLine($this->parts).
             '</span><br>'."\n".
             '<span class="p-locality">'.$this->city.'</span>'."\n".
             '</p>';
-    }
-
-    /**
-     * Convert the address to its string representation.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return
-            $this->formatAddressLine($this->parts)."\n".
-            $this->parts->postal_code.' '.$this->parts->city;
     }
 }

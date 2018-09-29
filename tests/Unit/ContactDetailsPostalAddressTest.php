@@ -153,7 +153,7 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             "Rue du Château 1\n".
-            "1234 Moulinsart",
+            "Moulinsart",
             $address->toString()
         );
 
@@ -162,29 +162,31 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             "Rue du Château\n".
-            "1234 Moulinsart",
+            "Moulinsart",
             $address->toString()
         );
     }
 
     /** @test */
-    function it_can_format_a_simplified_address_as_a_string()
+    function it_can_format_the_address_as_a_string_for_postal_mail_delivery()
     {
-        $address = $this->makeTestAddress();
+        $address = $this->makeTestAddress()->asPostalMail();
 
         $this->assertSame(
+            "Boucherie Sanzot\n".
             "Rue du Château 1\n".
-            "Moulinsart",
-            $address->toSimplifiedString()
+            "1234 Moulinsart",
+            $address->toString()
         );
 
         // Ensure it also works well without any street number.
-        $address = $this->makeTestAddress(['street_number' => null]);
+        $address = $this->makeTestAddress(['street_number' => null])->asPostalMail();
 
         $this->assertSame(
+            "Boucherie Sanzot\n".
             "Rue du Château\n".
-            "Moulinsart",
-            $address->toSimplifiedString()
+            "1234 Moulinsart",
+            $address->toString()
         );
     }
 
@@ -196,7 +198,6 @@ class ContactDetailsPostalAddressTest extends TestCase
         $this->assertSame(
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">Rue du Château 1</span><br>'."\n".
-            '<span class="p-postal-code">1234</span> '.
             '<span class="p-locality">Moulinsart</span>'."\n".
             '</p>',
             $address->toHtml()
@@ -208,7 +209,6 @@ class ContactDetailsPostalAddressTest extends TestCase
         $this->assertSame(
             '<p class="h-adr" translate="no">'."\n".
             '<span class="p-street-address">Rue du Château</span><br>'."\n".
-            '<span class="p-postal-code">1234</span> '.
             '<span class="p-locality">Moulinsart</span>'."\n".
             '</p>',
             $address->toHtml()
@@ -216,27 +216,35 @@ class ContactDetailsPostalAddressTest extends TestCase
     }
 
     /** @test */
-    function it_can_format_a_simplified_address_in_an_html_format()
+    function it_can_format_the_address_as_html_for_postal_mail_delivery()
     {
-        $address = $this->makeTestAddress();
+        $address = $this->makeTestAddress()->asPostalMail();
 
         $this->assertSame(
-            '<p class="h-adr" translate="no">'."\n".
-            '<span class="p-street-address">Rue du Château 1</span><br>'."\n".
-            '<span class="p-locality">Moulinsart</span>'."\n".
-            '</p>',
-            $address->toSimplifiedHtml()
+            '<div class="h-card" translate="no">'.
+                '<p class="p-name">Boucherie Sanzot</p>'.
+                '<p class="p-adr h-adr">'.
+                    '<span class="p-street-address">Rue du Château 1</span><br>'.
+                    '<span class="p-postal-code">1234</span> '.
+                    '<span class="p-locality">Moulinsart</span>'.
+                '</p>'.
+            '</div>',
+            $address->toHtml()
         );
 
         // Ensure it also works well without any street number.
-        $address = $this->makeTestAddress(['street_number' => null]);
+        $address = $this->makeTestAddress(['street_number' => null])->asPostalMail();
 
         $this->assertSame(
-            '<p class="h-adr" translate="no">'."\n".
-            '<span class="p-street-address">Rue du Château</span><br>'."\n".
-            '<span class="p-locality">Moulinsart</span>'."\n".
-            '</p>',
-            $address->toSimplifiedHtml()
+            '<div class="h-card" translate="no">'.
+                '<p class="p-name">Boucherie Sanzot</p>'.
+                '<p class="p-adr h-adr">'.
+                    '<span class="p-street-address">Rue du Château</span><br>'.
+                    '<span class="p-postal-code">1234</span> '.
+                    '<span class="p-locality">Moulinsart</span>'.
+                '</p>'.
+            '</div>',
+            $address->toHtml()
         );
     }
 
@@ -247,22 +255,23 @@ class ContactDetailsPostalAddressTest extends TestCase
 
         $this->assertSame(
             "Rue du Château 1\n".
-            "1234 Moulinsart",
+            "Moulinsart",
             $address->__toString()
         );
         $this->assertSame(
             "Rue du Château 1\n".
-            "1234 Moulinsart",
+            "Moulinsart",
             (string) $address
         );
     }
 
     /** @test */
-    function it_handles_the_letter_box_number_when_formatting_the_address()
+    function it_handles_the_letter_box_number_when_formatting_the_address_for_postal_mail_delivery()
     {
-        $address = $this->makeTestAddress(['letter_box' => '5']);
+        $address = $this->makeTestAddress(['letter_box' => '5'])->asPostalMail();
 
         $this->assertSame(
+            "Boucherie Sanzot\n".
             // The letter box number is added to this line.
             // /!\ This is specific to Belgian postal services /!\
             "Rue du Château 1 bte 5\n".

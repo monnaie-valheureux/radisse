@@ -102,7 +102,7 @@
                 <ul>
 @forelse ($summary['locations'] as $location)
                     <li>
-                        <p>{!! $location['address']->toSimplifiedHtml() !!}</p>
+                        <p>{!! $location['address']->asPostalMail()->toHtml() !!}</p>
     @if ($location['phone'])
                         <p>
                             Téléphone : {{ $location['phone']->toNationalFormat() }}
