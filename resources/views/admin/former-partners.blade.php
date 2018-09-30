@@ -14,7 +14,7 @@
         @media (min-width: 750px) {
             .team-name {
                 font-size: 1.6rem;
-                font-family: 'museo_sans700';
+                font-weight: bold;
             }
         }
 

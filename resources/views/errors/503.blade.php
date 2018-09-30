@@ -57,7 +57,8 @@
             text-align: center;
         }
         .logo {
-            font-family: 'museo700';
+            font-family: 'museo';
+            font-weight: bold;
             font-size: 3.5rem;
             color: #0094b3;
         }

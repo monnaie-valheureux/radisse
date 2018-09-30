@@ -132,7 +132,8 @@ a.btn {
 }
 
 .tool-form__control .label {
-  font-family: 'museo700', 'Museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: $museo-font-stack;
+  font-weight: bold;
 }
 .tool-form__control .label .optional {
   color: #7f7f7f;

@@ -5,40 +5,48 @@
 
 
 /// Museo font family.
+
+// Museo 500.
 @font-face {
-    font-family: 'museo500';
+    font-family: 'museo';
     src: font('museo/woff2/museo500.woff2') format('woff2'),
          font('museo/woff/museo500.woff') format('woff');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 }
+// Museo 700.
 @font-face {
-    font-family: 'museo700';
+    font-family: 'museo';
     src: font('museo/woff2/museo700.woff2') format('woff2'),
          font('museo/woff/museo700.woff') format('woff');
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
+
 /// Museo Sans font family.
+
+// Museo Sans 500.
 @font-face {
-    font-family: 'museo_sans500';
+    font-family: 'museo_sans';
     src: font('museo_sans/woff2/museo_sans500.woff2') format('woff2'),
          font('museo_sans/woff/museo_sans500.woff') format('woff');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 }
+// Museo Sans 500 Italic.
 @font-face {
-    font-family: 'museo_sans500-italic';
+    font-family: 'museo_sans-italic';
     src: font('museo_sans/woff2/museo_sans500-italic.woff2') format('woff2'),
          font('museo_sans/woff/museo_sans500-italic.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    font-weight: 500;
+    font-style: italic;
 }
+// Museo Sans 700.
 @font-face {
-    font-family: 'museo_sans700';
+    font-family: 'museo_sans';
     src: font('museo_sans/woff2/museo_sans700.woff2') format('woff2'),
          font('museo_sans/woff/museo_sans700.woff') format('woff');
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
