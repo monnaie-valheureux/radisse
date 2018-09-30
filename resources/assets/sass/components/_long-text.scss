@@ -45,7 +45,7 @@
 }
 
 .long-text h3 {
-  font-family: "museo_sans500";
+  font-family: $museo-sans-font-stack;
   font-size: 2rem;
   line-height: 1.2;
   color: $brand-color;
@@ -64,7 +64,7 @@
  *    We add a bit of spacing to increase readability.
  */
 .long-text h4 {
-  font-family: "museo_sans700";
+  font-family: $museo-sans-font-stack;
   font-size: 1.6rem;
   line-height: 1.2;
   font-variant: small-caps;
