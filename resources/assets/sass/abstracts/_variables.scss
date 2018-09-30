@@ -4,13 +4,21 @@
 
 
 
+/// Font family based on Museo Sans.
+/// @type List
+$museo-sans-font-stack: 'museo_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+/// Font family based on Museo.
+/// @type List
+$museo-font-stack: 'museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
 /// Regular font family.
 /// @type List
-$text-font-stack: 'museo_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$text-font-stack: $museo-sans-font-stack;
 
 /// Headings font family.
 /// @type List
-$headings-font-stack: 'museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+$headings-font-stack: $museo-font-stack;
 
 
 
