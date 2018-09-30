@@ -30,7 +30,6 @@
  *    other. We add a bit of spacing to increase readability.
  */
 .long-text h2 {
-  font-family: "museo700";
   font-size: 2.4rem;
   line-height: 1.2;
   letter-spacing: 0.25px; // 1
@@ -94,18 +93,6 @@
   @include media('≥large') {
     font-size: 2.4rem;
   }
-}
-
-
-
-/**
- * 1. Use real italics, thanks to a dedicated font file.
- * 2. Prevent browsers to try to create synthetic italics,
- *    which would be applied on top of the real ones.
- */
-.long-text em {
-  font-family: "museo_sans500-italic"; // 1
-  font-style: normal; // 2
 }
 
 
