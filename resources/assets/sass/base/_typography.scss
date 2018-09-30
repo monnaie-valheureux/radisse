@@ -31,15 +31,13 @@ body {
  */
 h1, h2, h3 {
   font-family: $headings-font-stack;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 em {
-  font-family: 'museo_sans500-italic', 'Museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  font-style: normal;
+  font-style: italic;
 }
 
 strong {
-  font-family: 'museo_sans700', 'Museo', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  font-weight: normal;
+  font-weight: bold;
 }
