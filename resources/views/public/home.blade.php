@@ -82,7 +82,7 @@
     @media (min-width: 1000px) {
         .old-bills-announcement h2,
         .old-bills-announcement p {
-            max-width: 90rem;
+            max-width: 80rem;
         }
     }
 
@@ -120,8 +120,7 @@
                 <img src="{{ asset('img/billet-valeureux-1.jpg') }}"
                 class="old-bill" alt="">
             </p>
-            <p>Vous possédez encore des anciens billets de valeureux ? Vous avez jusque <em>début septembre</em> pour les dépenser chez les commerçants.</p>
-            <p>Après cette date, pour les échanger contre des nouveaux billets, il faudra directement contacter l’ASBL le Val’heureux.</p>
+            <p>Vous possédez encore des anciens billets de valeureux ? Vous pouvez les échanger contre de nouveaux billets lors de nos <a href="/aperos-du-valheureux">apéros</a>, ou bien en contactant l’ASBL le Val’heureux.</p>
             <p class="more-info">
                 <a href="/remplacement-anciens-billets">Cliquez ici pour plus d’infos</a>
             </p>
@@ -133,7 +132,7 @@
             <h2>Comment en obtenir ?</h2>
             <p>Le moyen le plus simple pour échanger vos euros contre des Val’heureux est de vous rendre dans un <a href="/comptoirs">comptoir de change</a>.</p>
             <p>Vous pouvez également demander que l’on vous rende la monnaie en Val’heureux quand vous faites vos achats chez un commerçant qui les accepte.</p>
-            <p>Enfin, vous pouvez également échanger vos euros lors de nos « <a href="/aperos-du-valheureux">apéros du Val’heureux</a> », tout en en profitant pour rencontrer et boire un verre avec les gens qui font vivre ce projet ! Le prochain aura lieu le <strong>20 septembre</strong> à l’ancienne menuiserie de la ville de Liège (rue de l’académie 53, à Liège), en partenariat avec <strong>Novacitis</strong>, <strong>le Temps des Cerises</strong> et <strong>Créasol</strong>.</p>
+            <p>Enfin, vous pouvez également échanger vos euros lors de nos « <a href="/aperos-du-valheureux">apéros du Val’heureux</a> », tout en en profitant pour rencontrer et boire un verre avec les gens qui font vivre ce projet ! Le prochain aura lieu le <strong>18 octobre</strong> à Tilff, aux <a href="/partenaires/les-tentations-vosgiennes">Tentations vosgiennes</a> et avec le <a href="/partenaires/le-comptoir-dessences">Comptoir d’essences</a> (avenue Laboulle 88, Tilff).</p>
         </div>
         <div class="text__section">
             <h2>Où les utiliser ?</h2>
