@@ -82,7 +82,7 @@
     @media (min-width: 1000px) {
         .old-bills-announcement h2,
         .old-bills-announcement p {
-            max-width: 90rem;
+            max-width: 80rem;
         }
     }
 
@@ -120,8 +120,7 @@
                 <img src="{{ asset('img/billet-valeureux-1.jpg') }}"
                 class="old-bill" alt="">
             </p>
-            <p>Vous possédez encore des anciens billets de valeureux ? Vous avez jusque <em>début septembre</em> pour les dépenser chez les commerçants.</p>
-            <p>Après cette date, pour les échanger contre des nouveaux billets, il faudra directement contacter l’ASBL le Val’heureux.</p>
+            <p>Vous possédez encore des anciens billets de valeureux ? Vous pouvez les échanger contre de nouveaux billets lors de nos <a href="/aperos-du-valheureux">apéros</a>, ou bien en contactant l’ASBL le Val’heureux.</p>
             <p class="more-info">
                 <a href="/remplacement-anciens-billets">Cliquez ici pour plus d’infos</a>
             </p>
