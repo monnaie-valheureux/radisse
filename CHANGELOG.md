@@ -14,6 +14,7 @@ and this project adheres to
 ## [1.14.0] - 2018-10-04
 ### Changed
 - Updated content in the page for ‘apéros’.
+- Currency exchanges can now be soft-deleted, and a reason for deletion can be specified in the table.
 
 ## [1.13.0] - 2018-09-28
 ### Added
