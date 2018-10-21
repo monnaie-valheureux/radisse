@@ -23,6 +23,10 @@
             </h1>
         </a>
     @endif
+
+        <a href="{{ route('home') }}" class="site-header__public-home-link">
+            <span>Voir le site</span>
+        </a>
     </div>
 
     <div class="main-content">
