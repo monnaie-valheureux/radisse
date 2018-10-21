@@ -1,21 +1,23 @@
+/**
+ * The header of pages in the administration area.
+ *
+ * 1. We flex the container and justify its items in a way that will make
+ *    the <h1> go to its left edge and the link to the public home page
+ *    go to its right edge.
+ */
 .site-header {
     @include fix-light-text-on-dark-background;
+    display: flex; // 1
+    justify-content: space-between; // 1
     background-color: $brand-color;
     border-bottom: 2px solid $secondary-brand-color;
     color: $white;
 }
 
 /**
- * A link to the website homepage placed around the site title.
- *
- * 1. We float the element to force the <h1> it contains to have its width to
- *    be exactly the same as the width of its content, rather than taking the
- *    full width of the header. This does not change anything visually but it
- *    has the benefit of reducing the surface of the link so that it covers
- *    only the text, and not also all the empty space of the site header.
+ * A link to the admin homepage placed around the site title.
  */
 .site-header__home-link {
-  float: left; // 1
   color: $white;
   text-decoration: none;
 
@@ -25,6 +27,41 @@
   }
 }
 
+/**
+ * A link to the public homepage of the website.
+ *
+ * 1. We will use flexbox to vertically center the text of the link without
+ *    losing all of our hair, by using a child <span> as the only flex item
+ *    of the container.
+ */
+.site-header__public-home-link {
+  display: flex; // 1
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  color: $white;
+  text-decoration: none;
+  text-align: center;
+
+  @include on-event {
+    color: $white;
+    background-color: $darker-brand-color;
+  }
+
+  /**
+   * An element serving as a flex item for the sole purpose
+   * of vertically align the text of the link.
+   */
+  & > span {
+    align-self: center;
+  }
+
+  /**
+   * Slightly increase the size of the link.
+   */
+  @include media('≥medium') {
+    font-size: 2.4rem;
+  }
+}
 
 /**
  * The <h1> heading inside the site’s main menu.
