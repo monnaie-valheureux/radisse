@@ -24,6 +24,9 @@ class CurrencyExchangesController extends Controller
         )
         ->get();
 
+        // Count the number of currency exchanges.
+        $total = count($currencyExchanges);
+
         // Sort the currency exchanges by city.
         $currencyExchanges = $currencyExchanges->sortBy(function ($currencyExchange) {
             return $currencyExchange->location->postalAddress->city;
@@ -52,6 +55,6 @@ class CurrencyExchangesController extends Controller
             });
         });
 
-        return view('public.currency-exchanges.index', compact('addresses'));
+        return view('public.currency-exchanges.index', compact('total', 'cities'));
     }
 }
