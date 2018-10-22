@@ -22,21 +22,39 @@ class CurrencyExchangesController extends Controller
             'location.postalAddress',
             'location.partner'
         )
-        ->get()
-        // Sort currency exchanges by the ‘sort name’ of their partner.
-        ->sortBy(function ($currencyExchange) {
-            return $currencyExchange->location->partner->name_sort;
+        ->get();
+
+        // Count the number of currency exchanges.
+        $total = count($currencyExchanges);
+
+        // Sort the currency exchanges by city.
+        $currencyExchanges = $currencyExchanges->sortBy(function ($currencyExchange) {
+            return $currencyExchange->location->postalAddress->city;
+        });
+        // Then, once they’re sorted, group them by city.
+        $cities = $currencyExchanges->groupBy(function ($currencyExchange) {
+            return $currencyExchange->location->postalAddress->city;
+        })
+        // After that, for each city, sort currency exchanges alphabetically.
+        ->map(function ($currencyExchanges) {
+
+            return $currencyExchanges->sortBy(function ($currencyExchange) {
+                return $currencyExchange->location->partner->name_sort;
+            })
+            // Finally, replace each CurrencyExchange model by its PostalAddress.
+            ->map(function ($currencyExchange) {
+
+                $address = $currencyExchange->location->postalAddress;
+                $address->recipient = $currencyExchange->location->name;
+
+                // To make linking to the partner page easier, we add a public
+                // property with the partner’s slug in a quick and dirty way.
+                $address->partnerSlug = $currencyExchange->location->partner->slug;
+
+                return $address;
+            });
         });
 
-        // Get the postal addresses of the currency exchanges.
-        $addresses = $currencyExchanges->map(function ($currencyExchange) {
-            $address = $currencyExchange->location->postalAddress;
-            // Use the partner’s ‘sort name’ in the address.
-            $address->recipient = $currencyExchange->location->partner->name_sort;
-
-            return $address;
-        });
-
-        return view('public.currency-exchanges.index', compact('addresses'));
+        return view('public.currency-exchanges.index', compact('total', 'cities'));
     }
 }
