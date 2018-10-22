@@ -14,15 +14,19 @@
     {{-- Set a link to the home page except if we’re already on it. --}}
     @if (Route::is('admin-home'))
         <h1 class="site-header__site-title">
-            <span>Gestion du Val’heureux</span>
+            Gestion du Val’heureux
         </h1>
     @else
         <a href="{{ route('admin-home') }}" class="site-header__home-link">
             <h1 class="site-header__site-title">
-                <span>Gestion du Val’heureux</span>
+                Gestion du Val’heureux
             </h1>
         </a>
     @endif
+
+        <a href="{{ route('home') }}" class="site-header__public-home-link">
+            <span>Voir le site</span>
+        </a>
     </div>
 
     <div class="main-content">
