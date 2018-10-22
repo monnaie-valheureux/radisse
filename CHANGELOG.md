@@ -11,6 +11,7 @@ and this project adheres to
 ### Changed
 - Updated content in the page for ‘apéros’.
 - Currency exchanges can now be soft-deleted, and a reason for deletion can be specified in the table.
+- Improved the page of currency exchanges, which now groups them by city and provide links to the related partners’ pages.
 
 ## [1.14.0] - 2018-10-04
 ### Changed
