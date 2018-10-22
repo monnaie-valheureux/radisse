@@ -7,7 +7,7 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
-## [Unreleased]
+## [1.15.0] - 2018-10-22
 ### Changed
 - Updated content in the page for ‘apéros’.
 - Currency exchanges can now be soft-deleted, and a reason for deletion can be specified in the table.
@@ -119,7 +119,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.14.0...HEAD
+[1.15.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.14.0...1.15.0
 [1.14.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.13.0...1.14.0
 [1.13.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.12.0...1.13.0
 [1.12.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.11.0...v1.12.0
