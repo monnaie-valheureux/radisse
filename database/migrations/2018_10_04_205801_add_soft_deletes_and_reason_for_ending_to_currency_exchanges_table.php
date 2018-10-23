@@ -32,8 +32,10 @@ class AddSoftDeletesAndReasonForEndingToCurrencyExchangesTable extends Migration
         // soft deletes as well as the optional string field
         // saying why a currency exchange has stopped.
         Schema::table('currency_exchanges', function (Blueprint $table) {
-            $table->dropColumn('ended_at');
-            $table->dropColumn('reason_for_ending');
+            // Commented to avoid breaking tests.
+            // @see \Illuminate\Database\Schema\Blueprint::ensureCommandsAreValid()
+            // $table->dropColumn('ended_at');
+            // $table->dropColumn('reason_for_ending');
         });
     }
 }
