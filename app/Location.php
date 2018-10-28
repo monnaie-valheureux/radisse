@@ -44,6 +44,19 @@ class Location extends Model
     }
 
     /**
+     * Get the location’s city.
+     *
+     * This reads the cache column for the city
+     * name of the Location’s postal address.
+     *
+     * @return string
+     */
+    public function getCityAttribute()
+    {
+        return $this->city_cache;
+    }
+
+    /**
      * Get all of the Location’s phones that are public, or those
      * from the Location’s Partner is there is none.
      *

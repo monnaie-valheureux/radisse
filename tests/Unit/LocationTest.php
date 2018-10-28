@@ -44,4 +44,16 @@ class LocationTest extends TestCase
         // Check that we got the correct object.
         $this->assertSame($currencyExchange->id, $retrievedCurrencyExchange->id);
     }
+
+    /** @test */
+    function reading_the_city_attribute_gets_the_values_of_the_city_cache_column()
+    {
+        // Create a location.
+        $location = factory(Location::class)->create([
+            'city_cache' => 'Moulinsart'
+        ]);
+
+        // Test the Eloquent accessor.
+        $this->assertSame('Moulinsart', $location->city);
+    }
 }
