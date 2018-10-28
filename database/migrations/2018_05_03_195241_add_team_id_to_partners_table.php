@@ -42,8 +42,10 @@ class AddTeamIdToPartnersTable extends Migration
         Schema::table('partners', function (Blueprint $table) {
 
             // It’s necessary to drop the index *before* deleting the column.
-            $table->dropForeign('partners_team_id_foreign')
-                  ->dropColumn('team_id');
+            if (DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign('partners_team_id_foreign');
+                $table->dropColumn('team_id');
+            }
         });
     }
 }
