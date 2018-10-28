@@ -46,9 +46,11 @@ class CreateTeamsTable extends Migration
     {
         // Modify the `team_members` table to remove
         // the foreign key referencing a team.
-        Schema::table('team_members', function (Blueprint $table) {
-            $table->dropForeign('team_members_team_id_foreign');
-        });
+        if (DB::getDriverName() !== 'sqlite') {
+            Schema::table('team_members', function (Blueprint $table) {
+                $table->dropForeign('team_members_team_id_foreign');
+            });
+        }
 
         // It’s necessary to drop the table only *after* all indexes pointing
         // to it have been removed, otherwise the whole thing crashes because
