@@ -156,6 +156,36 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    function can_check_if_a_partner_is_a_recent_one()
+    {
+        // Create a ‘recent’and an ‘old’ partner.
+        $recentPartner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago'),
+        ]);
+        $oldPartner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('2 years ago'),
+        ]);
+
+        // Also create a partner that is not validated, to ensure
+        // it will not accidentally be considered as ‘recent’.
+        $nonvalidatedPartner = factory(Partner::class)
+            ->states('nonvalidated')
+            ->make();
+
+        // Test the default behaviour of the method.
+        $this->assertTrue($recentPartner->isRecent());
+        $this->assertFalse($oldPartner->isRecent());
+
+        // Ensure it returns false for nonvalidated partners
+        $this->assertFalse($nonvalidatedPartner->isRecent());
+
+        // Test than we can set a custom interval.
+        $this->assertFalse($recentPartner->isRecent('2 days'));
+        $this->assertTrue($oldPartner->isRecent('5 years'));
+        $this->assertFalse($nonvalidatedPartner->isRecent('5 years'));
+    }
+
+    /** @test */
     function can_retrieve_its_representatives()
     {
         $partner = factory(Partner::class)->create([

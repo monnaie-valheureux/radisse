@@ -3,6 +3,7 @@
 namespace App;
 
 use DateTime;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
@@ -407,5 +408,20 @@ class Partner extends Model
         sort($cities, SORT_LOCALE_STRING);
 
         return $cities ? implode(', ', $cities) : null;
+    }
+
+    /**
+     * Check if the partner has been validated recently.
+     *
+     * @return bool
+     */
+    public function isRecent($interval = '2 months')
+    {
+        $interval = CarbonInterval::fromString($interval);
+
+        $start_of_interval = today()->sub($interval);
+
+        // Check if the partner has been validated less than ‘interval’ ago.
+        return $this->validated_at > $start_of_interval;
     }
 }
