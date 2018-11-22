@@ -12,6 +12,7 @@ Route::namespace('Site')->group(function () {
     Route::view('/le-projet', 'public.project');
     Route::get('/comptoirs', 'CurrencyExchangesController@index');
     Route::get('/partenaires', 'PartnersController@index');
+    Route::get('/partenaires-par-localite/{city}', 'PartnersController@indexCity');
 
     // Display the information of a specific partner.
     Route::get('/partenaires/{partner}', 'PartnersController@show');
