@@ -120,6 +120,22 @@ class Partner extends Model
     }
 
     /**
+     * Check if the partner has at least one location with a currency exchange.
+     *
+     * @return bool
+     */
+    public function hasCurrencyExchange()
+    {
+        foreach ($this->locations as $location) {
+            if ($location->hasCurrencyExchange()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Get the team that ‘owns’ the partner.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
