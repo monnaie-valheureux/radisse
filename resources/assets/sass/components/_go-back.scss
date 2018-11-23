@@ -1,0 +1,12 @@
+.go-back {
+  margin-top: -0.8rem;
+  margin-bottom: 1em;
+  font-size: 0.9em;
+}
+.go-back__link {
+  text-decoration: none;
+
+  @include on-event {
+    text-decoration: underline;
+  }
+}
