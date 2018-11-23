@@ -9,6 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 ### Changed
+- The list of partners now lists cities instead of displaying all the partners at once. Once a city is chosen, the partners of that city are then shown.
 - On public pages, ensure that the site footer will always ‘stick’ to the bottom of the screen even when there is not a lot of content on the page (‘sticky footer’).
 - The application has been upgraded to Laravel 5.7.
 
@@ -20,7 +21,6 @@ and this project adheres to
 
 ## [1.14.0] - 2018-10-04
 ### Changed
-- The list of partners now lists cities instead of displaying all the partners at once. Once a city is chosen, the partners of that city are then shown.
 - Updated content in the page for ‘apéros’.
 
 ## [1.13.0] - 2018-09-28
