@@ -46,3 +46,20 @@
 #surface1 {
 }
 
+
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.link-list__item {
+  margin-right: 1em;
+
+  & > a {
+    text-decoration: none;
+  }
+}
+.link-list__counter {
+  color: $text-color;
+  font-size: 0.8em;
+}
