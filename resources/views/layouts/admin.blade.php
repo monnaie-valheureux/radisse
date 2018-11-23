@@ -7,6 +7,12 @@
     <title>@yield('title', 'Interface de gestion - Le Val’heureux')</title>
 
     <link rel="stylesheet" href="{{ mix('css/admin.css') }}">
+
+    <!-- Add favicon and other proprietary, non-standard crap. -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-admin.png?v=jwz">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-admin.png?v=jwz">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16-admin.png?v=jwz">
+    <link rel="shortcut icon" href="/favicon-admin.ico?v=jwz">
 </head>
 <body>
     <div class="site-header">

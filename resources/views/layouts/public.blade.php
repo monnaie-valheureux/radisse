@@ -8,6 +8,18 @@
 
     <link rel="stylesheet" href="{{ mix('css/main.css') }}">
 
+    <!-- Add favicon and other proprietary, non-standard crap. -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=jwzlq">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=jwzlq">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=jwzlq">
+    <link rel="manifest" href="/site.webmanifest?v=jwzlq">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=jwzlq" color="#0094b3">
+    <link rel="shortcut icon" href="/favicon.ico?v=jwzlq">
+    <meta name="apple-mobile-web-app-title" content="le Val&rsquo;heureux">
+    <meta name="application-name" content="le Val&rsquo;heureux">
+    <meta name="msapplication-TileColor" content="#0094b3">
+    <meta name="theme-color" content="#0094b3">
+
     @stack('body-styles')
 
     @if (config('app.env') === 'production')
