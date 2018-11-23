@@ -15,7 +15,6 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>15 novembre</strong> chez <a href="/partenaires/greenburger">Greenburger</a> (rue du Pont 13, Liège).</li>
             <li>le <strong>20 décembre</strong> à la <a href="/partenaires/toutes-directions">librairie Toutes directions</a> (rue de la Violette 3, Liège).</li>
         </ul>
     </div>
