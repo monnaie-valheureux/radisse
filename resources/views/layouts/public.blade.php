@@ -85,8 +85,10 @@
         </div>
     </div>
 
-    {{-- Here comes the main content of the page. --}}
-    @yield('content')
+    <div class="site-content">
+        {{-- Here comes the main content of the page. --}}
+        @yield('content')
+    </div>
 
     <div class="site-footer">
         <div class="site-footer__contact-details">
