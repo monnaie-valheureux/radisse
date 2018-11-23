@@ -132,7 +132,7 @@
             <h2>Comment en obtenir ?</h2>
             <p>Le moyen le plus simple pour échanger vos euros contre des Val’heureux est de vous rendre dans un <a href="/comptoirs">comptoir de change</a>.</p>
             <p>Vous pouvez également demander que l’on vous rende la monnaie en Val’heureux quand vous faites vos achats chez un commerçant qui les accepte.</p>
-            <p>Enfin, vous pouvez également échanger vos euros lors de nos « <a href="/aperos-du-valheureux">apéros du Val’heureux</a> », tout en en profitant pour rencontrer et boire un verre avec les gens qui font vivre ce projet ! Le prochain aura lieu le <strong>15 novembre</strong> à Liège, chez <a href="/partenaires/greenburger">Greenburger</a> (rue du Pont 13, Liège).</p>
+            <p>Enfin, vous pouvez également échanger vos euros lors de nos « <a href="/aperos-du-valheureux">apéros du Val’heureux</a> », tout en en profitant pour rencontrer et boire un verre avec les gens qui font vivre ce projet ! Le prochain aura lieu le <strong>20 décembre</strong> à Liège, à la <a href="/partenaires/toutes-directions">librairie Toutes directions</a> (rue de la Violette 3).</p>
         </div>
         <div class="text__section">
             <h2>Où les utiliser ?</h2>
