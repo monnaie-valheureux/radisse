@@ -1,0 +1,43 @@
+.badge {
+  display: inline;
+  margin-left: 1rem;
+  padding: 0.3rem 0.5rem;
+  padding: 0.187em 0.312em;
+  vertical-align: middle;
+  border-radius: 5px;
+  background: $brand-color;
+  color: $white;
+  font-size: 0.7em;
+  line-height: 1;
+}
+
+.badge__hidden-text {
+  font-size: 0;
+}
+
+a.badge {
+  text-decoration: none;
+  transition: background-color .1s ease-in-out;
+
+  @include on-event {
+    color: $white;
+    background-color: $darker-brand-color;
+  }
+}
+
+.badge--big {
+  display: inline-block;
+  margin-left: 0;
+  padding: 0.6rem 1rem;
+  padding: 0.375em 0.625em;
+  font-size: 1em;
+}
+
+.badge--new {
+  background-color: $creation-color;
+}
+a.badge--new {
+  @include on-event {
+    background-color: $darker-creation-color;
+  }
+}

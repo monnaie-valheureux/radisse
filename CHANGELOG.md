@@ -19,6 +19,7 @@ and this project adheres to
 
 ## [1.14.0] - 2018-10-04
 ### Changed
+- The list of partners now lists cities instead of displaying all the partners at once. Once a city is chosen, the partners of that city are then shown.
 - Updated content in the page for ‘apéros’.
 
 ## [1.13.0] - 2018-09-28

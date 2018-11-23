@@ -24,10 +24,12 @@
                                     Add an indicator if the location
                                     is a currency exchange.
                                 --}}
-                                @if ($location->currencyExchange)
-                                    <p class="is-currency-exchange">
+                                @if ($location->hasCurrencyExchange())
+                                    <a href="/comptoirs"
+                                    class="badge badge--big badge--exchange"
+                                    title="Voir la liste de tous les comptoirs de change">
                                         Ce lieu est comptoir de change
-                                    </p>
+                                    </a>
                                 @endif
                             </dd>
                         </div>

@@ -13,6 +13,7 @@ use App\TeamMember;
 use Tests\TestCase;
 use App\PostalAddress;
 use App\SocialNetwork;
+use App\CurrencyExchange;
 use App\PartnerRepresentative;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -128,6 +129,60 @@ class PartnerTest extends TestCase
         // and must have no duplicate entries.
         $this->assertSame('Las Dopicos, Moulinsart', $cities);
         $this->assertNotSame('Moulinsart, Las Dopicos', $cities);
+    }
+
+    /** @test */
+    function can_check_if_it_has_currency_exchanges()
+    {
+        // Create a partner with NO currency exchange.
+        $partner = factory(Partner::class)->create(['name' => 'foo']);
+        $partner->locations()->save(factory(Location::class)->make());
+
+        // Then, create a partner that HAS a currency exchange.
+        $locationWithCurrencyExchange = factory(Location::class)->create();
+        $locationWithCurrencyExchange->currencyExchange()->save(
+            factory(CurrencyExchange::class)->make()
+        );
+
+        $partnerWithCurrencyExchange = factory(Partner::class)
+            ->create(['name' => 'bar']);
+        $partnerWithCurrencyExchange
+            ->locations()
+            ->save($locationWithCurrencyExchange);
+
+        // Test stuff.
+        $this->assertFalse($partner->hasCurrencyExchange());
+        $this->assertTrue($partnerWithCurrencyExchange->hasCurrencyExchange());
+    }
+
+    /** @test */
+    function can_check_if_a_partner_is_a_recent_one()
+    {
+        // Create a ‘recent’and an ‘old’ partner.
+        $recentPartner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('1 week ago'),
+        ]);
+        $oldPartner = factory(Partner::class)->make([
+            'validated_at' => Carbon::parse('2 years ago'),
+        ]);
+
+        // Also create a partner that is not validated, to ensure
+        // it will not accidentally be considered as ‘recent’.
+        $nonvalidatedPartner = factory(Partner::class)
+            ->states('nonvalidated')
+            ->make();
+
+        // Test the default behaviour of the method.
+        $this->assertTrue($recentPartner->isRecent());
+        $this->assertFalse($oldPartner->isRecent());
+
+        // Ensure it returns false for nonvalidated partners
+        $this->assertFalse($nonvalidatedPartner->isRecent());
+
+        // Test than we can set a custom interval.
+        $this->assertFalse($recentPartner->isRecent('2 days'));
+        $this->assertTrue($oldPartner->isRecent('5 years'));
+        $this->assertFalse($nonvalidatedPartner->isRecent('5 years'));
     }
 
     /** @test */
