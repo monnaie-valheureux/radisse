@@ -31,6 +31,9 @@ $bondi-blue: rgb(0, 148, 179);
 $blue-lagoon: rgb(0, 97, 116);
 $sherpa-blue: rgb(1, 79, 94);
 $monza: rgb(195, 0, 69);
+$carmine: rgba(159, 0, 57, 1);
+$pigment-green: rgb(0, 137, 50);
+$british-racing-green: rgb(0, 103, 37);
 
 
 
@@ -49,6 +52,18 @@ $almost-black-brand-color: $sherpa-blue;
 /// Secondary brand color.
 /// @type Color
 $secondary-brand-color: $monza;
+
+/// Darker variation of the secondary brand color.
+/// @type Color
+$darker-secondary-brand-color: $carmine;
+
+/// Color used for things related to creating and adding stuff.
+/// @type Color
+$creation-color: $pigment-green;
+
+/// Darker variation of the creation color.
+/// @type Color
+$darker-creation-color: $british-racing-green;
 
 /// Copy text color.
 /// @type Color
