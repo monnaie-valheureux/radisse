@@ -26,11 +26,17 @@ class PartnersController extends Controller
 
 
         // Start by sorting city names alphabetically.
-        $cities = Location::orderBy('city_cache')
+        $cities = Location::with('partner')
+            ->orderBy('city_cache')
             // Make the SQL query.
             ->get()
-            // At this point, we have a flat collection of Location
-            // objects. We now group them by city name.
+            // At this point, we have a flat collection of Location objects.
+            // We now reject potential ‘orphan’ locations that are not
+            // related to any partner.
+            ->reject(function ($location) {
+                return is_null($location->partner);
+            })
+            // Then we group locations by city name.
             ->groupBy('city_cache')
             // Finally, we replace each city’s subcollection
             // of Locations by the amount of locations in
