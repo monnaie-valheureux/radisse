@@ -31,5 +31,16 @@
             </div>
         @endforeach
 
+
+        <h3 class="link-listing__heading">Partenaires sans adresse fixe</h3>
+
+        <p>Un certain nombre de professionnels n’apparaissent pas dans ces listes, soit car ils ne travaillent pas à une adresse fixe (services ou travaux à domicile, arts du spectacle, etc.)  soit car ils n’ont pas souhaité la communiquer publiquement sur notre site.</p>
+        <p>
+            Retrouvez-les sur cette page :
+            <a href="/partenaires-par-localite/sans-adresse-precise">
+                partenaires sans adresse fixe
+                <span class="link-list__counter">({{ $partnersWithoutLocationCount }})</span>
+            </a>
+        </p>
     </div>
 @endsection

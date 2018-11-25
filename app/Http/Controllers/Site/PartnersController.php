@@ -74,8 +74,11 @@ class PartnersController extends Controller
             $preserveKeys = true
         );
 
+        // Get the collection of partners that have no related location.
+        $partnersWithoutLocationCount = Partner::doesntHave('locations')->count();
+
         return view('public.partners.index-cities', compact(
-            'cityCount', 'citiesByLetterRanges'
+            'cityCount', 'citiesByLetterRanges', 'partnersWithoutLocationCount'
         ));
     }
 
@@ -141,6 +144,24 @@ class PartnersController extends Controller
         }
 
         return view('public.partners.index-city', compact('city', 'partners'));
+    }
+
+    /**
+     * Display the list of partners that have no related location.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function indexNoLocation()
+    {
+        $partners = Partner::doesntHave('locations')
+            ->get()
+            ->sortBy(function ($partner) {
+                // Converting the names to lowercase ASCII before sorting them
+                // prevents the dumb sorting algorithm to produce bad results.
+                return Str::ascii(Str::lower($partner->name_sort));
+            });
+
+        return view('public.partners.index-no-location', compact('partners'));
     }
 
     /**
