@@ -24,7 +24,6 @@ class PartnersController extends Controller
         // city names as keys and the total number of
         // locations in these cities as values.
 
-
         // Start by sorting city names alphabetically.
         $cities = Location::with('partner')
             ->orderBy('city_cache')
@@ -44,8 +43,6 @@ class PartnersController extends Controller
             ->map(function ($locationGroup) {
                 return count($locationGroup);
             });
-
-        $cityCount = count($cities);
 
         // We will now group cities by ranges of letters
         // in order to make them a bit easier to find.
@@ -76,6 +73,9 @@ class PartnersController extends Controller
 
         // Get the collection of partners that have no related location.
         $partnersWithoutLocationCount = Partner::doesntHave('locations')->count();
+
+        // Count the total number of cities we got.
+        $cityCount = count($cities);
 
         return view('public.partners.index-cities', compact(
             'cityCount', 'citiesByLetterRanges', 'partnersWithoutLocationCount'
