@@ -31,11 +31,16 @@ class CacheLocationCities extends Command
     {
         // We will loop on all locations and, for each one, if it has an
         // address, then we will use it to update the Location’s city.
-        foreach (Location::all() as $location) {
+        $locations = Location::all();
+        $total = count($locations);
+
+        foreach ($locations as $location) {
             if ($address = $location->postalAddress) {
                 $location->city_cache = $address->city;
                 $location->save();
             }
         }
+
+        $this->info("🎉 City cache built for <comment>{$total}</comment> locations!");
     }
 }
