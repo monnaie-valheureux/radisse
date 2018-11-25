@@ -24,13 +24,18 @@ class PartnersController extends Controller
         // city names as keys and the total number of
         // locations in these cities as values.
 
-
         // Start by sorting city names alphabetically.
-        $cities = Location::orderBy('city_cache')
+        $cities = Location::with('partner')
+            ->orderBy('city_cache')
             // Make the SQL query.
             ->get()
-            // At this point, we have a flat collection of Location
-            // objects. We now group them by city name.
+            // At this point, we have a flat collection of Location objects.
+            // We now reject potential ‘orphan’ locations that are not
+            // related to any partner.
+            ->reject(function ($location) {
+                return is_null($location->partner);
+            })
+            // Then we group locations by city name.
             ->groupBy('city_cache')
             // Finally, we replace each city’s subcollection
             // of Locations by the amount of locations in
@@ -38,8 +43,6 @@ class PartnersController extends Controller
             ->map(function ($locationGroup) {
                 return count($locationGroup);
             });
-
-        $cityCount = count($cities);
 
         // We will now group cities by ranges of letters
         // in order to make them a bit easier to find.
@@ -68,8 +71,14 @@ class PartnersController extends Controller
             $preserveKeys = true
         );
 
+        // Get the collection of partners that have no related location.
+        $partnersWithoutLocationCount = Partner::doesntHave('locations')->count();
+
+        // Count the total number of cities we got.
+        $cityCount = count($cities);
+
         return view('public.partners.index-cities', compact(
-            'cityCount', 'citiesByLetterRanges'
+            'cityCount', 'citiesByLetterRanges', 'partnersWithoutLocationCount'
         ));
     }
 
@@ -84,7 +93,7 @@ class PartnersController extends Controller
     {
         // We start with locations, not partners, because
         // they are the ones who have a public address.
-        $partners = Location::with('partner')
+        $partners = Location::with('partner.locations.currencyExchange')
             ->where('city_cache', $city)
             ->get()
             // Once we got the proper locations, we
@@ -135,6 +144,24 @@ class PartnersController extends Controller
         }
 
         return view('public.partners.index-city', compact('city', 'partners'));
+    }
+
+    /**
+     * Display the list of partners that have no related location.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function indexNoLocation()
+    {
+        $partners = Partner::doesntHave('locations')
+            ->get()
+            ->sortBy(function ($partner) {
+                // Converting the names to lowercase ASCII before sorting them
+                // prevents the dumb sorting algorithm to produce bad results.
+                return Str::ascii(Str::lower($partner->name_sort));
+            });
+
+        return view('public.partners.index-no-location', compact('partners'));
     }
 
     /**

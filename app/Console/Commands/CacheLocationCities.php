@@ -33,7 +33,7 @@ class CacheLocationCities extends Command
         // address, then we will use it to update the Location’s city.
         foreach (Location::all() as $location) {
             if ($address = $location->postalAddress) {
-                $location->city = $address->city;
+                $location->city_cache = $address->city;
                 $location->save();
             }
         }
