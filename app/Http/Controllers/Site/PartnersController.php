@@ -84,7 +84,7 @@ class PartnersController extends Controller
     {
         // We start with locations, not partners, because
         // they are the ones who have a public address.
-        $partners = Location::with('partner')
+        $partners = Location::with('partner.locations.currencyExchange')
             ->where('city_cache', $city)
             ->get()
             // Once we got the proper locations, we
