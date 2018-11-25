@@ -42,5 +42,11 @@
                 <span class="link-list__counter">({{ $partnersWithoutLocationCount }})</span>
             </a>
         </p>
+
+
+        <h3 class="link-listing__heading">Partenaires non référencés</h3>
+
+        <p>Enfin, certains professionnels acceptant le Val’heureux ne sont pas du tout repris sur notre site, généralement par obligation déontologique ou légale envers la publicité (médecins, etc.).</p>
+
     </div>
 @endsection
