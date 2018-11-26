@@ -127,8 +127,29 @@
  */
 .no-cookie-mention {
   @include fix-light-text-on-dark-background;
-  padding: 0 1.6rem 1.6rem;
+  padding: 0 1.6rem 0.8rem;
   background-color: $brand-color;
   color: $white;
   text-align: center;
+}
+
+/**
+ * A dynamic small block at the very bottom of the
+ * site telling the current version of the app.
+ */
+.site-version {
+  padding: 0 1.6rem 0.8rem;
+  background-color: $brand-color;
+  font-size: 1rem;
+  color: $darker-brand-color;
+  text-align: right;
+
+  /**
+   * Using CSS generated content instead of an hardcoded string
+   * allows to display this string without having to make it
+   * part of the actual HTML content of the page.
+   */
+  &:after {
+    content: attr(data-version);
+  }
 }

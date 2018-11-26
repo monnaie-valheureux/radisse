@@ -126,5 +126,15 @@
     </div>
 
     @stack('body-scripts')
+
+    @php
+        // Get the list of Git tags, sorted from newest to oldest.
+        $gitTags = shell_exec('git tag --sort=-version:refname');
+
+        // Keep only the newest.
+        $currentSiteVersion = explode("\n", $gitTags)[0];
+    @endphp
+
+    <div class="site-version" data-version="{{ $currentSiteVersion }}"></div>
 </body>
 </html>
