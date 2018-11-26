@@ -13,6 +13,17 @@ class ViewPartnersListTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    function dummy()
+    {
+        // Since all test cases in this class are currently disabled,
+        // this dummy test is there only to prevent PHPUnit to issue
+        // a warning about the class containing no test.
+        $this->assertTrue(true);
+    }
+
+    /**
+     * DISABLED TEST.
+     */
     public function can_see_the_list_of_partners()
     {
         // Create three partners.
@@ -34,7 +45,9 @@ class ViewPartnersListTest extends TestCase
         $response->assertSeeText($partnerC->name_sort);
     }
 
-    /** @test */
+    /**
+     * DISABLED TEST.
+     */
     public function the_list_of_partners_contains_only_active_partners()
     {
         // Create two active partners.
@@ -59,7 +72,9 @@ class ViewPartnersListTest extends TestCase
         $response->assertDontSeeText($formerPartner->name_sort);
     }
 
-    /** @test */
+    /**
+     * DISABLED TEST.
+     */
     public function the_list_of_partners_contains_only_validated_partners()
     {
         // Create two validated partners.

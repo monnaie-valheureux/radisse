@@ -44,6 +44,31 @@ class Location extends Model
     }
 
     /**
+     * Check if the location has a currency exchange.
+     *
+     * This is just some syntactic sugar.
+     *
+     * @return bool
+     */
+    public function hasCurrencyExchange()
+    {
+        return (bool) $this->currencyExchange;
+    }
+
+    /**
+     * Get the location’s city.
+     *
+     * This reads the cache column for the city
+     * name of the Location’s postal address.
+     *
+     * @return string
+     */
+    public function getCityAttribute()
+    {
+        return $this->city_cache;
+    }
+
+    /**
      * Get all of the Location’s phones that are public, or those
      * from the Location’s Partner is there is none.
      *

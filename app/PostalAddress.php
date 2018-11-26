@@ -29,6 +29,33 @@ class PostalAddress extends ContactDetails
     public $usePostalFormat = false;
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // When the postal address is saved to the database, if
+        // its `contactable` model is a Location, we will copy
+        // the city name of the address in the `city_cache`
+        // column of that contactable model.
+        static::saving(function (self $self) {
+
+            $contactable = $self->contactable;
+
+            if (
+                !is_null($contactable) &&
+                $self->contactable_type === Location::class
+            ) {
+                $contactable->city_cache = $self->city;
+                $contactable->save();
+            }
+        });
+    }
+
+    /**
      * Create a new instance from an array of address components.
      *
      * @param  array  $parts
@@ -151,7 +178,7 @@ class PostalAddress extends ContactDetails
             case 'city':
             case 'latitude':
             case 'longitude':
-                return $this->parts->{snake_case($name)};
+                return $this->parts->{snake_case($name)} ?? null;
         }
 
         return parent::__get($name);

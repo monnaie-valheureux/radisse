@@ -12,10 +12,24 @@ html {
 }
 
 /**
- * Provide a default background color for the body element.
+ * 1. Provide a default background color for the body element.
+ * 2. Use flexbox to set up a ‘sticky footer’.
+ *    See https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
  */
 body {
-  background-color: $white;
+  background-color: $white; // 1
+
+  display: flex; // 2
+  min-height: 100vh; // 2
+  flex-direction: column; // 2
+}
+
+/**
+ * 1. Make sure the main content of the site will always expand if needed,
+ *    to create a ‘sticky footer’ situation (see `body` selector above).
+ */
+.site-content {
+  flex: 1; // 1
 }
 
 /**

@@ -28,6 +28,23 @@ class LocationTest extends TestCase
     }
 
     /** @test */
+    function can_check_if_it_has_currency_exchanges()
+    {
+        // Create a location with NO currency exchange.
+        $location = factory(Location::class)->create();
+
+        // Then, create a location that HAS a currency exchange.
+        $locationWithCurrencyExchange = factory(Location::class)->create();
+        $locationWithCurrencyExchange->currencyExchange()->save(
+            factory(CurrencyExchange::class)->make()
+        );
+
+        // Test the method.
+        $this->assertFalse($location->hasCurrencyExchange());
+        $this->assertTrue($locationWithCurrencyExchange->hasCurrencyExchange());
+    }
+
+    /** @test */
     function can_retrieve_its_currency_exchange()
     {
         // Create a location.
@@ -43,5 +60,17 @@ class LocationTest extends TestCase
 
         // Check that we got the correct object.
         $this->assertSame($currencyExchange->id, $retrievedCurrencyExchange->id);
+    }
+
+    /** @test */
+    function reading_the_city_attribute_gets_the_values_of_the_city_cache_column()
+    {
+        // Create a location.
+        $location = factory(Location::class)->create([
+            'city_cache' => 'Moulinsart'
+        ]);
+
+        // Test the Eloquent accessor.
+        $this->assertSame('Moulinsart', $location->city);
     }
 }

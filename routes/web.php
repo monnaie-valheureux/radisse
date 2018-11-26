@@ -11,9 +11,18 @@ Route::namespace('Site')->group(function () {
     // They match the three links in the main menu of the site.
     Route::view('/le-projet', 'public.project');
     Route::get('/comptoirs', 'CurrencyExchangesController@index');
-    Route::get('/partenaires', 'PartnersController@index');
 
-    // Display the information of a specific partner.
+    // Show the list of cities where there are partners’ locations.
+    Route::get('/partenaires', 'PartnersController@index');
+    // Show the list of partners that have no related location.
+    Route::get(
+        '/partenaires-par-localite/sans-adresse-precise',
+        'PartnersController@indexNoLocation'
+    );
+    // Show the list of partners of a given city.
+    Route::get('/partenaires-par-localite/{city}', 'PartnersController@indexCity');
+
+    // Show the information of a specific partner.
     Route::get('/partenaires/{partner}', 'PartnersController@show');
 
     // A static page telling about the ‘apéros du Val’heureux’.

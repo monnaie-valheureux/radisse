@@ -290,7 +290,7 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress()->withLabel('Magasin')->makePublic();
         // Fake data to satisfy database constraints.
         $address->contactable_id = 1;
-        $address->contactable_type = 'foo';
+        $address->contactable_type = 'App\Partner';
         // Save the model.
         $address->save();
 
@@ -323,7 +323,7 @@ class ContactDetailsPostalAddressTest extends TestCase
         $address = $this->makeTestAddress()->withLabel('Magasin')->makePublic();
         // Fake data to satisfy database constraints.
         $address->contactable_id = 1;
-        $address->contactable_type = 'foo';
+        $address->contactable_type = 'App\Partner';
         // Save the model.
         $address->save();
 
