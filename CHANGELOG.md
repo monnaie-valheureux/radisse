@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.16.1] - 2018-11-26
+### Fixed
+- Moved `laravel/telescope` from a dev to a non-dev dependency to prevent loading errors because of its service provider not being present.
+
 ## [1.16.0] - 2018-11-26
 ### Added
 - There is now a dedicated page for partners that have no explicit location.
