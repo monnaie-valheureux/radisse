@@ -7,14 +7,17 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
-## [Unreleased]
+## [1.16.0] - 2018-11-26
+### Added
+- There is now a dedicated page for partners that have no explicit location.
+- The site now has a proper favicon!
+- Public pages now display the site’s version number in the footer.
+
 ### Changed
 - The list of partners now lists cities instead of displaying all the partners at once. Once a city is chosen, the partners of that city are then shown.
-- The site now has a proper favicon!
 - On public pages, ensure that the site footer will always ‘stick’ to the bottom of the screen even when there is not a lot of content on the page (‘sticky footer’).
 - Updated content in the page for ‘apéros’.
 - The application has been upgraded to Laravel 5.7.
-- Public pages now display the site’s version number in the footer.
 
 ## [1.15.0] - 2018-10-22
 ### Changed
@@ -128,7 +131,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.15.0...HEAD
+[1.16.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.14.0...1.15.0
 [1.14.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.13.0...1.14.0
 [1.13.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.12.0...1.13.0
