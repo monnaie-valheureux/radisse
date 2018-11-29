@@ -92,6 +92,15 @@
                         </span>
                     </a>
 
+                    @if ($partner->is_incognito)
+                        <div class="badge badge--incognito"
+                        title="Ce partenaire n’apparaît pas publiquement sur le site ni dans nos listes">
+                            <span class="badge__hidden-text">(Ce partenaire est</span>
+                            incognito
+                            <span class="badge__hidden-text">)</span>
+                        </div>
+                    @endif
+
                     @if ($partner->isNotValidated())
                         <span style="color: #ce7a10;"> (non-validé)</span>
                     @endif
