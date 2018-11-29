@@ -34,6 +34,7 @@ $monza: rgb(195, 0, 69);
 $carmine: rgba(159, 0, 57, 1);
 $pigment-green: rgb(0, 137, 50);
 $british-racing-green: rgb(0, 103, 37);
+$dim-gray: rgb(109, 109, 109);
 
 
 
@@ -64,6 +65,10 @@ $creation-color: $pigment-green;
 /// Darker variation of the creation color.
 /// @type Color
 $darker-creation-color: $british-racing-green;
+
+/// Color used for things that are disabled or similar concepts.
+/// @type Color
+$disabled-color: $dim-gray;
 
 /// Copy text color.
 /// @type Color

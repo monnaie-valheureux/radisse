@@ -91,6 +91,13 @@ class Partner extends Model
             static::addGlobalScope('validated', function (Builder $builder) {
                 $builder->whereNotNull('validated_at');
             });
+
+            // Add a default global scope to all select queries on the model.
+            // This will exclude ‘incognito’ partners, who do not want to
+            // be publicly visible on the website at all.
+            static::addGlobalScope('non-incognito', function (Builder $builder) {
+                $builder->where('is_incognito', 0);
+            });
         }
     }
 

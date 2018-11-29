@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [Unreleased]
+### Added
+- Partners can now be set in ‘incognito’ mode, preventing them to appear publicly on the website 🕵️‍♀️
+
 ## [1.16.1] - 2018-11-26
 ### Fixed
 - Moved `laravel/telescope` from a dev to a non-dev dependency to prevent loading errors because of its service provider not being present.
@@ -135,6 +139,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.16.0...HEAD
 [1.16.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.14.0...1.15.0
 [1.14.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.13.0...1.14.0

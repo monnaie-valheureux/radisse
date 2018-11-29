@@ -354,6 +354,22 @@ class PartnerTest extends TestCase
     }
 
     /** @test */
+    function does_not_select_incognito_partners_by_default()
+    {
+        $partner = factory(Partner::class)->create([
+            'is_incognito' => false
+        ]);
+        $incognitoPartner = factory(Partner::class)->create([
+            'is_incognito' => true
+        ]);
+
+        $allPartners = Partner::all();
+
+        $this->assertTrue($allPartners->contains($partner));
+        $this->assertFalse($allPartners->contains($incognitoPartner));
+    }
+
+    /** @test */
     function can_tell_if_it_is_validated_or_not()
     {
         $validatedPartner = factory(Partner::class)->make([
