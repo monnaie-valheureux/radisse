@@ -21,123 +21,64 @@
         </div>
     </div>
 
+    <div class="text text--2columns">
+        <div class="text__section">
+            <h2>Comment en obtenir ?</h2>
+            <p>Le moyen le plus simple pour échanger vos euros contre des Val’heureux est de vous rendre dans un <a href="/comptoirs">comptoir de change</a>.</p>
+            <p>Vous pouvez également demander que l’on vous rende la monnaie en Val’heureux quand vous faites vos achats chez un commerçant qui les accepte.</p>
+            <p>Enfin, vous pouvez également échanger vos euros lors de nos « <a href="/aperos-du-valheureux">apéros du Val’heureux</a> », tout en en profitant pour rencontrer et boire un verre avec les gens qui font vivre ce projet !</p>
+        </div>
+        <div class="text__section">
+            <h2>Où les utiliser ?</h2>
+            <p>Les commerces et prestataires acceptant la monnaie ont généralement un autocollant « Ici circule le Val’heureux » devant chez eux.</p>
+            <p>Vous pouvez aussi jeter un œil à la vaste <a href="/partenaires">liste des membres du réseau</a> et ainsi, qui sait, découvrir de nouveaux lieux sympathiques !</p>
+        </div>
+    </div>
+
 @push('body-styles')
 <style>
     .old-bills-announcement {
-        position: relative;
-        z-index: 2;
-        margin-top: -2px;
-        border-top: 2px solid #40661c;
-        border-bottom: 2px solid #40661c;
-        background: #518c1a;
-        color: #fff;
-        -moz-osx-font-smoothing: grayscale;
-    }
-    .old-bills-announcement > div {
-        padding: 1.6rem 1.2rem;
-        font-size: 1.6rem;
-    }
-    @media (min-width: 45rem) {
-      .old-bills-announcement > div {
-        padding-top: 2.4rem;
-        padding-bottom: 2.4rem;
-      }
-    }
-    @media (min-width: 1000px) {
-      .old-bills-announcement > div {
-        padding-top: 3.6rem;
-        padding-bottom: 3.6rem;
-      }
-    }
-
-    .old-bills-announcement h2 {
-        margin-top: 0;
-    }
-    .old-bills-announcement p {
-        margin-bottom: 0;
-        line-height: 2rem;
-    }
-    .old-bills-announcement a {
-        color: #fff;
-        text-align: center;
-    }
-
-    .old-bills-announcement h2,
-    .old-bills-announcement p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         max-width: 42rem;
         margin-left: auto;
         margin-right: auto;
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+        margin-bottom: 2em;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+    }
+    .icon--information {
+        width: 2.5rem;
+        margin-right: 1.5rem;
+        fill: rgb(0, 97, 116);
     }
     @media (min-width: 750px) {
-        .old-bills-announcement h2,
-        .old-bills-announcement p {
+        .old-bills-announcement {
             max-width: 62rem;
-            font-size: 2.4rem;
-            line-height: 2.9rem;
-        }
-        .old-bills-announcement h2 {
-            font-size: 3.2rem;
+            font-size: 2rem;
+            line-height: 2.5rem;
         }
     }
     @media (min-width: 1000px) {
-        .old-bills-announcement h2,
-        .old-bills-announcement p {
+        .old-bills-announcement {
             max-width: 80rem;
         }
-    }
-
-    .old-bill {
-        display: block;
-        max-width: 100%;
-        margin-bottom: 1rem;
-    }
-    @media (min-width: 750px) {
-        .old-bill {
-            float: left;
-            max-width: 30rem;
-            margin-right: 2rem;
-        }
-    }
-    @media (min-width: 1000px) {
-        .old-bill {
-            max-width: 100%;
-        }
-    }
-
-    .more-info {
-        text-align: center;
-    }
-    .more-info a {
-        font-size: 1.2em;
     }
 </style>
 @endpush
 
     <div class="old-bills-announcement">
         <div>
-            <h2>Remplacement des anciens billets</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="icon--information"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg>
+        </div>
+        <div>
             <p>
-                <img src="{{ asset('img/billet-valeureux-1.jpg') }}"
-                class="old-bill" alt="">
+                Vous possédez encore des anciens billets de valeureux ? Vous pouvez les échanger contre de nouveaux billets lors de nos <a href="/aperos-du-valheureux">apéros</a>, ou bien en contactant l’ASBL le Val’heureux.
+                <a href="/remplacement-anciens-billets">Cliquez ici pour plus d’infos</a>.
             </p>
-            <p>Vous possédez encore des anciens billets de valeureux ? Vous pouvez les échanger contre de nouveaux billets lors de nos <a href="/aperos-du-valheureux">apéros</a>, ou bien en contactant l’ASBL le Val’heureux.</p>
-            <p class="more-info">
-                <a href="/remplacement-anciens-billets">Cliquez ici pour plus d’infos</a>
-            </p>
-        </div>
-    </div>
-
-    <div class="text text--2columns">
-        <div class="text__section">
-            <h2>Comment en obtenir ?</h2>
-            <p>Le moyen le plus simple pour échanger vos euros contre des Val’heureux est de vous rendre dans un <a href="/comptoirs">comptoir de change</a>.</p>
-            <p>Vous pouvez également demander que l’on vous rende la monnaie en Val’heureux quand vous faites vos achats chez un commerçant qui les accepte.</p>
-            <p>Enfin, vous pouvez également échanger vos euros lors de nos « <a href="/aperos-du-valheureux">apéros du Val’heureux</a> », tout en en profitant pour rencontrer et boire un verre avec les gens qui font vivre ce projet ! Le prochain aura lieu le <strong>20 décembre</strong> à Liège, à la <a href="/partenaires/toutes-directions">librairie Toutes directions</a> (rue de la Violette 3).</p>
-        </div>
-        <div class="text__section">
-            <h2>Où les utiliser ?</h2>
-            <p>Les commerces et prestataires acceptant la monnaie ont généralement un autocollant « Ici circule le Val’heureux » devant chez eux.</p>
-            <p>Vous pouvez aussi jeter un œil à la vaste <a href="/partenaires">liste des membres du réseau</a> et ainsi, qui sait, découvrir de nouveaux lieux sympathiques !</p>
         </div>
     </div>
 
