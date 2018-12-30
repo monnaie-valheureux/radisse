@@ -13,9 +13,6 @@
             <li>tisser et renforcer les liens entre les différents acteurs de l’économie locale.</li>
         </ul>
 
-        <p>Dates des prochains apéros (de 18h à 21h) :</p>
-        <ul>
-            <li>le <strong>20 décembre</strong> à la <a href="/partenaires/toutes-directions">librairie Toutes directions</a> (rue de la Violette 3, Liège).</li>
-        </ul>
+        <p><strong>Les dates et lieux des prochains apéros seront bientôt annoncés ici !</strong></p>
     </div>
 @endsection
