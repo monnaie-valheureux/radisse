@@ -11,6 +11,10 @@ and this project adheres to
 ### Added
 - Partners can now be set in ‘incognito’ mode, preventing them to appear publicly on the website 🕵️‍♀️
 
+### Changed
+- Updated content in the page for ‘apéros’.
+- Made the homepage announcement regarding the withdrawal of the first series of bills less prominent.
+
 ## [1.16.1] - 2018-11-26
 ### Fixed
 - Moved `laravel/telescope` from a dev to a non-dev dependency to prevent loading errors because of its service provider not being present.
