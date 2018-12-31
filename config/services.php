@@ -14,6 +14,12 @@ return [
     |
     */
 
+    // Credentials for MailerLite.
+    // https://www.mailerlite.com
+    'mailerlite' => [
+        'key' => env('MAILERLITE_API_KEY'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

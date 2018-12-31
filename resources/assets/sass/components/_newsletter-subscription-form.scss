@@ -1,0 +1,58 @@
+/**
+ * A tiny form to allow people to subscribe to the newsletter.
+ *
+ * It contains just a text field and a submit button.
+ *
+ * 1. Using flexbox allows the field and the button to
+ *    be positioned immediately next to each other.
+ */
+.newsletter-subscription-form {
+  display: flex; // 1
+
+  @include media('≥large') {
+    font-size: 2.4rem;
+    line-height: 2.9rem;
+  }
+}
+
+/**
+ * The text input allowing to type an e-mail address.
+ *
+ * 1. Use a rem-based vertical padding, for consistency with
+ *    the button (so the input field and the button always
+ *    get the same height).
+ * 2. Ensure there is no right border, to avoid having a grey
+ *    border (from the field) to be immediately positioned
+ *    next to the blue background of the submit button.
+ * 3. Set some border radius on the left side but not on the
+ *    right, to make the field play nicely with the button,
+ *    thus visually looking like a input-button group.
+ * 4. Force the input to use the correct font stack.
+ */
+.newsletter-subscription-form__email-input {
+  padding: 0.7rem 0.5em; // 1
+  border: 1px solid #999;
+  border-right: none; // 2
+  border-top-left-radius: 6px; // 3
+  border-bottom-left-radius: 6px; // 3
+  font-family: $text-font-stack; // 4
+
+  &:focus {
+    border-color: $brand-color;
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 1px $brand-color;
+  }
+}
+
+/**
+ * Overwrite some styles for the submit button of the form.
+ *
+ * 1. Reduce the horizontal padding.
+ * 2. Remove border radius on the left side.
+ */
+.newsletter-subscription-form > .button {
+  padding-left: 0.5em; // 1
+  padding-right: 0.5em; // 1
+  border-top-left-radius: 0; // 2
+  border-bottom-left-radius: 0; // 2
+}

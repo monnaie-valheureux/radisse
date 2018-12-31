@@ -31,6 +31,18 @@ Route::namespace('Site')->group(function () {
     // A static page providing information about the withdrawal
     // of the first series of bills (‘Valeureux’).
     Route::view('/remplacement-anciens-billets', 'public.old-bills-withdrawal');
+
+
+    // Newsletter.
+
+    // Subscribe to the newsletter.
+    Route::post('/newsletter', 'NewsletterController@store')
+        ->name('newsletter-subscription');
+
+    // Redirect to home page in case people try to access this POST-only URL.
+    Route::get('/newsletter', function () {
+        return redirect()->route('home');
+    });
 });
 
 

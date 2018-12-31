@@ -1,0 +1,16 @@
+.button {
+  display: inline-block;
+  padding: 0.7rem 1em;
+  border: 2px solid $brand-color;
+  border-radius: 6px;
+  background-color: $brand-color;
+  color: $white;
+  font-family: $text-font-stack;
+  text-decoration: none;
+  cursor: default;
+
+  @include on-event {
+    border-color: $darker-brand-color;
+    background-color: $darker-brand-color;
+  }
+}

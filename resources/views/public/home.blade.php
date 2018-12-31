@@ -32,6 +32,19 @@
             <h2>Où les utiliser ?</h2>
             <p>Les commerces et prestataires acceptant la monnaie ont généralement un autocollant « Ici circule le Val’heureux » devant chez eux.</p>
             <p>Vous pouvez aussi jeter un œil à la vaste <a href="/partenaires">liste des membres du réseau</a> et ainsi, qui sait, découvrir de nouveaux lieux sympathiques !</p>
+
+            <h2>Être tenu au courant</h2>
+            <p>Envie de recevoir, une fois par trimestre, les dernières nouvelles du Val’heureux dans votre boîte mail ? Il vous suffit de vous inscrire ici !</p>
+
+            <form action="{{ route('newsletter-subscription') }}" method="POST"
+            class="newsletter-subscription-form">
+                <input type="email" name="email" required
+                class="newsletter-subscription-form__email-input"
+                placeholder="email@exemple.com">
+                <button type="submit" class="button">S’inscrire</button>
+            </form>
+
+            <p>Vous pourrez vous désinscrire à n’importe quel moment.</p>
         </div>
     </div>
 
