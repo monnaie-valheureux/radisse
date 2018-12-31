@@ -9,6 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 ### Added
+- The home page now contains a form allowing to subscribe to our newsletter 💌
 - Partners can now be set in ‘incognito’ mode, preventing them to appear publicly on the website 🕵️‍♀️
 
 ### Changed
