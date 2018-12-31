@@ -7,7 +7,7 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
-## [Unreleased]
+## [1.17.0] - 2018-12-31
 ### Added
 - The home page now contains a form allowing to subscribe to our newsletter 💌
 - Partners can now be set in ‘incognito’ mode, preventing them to appear publicly on the website 🕵️‍♀️
@@ -144,7 +144,8 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.16.0...HEAD
+[1.17.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.16.1...v1.17.0
+[1.16.1]: https://github.com/monnaie-valheureux/radisse/compare/v1.16.0...v1.16.1
 [1.16.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.15.0...v1.16.0
 [1.15.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.14.0...1.15.0
 [1.14.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.13.0...1.14.0
