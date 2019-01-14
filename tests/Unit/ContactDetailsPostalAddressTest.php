@@ -134,6 +134,14 @@ class ContactDetailsPostalAddressTest extends TestCase
         $this->assertSame(4.612869, $address->longitude);
     }
 
+    /** @test */
+    function object_exposes_the_geolocatable_status_as_a_property()
+    {
+        $address = $this->makeTestAddress(['is_geolocatable' => true]);
+
+        $this->assertTrue($address->isGeolocatable);
+    }
+
     /**
      * @test
      * @expectedException DomainException
@@ -308,6 +316,7 @@ class ContactDetailsPostalAddressTest extends TestCase
                     'city' => 'Moulinsart',
                     'latitude' => 50.671155,
                     'longitude' => 4.612869,
+                    'is_geolocatable' => null,
                 ],
             ]),
         ]);
@@ -361,6 +370,7 @@ class ContactDetailsPostalAddressTest extends TestCase
             'city' => 'Moulinsart',
             'latitude' => 50.671155,
             'longitude' => 4.612869,
+            'is_geolocatable' => null,
         ];
 
         return PostalAddress::fromArray($overwrite + $addressParts);

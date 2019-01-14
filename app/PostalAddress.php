@@ -178,6 +178,7 @@ class PostalAddress extends ContactDetails
             case 'city':
             case 'latitude':
             case 'longitude':
+            case 'isGeolocatable':
                 return $this->parts->{snake_case($name)} ?? null;
         }
 
@@ -204,6 +205,8 @@ class PostalAddress extends ContactDetails
             case 'city':
             case 'latitude':
             case 'longitude':
+            case 'isGeolocatable':
+            case 'is_geolocatable':
                 // Update the value.
                 $this->parts->{snake_case($name)} = $value;
 
