@@ -236,6 +236,16 @@ class PostalAddress extends ContactDetails
     }
 
     /**
+     * Check if the address has a latitude and a longitude.
+     *
+     * @return bool
+     */
+    public function hasGeoCoordinates()
+    {
+        return ($this->latitude !== null && $this->longitude !== null);
+    }
+
+    /**
      * Return the address as a formatted string of text.
      *
      * @return string
