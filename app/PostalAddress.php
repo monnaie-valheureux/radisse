@@ -178,6 +178,7 @@ class PostalAddress extends ContactDetails
             case 'city':
             case 'latitude':
             case 'longitude':
+            case 'isGeolocatable':
                 return $this->parts->{snake_case($name)} ?? null;
         }
 
@@ -204,6 +205,8 @@ class PostalAddress extends ContactDetails
             case 'city':
             case 'latitude':
             case 'longitude':
+            case 'isGeolocatable':
+            case 'is_geolocatable':
                 // Update the value.
                 $this->parts->{snake_case($name)} = $value;
 
@@ -230,6 +233,16 @@ class PostalAddress extends ContactDetails
         $clone->usePostalFormat = true;
 
         return $clone;
+    }
+
+    /**
+     * Check if the address has a latitude and a longitude.
+     *
+     * @return bool
+     */
+    public function hasGeoCoordinates()
+    {
+        return ($this->latitude !== null && $this->longitude !== null);
     }
 
     /**

@@ -13,16 +13,29 @@
             "email": "michael@estsurinter.net"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/monnaie-valheureux/mailerlite-api-v2-php-sdk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=5.6.4",
         "doctrine/dbal": "^2.8",
+        "geo6/geocoder-php-bpost-provider": "^1.2",
+        "geo6/geocoder-php-spw-provider": "^1.2",
+        "geocoder-php/chain-provider": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "mailerlite/mailerlite-api-v2-php-sdk": "^0.2.2",
+        "mailerlite/mailerlite-api-v2-php-sdk": "dev-master",
         "mmucklo/email-parse": "^2.0",
+        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/message": "^1.7",
         "propaganistas/laravel-phone": "^4.0",
         "spatie/laravel-backup": "^5.9",
         "spatie/laravel-db-snapshots": "^1.1",
