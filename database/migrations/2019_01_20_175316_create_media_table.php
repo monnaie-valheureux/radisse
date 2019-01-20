@@ -11,7 +11,7 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('vendor_media', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs('model');
             $table->string('collection_name');
@@ -33,6 +33,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('vendor_media');
     }
 }
