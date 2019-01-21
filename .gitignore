@@ -44,3 +44,8 @@
 # must obvioulsy not be tracked under version control because it
 # will contain sensitive information that mustn’t be published.
 /database/snapshots
+
+# This is actually used as a symbolic link targeting a specific
+# subdirectory in the main storage directory. It thus has to
+# be ignored, since we don’t want to track generated files.
+/public/storage
