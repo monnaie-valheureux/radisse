@@ -28,6 +28,8 @@
  *    right, to make the field play nicely with the button,
  *    thus visually looking like a input-button group.
  * 4. Force the input to use the correct font stack.
+ * 5. Remove the outline added by some browsers, as this
+ *    is redundant with the border that we already add.
  */
 .newsletter-subscription-form__email-input {
   padding: 0.7rem 0.5em; // 1
@@ -41,6 +43,7 @@
     border-color: $brand-color;
     border-bottom-width: 1px;
     box-shadow: inset 0 0 0 1px $brand-color;
+    outline: none; // 5
   }
 }
 
