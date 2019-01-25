@@ -29,6 +29,12 @@ class CacheLocationCities extends Command
      */
     public function handle()
     {
+        // Start by clearing the cache.
+        $this->line('Clearing city cache...');
+        $this->callSilent('app:clear-location-cities');
+
+        $this->line('Rebuilding city cache...');
+
         // We will loop on all locations and, for each one, if it has an
         // address, then we will use it to update the Location’s city.
         $locations = Location::all();
