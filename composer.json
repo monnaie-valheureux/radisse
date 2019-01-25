@@ -27,6 +27,7 @@
         "geo6/geocoder-php-bpost-provider": "^1.2",
         "geo6/geocoder-php-spw-provider": "^1.2",
         "geocoder-php/chain-provider": "^4.0",
+        "intervention/image": "^2.4",
         "laravel/framework": "5.7.*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "~1.0",
