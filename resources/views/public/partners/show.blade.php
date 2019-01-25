@@ -31,6 +31,23 @@
                                         Ce lieu est comptoir de change
                                     </a>
                                 @endif
+
+                                {{--
+                                    Display a static map if there is one
+                                    available for the current location.
+                                --}}
+                                @if ($location->hasMedia('maps'))
+
+                                    <div class="partner-page__osm-map-container">
+                                        <div class="partner-page__osm-map-container-inner">
+                                            <img src="{{ $location->getFirstMedia('maps')->getUrl() }}"
+                                            alt="Carte géographique indiquant l’emplacement de l’adresse."
+                                            title="{{ $location->postalAddress->toString() }}"
+                                            class="partner-page__osm-map">
+                                        </div>
+                                    </div>
+
+                                @endif
                             </dd>
                         </div>
 

@@ -118,3 +118,17 @@
     border-radius: 0;
   }
 }
+
+.partner-page__osm-map-container {
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+.partner-page__osm-map-container-inner {
+    box-shadow: inset 0 2px 5px 2px rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.partner-page__osm-map {
+    display: block;
+}
