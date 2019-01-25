@@ -14,4 +14,19 @@ return [
 
     'country_code' => env('RADISSE_COUNTRY_CODE', 'BE'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Map tile provider
+    |--------------------------------------------------------------------------
+    |
+    | This is the URL pattern to use as a provider for OpenStreetMap tiles.
+    | The official OSM site will be used as a default value.
+    |
+    */
+
+    'map_tile_provider' => env(
+        'RADISSE_MAP_TILE_PROVIDER',
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    ),
+
 ];

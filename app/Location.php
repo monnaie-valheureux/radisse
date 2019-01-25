@@ -2,17 +2,23 @@
 
 namespace App;
 
+use App\Exceptions\NonGeolocatable;
+use Facades\App\Services\MapGenerator;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * A location is a place where a partner welcomes its customers. For example, it
  * may be a shop, a restaurant, an office or any other place were the currency
  * will be used and exchanged between the partner and its customers.
  */
-class Location extends Model
+class Location extends Model implements HasMedia
 {
     use HasPostalAddress;
     use HasPhones;
+
+    use HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -107,5 +113,31 @@ class Location extends Model
 
             $this->postalAddress()->save($address);
         }
+    }
+
+    /**
+     * Register media collections for this model.
+     *
+     * @return void
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('maps')->singleFile();
+    }
+
+    /**
+     * Generate a static map for the location.
+     *
+     * @return \Spatie\MediaLibrary\Models\Media  The media object the map is associated to.
+     */
+    public function generateMap()
+    {
+        if (!$this->postalAddress) {
+            throw NonGeolocatable::locationHasNoAddress($this);
+        }
+
+        $pathToMap = MapGenerator::generateFromPostalAddress($this->postalAddress);
+
+        return $this->addMedia($pathToMap)->toMediaCollection('maps');
     }
 }

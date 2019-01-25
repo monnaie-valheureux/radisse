@@ -4,10 +4,11 @@ namespace App\Services;
 
 use Geocoder\ProviderAggregator;
 use Geocoder\Query\GeocodeQuery;
+use App\Exceptions\NonGeolocatable;
 use Geocoder\Provider\SPW\SPW as SPWProvider;
 use Http\Adapter\Guzzle6\Client as GuzzleClient;
-use Geocoder\Provider\bpost\bpost as bpostProvider;
 use Geocoder\Provider\Chain\Chain as ProviderChain;
+use Geocoder\Provider\bpost\bpost as bpostProvider;
 
 class Geocoder
 {
@@ -45,10 +46,8 @@ class Geocoder
     {
         $result = $this->geocoder->geocodeQuery(GeocodeQuery::create($address));
 
-        // Throw an exception in case none of the
-        // registered providers found anything.
         if ($result->isEmpty()) {
-            throw new \Exception("Could not geolocate [$address]");
+            throw NonGeolocatable::geocodingProvidersFoundNothing($address);
         }
 
         // Return the first match that we got.
