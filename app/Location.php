@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\NonGeolocatable;
+use Facades\App\Services\MapGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -121,5 +123,21 @@ class Location extends Model implements HasMedia
     public function registerMediaCollections()
     {
         $this->addMediaCollection('maps')->singleFile();
+    }
+
+    /**
+     * Generate a static map for the location.
+     *
+     * @return \Spatie\MediaLibrary\Models\Media  The media object the map is associated to.
+     */
+    public function generateMap()
+    {
+        if (!$this->postalAddress) {
+            throw NonGeolocatable::locationHasNoAddress($this);
+        }
+
+        $pathToMap = MapGenerator::generateFromPostalAddress($this->postalAddress);
+
+        return $this->addMedia($pathToMap)->toMediaCollection('maps');
     }
 }
