@@ -29,9 +29,17 @@ class CacheLocationCities extends Command
      */
     public function handle()
     {
+        $startTime = microtime(true);
+
+        // Start by clearing the cache.
+        $this->line('Clearing city cache...');
+        $this->callSilent('app:clear-location-cities');
+
+        $this->line('Rebuilding city cache...');
+
         // We will loop on all locations and, for each one, if it has an
         // address, then we will use it to update the Location’s city.
-        $locations = Location::all();
+        $locations = Location::with('postalAddress')->get();
         $total = count($locations);
 
         foreach ($locations as $location) {
@@ -41,6 +49,11 @@ class CacheLocationCities extends Command
             }
         }
 
-        $this->info("🎉 City cache built for <comment>{$total}</comment> locations!");
+        $elapsedTime = round(microtime(true) - $startTime, 2);
+
+        $this->info(
+            "🎉 City cache built for <comment>{$total}</comment> locations!".
+            " \033[2m({$elapsedTime} sec)\033[0m"
+        );
     }
 }
