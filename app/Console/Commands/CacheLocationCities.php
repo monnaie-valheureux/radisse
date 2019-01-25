@@ -37,7 +37,7 @@ class CacheLocationCities extends Command
 
         // We will loop on all locations and, for each one, if it has an
         // address, then we will use it to update the Location’s city.
-        $locations = Location::all();
+        $locations = Location::with('postalAddress')->get();
         $total = count($locations);
 
         foreach ($locations as $location) {
