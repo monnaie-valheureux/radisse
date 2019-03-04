@@ -116,6 +116,19 @@ class Location extends Model implements HasMedia
     }
 
     /**
+     * Check if this location got a latitude and a longitude associated with it.
+     *
+     * @return bool
+     */
+    public function hasGeoCoordinates()
+    {
+        return (
+            $this->postalAddress !== null &&
+            $this->postalAddress->hasGeoCoordinates()
+        );
+    }
+
+    /**
      * Register media collections for this model.
      *
      * @return void

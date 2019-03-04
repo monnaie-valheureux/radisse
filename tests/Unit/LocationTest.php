@@ -5,6 +5,7 @@ namespace Tests\Unit\Admin;
 use App\Partner;
 use App\Location;
 use Tests\TestCase;
+use App\PostalAddress;
 use App\CurrencyExchange;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -72,5 +73,59 @@ class LocationTest extends TestCase
 
         // Test the Eloquent accessor.
         $this->assertSame('Moulinsart', $location->city);
+    }
+
+    /** @test */
+    function can_test_if_it_has_defined_coordinates()
+    {
+        // We first create some locations with bogus addresses.
+
+        // This location has no postal address at all.
+        $locationWithoutAddress = factory(Location::class)->create();
+
+        $locationWithoutLatitude = $this->makeTestLocationWithAddress([
+            'latitude' => null,
+            'longitude' => 4.612869,
+        ]);
+        $locationWithoutLongitude = $this->makeTestLocationWithAddress([
+            'latitude' => 50.671155,
+            'longitude' => null,
+        ]);
+        $locationWithCoordinates = $this->makeTestLocationWithAddress([
+            'latitude' => 50.671155,
+            'longitude' => 4.612869,
+        ]);
+
+        // We then test these locations.
+        $this->assertFalse($locationWithoutAddress->hasGeoCoordinates());
+        $this->assertFalse($locationWithoutLatitude->hasGeoCoordinates());
+        $this->assertFalse($locationWithoutLongitude->hasGeoCoordinates());
+        $this->assertTrue($locationWithCoordinates->hasGeoCoordinates());
+    }
+
+    /**
+     * Helper method to avoid redundancy in tests.
+     *
+     * @param  array  $overwrite  An array of address components that should
+     *                            overwrite the default values.
+     *
+     * @return \App\PostalAddress
+     */
+    protected function makeTestLocationWithAddress(array $overwrite = [])
+    {
+        $location = factory(Location::class)->create();
+
+        $addressParts = [
+            'street' => 'rue du Château',
+            'postal_code' => '1234',
+            'city' => 'Moulinsart',
+        ];
+
+        $location = factory(Location::class)->create()
+            ->postalAddress()->save(
+                PostalAddress::fromArray($overwrite + $addressParts)
+            );
+
+        return $location;
     }
 }
