@@ -22,6 +22,11 @@
 # don’t need to keep track of them under version control.
 /public/css
 
+# Our source JavaScript files are processed by automated tools, such
+# as Babel, which make them more optimized for web browsers. As a
+# result, we don’t need to keep track of generated versions.
+/public/js
+
 
 # Third-party packages & libraries
 # --------------------------------
