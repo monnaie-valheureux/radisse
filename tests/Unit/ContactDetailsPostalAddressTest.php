@@ -142,6 +142,27 @@ class ContactDetailsPostalAddressTest extends TestCase
         $this->assertTrue($address->isGeolocatable);
     }
 
+    /** @test */
+    function can_test_if_it_has_defined_coordinates()
+    {
+        $addressWithoutLatitude = $this->makeTestAddress([
+            'latitude' => null,
+            'longitude' => 4.612869,
+        ]);
+        $addressWithoutLongitude = $this->makeTestAddress([
+            'latitude' => 50.671155,
+            'longitude' => null,
+        ]);
+        $addressWithCoordinates = $this->makeTestAddress([
+            'latitude' => 50.671155,
+            'longitude' => 4.612869,
+        ]);
+
+        $this->assertFalse($addressWithoutLatitude->hasGeoCoordinates());
+        $this->assertFalse($addressWithoutLongitude->hasGeoCoordinates());
+        $this->assertTrue($addressWithCoordinates->hasGeoCoordinates());
+    }
+
     /**
      * @test
      * @expectedException DomainException
