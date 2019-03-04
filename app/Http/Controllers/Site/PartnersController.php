@@ -118,15 +118,6 @@ class PartnersController extends Controller
         // of letters instead of just displaying a raw list.
         if (count($partners) > 50) {
 
-            $letterRanges = [
-                'A-C' => ['a', 'b', 'c'],
-                'D-F' => ['d', 'e', 'f'],
-                'G-K' => ['g', 'h', 'i', 'j', 'k'],
-                'L-P' => ['l', 'm', 'n', 'o', 'p'],
-                'Q-T' => ['q', 'r', 's', 't'],
-                'U-Z' => ['u', 'v', 'w', 'x', 'y', 'z'],
-            ];
-
             $partnersByInitials = $partners->groupBy(function ($partner) {
 
                     $firstLetter = Str::substr($partner->name_sort, 0, 1);

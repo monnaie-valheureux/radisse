@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ea24a4ba7f32f0c4808e660f5f16811",
+    "content-hash": "dbfa3d90e4f44cc033f4b924e4908d9f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2074,6 +2074,41 @@
                 "source": "https://github.com/monnaie-valheureux/mailerlite-api-v2-php-sdk/tree/master"
             },
             "time": "2019-01-05T00:47:24+00:00"
+        },
+        {
+            "name": "miclf/geodata",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miclf/geodata.git",
+                "reference": "2723ec382a26e05bd761c34d0e6369d5de4db632"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miclf/geodata/zipball/2723ec382a26e05bd761c34d0e6369d5de4db632",
+                "reference": "2723ec382a26e05bd761c34d0e6369d5de4db632",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Miclf\\Geodata\\": "src/"
+                }
+            },
+            "license": [
+                "CC0-1.0"
+            ],
+            "authors": [
+                {
+                    "name": "miclf",
+                    "email": "michael@estsurinter.net"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/miclf/geodata/tree/master",
+                "issues": "https://github.com/miclf/geodata/issues"
+            },
+            "time": "2019-03-04T20:23:47+00:00"
         },
         {
             "name": "mmucklo/email-parse",
@@ -7600,7 +7635,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "mailerlite/mailerlite-api-v2-php-sdk": 20
+        "mailerlite/mailerlite-api-v2-php-sdk": 20,
+        "miclf/geodata": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

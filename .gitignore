@@ -22,6 +22,11 @@
 # don’t need to keep track of them under version control.
 /public/css
 
+# Our source JavaScript files are processed by automated tools, such
+# as Babel, which make them more optimized for web browsers. As a
+# result, we don’t need to keep track of generated versions.
+/public/js
+
 
 # Third-party packages & libraries
 # --------------------------------
@@ -35,6 +40,11 @@
 # pieces of third-party code into this directory. Similarly to how
 # Composer works, files in there are not supposed to be touched.
 /node_modules
+
+# This directory stores front-end third-party assets. These assets may
+# have been installed via NPM and then copied from the `node_modules`
+# directory in order to put them in this publicly-accessible dir.
+/public/vendor
 
 
 # Generated files

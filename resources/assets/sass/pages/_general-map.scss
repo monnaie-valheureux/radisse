@@ -1,0 +1,61 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the general map of partners.
+// -----------------------------------------------------------------------------
+
+.general-partner-map {
+    width: 100vw;
+    height: 80vh;
+}
+.template-marker-groups {
+    display: none;
+}
+[class^=layer-control-label] {
+    font-weight: bold;
+}
+.layer-control-label--partner {
+    color: $brand-color;
+}
+.layer-control-label--currency-exchange {
+    color: $secondary-brand-color;
+}
+
+.marker-group {
+  transition: top .1s ease-in-out;
+
+  &:hover {
+    top: -3px;
+
+    .group-shadow {
+      transform: translate(3px, 3px);
+    }
+  }
+
+  .marker,
+  .group-shadow {
+    transition: transform .1s ease-in-out;
+  }
+  .marker--currency-exchange {
+    fill: $secondary-brand-color;
+  }
+}
+
+.osm-map-popup {
+  // font-family: $text-font-stack;
+
+  a {
+    color: $brand-color;
+    text-decoration: underline;
+
+    @include on-event {
+      color: $secondary-brand-color;
+    }
+  }
+}
+
+.error-message--javascript-required {
+  max-width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}

@@ -25,6 +25,9 @@ Route::namespace('Site')->group(function () {
     // Show the information of a specific partner.
     Route::get('/partenaires/{partner}', 'PartnersController@show');
 
+    Route::get('/carte', 'MapController@index');
+    Route::get('/xhr/partenaires/{partner}', 'MapController@getMapPopupContent');
+
     // A static page telling about the ‘apéros du Val’heureux’.
     Route::view('/aperos-du-valheureux', 'public.aperos');
 
