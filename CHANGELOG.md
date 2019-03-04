@@ -12,6 +12,9 @@ and this project adheres to
 - General OpenStreetMap map of partners. Working already, but no public link points there yet.
 - Partner pages now display static maps of their location(s).
 
+### Changed
+- Updated content in the page for ‘apéros’.
+
 ## [1.18.0] - 2019-01-15
 ### Changed
 - Updated content in the page for ‘apéros’.
