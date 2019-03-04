@@ -5,6 +5,11 @@ mix
     .sass('resources/assets/sass/main.scss', 'public/css')
     .sass('resources/assets/sass/admin.scss', 'public/css')
 
+    .babel(
+        'resources/assets/js/general-osm-map.js',
+        'public/js/general-osm-map.js',
+    )
+
     // Publish assets for front-end dependencies.
     .copy('node_modules/leaflet/dist', 'public/vendor/leaflet')
     .copy(
