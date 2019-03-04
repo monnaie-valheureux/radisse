@@ -39,6 +39,19 @@
   }
 }
 
+.osm-map-popup {
+  // font-family: $text-font-stack;
+
+  a {
+    color: $brand-color;
+    text-decoration: underline;
+
+    @include on-event {
+      color: $secondary-brand-color;
+    }
+  }
+}
+
 .error-message--javascript-required {
   max-width: 40em;
   margin-left: auto;

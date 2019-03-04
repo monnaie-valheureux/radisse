@@ -253,12 +253,35 @@ document.addEventListener('DOMContentLoaded', function(e) {
               .addTo(partnersSubgroup);
     }
 
+    marker.bindPopup(marker.options.name, {
+      offset: [0, -30],
+      closeButton: false,
+    });
+
+    // By default, the popup would open as soon as the marker is clicked.
+    // This means that it will open before the XHR request is able to
+    // load the ‘real’ content of the popup, thus creating a ‘flash’
+    // due to content change once the XHR callback gets executed.
+    // This is a small hack to prevent the popup to open on
+    // click, allowing us to manually open it when needed.
+    // https://stackoverflow.com/a/46275010
+    marker.off('click', this.openPopup);
+
     // Define click handler.
     marker.on('click', evt => {
       const marker = evt.sourceTarget;
-      console.log(marker.options.partner_slug);
-      // On dirait que ça marche pas…
-      marker.closeTooltip();
+      const slug = marker.options.partner_slug;
+
+      const xhr = new XMLHttpRequest();
+
+      // Callback to execute once the XHR request is complete.
+      xhr.addEventListener('load', function() {
+        marker.setPopupContent(this.responseText);
+        marker.openPopup();
+      });
+
+      xhr.open('GET', `/xhr/partenaires/${slug}`);
+      xhr.send();
     });
 
     // Create a tooltip for the marker.

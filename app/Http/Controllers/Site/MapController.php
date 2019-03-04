@@ -67,4 +67,19 @@ class MapController extends Controller
 
         return view('public.partners.map', compact('locations', 'municipalities'));
     }
+
+    /**
+     * Get the content of an OSM map popup for a given partner.
+     *
+     * @param  \App\Partner  $partner
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getMapPopupContent(Partner $partner)
+    {
+        return
+            '<div class="osm-map-popup">
+                <a href="/partenaires/'.$partner->slug.'">Voir sa page</a>
+            </div>';
+    }
 }
