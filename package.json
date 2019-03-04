@@ -12,5 +12,10 @@
     "devDependencies": {
         "cross-env": "^5.2.0",
         "laravel-mix": "^2.0"
+    },
+    "dependencies": {
+        "leaflet": "^1.4.0",
+        "leaflet.featuregroup.subgroup": "^1.0.2",
+        "leaflet.markercluster": "^1.4.1"
     }
 }
