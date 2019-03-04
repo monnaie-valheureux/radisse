@@ -5,6 +5,17 @@ mix
     .sass('resources/assets/sass/main.scss', 'public/css')
     .sass('resources/assets/sass/admin.scss', 'public/css')
 
+    // Publish assets for front-end dependencies.
+    .copy('node_modules/leaflet/dist', 'public/vendor/leaflet')
+    .copy(
+        'node_modules/leaflet.markercluster/dist',
+        'public/vendor/leaflet.markercluster'
+    )
+    .copy(
+        'node_modules/leaflet.featuregroup.subgroup/dist',
+        'public/vendor/leaflet.featuregroup.subgroup'
+    )
+
     .options({
         // Prevent Webpack to do incredibly stupid things by trying to
         // be clever and thinking he can process our external assets.
