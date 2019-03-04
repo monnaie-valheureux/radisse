@@ -9,6 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 ### Added
+- General OpenStreetMap map of partners. Working already, but no public link points there yet.
 - Partner pages now display static maps of their location(s).
 
 ## [1.18.0] - 2019-01-15
