@@ -36,6 +36,11 @@
 # Composer works, files in there are not supposed to be touched.
 /node_modules
 
+# This directory stores front-end third-party assets. These assets may
+# have been installed via NPM and then copied from the `node_modules`
+# directory in order to put them in this publicly-accessible dir.
+/public/vendor
+
 
 # Generated files
 # ---------------
