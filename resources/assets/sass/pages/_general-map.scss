@@ -2,23 +2,55 @@
 // This file contains styles that are specific to the general map of partners.
 // -----------------------------------------------------------------------------
 
+/**
+ * The container of the map.
+ *
+ * 1. We make the map take the full width of the screen, but only 80% of its
+ *    height. On touch screens, this allows people to still be able to grab
+ *    other parts of the interface in order to scroll the page. More
+ *    generally, on all screens, not taking more than 80% of the
+ *    screen height ensures people see that there are other
+ *    things in the page than just the map.
+ */
 .general-partner-map {
-    width: 100vw;
-    height: 80vh;
+    width: 100vw; // 1
+    height: 80vh; // 1
 }
+
+/**
+ * This element contains SVG tags that represent the icons of the different
+ * types of marker groups. These SVGs are used as source code when building
+ * the map with JavaScript.
+ * Since they are there only for technical reasons, they must not visually
+ * appear inside the content of the page.
+ */
 .template-marker-groups {
     display: none;
 }
+
+/**
+ * The controls of the map that allow to
+ * show and hide subgroups of markers.
+ *
+ * 1. Give specific colors to each label, to make them match
+ *    the color of the icons in their corresponding group.
+ */
 [class^=layer-control-label] {
     font-weight: bold;
 }
 .layer-control-label--partner {
-    color: $brand-color;
+    color: $brand-color; // 1
 }
 .layer-control-label--currency-exchange {
-    color: $secondary-brand-color;
+    color: $secondary-brand-color; // 1
 }
 
+/**
+ * A group (a cluster) of markers on the map.
+ *
+ * When hovered, marker groups move slightly, to give a hint
+ * that they can be interacted with (clicked or tapped).
+ */
 .marker-group {
   transition: top .1s ease-in-out;
 
@@ -26,6 +58,9 @@
     top: -3px;
   }
 
+  /**
+   * SVG path being used to draw a shadow for marker groups.
+   */
   .group-shadow {
     transition: transform .1s ease-in-out;
   }
@@ -35,8 +70,16 @@
     transform: translate(3px, 3px);
   }
 
+  /**
+   * A marker which is *part of a marker group icon*. Not
+   * to be confused with standalone markers on the map!
+   *
+   * 1. Give an alternate color to markers that represent
+   *    currency exchanges. We use the `fill` property,
+   *    to match the corresponding SVG property.
+   */
   .marker--currency-exchange {
-    fill: $secondary-brand-color;
+    fill: $secondary-brand-color; // 1
   }
 }
 
@@ -53,6 +96,10 @@
   font-weight: 500; // 1
 }
 
+/**
+ * Pop-ups that are used on the map to display general
+ * info about a clicked or tapped marker.
+ */
 .osm-map-popup {
   // font-family: $text-font-stack;
 
@@ -66,6 +113,10 @@
   }
 }
 
+/**
+ * A message wrapped in a `<noscript>` tag that
+ * appears if JavaScript is not available.
+ */
 .error-message--javascript-required {
   max-width: 40em;
   margin-left: auto;
