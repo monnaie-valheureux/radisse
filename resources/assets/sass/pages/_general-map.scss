@@ -24,15 +24,17 @@
 
   &:hover {
     top: -3px;
-
-    .group-shadow {
-      transform: translate(3px, 3px);
-    }
   }
 
   .group-shadow {
     transition: transform .1s ease-in-out;
   }
+  // The shadow is transformed when *the marker group* is
+  // hovered, not just the shadow itself.
+  &:hover .group-shadow {
+    transform: translate(3px, 3px);
+  }
+
   .marker--currency-exchange {
     fill: $secondary-brand-color;
   }
