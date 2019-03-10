@@ -39,6 +39,19 @@
   }
 }
 
+/**
+ * The <tspan> SVG element, present in most marker group icons,
+ * that indicates how many markers are contained in the group.
+ *
+ * 1. Explicitly set the font family and weight with CSS, to
+ *    circumvent a Safari bug (Safari does not properly read
+ *    these settings from the SVG code).
+ */
+.marker-total {
+  font-family: $text-font-stack; // 1
+  font-weight: 500; // 1
+}
+
 .osm-map-popup {
   // font-family: $text-font-stack;
 
