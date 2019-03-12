@@ -5,6 +5,7 @@ mix
     .sass('resources/assets/sass/main.scss', 'public/css')
     .sass('resources/assets/sass/admin.scss', 'public/css')
 
+    .babel('resources/assets/js/main.js', 'public/js/main.js')
     .babel(
         'resources/assets/js/general-osm-map.js',
         'public/js/general-osm-map.js',
