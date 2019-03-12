@@ -96,6 +96,18 @@ class MapGenerator
     }
 
     /**
+     * Use a currency exchange marker instead of a regular one.
+     *
+     * @return self
+     */
+    public function useCurrencyExchangeMarker()
+    {
+        $this->options['marker_image'] = 'v-marker--currency-exchange@1x.png';
+
+        return $this;
+    }
+
+    /**
      * Get the options of the map generator.
      *
      * @return array
