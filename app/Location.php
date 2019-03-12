@@ -145,7 +145,7 @@ class Location extends Model implements HasMedia
      */
     public function generateMap()
     {
-        if (!$this->postalAddress) {
+        if ($this->hasNoPostalAddress()) {
             throw NonGeolocatable::locationHasNoAddress($this);
         }
 
