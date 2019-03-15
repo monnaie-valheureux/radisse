@@ -18,19 +18,21 @@
                         <div class="partner-page__address">
                             <dt>Adresse</dt>
                             <dd>
-                                {!! $location->postalAddress->toHtml() !!}
+                                <div>
+                                    {!! $location->postalAddress->toHtml() !!}
 
-                                {{--
-                                    Add an indicator if the location
-                                    is a currency exchange.
-                                --}}
-                                @if ($location->hasCurrencyExchange())
-                                    <a href="/comptoirs"
-                                    class="badge badge--big badge--exchange"
-                                    title="Voir la liste de tous les comptoirs de change">
-                                        Ce lieu est comptoir de change
-                                    </a>
-                                @endif
+                                    {{--
+                                        Add an indicator if the location
+                                        is a currency exchange.
+                                    --}}
+                                    @if ($location->hasCurrencyExchange())
+                                        <a href="/comptoirs"
+                                        class="badge badge--big badge--exchange"
+                                        title="Voir la liste de tous les comptoirs de change">
+                                            Ce lieu est comptoir de change
+                                        </a>
+                                    @endif
+                                </div>
 
                                 {{--
                                     Display a static map if there is one
