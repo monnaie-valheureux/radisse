@@ -38,14 +38,20 @@
                                 --}}
                                 @if ($location->hasMedia('maps'))
 
-                                    <div class="partner-page__osm-map-container">
-                                        <div class="partner-page__osm-map-container-inner">
-                                            <img src="{{ $location->getFirstMedia('maps')->getUrl() }}"
-                                            alt="Carte géographique indiquant l’emplacement de l’adresse."
-                                            title="{{ $location->postalAddress->toString() }}"
-                                            class="partner-page__osm-map">
-                                        </div>
-                                    </div>
+                                <div class="osm-map-container">
+                                    <img src="{{ $location->getFirstMedia('maps')->getUrl() }}"
+                                    alt="Carte géographique indiquant l’emplacement de l’adresse."
+                                    title="{{ $location->postalAddress->toString() }}"
+                                    class="osm-map js-osm-map"
+                                    data-address-id="{{ $location->postalAddress->id }}"
+                                @if ($location->hasCurrencyExchange())
+                                    data-is-currency-exchange="yes"
+                                @endif
+                                    data-latitude="{{ $location->postalAddress->latitude }}"
+                                    data-longitude="{{ $location->postalAddress->longitude }}"
+                                    data-zoom-level="18"
+                                    >
+                                </div>
 
                                 @endif
                             </dd>
