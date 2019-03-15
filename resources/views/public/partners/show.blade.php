@@ -2,6 +2,16 @@
 
 @section('title', $partner->name.' - le Val’heureux')
 
+@push('body-styles')
+<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+@endpush
+
+@push('body-scripts')
+    <script src="/vendor/leaflet/leaflet.js"></script>
+    <script src="{{ mix('js/dynamic-osm-maps.js') }}"></script>
+@endpush
+
+
 @section('content')
 
     <div class="partner-page">
