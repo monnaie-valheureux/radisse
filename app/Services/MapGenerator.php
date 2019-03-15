@@ -26,7 +26,7 @@ class MapGenerator
         'map_height' => 300,
         'storage_path' => null,
         'draw_marker' => true,
-        'marker_image' => null,
+        'marker_image' => 'v-marker@1x.png',
         'tile_provider' => null,
     ];
 
@@ -36,7 +36,6 @@ class MapGenerator
     public function __construct()
     {
         $this->options['storage_path'] = storage_path('app/tmp/');
-        $this->options['marker_image'] = public_path('storage/map-marker@1x.png');
         $this->options['tile_provider'] = config('radisse.map_tile_provider');
     }
 
@@ -92,6 +91,18 @@ class MapGenerator
     public function setMapHeight(int $height)
     {
         $this->options['map_height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Use a currency exchange marker instead of a regular one.
+     *
+     * @return self
+     */
+    public function useCurrencyExchangeMarker()
+    {
+        $this->options['marker_image'] = 'v-marker--currency-exchange@1x.png';
 
         return $this;
     }
@@ -157,7 +168,9 @@ class MapGenerator
     public function insertMarker($pathToMap)
     {
         $unmarkedMap = Image::make($pathToMap);
-        $marker = Image::make($this->options['marker_image']);
+        $marker = Image::make(
+            public_path('img/maps/'.$this->options['marker_image'])
+        );
 
         $unmarkedMap->insert(
             $source = $marker,

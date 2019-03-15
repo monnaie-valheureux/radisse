@@ -17,4 +17,24 @@ trait HasPostalAddress
         return $this->morphOne(PostalAddress::class, 'contactable')
             ->where('type', 'postal-address');
     }
+
+    /**
+     * Check if the model has a postal address associated with it.
+     *
+     * @return bool
+     */
+    public function hasPostalAddress()
+    {
+        return $this->postalAddress instanceof PostalAddress;
+    }
+
+    /**
+     * Check that the model has no postal address associated with it.
+     *
+     * @return bool
+     */
+    public function hasNoPostalAddress()
+    {
+        return !$this->hasPostalAddress();
+    }
 }

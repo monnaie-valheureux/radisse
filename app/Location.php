@@ -2,8 +2,8 @@
 
 namespace App;
 
+use App\Services\MapGenerator;
 use App\Exceptions\NonGeolocatable;
-use Facades\App\Services\MapGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -145,11 +145,17 @@ class Location extends Model implements HasMedia
      */
     public function generateMap()
     {
-        if (!$this->postalAddress) {
+        if ($this->hasNoPostalAddress()) {
             throw NonGeolocatable::locationHasNoAddress($this);
         }
 
-        $pathToMap = MapGenerator::generateFromPostalAddress($this->postalAddress);
+        $generator = new MapGenerator;
+
+        if ($this->hasCurrencyExchange()) {
+            $generator->useCurrencyExchangeMarker();
+        }
+
+        $pathToMap = $generator->generateFromPostalAddress($this->postalAddress);
 
         return $this->addMedia($pathToMap)->toMediaCollection('maps');
     }

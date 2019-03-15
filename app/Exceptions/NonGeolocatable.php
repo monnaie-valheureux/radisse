@@ -20,6 +20,6 @@ class NonGeolocatable extends Exception
 
     public static function locationHasNoAddress(Location $location): self
     {
-        return new self("Location [{$location->name()}] (ID {$location->id}) has no defined postal address.");
+        return new self("Location [{$location->name}] (ID {$location->id}) has no defined postal address.");
     }
 }
