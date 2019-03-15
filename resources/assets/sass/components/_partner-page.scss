@@ -36,100 +36,52 @@
   }
 }
 
-/**
- * A list of the locations of the partners.
- */
-.partner-page__location-list {
-
-  /**
-   * 1. Turn the block to a flex container so that its children get
-   *    horizontally-positionned side by side, thus making better
-   *    use of the available space.
-   */
-  @include media('≥550px') {
-    display: flex; // 1
-  }
-}
-
-/**
- * 1. Use a border to visually separate the locations from each other.
- */
-.partner-page__location {
-  border-bottom: 1px solid $darker-brand-color; // 1
-
-  /**
-   * 1. Remove the border because, starting at this breakpoint, locations get
-   *    horizontally aligned, thus removing the need of the bottom border.
-   * 2. Set some margin to prevent blocks to stick to each other.
-   */
-  @include media('≥550px') {
-    border-bottom: none; // 1
-
-    &:not(:first-child) {
-      margin-left: 3.2rem; // 2
-    }
-  }
-
-  /**
-   * If there is only one location, no border must be displayed.
-   */
-  &:only-child {
-    border-bottom: none;
-  }
-}
-
 .partner-page__address dt {
   display: none;
 }
-// Remove default user-agent styling.
+
+/**
+ * 1. Remove default user-agent styling.
+ */
 .partner-page__location dd {
-  margin-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-left: 0; // 1
+}
+
+.partner-page__location dd .h-adr {
+  margin-top: 0;
 }
 
 .partner-page__partner-info div {
   margin-bottom: 1.6rem;
 }
-// Remove default user-agent styling.
-.partner-page__partner-info dd {
-  margin-left: 0;
-}
 
 /**
- * An indicator telling that a location is a currency exchange.
- *
- * This is a piece of text surrounded by a border with slightly
- * rounded corners. Starting with the `large` breakpoint, the
- * border is replaced by a subtle dashed underline (created
- * with a bottom border).
+ * 1. Remove default user-agent styling.
  */
-.is-currency-exchange {
-  display: inline-block;
-  margin: 0;
-  padding: 0.6rem 0.8rem;
-  border: 2px solid $brand-color;
-  color: $almost-black-brand-color;
-  font-weight: bold;
-  border-radius: 5px;
-
-  @include media('≥large') {
-    border-style: dashed;
-    border-width: 0 0 1px;
-    padding: 0 0 0.4rem;
-    border-radius: 0;
-  }
+.partner-page__partner-info dd {
+  margin-left: 0; // 1
 }
 
-.partner-page__osm-map-container {
+.osm-map-container {
   margin-top: 1.6rem;
   margin-bottom: 1.6rem;
 }
-.partner-page__osm-map-container-inner {
-    box-shadow: inset 0 2px 5px 2px rgba(0,0,0,0.2);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.partner-page__osm-map {
-    display: block;
+
+.osm-map {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  &.osm-map--dynamic {
+    min-width: 486px;
     max-width: 100%;
+    min-height: 300px;
+  }
 }

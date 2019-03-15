@@ -2,6 +2,16 @@
 
 @section('title', $partner->name.' - le Val’heureux')
 
+@push('body-styles')
+<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+@endpush
+
+@push('body-scripts')
+    <script src="/vendor/leaflet/leaflet.js"></script>
+    <script src="{{ mix('js/dynamic-osm-maps.js') }}"></script>
+@endpush
+
+
 @section('content')
 
     <div class="partner-page">
@@ -18,19 +28,21 @@
                         <div class="partner-page__address">
                             <dt>Adresse</dt>
                             <dd>
-                                {!! $location->postalAddress->toHtml() !!}
+                                <div>
+                                    {!! $location->postalAddress->toHtml() !!}
 
-                                {{--
-                                    Add an indicator if the location
-                                    is a currency exchange.
-                                --}}
-                                @if ($location->hasCurrencyExchange())
-                                    <a href="/comptoirs"
-                                    class="badge badge--big badge--exchange"
-                                    title="Voir la liste de tous les comptoirs de change">
-                                        Ce lieu est comptoir de change
-                                    </a>
-                                @endif
+                                    {{--
+                                        Add an indicator if the location
+                                        is a currency exchange.
+                                    --}}
+                                    @if ($location->hasCurrencyExchange())
+                                        <a href="/comptoirs"
+                                        class="badge badge--big badge--exchange"
+                                        title="Voir la liste de tous les comptoirs de change">
+                                            Ce lieu est comptoir de change
+                                        </a>
+                                    @endif
+                                </div>
 
                                 {{--
                                     Display a static map if there is one
@@ -38,14 +50,20 @@
                                 --}}
                                 @if ($location->hasMedia('maps'))
 
-                                    <div class="partner-page__osm-map-container">
-                                        <div class="partner-page__osm-map-container-inner">
-                                            <img src="{{ $location->getFirstMedia('maps')->getUrl() }}"
-                                            alt="Carte géographique indiquant l’emplacement de l’adresse."
-                                            title="{{ $location->postalAddress->toString() }}"
-                                            class="partner-page__osm-map">
-                                        </div>
-                                    </div>
+                                <div class="osm-map-container">
+                                    <img src="{{ $location->getFirstMedia('maps')->getUrl() }}"
+                                    alt="Carte géographique indiquant l’emplacement de l’adresse."
+                                    title="{{ $location->postalAddress->toString() }}"
+                                    class="osm-map js-osm-map"
+                                    data-address-id="{{ $location->postalAddress->id }}"
+                                @if ($location->hasCurrencyExchange())
+                                    data-is-currency-exchange="yes"
+                                @endif
+                                    data-latitude="{{ $location->postalAddress->latitude }}"
+                                    data-longitude="{{ $location->postalAddress->longitude }}"
+                                    data-zoom-level="18"
+                                    >
+                                </div>
 
                                 @endif
                             </dd>

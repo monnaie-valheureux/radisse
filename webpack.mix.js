@@ -7,6 +7,10 @@ mix
 
     .babel('resources/assets/js/main.js', 'public/js/main.js')
     .babel(
+        'resources/assets/js/dynamic-osm-maps.js',
+        'public/js/dynamic-osm-maps.js',
+    )
+    .babel(
         'resources/assets/js/general-osm-map.js',
         'public/js/general-osm-map.js',
     )
