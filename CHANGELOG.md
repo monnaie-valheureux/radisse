@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.20.0] - 2019-03-16
+### Added
+- When possible, static maps on partner pages are now replaced by dynamic OpenStreetMap maps.
+- The page listing currency exchanges, as well as pages of partners having at least one currency exchange, now dynamically update the default blue favicon to replace it by an alternate, red-ish one.
+
+### Changed
+- Static maps now use currency exchange markers when needed. Before, they were always using the default blue marker.
+
 ## [1.19.0] - 2019-03-05
 ### Added
 - General OpenStreetMap map of partners. Working already, but no public link points there yet.
@@ -156,6 +164,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
+[1.19.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.19.0...1.20.0
 [1.19.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.18.0...1.19.0
 [1.18.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.17.0...v1.18.0
 [1.17.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.16.1...v1.17.0
