@@ -105,6 +105,7 @@
         Ce site respecte votre vie privée et n’utilise aucun cookie.
     </div>
 
+    <script src="{{ mix('js/main.js') }}"></script>
     @stack('body-scripts')
 
     @php
