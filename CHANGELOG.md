@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [Unreleased]
+### Added
+- Added a ‘landing’ page for people coming from the (redirected) URL of the old website.
+
 ## [1.20.0] - 2019-03-16
 ### Added
 - When possible, static maps on partner pages are now replaced by dynamic OpenStreetMap maps.
@@ -164,6 +168,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
+[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.20.0...HEAD
 [1.19.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.19.0...1.20.0
 [1.19.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.18.0...1.19.0
 [1.18.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.17.0...v1.18.0

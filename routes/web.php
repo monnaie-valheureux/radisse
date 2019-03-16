@@ -46,6 +46,10 @@ Route::namespace('Site')->group(function () {
     Route::get('/newsletter', function () {
         return redirect()->route('home');
     });
+
+
+    // Landing page when being redirected from the old domain name.
+    Route::view('/le-valeureux-est-devenu-le-valheureux', 'public.valeureux');
 });
 
 
