@@ -16,6 +16,42 @@
 
     <div class="partner-page">
     <div class="partner-page__wrapper">
+
+        {{--
+            If the partner has at least one location, display a link allowing
+            to go to the list of partners of that location’s city. Since we
+            are taking the city of the first location, in theory, this may
+            cause an issue if this partner has locations in more than one
+            city. But this should do the trick for a while.
+        --}}
+        @if (
+            $partner->locations->isNotEmpty() &&
+            $city = $partner->locations->first()->city
+        )
+        @php
+            // Determine the correct middle word to use
+            // according to the name of the city.
+            $vowels = ['A', 'E', 'I', 'O', 'U', 'Y'];
+            $firstLetter = $city[0];
+
+            $middleWord = (in_array($city[0], $vowels)) ? 'd’' : 'de ';
+        @endphp
+        <style>
+            /**
+             * Manually overwrite some CSS…
+             */
+            .go-back {
+                margin-top: 0.8rem;
+            }
+        </style>
+        <div class="go-back">
+            <a href="/partenaires-par-localite/{{ $city }}" class="go-back__link">
+                ⬅ Retourner à la liste
+                {{ $middleWord.$city }}
+            </a>
+        </div>
+        @endif
+
         <h2 class="partner-page__heading">{{ $partner->name }}</h2>
 
         {{-- Display the locations of the partner. --}}
