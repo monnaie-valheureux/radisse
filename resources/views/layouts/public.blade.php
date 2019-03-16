@@ -30,27 +30,7 @@
         any cookie and not storing full IP addresses, among
         other things. Privacy is a human right, period!
     -->
-    <script type="text/javascript">
-      var _paq = _paq || [];
-      // Do not use cookies.
-      _paq.push(['disableCookies']);
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="https://stats.valheureux.be/";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', '1']);
-        var d=document,
-            g=d.createElement('script'),
-            s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript';
-        g.async=true;
-        g.defer=true;
-        g.src=u+'piwik.js';
-        s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-
+    <script src="{{ mix('js/stats.js') }}"></script>
     @endif
 
 </head>
@@ -125,6 +105,7 @@
         Ce site respecte votre vie privée et n’utilise aucun cookie.
     </div>
 
+    <script src="{{ mix('js/main.js') }}"></script>
     @stack('body-scripts')
 
     @php

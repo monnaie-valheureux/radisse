@@ -42,6 +42,15 @@ a.badge--new {
   }
 }
 
+.badge--exchange {
+  background-color: $secondary-brand-color;
+}
+a.badge--exchange {
+  @include on-event {
+    background-color: $darker-secondary-brand-color;
+  }
+}
+
 .badge--incognito {
   background-color: $disabled-color;
 }
