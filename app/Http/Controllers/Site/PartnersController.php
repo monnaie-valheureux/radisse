@@ -14,6 +14,32 @@ use App\Http\Controllers\Controller;
 class PartnersController extends Controller
 {
     /**
+     * Display the different possibilities to find partners.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index()
+    {
+        // Get the number of cities where there are active partners.
+        $cityCount = Location::with('partner')
+            // Make the SQL query.
+            ->get()
+            // At this point, we have a flat collection of Location objects.
+            // We now reject potential ‘orphan’ locations that are not
+            // related to any partner.
+            // NOTE: this code should be removable once the database is cleaned.
+            ->reject(function ($location) {
+                return is_null($location->partner);
+            })
+            // Then we group locations by city name.
+            ->groupBy('city_cache')
+            // Finally, we count them.
+            ->count();
+
+        return view('public.partners.index', compact('cityCount'));
+    }
+
+    /**
      * Display the list of cities where there are partners’ locations.
      *
      * @return \Illuminate\Contracts\View\View
