@@ -18,7 +18,7 @@ class PartnersController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index()
+    public function indexCities()
     {
         // We’ll get a collection with alphabetically sorted
         // city names as keys and the total number of
