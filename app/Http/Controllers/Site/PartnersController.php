@@ -44,6 +44,22 @@ class PartnersController extends Controller
                 return count($locationGroup);
             });
 
+        // Get the names of cities containing at least one currency exchange.
+        $citiesWithCurrencyExchange = Location::with('partner', 'currencyExchange')
+            ->orderBy('city_cache')
+            ->get()
+            ->reject(function ($location) {
+                return is_null($location->partner);
+            })
+            ->groupBy('city_cache')
+            // Keep only the cities containing at least one currency exchange.
+            ->filter(function ($locationGroup) {
+                return $locationGroup->contains(function ($location, $key) {
+                    return $location->hasCurrencyExchange();
+                });
+            })
+            ->keys();
+
         // We will now group cities by ranges of letters
         // in order to make them a bit easier to find.
         $letterRanges = [
@@ -78,7 +94,8 @@ class PartnersController extends Controller
         $cityCount = count($cities);
 
         return view('public.partners.index-cities', compact(
-            'cityCount', 'citiesByLetterRanges', 'partnersWithoutLocationCount'
+            'cityCount', 'citiesByLetterRanges', 'citiesWithCurrencyExchange',
+            'partnersWithoutLocationCount'
         ));
     }
 

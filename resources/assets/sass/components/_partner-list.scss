@@ -67,6 +67,23 @@
   @include media('≥large') {
     margin-bottom: 1.6rem;
   }
+
+}
+
+.cities-link-listing .partner-list__entry {
+  display: inline-flex;
+}
+.currency-exchange-indicator {
+  width: 1em;
+  height: 1em;
+
+  &--inline {
+    vertical-align: sub;
+  }
+
+  & + a {
+    margin-left: 0.5rem;
+  }
 }
 
 .partner-list__entry__cities {
