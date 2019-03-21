@@ -133,6 +133,17 @@ document.addEventListener('DOMContentLoaded', function(e) {
   // Handle municipalities
   // ---------------------
 
+  // Features related to municipalities won’t be available for mobile devices,
+  // for usability reasons. After some testing, we found out that this didn’t
+  // mix very well with touch screens, especially small ones.
+  // Note: we know that ‘mobile’ and ‘touch screen’ could be two completely
+  // unrelated things (and, if you look at the code Leaflet uses to try to
+  // detect ‘mobile’ contexts, you would certainly facepalm…). But, since
+  // we don’t have any perfect solution, we’re trying to improve things
+  // for the majority of people and cases on a ‘best-effort’ basis.
+
+  if (L.Browser.mobile === false) {
+
   const municipalitiesLayerGroup = L.layerGroup().addTo(OSMMap);
 
   const municipalityOptions = {
@@ -221,6 +232,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
       .on('mouseout', onMunicipalityMouseout)
       .addTo(municipalitiesLayerGroup);
   }
+
+  }
+  // End check L.Browser.mobile
 
 
   // Handle location markers
