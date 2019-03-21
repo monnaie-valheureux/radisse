@@ -371,11 +371,17 @@ function createLayerControls(map) {
 
   layerControls.addOverlay(
     window.partnersSubgroup,
-    '<span class="layer-control-label--partner">Commerces</span>'
+    `<span class="layer-control-label--partner">
+      <img src="/img/maps/v-marker.svg" class="marker" alt="" width="20">
+      Commerces
+    </span>`
   );
   layerControls.addOverlay(
     window.currencyExchangesSubgroup,
-    '<span class="layer-control-label--currency-exchange">Comptoirs de change</span>'
+    `<span class="layer-control-label--currency-exchange">
+      <img src="/img/maps/v-marker--currency-exchange.svg" class="marker" alt="" width="20">
+      Comptoirs de change
+    </span>`
   );
 
   layerControls.addTo(map);
