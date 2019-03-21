@@ -8,7 +8,7 @@
 
         <div class="go-back">
             <a href="/partenaires" class="go-back__link">
-                ⬅ Retourner à la liste des villes et villages
+                ⬅ Retourner à la page précédente
             </a>
         </div>
 
