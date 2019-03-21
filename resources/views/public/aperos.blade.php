@@ -17,7 +17,6 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>14 mars</strong> chez <a href="/partenaires/amarres">Amarres</a> (rue Sous-le-Château 5, Huy) ;</li>
             <li>le <strong>21 mars</strong> à l’ID Campus (RElab), dans le cadre du <a href="https://nourrirliege.be/">festival Nourrir Liège</a> (place Saint-Étienne 1, Liège) ;</li>
             <li>le <strong>18 avril</strong> chez les <a href="/partenaires/les-oiseaux-sentetent">Oiseaux s'entêtent</a> (rue Roture 13, Liège).</li>
         </ul>
