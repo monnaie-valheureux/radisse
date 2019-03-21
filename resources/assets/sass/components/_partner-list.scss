@@ -67,8 +67,47 @@
   @include media('≥large') {
     margin-bottom: 1.6rem;
   }
+
 }
 
-.partner-list__entry__cities {
-  color: #aaa;
+.cities-link-listing .partner-list__entry {
+  display: inline-flex;
+}
+.currency-exchange-indicator {
+  width: 1em;
+  height: 1em;
+
+  &--inline {
+    vertical-align: sub;
+  }
+
+  & + a {
+    margin-left: 0.5rem;
+  }
+}
+
+
+
+.list-of-sections__section-name {
+  margin-bottom: .8rem;
+  font-family: $headings-font-stack;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+/**
+ * 1. Cancel default styling coming from the browser.
+ */
+.list-of-sections__section-description {
+  margin-left: 0; // 1
+  margin-bottom: 1.5em;
+}
+/**
+ * This creates a small horizontal bar before the targetted paragraph.
+ */
+.additional-paragraph::before {
+  content: '';
+  display: block;
+  width: 33%;
+  margin: 1.5em auto;
+  border-top: 2px solid #999;
 }

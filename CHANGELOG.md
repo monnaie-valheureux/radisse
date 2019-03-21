@@ -11,6 +11,10 @@ and this project adheres to
 ### Added
 - Added a ‘landing’ page for people coming from the (redirected) URL of the old website.
 
+### Changed
+- Pages related to partners have been reorganized.
+- The list of cities now signals which cities have at least one currency exchange.
+
 ## [1.20.0] - 2019-03-16
 ### Added
 - When possible, static maps on partner pages are now replaced by dynamic OpenStreetMap maps.

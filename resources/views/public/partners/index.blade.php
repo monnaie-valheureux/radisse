@@ -3,36 +3,36 @@
 @section('title', 'Liste des partenaires prestataires')
 
 @section('content')
-
-    <h2 class="partner-list-main-heading">Où dépenser les Val’heureux ?</h2>
-
     <div class="partner-list">
-    {{--
-        Display an alphabetically sorted list of initials. Some letters of
-        the alphabet may be missing, because we’re only listing letters
-        for those we have at least one partner name starting with it.
-    --}}
-    @foreach ($initials as $letter => $partners)
-        <h3 class="partner-list__sublist-label">{{ $letter }}</h3>
 
-        <ul class="partner-list__sublist">
-            {{--
-                For each initial, we display an alphabetically
-                sorted list of partners who have their ‘list
-                name’ starting with this initial.
-            --}}
-            @foreach ($partners as $partner)
-                <li class="partner-list__entry">
-                    <a href="/partenaires/{{ $partner->slug }}">
-                        {{ $partner->name_sort }}
-                    </a>
-                    @if ($cities = $partner->locationCities())
-                        <span class="partner-list__entry__cities">({{ $cities }})</span>
-                    @endif
-                </li>
-            @endforeach
-        </ul>
+        <h2 class="partner-list-main-heading">Où dépenser les Val’heureux ?</h2>
 
-    @endforeach
+        <dl class="list-of-sections">
+            <dt class="list-of-sections__section-name">
+                <a href="/carte">Carte des commerces</a>
+                <div class="badge badge--new">
+                    <span class="badge__hidden-text">(</span>
+                    nouveau
+                    <span class="badge__hidden-text">)</span>
+                </div>
+            </dt>
+            <dd class="list-of-sections__section-description">
+                <p>Cette carte interactive répertorie les commerces, comptoirs de change et autres lieux où vous pouvez obtenir et utiliser des val’heureux. C’est un bon moyen de trouver visuellement ceux qui sont proches de chez vous.</p>
+            </dd>
+            <dt class="list-of-sections__section-name">
+                <a href="/partenaires/localites">Liste des villes et villages</a>
+            </dt>
+            <dd class="list-of-sections__section-description">
+                <p>La liste des {{ $cityCount }} villes et villages où l’on peut utiliser le Val’heureux, triés par ordre alphabétique. Idéal pour trouver d’un coup tous les commerces d’une localité en particulier.</p>
+            </dd>
+            <dt class="list-of-sections__section-name">
+                <a href="/partenaires-par-localite/sans-adresse-precise">Partenaires sans adresse fixe</a>
+            </dt>
+            <dd class="list-of-sections__section-description">
+                <p>Un certain nombre de professionnels n’apparaissent ni sur la carte, ni dans les listes par localité. C’est généralement parce qu’ils ne travaillent pas à une adresse fixe (services ou travaux à domicile, arts du spectacle, etc.). Vous pouvez retouver ces partenaires ici.</p>
+            </dd>
+        </dl>
+
+        <p class="additional-paragraph">Notez que certains professionnels acceptant le Val’heureux ne sont pas indiqués sur notre site, en général par obligation déontologique ou légale envers la publicité (médecins, etc.).</p>
     </div>
 @endsection

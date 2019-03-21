@@ -13,8 +13,8 @@
  *    things in the page than just the map.
  */
 .general-partner-map {
-    width: 100vw; // 1
-    height: 80vh; // 1
+  width: 100vw; // 1
+  height: 80vh; // 1
 }
 
 /**
@@ -25,7 +25,7 @@
  * appear inside the content of the page.
  */
 .template-marker-groups {
-    display: none;
+  display: none;
 }
 
 /**
@@ -36,13 +36,13 @@
  *    the color of the icons in their corresponding group.
  */
 [class^=layer-control-label] {
-    font-weight: bold;
+  font-weight: bold;
 }
 .layer-control-label--partner {
-    color: $brand-color; // 1
+  color: $brand-color; // 1
 }
 .layer-control-label--currency-exchange {
-    color: $secondary-brand-color; // 1
+  color: $secondary-brand-color; // 1
 }
 
 /**
