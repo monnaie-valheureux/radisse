@@ -26,7 +26,7 @@
                 <p>La liste des {{ $cityCount }} villes et villages où l’on peut utiliser le Val’heureux, triés par ordre alphabétique. Idéal pour trouver d’un coup tous les commerces d’une localité en particulier.</p>
             </dd>
             <dt class="list-of-sections__section-name">
-                <a href="/partenaires-par-localite/sans-adresse-precise">Partenaires sans adresse fixe</a>
+                <a href="/partenaires-sans-adresse-precise">Partenaires sans adresse fixe</a>
             </dt>
             <dd class="list-of-sections__section-description">
                 <p>Un certain nombre de professionnels n’apparaissent ni sur la carte, ni dans les listes par localité. C’est généralement parce qu’ils ne travaillent pas à une adresse fixe (services ou travaux à domicile, arts du spectacle, etc.). Vous pouvez retouver ces partenaires ici.</p>

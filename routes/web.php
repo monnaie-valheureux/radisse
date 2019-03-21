@@ -18,7 +18,7 @@ Route::namespace('Site')->group(function () {
     Route::get('/partenaires/localites', 'PartnersController@indexCities');
     // Show the list of partners that have no related location.
     Route::get(
-        '/partenaires-par-localite/sans-adresse-precise',
+        '/partenaires-sans-adresse-precise',
         'PartnersController@indexNoLocation'
     );
     // Show the list of partners of a given city.
