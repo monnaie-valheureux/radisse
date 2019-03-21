@@ -34,15 +34,76 @@
  *
  * 1. Give specific colors to each label, to make them match
  *    the color of the icons in their corresponding group.
+ * 2. Specify our own font family instead of the one
+ *    used by Leaflet.
+ * 3. Add some bottom margin to the first label in
+ *    order to better separate it from the second
+ *    one. This should help using touch screens.
  */
 [class^=layer-control-label] {
   font-weight: bold;
+  font-family: $text-font-stack; // 2
+  cursor: pointer;
+
+  @include media('≥medium') {
+    font-size: 1.6rem;
+  }
+
+  & > .marker {
+    display: none;
+    vertical-align: middle;
+
+    @include media('≥medium') {
+      display: inline;
+    }
+  }
 }
 .layer-control-label--partner {
   color: $brand-color; // 1
+
+  @include on-event {
+    color: $darker-brand-color;
+  }
 }
+
 .layer-control-label--currency-exchange {
   color: $secondary-brand-color; // 1
+
+  @include on-event {
+    color: $darker-secondary-brand-color;
+  }
+}
+
+[class^=leaflet-control-layers-overlays] label:first-child {
+  margin-bottom: 0.5rem; // 3
+}
+
+/**
+ * The checkboxes that allow to show or hide subgroups of markers.
+ *
+ * Starting with the medium breakpoint, these checkboxes are hidden. At the
+ * same time, tiny images of markers are displayed in the labels (we do not
+ * display them on smaller viewport widths in order to save space).
+ *
+ * 1. Hide the checkboxes. Interaction with them will still occur because
+ *    the associated <label> covers all the remaining text.
+ * 2. When a checkbox is unchecked, we reduce the opacity of the related label…
+ * 3. …and we also display ‘(cachés)’ next to the text of the label in order to
+ *    make the situation even more clear.
+ */
+body .leaflet-control-layers-selector {
+  @include media('≥medium') {
+    // top: -1px;
+    display: none; // 1
+  }
+
+  &:not(:checked) + span > [class^=layer-control-label] {
+    opacity: 0.5; // 2
+  }
+  &:not(:checked) + span > [class^=layer-control-label]::after {
+    content: '(cachés)'; // 3
+    color: $text-color;
+  }
 }
 
 /**
