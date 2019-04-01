@@ -17,7 +17,7 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>21 mars</strong> à l’ID Campus (RElab), dans le cadre du <a href="https://nourrirliege.be/">festival Nourrir Liège</a> (place Saint-Étienne 1, Liège) ;</li>
+            <li>le <strong>4 avril</strong> chez <strong>Oh Bio & Terroir</strong> (Outre-Cour 67, Herve) ;</li>
             <li>le <strong>18 avril</strong> chez les <a href="/partenaires/les-oiseaux-sentetent">Oiseaux s'entêtent</a> (rue Roture 13, Liège).</li>
         </ul>
     </div>
