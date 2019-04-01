@@ -7,6 +7,7 @@ mix
 
     .scripts('resources/assets/js/stats.js', 'public/js/stats.js')
     .babel('resources/assets/js/main.js', 'public/js/main.js')
+    .babel('resources/assets/js/home.js', 'public/js/home.js')
     .babel(
         'resources/assets/js/dynamic-osm-maps.js',
         'public/js/dynamic-osm-maps.js',
