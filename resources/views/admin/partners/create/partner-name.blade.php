@@ -34,6 +34,25 @@
     <form method="post" action="{{ route('partners.add.store-name') }}"
     class="tool-form">
         <div class="tool-form__control">
+            {!! Form::label(
+                'team_id',
+                'Val du partenaire :',
+                ['class' => 'label']
+            ) !!}
+
+            @errorhandling('team_id')
+
+            <p>
+                {!! Form::select(
+                    'team_id',
+                    $teams,
+                    $draftPartner->team_id ?? $defaultTeam
+                ) !!}
+            </p>
+
+            {{-- <input type="text" name="partner.new_business_type" id="partner.new_business_type"> --}}
+        </div>
+        <div class="tool-form__control">
             {!! Form::label('name', 'Dénomination :', ['class' => 'label']) !!}
 
             <div class="contextual-help">
