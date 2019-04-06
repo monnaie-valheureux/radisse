@@ -43,11 +43,12 @@
             @errorhandling('team_id')
 
             <p>
-                {!! Form::select(
-                    'team_id',
-                    $teams,
-                    $draftPartner->team_id ?? $defaultTeam
-                ) !!}
+                @if ($draftPartner->team_id)
+                    {{ $draftPartner->team->name }}
+                    {!! Form::hidden('team_id', $draftPartner->team_id) !!}
+                @else
+                    {!! Form::select('team_id', $teams, $defaultTeam) !!}
+                @endif
             </p>
 
             {{-- <input type="text" name="partner.new_business_type" id="partner.new_business_type"> --}}
