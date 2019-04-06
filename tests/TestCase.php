@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
 
     protected $bcrypt_cost;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -21,7 +21,7 @@ abstract class TestCase extends BaseTestCase
         app('hash')->setRounds(4);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         // Set the Bcrypt cost factor back to its original value.
         app('hash')->setRounds($this->bcrypt_cost);
