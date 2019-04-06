@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Team;
 use App\Email;
 use App\Phone;
 use App\Partner;
@@ -94,6 +95,8 @@ class CreatePartnerController extends Controller
 
         return view('admin.partners.create.partner-name', [
             'businessTypes' => $this->businessTypes,
+            'teams' => Team::orderBy('name')->pluck('name', 'id'),
+            'defaultTeam' => auth()->user()->team->id,
             'draftPartner' => $draftPartner,
         ]);
     }
@@ -111,10 +114,12 @@ class CreatePartnerController extends Controller
         $data = $this->validate(request(), [
             // Validation rules.
             'id' => 'nullable|integer',
+            'team_id' => [Rule::in(Team::pluck('id'))],
             'name' => 'required|string',
             'business_type' => ['nullable', Rule::in(array_keys($this->businessTypes))]
         ], [
             // Errors messages.
+            'team_id.in' => 'Merci de choisir un val.',
             'name.required' => 'Vous devez indiquer le nom du partenaire.',
             // 'business_type.required' => 'Merci de choisir une catégorie.',
         ]);
@@ -127,9 +132,9 @@ class CreatePartnerController extends Controller
         } else {
             $partner = (new Partner)->createAsDraft($data);
 
-            // Once the partner is created, we assign it to
-            // the team of the member who created it.
-            $team = auth()->user()->team;
+            // Once the partner is created, we assign it
+            // to the team that has been selected.
+            $team = Team::find($data['team_id']);
             $team->partners()->save($partner);
         }
 
