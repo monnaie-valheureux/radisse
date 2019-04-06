@@ -59,7 +59,7 @@ class MapController extends Controller
         // while, to avoid constantly recalculating the same things.
         $municipalities = Cache::remember(
             'municipalitiesGeoJSON',
-            10,
+            now()->addMinutes(10),
             function() use ($municipalityCodes) {
                 return GeoJSON::getByNISCode($municipalityCodes);
             }
