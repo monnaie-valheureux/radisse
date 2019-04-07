@@ -7,7 +7,7 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
-## [Unreleased]
+## [1.24.0] - 2019-04-07
 ### Added
 - When adding a new partner, one can now manually assign the team the partner will belong to.
 
@@ -187,7 +187,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
-[Unreleased]: https://github.com/monnaie-valheureux/radisse/compare/v1.23.0...HEAD
+[1.24.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.23.0...1.24.0
 [1.23.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.22.0...1.23.0
 [1.22.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.21.0...1.22.0
 [1.21.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.20.0...1.21.0
