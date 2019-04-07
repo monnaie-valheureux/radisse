@@ -13,6 +13,7 @@ and this project adheres to
 
 ### Changed
 - The application has been upgraded to Laravel 5.8.
+- Updated content in the page for ‘apéros’.
 
 ## [1.23.0] - 2019-04-01
 ### Changed
