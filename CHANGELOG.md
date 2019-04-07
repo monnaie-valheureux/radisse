@@ -11,6 +11,9 @@ and this project adheres to
 ### Added
 - When adding a new partner, one can now manually assign the team the partner will belong to.
 
+### Changed
+- The application has been upgraded to Laravel 5.8.
+
 ## [1.23.0] - 2019-04-01
 ### Changed
 - Updated content in the page for ‘apéros’.

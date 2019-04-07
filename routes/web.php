@@ -57,8 +57,8 @@ Route::namespace('Site')->group(function () {
 
 // Admin authentication routes.
 Route::prefix('gestion')->namespace('Admin')->group(function () {
-    $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    $this->post('login', 'Auth\LoginController@login');
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
 });
 
 // This group defines the routes used by the administration area of the site.
