@@ -19,7 +19,10 @@ class MapController extends Controller
     public function index()
     {
         // We start by getting the whole list of current partners.
-        $partners = Partner::with('locations.postalAddress')->get();
+        $partners = Partner::with([
+            'locations.postalAddress',
+            'locations.currencyExchange',
+        ])->get();
 
         $locations = [];
         $cityNames = [];
