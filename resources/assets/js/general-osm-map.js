@@ -224,9 +224,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 
   // Add the municipalities to the map.
-  for (let i = 0; i < window.municipalities.length; i++) {
+  for (let i = 0; i < window.generalMapData.municipalities.length; i++) {
 
-    L.geoJSON(window.municipalities[i], municipalityOptions)
+    L.geoJSON(window.generalMapData.municipalities[i], municipalityOptions)
       .on('click', onMunicipalityClick)
       .on('mouseover', onMunicipalityMouseover)
       .on('mouseout', onMunicipalityMouseout)
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   // Handle location markers
   // -----------------------
 
-  window.locations.forEach(location => {
+  window.generalMapData.locations.forEach(location => {
 
     // Ensure that we don’t try to create markers with missing coordinates.
     if (location.latitude == null || location.longitude == null) {

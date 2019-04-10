@@ -9,14 +9,11 @@
 @endpush
 
 @push('body-scripts')
-    <script>
-      var locations = @json($locations);
-      var municipalities = @json($municipalities);
-    </script>
 
     <script src="/vendor/leaflet/leaflet.js"></script>
     <script src="/vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
     <script src="/vendor/leaflet.featuregroup.subgroup/leaflet.featuregroup.subgroup.js"></script>
+    <script>{!! app('\App\Services\GeneralMap')->getDataScript() !!}</script>
     <script src="{{ mix('js/general-osm-map.js') }}"></script>
 
 @endpush

@@ -10,6 +10,10 @@ use App\Exceptions\NonGeolocatable;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\Process\Process;
 
+/**
+ * Generate PNG images of OpenStreetMap maps. These maps can optionally contain
+ * a map marker in their centre.
+ */
 class MapGenerator
 {
     /**
