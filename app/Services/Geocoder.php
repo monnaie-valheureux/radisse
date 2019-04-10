@@ -10,6 +10,9 @@ use Http\Adapter\Guzzle6\Client as GuzzleClient;
 use Geocoder\Provider\Chain\Chain as ProviderChain;
 use Geocoder\Provider\bpost\bpost as bpostProvider;
 
+/**
+ * Geocode addresses and retrieve their coordinates.
+ */
 class Geocoder
 {
     /**
@@ -41,6 +44,8 @@ class Geocoder
      * @param  string  $address
      *
      * @return \Geocoder\Model\Address
+     *
+     * @throws \App\Exceptions\NonGeolocatable if it was not possible to geocode the address.
      */
     public function geocode($address)
     {
