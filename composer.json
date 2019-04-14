@@ -16,10 +16,6 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/monnaie-valheureux/mailerlite-api-v2-php-sdk"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/miclf/geodata"
         }
     ],
@@ -36,7 +32,6 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "mailerlite/mailerlite-api-v2-php-sdk": "dev-master",
         "miclf/geodata": "dev-master",
         "mmucklo/email-parse": "^2.0",
         "php-http/guzzle6-adapter": "^2.0",
