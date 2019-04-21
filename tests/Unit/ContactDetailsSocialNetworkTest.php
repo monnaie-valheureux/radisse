@@ -66,6 +66,16 @@ class ContactDetailsSocialNetworkTest extends TestCase
     }
 
     /** @test */
+    function it_can_tell_if_the_social_network_is_facebook_or_not()
+    {
+        $facebook = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
+        $twitter = SocialNetwork::fromUrl('twitter.com/boucheriesanzot');
+
+        $this->assertTrue($facebook->isFacebook());
+        $this->assertFalse($twitter->isFacebook());
+    }
+
+    /** @test */
     function it_detects_facebook_handles()
     {
         $network = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
