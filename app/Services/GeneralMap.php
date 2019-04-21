@@ -137,4 +137,16 @@ class GeneralMap
 
         return File::get($this->dataScriptPath);
     }
+
+    /**
+     * Invalidate and regenerate the JS data file.
+     *
+     * @return string  The contents of the regenerated file.
+     */
+    public function refreshDataScript()
+    {
+        $this->invalidateDataScript();
+
+        return $this->getDataScript();
+    }
 }
