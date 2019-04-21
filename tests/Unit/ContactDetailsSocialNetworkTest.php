@@ -66,6 +66,16 @@ class ContactDetailsSocialNetworkTest extends TestCase
     }
 
     /** @test */
+    function it_can_tell_if_the_social_network_is_facebook_or_not()
+    {
+        $facebook = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
+        $twitter = SocialNetwork::fromUrl('twitter.com/boucheriesanzot');
+
+        $this->assertTrue($facebook->isFacebook());
+        $this->assertFalse($twitter->isFacebook());
+    }
+
+    /** @test */
     function it_detects_facebook_handles()
     {
         $network = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
@@ -94,6 +104,16 @@ class ContactDetailsSocialNetworkTest extends TestCase
         // would say we expect no exception to be thrown at all.
         // @see https://github.com/sebastianbergmann/phpunit-documentation/issues/171
         $this->assertTrue(true);
+    }
+
+    /** @test */
+    function it_can_tell_if_the_social_network_is_twitter_or_not()
+    {
+        $twitter = SocialNetwork::fromUrl('twitter.com/boucheriesanzot');
+        $facebook = SocialNetwork::fromUrl('facebook.com/boucheriesanzot');
+
+        $this->assertTrue($twitter->isTwitter());
+        $this->assertFalse($facebook->isTwitter());
     }
 
     /** @test */
