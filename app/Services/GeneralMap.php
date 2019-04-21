@@ -6,7 +6,6 @@ use App\Partner;
 use Facades\App\Services\Geodata;
 use Facades\Miclf\Geodata\GeoJSON;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class GeneralMap
 {
