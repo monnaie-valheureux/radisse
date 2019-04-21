@@ -33,7 +33,7 @@ class GeneralMap
      *
      * @return string  The contents of the generated file.
      */
-    public function makeDataFile()
+    protected function makeDataFile()
     {
         $locations = [];
         $cityNames = [];
@@ -117,7 +117,7 @@ class GeneralMap
      *
      * @return void
      */
-    public function invalidateDataScript()
+    protected function invalidateDataScript()
     {
         if (File::exists($this->dataScriptPath)) {
             File::delete($this->dataScriptPath);
