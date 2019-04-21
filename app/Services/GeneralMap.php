@@ -6,7 +6,6 @@ use App\Partner;
 use Facades\App\Services\Geodata;
 use Facades\Miclf\Geodata\GeoJSON;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class GeneralMap
 {
@@ -33,7 +32,7 @@ class GeneralMap
      *
      * @return string  The contents of the generated file.
      */
-    public function makeDataFile()
+    protected function makeDataScript()
     {
         $locations = [];
         $cityNames = [];
@@ -117,7 +116,7 @@ class GeneralMap
      *
      * @return void
      */
-    public function invalidateDataScript()
+    protected function invalidateDataScript()
     {
         if (File::exists($this->dataScriptPath)) {
             File::delete($this->dataScriptPath);
@@ -132,9 +131,21 @@ class GeneralMap
     public function getDataScript()
     {
         if (!File::exists($this->dataScriptPath)) {
-            $this->makeDataFile();
+            $this->makeDataScript();
         }
 
         return File::get($this->dataScriptPath);
+    }
+
+    /**
+     * Invalidate and regenerate the JS data file.
+     *
+     * @return string  The contents of the regenerated file.
+     */
+    public function refreshDataScript()
+    {
+        $this->invalidateDataScript();
+
+        return $this->getDataScript();
     }
 }
