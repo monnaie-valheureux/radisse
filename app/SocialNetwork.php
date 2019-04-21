@@ -171,6 +171,16 @@ class SocialNetwork extends ContactDetails implements Htmlable
     }
 
     /**
+     * Check if this SocialNetwork instance handles a Twitter account.
+     *
+     * @return bool
+     */
+    public function isTwitter()
+    {
+        return $this->name === 'twitter';
+    }
+
+    /**
      * Get the key-value pairs of data that are specific to this type of contact info.
      *
      * @return array
