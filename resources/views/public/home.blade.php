@@ -26,6 +26,57 @@
         </div>
     </div>
 
+    <style>
+        .general-assembly-wrapper {
+            display: grid;
+            grid-template-columns: 1fr minmax(calc(32rem - 3.2rem - 2px), 69rem) 1fr;
+            grid-template-areas: '. content .';
+            margin: 1.6rem 1.6rem 0;
+        }
+        .general-assembly {
+            grid-area: content;
+            padding-left: 1.6rem;
+            padding-right: 1.6rem;
+            border: 3px solid #c30045;
+            border-radius: 4px;
+        }
+        .general-assembly h2 {
+            text-align: center;
+            color: #00819c;
+        }
+        .ag-when-where {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @media (min-width: 1000px) {
+            .general-assembly-wrapper {
+                grid-template-columns: 1fr minmax(calc(32rem - 3.2rem - 2px), 94.6rem) 1fr;
+                margin: 3.2rem 3.2rem 0;
+            }
+            .general-assembly {
+                padding-left: 3.2rem;
+                padding-right: 3.2rem;
+                font-size: 1.5em;
+            }
+        }
+    </style>
+    <div class="general-assembly-wrapper" id="assemblee-generale">
+        <div class="general-assembly">
+            <h2>Assemblée générale</h2>
+            <div class="ag-when-where">
+                Jeudi 13 juin, à partir de 18h<br>
+                À Novacitis, rue de l'Académie 53, Liège
+            </div>
+
+            <p>Revoici venu ce moment important dans la vie de notre monnaie, qui est <em>entièrement gérée par des citoyennes et citoyens</em> : volontaires, commerçant(e)s et autres prestataires.</p>
+            <p>Nous pensons qu’il est aujourd’hui temps de <em>franchir une nouvelle étape</em> dans le projet, en décidant collectivement de la gestion de la réserve de contrepartie, c’est-à-dire le stock d’euros équivalent à tous les val’heureux en circulation.</p>
+            <p>De <strong>18h30 à 19h30, assemblée générale extraordinaire</strong> consacrée à la gestion de la réserve de contrepartie.</p>
+            <p>À partir de <strong>20h15, assemblée générale ordinaire</strong> de l’ASBL le Val’heureux.</p>
+            <p>Inscriptions : {!! Html::mailto('info@valheureux.be') !!}</p>
+        </div>
+    </div>
+
     <div class="text text--2columns">
         <div class="text__section">
             <h2>Comment en obtenir ?</h2>
