@@ -17,7 +17,7 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>18 avril</strong> chez les <a href="/partenaires/les-oiseaux-sentetent">Oiseaux s'entêtent</a> (rue Roture 13, Liège).</li>
+            <li>le <strong>20 juin</strong>, grand apéro au <a href="/partenaires/jardin-dantan">Jardin d’Antan</a> (Grand route de Liège 6, Hody).</li>
         </ul>
     </div>
 @endsection
