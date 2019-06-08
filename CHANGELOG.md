@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.25.0] - 2019-06-08
+### Changed
+- Updated content in the page for ‘apéros’.
+
 ## [1.24.1] - 2019-04-14
 ### Fixed
 - Subscriptions to the newsletter have been reimplemented in a way that makes us less exposed to bugs coming from third parties.
