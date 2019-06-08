@@ -149,7 +149,7 @@
 
     <h2 id="elargissement-du-reseau-de-partenaires">Élargissement du réseau de partenaires</h2>
 
-    <p>En novembre 2017, le Val’heureux compte plus de 150 partenaires. La liste complète des partenaires est actualisée de manière régulière et est accessible sur le site web du Val’heureux et sur sa page Facebook.</p>
+    <p>En mai 2019, le Val’heureux compte plus de 290 partenaires. La liste complète des partenaires est actualisée de manière régulière et est accessible sur le site web du Val’heureux et sur sa page Facebook.</p>
 
     <p>La liste actualisée des comptoirs de change peut également être consultée sur le site.</p>
 
@@ -161,7 +161,7 @@
 
     <p>On y trouve l’actualité du Val’heureux, l’annuaire des partenaires, toute la documentation relative au fonctionnement du Val’heureux et de l’ASBL, ainsi que la charte. Il est également possible d’envoyer un message à {!! Html::mailto('info@valheureux.be') !!}.be ou via le formulaire en ligne. Les courriels envoyés à {!! Html::mailto('info@valheureux.be') !!}.be sont traités dans les 24 heures.</p>
 
-    <p>La page Facebook du Val’heureux est également alimentée régulièrement. Elle permet de faire connaître le Val’heureux à un plus grand nombre de personnes et surtout de faire connaître l’actualité du Val’heureux et des commerçants partenaires. La page Facebook compte actuellement plus de 2000 <em>followers</em>. Une page Facebook Val’heureux pour chaque comité régional est en cours de création.</p>
+    <p>La page Facebook du Val’heureux est également alimentée régulièrement. Elle permet de faire connaître le Val’heureux à un plus grand nombre de personnes et surtout de faire connaître l’actualité du Val’heureux et des commerçants partenaires. La page Facebook compte actuellement plus de 3000 <em>followers</em>. Une page Facebook Val’heureux pour chaque comité régional est en cours de création.</p>
 
     <h3>Matériel de promotion et signalétique</h3>
 
