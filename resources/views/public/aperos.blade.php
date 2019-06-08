@@ -17,7 +17,7 @@
 
         <p>Dates des prochains apéros (de 18h à 21h) :</p>
         <ul>
-            <li>le <strong>16 mai</strong> à <a href="/partenaires/la-cyclerie">la Cyclerie</a> (rue de la Commune 7, Liège).</li>
+            <li>le <strong>20 juin</strong>, grand apéro au <a href="/partenaires/jardin-dantan">Jardin d’Antan</a> (Grand route de Liège 6, Hody).</li>
         </ul>
     </div>
 @endsection
