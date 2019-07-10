@@ -38,6 +38,17 @@ Route::namespace('Site')->group(function () {
     Route::view('/remplacement-anciens-billets', 'public.old-bills-withdrawal');
 
 
+    // Search form on the home page.
+    // TODO
+
+    // Test page.
+    Route::get('/rechercher', 'SearchController@show')
+        ->name('search-page');
+    // Submit a search query.
+    Route::post('/rechercher', 'SearchController@search')
+        ->name('search-query');
+
+
     // Newsletter.
 
     // Subscribe to the newsletter.
