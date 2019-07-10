@@ -6,6 +6,16 @@
 
     <div class="long-text">
         <h2>Les apéros du Val’heureux</h2>
+
+        <style>
+            .color {
+                padding-bottom: 1em;
+                border-bottom: 2px solid #0094b3;
+                color: #c30045;
+            }
+        </style>
+        <p class="color">Après une nouvelle année riche en excellentes soirées, innombrables Val’heureuses et interminables discussions, les apéros font une petite <strong>pause estivale</strong>, mais ils reviendront vite !</p>
+
         <p>Les apéros du Val’heureux ont régulièrement lieu chez différents partenaires. Organisés dans une ambiance conviviale, ils ont pour objectifs de :</p>
         <ul>
             <li>permettre au public et aux partenaires potentiels de rencontrer l’équipe et de se familiariser avec le projet ;</li>
@@ -14,10 +24,5 @@
         </ul>
         <p>À <strong>Liège</strong>, les apéros du Val’heureux ont lieu tous <strong>les troisièmes jeudis du mois de 18h à 21h</strong> (voire plus tard !)</p>
         <p>Des apéros commencent aussi à être organisés ailleurs dans la province.</p>
-
-        <p>Dates des prochains apéros (de 18h à 21h) :</p>
-        <ul>
-            <li>le <strong>20 juin</strong>, grand apéro au <a href="/partenaires/jardin-dantan">Jardin d’Antan</a> (Grand route de Liège 6, Hody).</li>
-        </ul>
     </div>
 @endsection
