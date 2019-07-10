@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
-use MailerLiteApi\MailerLite;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client as GuzzleClient;
 
