@@ -7,22 +7,17 @@
     <div class="long-text">
         <h2>Les apéros du Val’heureux</h2>
 
-        <style>
-            .color {
-                padding-bottom: 1em;
-                border-bottom: 2px solid #0094b3;
-                color: #c30045;
-            }
-        </style>
-        <p class="color">Après une nouvelle année riche en excellentes soirées, innombrables Val’heureuses et interminables discussions, les apéros font une petite <strong>pause estivale</strong>, mais ils reviendront vite !</p>
-
         <p>Les apéros du Val’heureux ont régulièrement lieu chez différents partenaires. Organisés dans une ambiance conviviale, ils ont pour objectifs de :</p>
         <ul>
             <li>permettre au public et aux partenaires potentiels de rencontrer l’équipe et de se familiariser avec le projet ;</li>
             <li>mettre nos partenaires à l’honneur par la création d’un événement à leur image ;</li>
             <li>tisser et renforcer les liens entre les différents acteurs de l’économie locale.</li>
         </ul>
-        <p>À <strong>Liège</strong>, les apéros du Val’heureux ont lieu tous <strong>les troisièmes jeudis du mois de 18h à 21h</strong> (voire plus tard !)</p>
-        <p>Des apéros commencent aussi à être organisés ailleurs dans la province.</p>
+        <p>À <strong>Liège</strong>, les apéros du Val’heureux ont lieu tous <strong>les troisièmes jeudis du mois de 18h à 21h</strong> (voire plus tard !). Des apéros sont aussi organisés ailleurs dans la province.</p>
+
+        <p>Dates des prochains apéros (dès 18h) :</p>
+        <ul>
+            <li>le <strong>19 septembre</strong> au <a href="/partenaires/bistrot-mentin">Bistrot Mentin</a> (Rue Sainte Aldegonde 11, Liège).</li>
+        </ul>
     </div>
 @endsection
