@@ -15,9 +15,11 @@
         </ul>
         <p>À <strong>Liège</strong>, les apéros du Val’heureux ont lieu tous <strong>les troisièmes jeudis du mois de 18h à 21h</strong> (voire plus tard !). Des apéros sont aussi organisés ailleurs dans la province.</p>
 
-        <p>Dates des prochains apéros (dès 18h) :</p>
+        <p>Dates des prochains apéros :</p>
         <ul>
-            <li>le <strong>19 septembre</strong> au <a href="/partenaires/bistrot-mentin">Bistrot Mentin</a> (Rue Sainte Aldegonde 11, Liège).</li>
+            <li>le jeudi <strong>17 octobre dès 18h</strong> au <a href="/partenaires/le-petit-carre">Petit Carré</a> (Rue des Célestines 18, Liège) ;</li>
+            <li>le mercredi <strong>23 octobre dès 19h</strong>, deuxième apéro du Pays de Herve à la <a href="/partenaires/le-herve-du-vieux-moulin">crèmerie du Vieux Moulin</a> (Rue de Herve 169, Battice) ;</li>
+            <li>le jeudi <strong>21 novembre dès 18h</strong> chez <a href="/partenaires/maxime-renard-table-conviviale">Maxime Renard - Table conviviale</a> (Rue des Carmes 3, Liège).</li>
         </ul>
     </div>
 @endsection
