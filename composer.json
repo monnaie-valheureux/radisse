@@ -34,6 +34,7 @@
         "laravelcollective/html": "^5.6",
         "league/flysystem-aws-s3-v3": "~1.0",
         "miclf/geodata": "dev-master",
+        "miclf/static-map": "^1.0",
         "mmucklo/email-parse": "^2.0",
         "php-http/guzzle6-adapter": "^2.0",
         "php-http/message": "^1.7",
