@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eed8771d409df12d78ea5d46031225c6",
+    "content-hash": "b40f44e63a24edfaaedce35564ca8972",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -169,6 +169,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -2005,6 +2006,41 @@
             "time": "2019-03-04T20:23:47+00:00"
         },
         {
+            "name": "miclf/static-map",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miclf/static-map.git",
+                "reference": "d394e73d949f8c9c764ea419a92d8e61643cb40a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miclf/static-map/zipball/d394e73d949f8c9c764ea419a92d8e61643cb40a",
+                "reference": "d394e73d949f8c9c764ea419a92d8e61643cb40a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Miclf\\StaticMap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC0-1.0"
+            ],
+            "authors": [
+                {
+                    "name": "miclf",
+                    "email": "michael@estsurinter.net"
+                }
+            ],
+            "time": "2019-12-14T22:24:19+00:00"
+        },
+        {
             "name": "mmucklo/email-parse",
             "version": "2.0.0",
             "source": {
@@ -3795,6 +3831,7 @@
                 "migrate",
                 "spatie"
             ],
+            "abandoned": "laravel/framework",
             "time": "2018-08-27T13:42:54+00:00"
         },
         {
@@ -4570,7 +4607,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",

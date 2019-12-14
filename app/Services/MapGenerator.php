@@ -5,10 +5,10 @@ namespace App\Services;
 use Exception;
 use App\PostalAddress;
 use Illuminate\Support\Str;
+use Miclf\StaticMap\StaticMap;
 use Facades\App\Services\Geocoder;
 use App\Exceptions\NonGeolocatable;
 use Intervention\Image\Facades\Image;
-use Symfony\Component\Process\Process;
 
 /**
  * Generate PNG images of OpenStreetMap maps. These maps can optionally contain
@@ -153,7 +153,11 @@ class MapGenerator
         }
 
         // Generate the actual map.
-        $this->callMapstatic($pathToMap);
+        StaticMap::centredOn($this->options['latitude'], $this->options['longitude'])
+            ->withZoom($this->options['zoom_level'])
+            ->withDimensions($this->options['map_width'], $this->options['map_height'])
+            ->withTileProvider($this->options['tile_provider'])
+            ->save($pathToMap);
 
         if ($this->options['draw_marker']) {
             $this->insertMarker($pathToMap);
@@ -197,31 +201,6 @@ class MapGenerator
             Str::slug($this->options['map_name']).'_'.
             $this->options['map_width'].'x'.$this->options['map_height'].
             'z'.$this->options['zoom_level'].'.png';;
-    }
-
-    /**
-     * Call the mapstatic command to actually generate
-     * a map using the defined options.
-     *
-     * @param  string  $pathToMap
-     *
-     * @return void
-     */
-    protected function callMapstatic($pathToMap)
-    {
-        $command =
-            'mapstatic map '.
-            $pathToMap.
-            ' --zoom='.$this->options['zoom_level'].
-            ' --lat='.$this->options['latitude'].
-            ' --lng='.$this->options['longitude'].
-            ' --width='.$this->options['map_width'].
-            ' --height='.$this->options['map_height'].
-            ' --provider='.$this->options['tile_provider'];
-
-        $process = new Process($command);
-
-        $process->setTimeout(30)->run();
     }
 
     /**
