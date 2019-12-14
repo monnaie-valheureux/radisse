@@ -17,9 +17,7 @@
 
         <p>Dates des prochains apéros :</p>
         <ul>
-            <li>le jeudi <strong>17 octobre dès 18h</strong> au <a href="/partenaires/le-petit-carre">Petit Carré</a> (Rue des Célestines 18, Liège) ;</li>
-            <li>le mercredi <strong>23 octobre dès 19h</strong>, deuxième apéro du Pays de Herve à la <a href="/partenaires/le-herve-du-vieux-moulin">crèmerie du Vieux Moulin</a> (Rue de Herve 169, Battice) ;</li>
-            <li>le jeudi <strong>21 novembre dès 18h</strong> chez <a href="/partenaires/maxime-renard-table-conviviale">Maxime Renard - Table conviviale</a> (Rue des Carmes 3, Liège).</li>
+            <li>le jeudi <strong>19 décembre dès 18h</strong> chez <a href="/partenaires/ma-ferme-en-ville">Ma Ferme en Ville</a> (Rue Souverain-Pont 34, Liège).</li>
         </ul>
     </div>
 @endsection
