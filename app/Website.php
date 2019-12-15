@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Htmlable;
 
 class Website extends ContactDetails implements Htmlable
@@ -40,7 +41,7 @@ class Website extends ContactDetails implements Htmlable
 
         $site->url = $site->clean($url);
 
-        if (starts_with($url, 'https://')) {
+        if (Str::startsWith($url, 'https://')) {
             $site->useHttps = true;
         }
 
@@ -112,7 +113,7 @@ class Website extends ContactDetails implements Htmlable
     {
         parent::populateContactDetailProperties();
 
-        if (starts_with($this->url, 'https://')) {
+        if (Str::startsWith($this->url, 'https://')) {
             $this->useHttps = true;
         }
 
@@ -152,7 +153,7 @@ class Website extends ContactDetails implements Htmlable
             case 'url':
                 $this->url = $this->clean($value);
 
-                $this->useHttps = (bool) starts_with($this->url, 'https://');
+                $this->useHttps = (bool) Str::startsWith($this->url, 'https://');
 
                 break;
             case 'urlWithoutProtocol':
