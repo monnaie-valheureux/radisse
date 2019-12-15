@@ -36,7 +36,7 @@
         "miclf/geodata": "dev-master",
         "miclf/static-map": "^1.0",
         "mmucklo/email-parse": "^2.0",
-        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/guzzle6-adapter": "^1.0",
         "php-http/message": "^1.7",
         "propaganistas/laravel-phone": "^4.0",
         "spatie/laravel-backup": "^6.0",
