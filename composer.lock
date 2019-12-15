@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e35063bcacb3311e5421d53027b7d17d",
+    "content-hash": "877b247dfcae3cf81320a2bbae48f4da",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -3929,28 +3929,28 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.38.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "674ad54a0ba95d8ad26990aa250b5c9d9b165e15"
+                "reference": "3dbab1c2b2bf721d5ff25b6435ad3f2ff7d45e42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/674ad54a0ba95d8ad26990aa250b5c9d9b165e15",
-                "reference": "674ad54a0ba95d8ad26990aa250b5c9d9b165e15",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/3dbab1c2b2bf721d5ff25b6435ad3f2ff7d45e42",
+                "reference": "3dbab1c2b2bf721d5ff25b6435ad3f2ff7d45e42",
                 "shasum": ""
             },
             "require": {
-                "illuminate/auth": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/container": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/contracts": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "php": ">=7.0"
+                "illuminate/auth": "^5.8|^6.0",
+                "illuminate/container": "^5.8|^6.0",
+                "illuminate/contracts": "^5.8|^6.0",
+                "illuminate/database": "^5.8|^6.0",
+                "php": "^7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0",
-                "phpunit/phpunit": "^5.7|6.2|^7.0",
+                "orchestra/testbench": "^3.8|^4.0",
+                "phpunit/phpunit": "^8.0",
                 "predis/predis": "^1.1"
             },
             "type": "library",
@@ -3981,7 +3981,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Permission handling for Laravel 5.4 to 5.8",
+            "description": "Permission handling for Laravel 5.8 and up",
             "homepage": "https://github.com/spatie/laravel-permission",
             "keywords": [
                 "acl",
@@ -3993,7 +3993,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-09-02T17:12:21+00:00"
+            "time": "2019-11-22T05:26:59+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
