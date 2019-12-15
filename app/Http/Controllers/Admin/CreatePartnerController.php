@@ -164,7 +164,7 @@ class CreatePartnerController extends Controller
      */
     public function storeSortName()
     {
-        $partner = Partner::find(Input::get('id'));
+        $partner = Partner::find(Request::input('id'));
 
         if (request()->has('submit')) {
 
@@ -222,7 +222,7 @@ class CreatePartnerController extends Controller
      */
     public function storeHeadOffice(StoreHeadOffice $request)
     {
-        $partner = Partner::find(Input::get('id'));
+        $partner = Partner::find(Request::input('id'));
 
         if ($request->has('submit')) {
 
@@ -375,7 +375,7 @@ class CreatePartnerController extends Controller
      */
     public function storeLocation(StoreLocation $request)
     {
-        $partner = Partner::find(Input::get('id'));
+        $partner = Partner::find(Request::input('id'));
 
         if ($request->has('submit')) {
 
@@ -468,7 +468,7 @@ class CreatePartnerController extends Controller
      */
     public function storeSiteAndSocialNetworks(Request $request)
     {
-        $partner = Partner::find(Input::get('id'));
+        $partner = Partner::find(Request::input('id'));
 
         if ($request->has('submit')) {
 
@@ -568,7 +568,7 @@ class CreatePartnerController extends Controller
      */
     public function storeRepresentatives(StoreRepresentatives $request)
     {
-        $partner = Partner::find(Input::get('id'));
+        $partner = Partner::find(Request::input('id'));
 
         if ($request->has('submit')) {
             // Do it the lazy way: delete everything and then rewrite
