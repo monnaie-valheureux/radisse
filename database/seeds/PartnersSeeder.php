@@ -11,6 +11,7 @@ use App\PostalAddress;
 use App\SocialNetwork;
 use App\CurrencyExchange;
 use App\JsonPartnerLoader;
+use Illuminate\Support\Arr;
 use App\PartnerRepresentative;
 use Illuminate\Database\Seeder;
 
@@ -71,15 +72,15 @@ class PartnersSeeder extends Seeder
             // ------------------------------------------
 
             // E-mail.
-            $this->addEmail($partner, array_get($data, 'contact_details.email'));
+            $this->addEmail($partner, Arr:get($data, 'contact_details.email'));
 
             // Phone number(s).
-            if ($phone = array_get($data, 'contact_details.phone')) {
+            if ($phone = Arr:get($data, 'contact_details.phone')) {
 
                 // The partner has only one phone number.
                 $partner->phones()->save(Phone::fromNumber($phone));
 
-            } elseif ($phones = array_get($data, 'contact_details.phones')) {
+            } elseif ($phones = Arr:get($data, 'contact_details.phones')) {
 
                 // The partner has multiple phone numbers.
                 foreach ($phones as $phoneData) {
@@ -93,7 +94,7 @@ class PartnersSeeder extends Seeder
             // Postal address.
             // Ensure that the necessary address parts are present.
             if (
-                ($address = array_get($data, 'contact_details.address')) &&
+                ($address = Arr:get($data, 'contact_details.address')) &&
                 $address['street'] && $address['street_number'] &&
                 $address['postal_code'] && $address['city']
             ) {
@@ -113,10 +114,10 @@ class PartnersSeeder extends Seeder
             // Add one or more location(s) for the partner
             // -------------------------------------------
 
-            $addresses = array_get($data, 'public_contact_details.addresses');
+            $addresses = Arr:get($data, 'public_contact_details.addresses');
 
             if (!$addresses) {
-                $addresses = [array_get($data, 'public_contact_details.address')];
+                $addresses = [Arr:get($data, 'public_contact_details.address')];
             }
 
             foreach ($addresses as $address) {
@@ -172,17 +173,17 @@ class PartnersSeeder extends Seeder
             // E-mail.
             $this->addEmail(
                 $partner,
-                array_get($data, 'public_contact_details.email'),
+                Arr:get($data, 'public_contact_details.email'),
                 $isPublic = true
             );
 
             // Phone number(s).
-            if ($phone = array_get($data, 'public_contact_details.phone')) {
+            if ($phone = Arr:get($data, 'public_contact_details.phone')) {
 
                 // If there is only one phone number.
                 $partner->phones()->save(Phone::fromNumber($phone)->makePublic());
 
-            } elseif ($phones = array_get($data, 'public_contact_details.phones')) {
+            } elseif ($phones = Arr:get($data, 'public_contact_details.phones')) {
 
                 // If there are multiple phone numbers.
                 foreach ($phones as $phoneData) {
@@ -195,7 +196,7 @@ class PartnersSeeder extends Seeder
             }
 
             // Website(s).
-            if ($sites = array_get($data, 'public_contact_details.websites')) {
+            if ($sites = Arr:get($data, 'public_contact_details.websites')) {
 
                 foreach ($sites as $siteData) {
                     $site = Website::fromUrl($siteData['url']);
@@ -206,7 +207,7 @@ class PartnersSeeder extends Seeder
             }
 
             // Social network(s).
-            if ($networks = array_get($data, 'public_contact_details.social_networks')) {
+            if ($networks = Arr:get($data, 'public_contact_details.social_networks')) {
 
                 foreach ($networks as $networkData) {
                     $network = new SocialNetwork;

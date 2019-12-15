@@ -4,6 +4,7 @@ namespace App;
 
 use stdClass;
 use DomainException;
+use Illuminate\Support\Str;
 
 class PostalAddress extends ContactDetails
 {
@@ -179,7 +180,7 @@ class PostalAddress extends ContactDetails
             case 'latitude':
             case 'longitude':
             case 'isGeolocatable':
-                return $this->parts->{snake_case($name)} ?? null;
+                return $this->parts->{Str::snake($name)} ?? null;
         }
 
         return parent::__get($name);
@@ -208,7 +209,7 @@ class PostalAddress extends ContactDetails
             case 'isGeolocatable':
             case 'is_geolocatable':
                 // Update the value.
-                $this->parts->{snake_case($name)} = $value;
+                $this->parts->{Str::snake($name)} = $value;
 
                 // Ensure we got the required address components.
                 $this->validateAddress($this->parts);
