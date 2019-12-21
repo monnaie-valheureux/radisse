@@ -19,7 +19,6 @@ use App\PartnerRepresentative;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Partner\StoreLocation;
 use App\Http\Requests\Partner\StoreHeadOffice;
 use App\Http\Requests\Partner\StoreRepresentatives;
@@ -164,7 +163,7 @@ class CreatePartnerController extends Controller
      */
     public function storeSortName()
     {
-        $partner = Partner::find(Request::input('id'));
+        $partner = Partner::find(request()->input('id'));
 
         if (request()->has('submit')) {
 
@@ -222,7 +221,7 @@ class CreatePartnerController extends Controller
      */
     public function storeHeadOffice(StoreHeadOffice $request)
     {
-        $partner = Partner::find(Request::input('id'));
+        $partner = Partner::find($request->input('id'));
 
         if ($request->has('submit')) {
 
@@ -375,7 +374,7 @@ class CreatePartnerController extends Controller
      */
     public function storeLocation(StoreLocation $request)
     {
-        $partner = Partner::find(Request::input('id'));
+        $partner = Partner::find($request->input('id'));
 
         if ($request->has('submit')) {
 
@@ -468,7 +467,7 @@ class CreatePartnerController extends Controller
      */
     public function storeSiteAndSocialNetworks(Request $request)
     {
-        $partner = Partner::find(Request::input('id'));
+        $partner = Partner::find($request->input('id'));
 
         if ($request->has('submit')) {
 
@@ -568,7 +567,7 @@ class CreatePartnerController extends Controller
      */
     public function storeRepresentatives(StoreRepresentatives $request)
     {
-        $partner = Partner::find(Request::input('id'));
+        $partner = Partner::find($request->input('id'));
 
         if ($request->has('submit')) {
             // Do it the lazy way: delete everything and then rewrite
