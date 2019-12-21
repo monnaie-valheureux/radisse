@@ -19,7 +19,6 @@ use App\PartnerRepresentative;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Partner\StoreLocation;
 use App\Http\Requests\Partner\StoreHeadOffice;
 use App\Http\Requests\Partner\StoreRepresentatives;
