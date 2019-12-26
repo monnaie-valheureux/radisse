@@ -48,7 +48,7 @@
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
-        "itsgoingd/clockwork": "^3.0",
+        "itsgoingd/clockwork": "^4.0",
         "laravel/dusk": "^5.0",
         "mockery/mockery": "0.9.*",
         "nunomaduro/collision": "^3.0",
