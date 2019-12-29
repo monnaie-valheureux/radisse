@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * A location is a place where a partner welcomes its customers. For example, it
- * may be a shop, a restaurant, an office or any other place were the currency
+ * may be a shop, a restaurant, an office or any other place where the currency
  * will be used and exchanged between the partner and its customers.
  */
 class Location extends Model implements HasMedia
