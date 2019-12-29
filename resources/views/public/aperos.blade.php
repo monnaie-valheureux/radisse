@@ -15,9 +15,6 @@
         </ul>
         <p>À <strong>Liège</strong>, les apéros du Val’heureux ont lieu tous <strong>les troisièmes jeudis du mois de 18h à 21h</strong> (voire plus tard !). Des apéros sont aussi organisés ailleurs dans la province.</p>
 
-        <p>Dates des prochains apéros :</p>
-        <ul>
-            <li>le jeudi <strong>19 décembre dès 18h</strong> chez <a href="/partenaires/ma-ferme-en-ville">Ma Ferme en Ville</a> (Rue Souverain-Pont 34, Liège).</li>
-        </ul>
+        <p>Les dates de nos prochains apéros seront ajoutées prochainement :)</p>
     </div>
 @endsection
