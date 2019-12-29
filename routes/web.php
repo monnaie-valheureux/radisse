@@ -66,6 +66,14 @@ Route::namespace('Site')->group(function () {
 });
 
 
+// This group defines routes for some specific uses.
+Route::prefix('api')->namespace('Api')->group(function () {
+
+    // Get a GeoJSON feature collection of the current list of locations.
+    Route::get('osm/locations', 'OpenStreetMapController@locations');
+});
+
+
 // Admin authentication routes.
 Route::prefix('gestion')->namespace('Admin')->group(function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
