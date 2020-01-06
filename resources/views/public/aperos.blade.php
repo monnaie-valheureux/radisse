@@ -15,6 +15,9 @@
         </ul>
         <p>À <strong>Liège</strong>, les apéros du Val’heureux ont lieu tous <strong>les troisièmes jeudis du mois de 18h à 21h</strong> (voire plus tard !). Des apéros sont aussi organisés ailleurs dans la province.</p>
 
-        <p>Les dates de nos prochains apéros seront ajoutées prochainement :)</p>
+        <p>Dates des prochains apéros :</p>
+        <ul>
+            <li>le jeudi <strong>16 janvier dès 18h</strong> chez Oufticoop (Rue Curtius 10, Liège).</li>
+        </ul>
     </div>
 @endsection
