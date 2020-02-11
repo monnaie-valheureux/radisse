@@ -17,7 +17,7 @@
 
         <p>Dates des prochains apéros :</p>
         <ul>
-            <li>le jeudi <strong>16 janvier dès 18h</strong> chez Oufticoop (Rue Curtius 10, Liège).</li>
+            <li>le jeudi <strong>20 février dès 18h</strong> chez <a href="/partenaires/toutes-directions">Toutes Directions</a> (Rue de la Violette, Liège).</li>
         </ul>
     </div>
 @endsection
