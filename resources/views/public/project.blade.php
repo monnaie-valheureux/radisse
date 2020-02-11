@@ -37,6 +37,11 @@
                     Questions fréquemment posées par les commerçants
                 </a>
             </li>
+            <li>
+                <a href="#comment-les-citoyens-peuvent-soutenir-le-projet">
+                    Comment les citoyens peuvent soutenir le projet ?
+                </a>
+            </li>
         </ol>
     </div>
 
@@ -212,5 +217,15 @@
         <li>le Val’heureux a pour objectif de dynamiser le commerce local et donc de soutenir les petits entrepreneurs ;</li>
         <li>profiter des actions lancées par l’ASBL le Val’heureux comme par exemple l’enveloppe cadeau lors des fêtes de fin d’année (V dépensés dans le réseau, évidemment !).</li>
     </ul>
+
+    <h2 id="comment-les-citoyens-peuvent-soutenir-le-projet">Comment les citoyens peuvent soutenir le projet ?</h2>
+
+    <h3>En devenant membre</h3>
+
+    <p>Parler du Val’heureux, dépenser en val’heureux et devenir membre de l’ASBL, c’est déjà participer concrètement à la construction d’une société plus équitable et plus respectueuse de l’environnement, mais c’est aussi exercer son pouvoir citoyen !</p>
+
+    <h3>En prenant une part active</h3>
+
+    <p>Vu le succès grandissant du Val’heureux, l’ASBL cherche activement des citoyens volontaires (aide administrative, communication, rencontre des partenaires, représentation, etc). N’hésitez pas à nous rejoindre !</p>
 </div>
 @endsection
