@@ -7,6 +7,10 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html "Semantic Versioning 2.0.0 specification").
 
+## [1.33.1] - 2020-02-20
+### Fixed
+- Fix an issue related to PHP 7.4.
+
 ## [1.33.0] - 2020-02-11
 ### Changed
 - Updated content in the page for ‘apéros’.
@@ -235,6 +239,7 @@ and this project adheres to
 - A page listing existing currency exchanges (hardcoded).
 - A page listing active partners of the currency (dynamic).
 
+[1.33.1]: https://github.com/monnaie-valheureux/radisse/compare/v1.33.0...1.33.1
 [1.33.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.32.0...1.33.0
 [1.32.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.31.0...1.32.0
 [1.31.0]: https://github.com/monnaie-valheureux/radisse/compare/v1.30.1...1.31.0

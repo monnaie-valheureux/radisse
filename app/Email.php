@@ -109,6 +109,20 @@ class Email extends ContactDetails implements Htmlable
             case 'domain':
                 return $this->parts['domain'];
             case 'address':
+
+                // Super weird fix for PHP 7.4… I really don’t know what’s
+                // going on here! This is used to fix a notice of
+                // ‘Trying to access array offset on value of type null’
+                // which has been introduced since PHP 7.4:
+                // https://www.php.net/manual/en/migration74.incompatible.php#migration74.incompatible.core.non-array-access
+                if (!isset($this->parts['local_part'])) {
+                    $this->parts['local_part'] = '';
+                }
+                if (!isset($this->parts['domain'])) {
+                    $this->parts['domain'] = '';
+                }
+                // End of fix.
+
                 return $this->parts['local_part'].'@'.$this->parts['domain'];
         }
 
