@@ -38,6 +38,10 @@ Route::namespace('Site')->group(function () {
     Route::view('/remplacement-anciens-billets', 'public.old-bills-withdrawal');
 
 
+    // Page about the electronic payment system.
+    Route::view('/spe', 'public.electronic-info');
+
+
     // Search form on the home page.
     // TODO
 
