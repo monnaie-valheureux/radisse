@@ -107,6 +107,9 @@ class GeneralMap
             return Geodata::getCommuneNISCodeForCity($city);
         }, $cityNames));
 
+        // Remove potential null values.
+        $municipalityCodes = array_filter($municipalityCodes);
+
         // Return the list of GeoJSON features for the given municipalities.
         return GeoJSON::getByNISCode($municipalityCodes);
     }
