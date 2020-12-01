@@ -34,11 +34,12 @@
             <dt class="list-of-sections__section-name">
                 <a href="/partenaires-par catégorie">Partenaires par catégorie</a>
             </dt>
+            <!-- TO DD insert implementation of view of partners by category here after adding the category in the data layer >
+
             <dd class="list-of-sections__section-description">
                 <p>
                     
-                    <!-- insert table here -->
-
+                
                     @foreach ($partnersByInitials as $initial => $partners)
                         <div>
                             <h3>{{ $initial }}</h3>
@@ -49,7 +50,7 @@
                         </div>
                     @endforeach
                 </p>
-            </dd>
+            </dd-->
 
         </dl>
 <h3>Alimentation saine</h3>
