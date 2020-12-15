@@ -34,7 +34,6 @@
             <dt class="list-of-sections__section-name">
                 <a href="/partenaires-par catégorie">Partenaires par catégorie</a>
             </dt>
-            /*
             <!-- TO DD insert implementation of view of partners by category here after adding the category in the data layer >
 
             <dd class="list-of-sections__section-description">
@@ -52,7 +51,7 @@
                     @endforeach
                 </p>
             </dd-->
-*/
+
         </dl>
 <h3>Alimentation saine</h3>
 <ul class="partner-list__sublist">
