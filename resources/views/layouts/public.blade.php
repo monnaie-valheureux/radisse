@@ -72,7 +72,6 @@
                     <li><a href="/le-projet">Le projet</a></li>
                     <li><a href="/comptoirs">Où en trouver ?</a></li>
                     <li><a href="/partenaires">Commerces</a></li>
-                    <li><a href="https://mamonnaiecitoyenne.be/levalheureux">Paiement mobile</a></li>
                 </ul>
             </nav>
         </div>
